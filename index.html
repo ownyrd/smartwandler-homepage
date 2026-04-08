@@ -10,9 +10,9 @@
 
 :root {
   --ink:       #3A3631;
-  --ink-mid:   #5A5550;
-  --ink-soft:  #8B8680;
-  --ink-faint: #BAB5AE;
+  --ink-mid:   #4B4640;
+  --ink-soft:  #5F5952;
+  --ink-faint: #7C766C;
   --paper:     #FAF8F5;
   --paper-2:   #F2EFE9;
   --paper-3:   #E8E3DC;
@@ -445,13 +445,13 @@ section.dark {
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.6);
   margin-bottom: 12px;
 }
 
 /* dark section headings */
-.dark .section-eyebrow .eyebrow-line { background: rgba(255,255,255,0.2); }
-.dark .eyebrow-text { color: rgba(255,255,255,0.4); }
+.dark .section-eyebrow .eyebrow-line { background: rgba(255,255,255,0.35); }
+.dark .eyebrow-text { color: rgba(255,255,255,0.65); }
 .dark .section-h2-ph { background: rgba(255,255,255,0.12); }
 .dark .section-h2-ph-2 { background: rgba(255,255,255,0.08); }
 .dark .section-sub-ph { background: rgba(255,255,255,0.07); }
@@ -537,7 +537,8 @@ section.dark {
 }
 .compare-cell:last-child { border-right: none; }
 .compare-cell.highlight-col { background: rgba(15,14,13,0.03); }
-.compare-cell.center { text-align: center; }
+.compare-cell.center,
+.compare-col-head.center { text-align: center; }
 .compare-criterion { height: 13px; width: 75%; border-radius: 100px; }
 .ic-yes { color: #2D7A4F; font-size: 16px; font-weight: 500; }
 .ic-no  { color: #C0392B; font-size: 14px; opacity: 0.7; }
@@ -614,7 +615,7 @@ section.dark {
 }
 .cta-btn-ghost {
   background: transparent;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.85);
   font-family: 'DM Sans', sans-serif;
   font-size: 14px;
   padding: 13px 24px;
@@ -638,7 +639,6 @@ section.dark {
   justify-content: center;
   gap: 20px;
 }
-.cta-deco-stat {}
 .cta-deco-num { height: 22px; width: 60px; border-radius: 4px; background: rgba(255,255,255,0.12); margin-bottom: 6px; }
 .cta-deco-sub { height: 11px; width: 80px; border-radius: 100px; background: rgba(255,255,255,0.07); }
 .cta-deco-div { width: 1px; height: 40px; background: rgba(255,255,255,0.08); }
@@ -983,7 +983,7 @@ footer {
           73%
         </div>
         <div style="margin-top:12px">
-          <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.5">der KMU haben Prozesse, die sich mit lokaler Automatisierung sofort optimieren lassen.</p>
+          <p style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.5">der KMU haben Prozesse, die sich mit lokaler Automatisierung sofort optimieren lassen.</p>
         </div>
       </div>
 
@@ -1054,28 +1054,28 @@ footer {
       <span class="eyebrow-text">Unser Vorgehen</span>
     </div>
     <h2 class="section-h2" style="color:#fff">In drei Schritten<br>zur fertigen Lösung</h2>
-    <p style="font-size:15px;color:rgba(255,255,255,0.45);margin-top:12px">Von der Analyse bis zum Go-Live — transparent, planbar und ohne Überraschungen.</p>
+    <p style="font-size:15px;color:rgba(255,255,255,0.7);margin-top:12px">Von der Analyse bis zum Go-Live — transparent, planbar und ohne Überraschungen.</p>
 
     <div class="process-steps">
       <div class="process-step">
         <div class="step-num-badge">1</div>
         <div class="step-label-dark">Analyse &amp; Zielbild</div>
         <p style="font-size:15px;font-weight:500;color:#fff;margin-bottom:12px">Prozesse verstehen</p>
-        <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6">Wir analysieren Ihre bestehenden Abläufe, identifizieren Automatisierungspotenziale und definieren gemeinsam das Zielbild — inkl. Hardware-Anforderungen.</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.72);line-height:1.6">Wir analysieren Ihre bestehenden Abläufe, identifizieren Automatisierungspotenziale und definieren gemeinsam das Zielbild — inkl. Hardware-Anforderungen.</p>
         <div class="step-connector">→</div>
       </div>
       <div class="process-step">
         <div class="step-num-badge">2</div>
         <div class="step-label-dark">Entwicklung &amp; Build</div>
         <p style="font-size:15px;font-weight:500;color:#fff;margin-bottom:12px">Lösung bauen</p>
-        <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6">Wir entwickeln Ihre maßgeschneiderte Lösung iterativ, mit regelmäßigen Demos. Sie sehen in Wochen — nicht Monaten — erste Ergebnisse.</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.72);line-height:1.6">Wir entwickeln Ihre maßgeschneiderte Lösung iterativ, mit regelmäßigen Demos. Sie sehen in Wochen — nicht Monaten — erste Ergebnisse.</p>
         <div class="step-connector">→</div>
       </div>
       <div class="process-step">
         <div class="step-num-badge">3</div>
         <div class="step-label-dark">Go-Live &amp; Schulung</div>
         <p style="font-size:15px;font-weight:500;color:#fff;margin-bottom:12px">Schlüsselfertig übergeben</p>
-        <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6">Installation vor Ort, Schulung Ihres Teams und laufender Support. Ihre Lösung läuft unabhängig — ohne Cloud, ohne Abo.</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.72);line-height:1.6">Installation vor Ort, Schulung Ihres Teams und laufender Support. Ihre Lösung läuft unabhängig — ohne Cloud, ohne Abo.</p>
       </div>
     </div>
   </section>
@@ -1146,9 +1146,9 @@ footer {
     <div class="compare-wrap">
       <div class="compare-head">
         <div class="compare-col-head">Kriterium</div>
-        <div class="compare-col-head">Standard SaaS</div>
-        <div class="compare-col-head">KI-Agentur</div>
-        <div class="compare-col-head highlight">decentnodes ✓</div>
+        <div class="compare-col-head center">Standard SaaS</div>
+        <div class="compare-col-head center">KI-Agentur</div>
+        <div class="compare-col-head highlight center">decentnodes ✓</div>
       </div>
       <div class="compare-row">
         <div class="compare-cell"><span style="font-size:13px;color:var(--ink-mid)">DSGVO-konform lokal</span></div>
@@ -1230,35 +1230,37 @@ footer {
   ══════════════════════════════════════ -->
   <div class="cta-final">
     <div class="section-eyebrow cta-eyebrow" style="justify-content:center">
-      <div class="eyebrow-line" style="background:rgba(255,255,255,0.2)"></div>
-      <span class="eyebrow-text" style="color:rgba(255,255,255,0.35)">Jetzt starten</span>
-      <div class="eyebrow-line" style="background:rgba(255,255,255,0.2)"></div>
+      <div class="eyebrow-line" style="background:rgba(255,255,255,0.35)"></div>
+      <span class="eyebrow-text" style="color:rgba(255,255,255,0.65)">Jetzt starten</span>
+      <div class="eyebrow-line" style="background:rgba(255,255,255,0.35)"></div>
     </div>
     <h2 style="font-family:'DM Serif Display',serif;font-size:42px;font-weight:400;color:#fff;letter-spacing:-0.02em;line-height:1.1;margin-bottom:12px;position:relative;z-index:1">Bereit für Automatisierung<br>ohne Kompromisse?</h2>
-    <p style="font-size:15px;color:rgba(255,255,255,0.45);margin-bottom:40px;position:relative;z-index:1">Kostenloses Erstgespräch — unverbindlich und in 30 Minuten.</p>
+    <p style="font-size:15px;color:rgba(255,255,255,0.72);margin-bottom:40px;position:relative;z-index:1">Kostenloses Erstgespräch — unverbindlich und in 30 Minuten.</p>
     <div class="cta-btns">
       <button class="cta-btn-primary">▶ Kostenloses Erstgespräch</button>
+      <!-- TODO: "Referenzprojekte ansehen"-Button wieder aktivieren, sobald Referenzprojekte vorhanden sind
       <button class="cta-btn-ghost">Referenzprojekte ansehen</button>
+      -->
     </div>
     <div class="cta-deco">
       <div class="cta-deco-stat">
         <div style="font-family:'DM Serif Display',serif;font-size:22px;line-height:1;color:#fff;letter-spacing:-0.02em;margin-bottom:6px">&lt;24 h</div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:0.04em">Reaktionszeit</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">Reaktionszeit</div>
       </div>
       <div class="cta-deco-div"></div>
       <div class="cta-deco-stat">
         <div style="font-family:'DM Serif Display',serif;font-size:22px;line-height:1;color:#fff;letter-spacing:-0.02em;margin-bottom:6px">10+ Jahre</div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:0.04em">Enterprise-Erfahrung</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">Enterprise-Erfahrung</div>
       </div>
       <div class="cta-deco-div"></div>
       <div class="cta-deco-stat">
         <div style="font-family:'DM Serif Display',serif;font-size:22px;line-height:1;color:#fff;letter-spacing:-0.02em;margin-bottom:6px">100 %</div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:0.04em">DSGVO-konform</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">DSGVO-konform</div>
       </div>
       <div class="cta-deco-div"></div>
       <div class="cta-deco-stat">
         <div style="font-family:'DM Serif Display',serif;font-size:22px;line-height:1;color:#fff;letter-spacing:-0.02em;margin-bottom:6px">0 €</div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:0.04em">Erstgespräch</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">Erstgespräch</div>
       </div>
     </div>
   </div>
@@ -1270,36 +1272,36 @@ footer {
     <div class="footer-top">
       <div>
         <div class="footer-logo-mark"></div>
-        <p style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.6;margin-bottom:4px">Digitalisierung & Automatisierung</p>
-        <p style="font-size:13px;color:rgba(255,255,255,0.3);line-height:1.6">Lokal. Sicher. Maßgeschneidert.</p>
-        <p style="font-size:11px;color:rgba(255,255,255,0.2);margin-top:20px;letter-spacing:0.05em">Philipp Anders · decentnodes.de</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:4px">Digitalisierung & Automatisierung</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6">Lokal. Sicher. Maßgeschneidert.</p>
+        <p style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:20px;letter-spacing:0.05em">Philipp Anders · decentnodes.de</p>
       </div>
       <div>
-        <p style="font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Leistungen</p>
-        <a href="#" style="display:block;font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;margin-bottom:12px">Workflow-Automatisierung</a>
-        <a href="#" style="display:block;font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;margin-bottom:12px">Lokale KI-Anwendungen</a>
-        <a href="#" style="display:block;font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;margin-bottom:12px">Individuelle Web-Tools</a>
+        <p style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Leistungen</p>
+        <a href="#" style="display:block;font-size:13px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Workflow-Automatisierung</a>
+        <a href="#" style="display:block;font-size:13px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Lokale KI-Anwendungen</a>
+        <a href="#" style="display:block;font-size:13px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Individuelle Web-Tools</a>
         <a href="#" style="display:block;font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none">Beratung &amp; Analyse</a>
       </div>
       <div>
-        <p style="font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Unternehmen</p>
-        <a href="#ueber-uns" style="display:block;font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;margin-bottom:12px">Über uns</a>
-        <a href="#zusammenarbeit" style="display:block;font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;margin-bottom:12px">Zusammenarbeit</a>
-        <a href="#faq" style="display:block;font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none">FAQ</a>
+        <p style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Unternehmen</p>
+        <a href="#ueber-uns" style="display:block;font-size:13px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Über uns</a>
+        <a href="#zusammenarbeit" style="display:block;font-size:13px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Zusammenarbeit</a>
+        <a href="#faq" style="display:block;font-size:13px;color:rgba(255,255,255,0.7);text-decoration:none">FAQ</a>
       </div>
       <div>
-        <p style="font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Kontakt</p>
-        <a href="mailto:hello@decentnodes.de" style="display:block;font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;margin-bottom:12px">hello@decentnodes.de</a>
-        <a href="#" style="display:block;font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;margin-bottom:12px">Erstgespräch buchen</a>
-        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" style="display:block;font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none">LinkedIn</a>
+        <p style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Kontakt</p>
+        <a href="mailto:hello@decentnodes.de" style="display:block;font-size:13px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">hello@decentnodes.de</a>
+        <a href="#" style="display:block;font-size:13px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Erstgespräch buchen</a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" style="display:block;font-size:13px;color:rgba(255,255,255,0.7);text-decoration:none">LinkedIn</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p style="font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:0.04em">© 2026 decentnodes.de · Alle Rechte vorbehalten</p>
+      <p style="font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:0.04em">© 2026 decentnodes.de · Alle Rechte vorbehalten</p>
       <div class="footer-legal">
-        <a href="#" style="font-size:11px;color:rgba(255,255,255,0.3);text-decoration:none">Impressum</a>
-        <a href="#" style="font-size:11px;color:rgba(255,255,255,0.3);text-decoration:none">Datenschutz</a>
-        <a href="#" style="font-size:11px;color:rgba(255,255,255,0.3);text-decoration:none">AGB</a>
+        <a href="#" style="font-size:11px;color:rgba(255,255,255,0.6);text-decoration:none">Impressum</a>
+        <a href="#" style="font-size:11px;color:rgba(255,255,255,0.6);text-decoration:none">Datenschutz</a>
+        <a href="#" style="font-size:11px;color:rgba(255,255,255,0.6);text-decoration:none">AGB</a>
       </div>
     </div>
   </footer>
