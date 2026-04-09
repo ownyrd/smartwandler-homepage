@@ -7,46 +7,11 @@
 <style>
 /* ── LOKALE FONTS ── */
 @font-face {
-  font-family: 'DM Sans';
+  font-family: 'Inter';
   font-style: normal;
-  font-weight: 300;
+  font-weight: 300 700;
   font-display: swap;
-  src: url('fonts/dm-sans-300.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('fonts/dm-sans-400.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('fonts/dm-sans-500.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'DM Sans';
-  font-style: italic;
-  font-weight: 300;
-  font-display: swap;
-  src: url('fonts/dm-sans-300-italic.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'DM Serif Display';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('fonts/dm-serif-display-400.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'DM Serif Display';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url('fonts/dm-serif-display-400-italic.woff2') format('woff2');
+  src: url('fonts/inter-variable.woff2') format('woff2');
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -72,7 +37,7 @@
 html { background: #EDEBE6; }
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   background: transparent;
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
@@ -150,7 +115,7 @@ nav {
 .nav-cta {
   background: var(--ink);
   color: #fff;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   font-size: 15px;
   letter-spacing: 0.02em;
   padding: 10px 22px;
@@ -193,13 +158,13 @@ nav {
   font-weight: 500;
 }
 .hero-h1 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 52px;
-  line-height: 1.08;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 56px;
+  line-height: 1.05;
   color: var(--ink);
-  font-weight: 400;
+  font-weight: 600;
   margin-bottom: 24px;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.035em;
 }
 .hero-h1-ph { height: 52px; margin-bottom: 10px; border-radius: 6px; }
 .hero-h1-ph-2 { height: 52px; width: 80%; margin-bottom: 10px; border-radius: 6px; }
@@ -210,7 +175,7 @@ nav {
 .hero-cta-primary {
   background: var(--ink);
   color: #fff;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   font-size: 16px;
   padding: 13px 26px;
   border-radius: 100px;
@@ -221,7 +186,7 @@ nav {
 .hero-cta-secondary {
   background: transparent;
   color: var(--ink);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   font-size: 16px;
   padding: 12px 22px;
   border-radius: 100px;
@@ -321,11 +286,11 @@ section.dark {
   font-weight: 500;
 }
 .section-h2 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 38px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
   margin-bottom: 8px;
 }
 .section-h2-ph { height: 40px; width: 50%; border-radius: 6px; margin-bottom: 10px; }
@@ -423,7 +388,7 @@ section.dark {
   gap: 8px;
   background: var(--ink);
   color: #fff;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   font-size: 15px;
   padding: 12px 22px;
   border-radius: 100px;
@@ -648,7 +613,7 @@ section.dark {
 .cta-btn-primary {
   background: #fff;
   color: var(--ink);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   font-size: 16px;
   padding: 14px 28px;
   border-radius: 100px;
@@ -659,7 +624,7 @@ section.dark {
 .cta-btn-ghost {
   background: transparent;
   color: rgba(255,255,255,0.85);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   font-size: 16px;
   padding: 13px 24px;
   border-radius: 100px;
@@ -968,7 +933,7 @@ footer {
       </div>
       <div class="hero-float-card">
         <div class="float-card-label">Zeitersparnis / Woche</div>
-        <div style="font-family:'DM Serif Display',serif;font-size:28px;line-height:1;color:var(--ink);letter-spacing:-0.02em;margin-bottom:10px">20&thinsp;%</div>
+        <div style="font-family:'Inter', system-ui, sans-serif;font-size:28px;font-weight:600;line-height:1;color:var(--ink);letter-spacing:-0.035em;margin-bottom:10px">20&thinsp;%</div>
         <div style="height:6px;background:var(--paper-3);border-radius:100px;overflow:hidden">
           <div style="width:20%;height:100%;background:var(--gold);border-radius:100px"></div>
         </div>
@@ -1022,7 +987,7 @@ footer {
 
       <!-- Card D — stat card -->
       <div class="bcard b-d" style="background:var(--ink);border-color:transparent;display:flex;flex-direction:column;justify-content:center">
-        <div style="font-size:48px;font-family:'DM Serif Display',serif;color:#fff;letter-spacing:-0.03em;line-height:1">
+        <div style="font-size:52px;font-family:'Inter', system-ui, sans-serif;font-weight:600;color:#fff;letter-spacing:-0.04em;line-height:1">
           73%
         </div>
         <div style="margin-top:12px">
@@ -1060,7 +1025,7 @@ footer {
     <div class="tab-pane">
       <div>
         <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:14px">Lösung 01 · Workflow-Automatisierung</div>
-        <h3 style="font-size:20px;font-family:'DM Serif Display',serif;font-weight:400;margin-bottom:14px">Geschäftsprozesse automatisieren — Ende zu Ende</h3>
+        <h3 style="font-size:22px;font-family:'Inter', system-ui, sans-serif;font-weight:600;letter-spacing:-0.025em;margin-bottom:14px">Geschäftsprozesse automatisieren — Ende zu Ende</h3>
         <p style="font-size:16px;color:var(--ink-soft);line-height:1.6;margin-bottom:4px">Wir analysieren Ihre wiederkehrenden Abläufe und bauen automatisierte Workflows, die lokal auf Ihrer Infrastruktur laufen — ohne manuelle Zwischenschritte.</p>
         <div class="tab-check-list">
           <div class="tab-check-row">
@@ -1277,7 +1242,7 @@ footer {
       <span class="eyebrow-text" style="color:rgba(255,255,255,0.65)">Jetzt starten</span>
       <div class="eyebrow-line" style="background:rgba(255,255,255,0.35)"></div>
     </div>
-    <h2 style="font-family:'DM Serif Display',serif;font-size:42px;font-weight:400;color:#fff;letter-spacing:-0.02em;line-height:1.1;margin-bottom:12px;position:relative;z-index:1">Bereit für Automatisierung<br>ohne Kompromisse?</h2>
+    <h2 style="font-family:'Inter', system-ui, sans-serif;font-size:44px;font-weight:600;color:#fff;letter-spacing:-0.035em;line-height:1.08;margin-bottom:12px;position:relative;z-index:1">Bereit für Automatisierung<br>ohne Kompromisse?</h2>
     <p style="font-size:17px;color:rgba(255,255,255,0.72);margin-bottom:40px;position:relative;z-index:1">Kostenloses Erstgespräch — unverbindlich und in 30 Minuten.</p>
     <div class="cta-btns">
       <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting-decentnodes" target="_blank" rel="noopener"><button class="cta-btn-primary">▶ Kostenloses Erstgespräch</button></a>
@@ -1287,22 +1252,22 @@ footer {
     </div>
     <div class="cta-deco">
       <div class="cta-deco-stat">
-        <div style="font-family:'DM Serif Display',serif;font-size:22px;line-height:1;color:#fff;letter-spacing:-0.02em;margin-bottom:6px">&lt;24 h</div>
+        <div style="font-family:'Inter', system-ui, sans-serif;font-size:24px;font-weight:600;line-height:1;color:#fff;letter-spacing:-0.035em;margin-bottom:6px">&lt;24 h</div>
         <div style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">Reaktionszeit</div>
       </div>
       <div class="cta-deco-div"></div>
       <div class="cta-deco-stat">
-        <div style="font-family:'DM Serif Display',serif;font-size:22px;line-height:1;color:#fff;letter-spacing:-0.02em;margin-bottom:6px">10+ Jahre</div>
+        <div style="font-family:'Inter', system-ui, sans-serif;font-size:24px;font-weight:600;line-height:1;color:#fff;letter-spacing:-0.035em;margin-bottom:6px">10+ Jahre</div>
         <div style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">Enterprise-Erfahrung</div>
       </div>
       <div class="cta-deco-div"></div>
       <div class="cta-deco-stat">
-        <div style="font-family:'DM Serif Display',serif;font-size:22px;line-height:1;color:#fff;letter-spacing:-0.02em;margin-bottom:6px">100 %</div>
+        <div style="font-family:'Inter', system-ui, sans-serif;font-size:24px;font-weight:600;line-height:1;color:#fff;letter-spacing:-0.035em;margin-bottom:6px">100 %</div>
         <div style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">DSGVO-konform</div>
       </div>
       <div class="cta-deco-div"></div>
       <div class="cta-deco-stat">
-        <div style="font-family:'DM Serif Display',serif;font-size:22px;line-height:1;color:#fff;letter-spacing:-0.02em;margin-bottom:6px">0 €</div>
+        <div style="font-family:'Inter', system-ui, sans-serif;font-size:24px;font-weight:600;line-height:1;color:#fff;letter-spacing:-0.035em;margin-bottom:6px">0 €</div>
         <div style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">Erstgespräch</div>
       </div>
     </div>
