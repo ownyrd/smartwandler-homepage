@@ -360,6 +360,8 @@ section.dark {
   gap: 60px;
   align-items: center;
 }
+.tab-pane:not(.active) { display: none; }
+.tab { cursor: pointer; }
 .tab-h { height: 22px; width: 80%; border-radius: 5px; margin-bottom: 14px; }
 .tab-line { height: 13px; margin-bottom: 8px; border-radius: 100px; }
 .tab-check-list { margin-top: 24px; }
@@ -554,15 +556,22 @@ section.dark {
 
 /* ── FAQ ── */
 .faq-list { margin-top: 40px; }
-.faq-row {
+.faq-item {
   border-bottom: 1px solid var(--line);
+}
+.faq-item summary {
   padding: 22px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  list-style: none;
+  font-size: 17px;
+  color: var(--ink);
+  font-weight: 500;
 }
-.faq-q-ph { height: 14px; border-radius: 100px; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::marker { display: none; content: ''; }
 .faq-icon {
   width: 28px; height: 28px;
   border: 1px solid var(--line);
@@ -572,18 +581,24 @@ section.dark {
   align-items: center;
   justify-content: center;
   color: var(--ink-soft);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 300;
   margin-left: 24px;
+  transition: transform 0.25s ease, background 0.25s ease;
 }
-.faq-open {
-  background: var(--paper-2);
-  border-radius: var(--r-md);
-  padding: 22px 24px;
-  margin-bottom: 2px;
+.faq-item[open] .faq-icon {
+  transform: rotate(45deg);
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
 }
-.faq-open-q { height: 14px; width: 60%; border-radius: 100px; margin-bottom: 14px; }
-.faq-open-a-line { height: 12px; margin-bottom: 7px; border-radius: 100px; }
+.faq-answer {
+  padding: 0 0 22px;
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  max-width: 760px;
+}
 
 /* ── CTA FINAL ── */
 .cta-final {
@@ -899,12 +914,12 @@ footer {
     <div>
       <div class="hero-badge">
         <div class="hero-badge-dot"></div>
-        <span class="hero-badge-text">DSGVO-konform · Lokal · In Wochen live</span>
+        <span class="hero-badge-text">DSGVO-konform · Lokal · In wenigen Wochen live</span>
       </div>
 
       <h1 class="hero-h1">Geschäftsprozesse digitalisieren.<br>Lokal. Sicher. Sofort wirksam.</h1>
 
-      <p style="font-size:18px;line-height:1.6;color:var(--ink-soft);margin-bottom:32px;max-width:480px">Maßgeschneiderte Automatisierung und KI-Lösungen, die direkt bei Ihnen vor Ort laufen — ohne Cloud-Abhängigkeiten, DSGVO-konform und in Wochen einsatzbereit.</p>
+      <p style="font-size:18px;line-height:1.6;color:var(--ink-soft);margin-bottom:32px;max-width:480px">Maßgeschneiderte Automatisierung und KI-Lösungen, die direkt bei Ihnen vor Ort laufen — ohne Cloud-Abhängigkeiten, DSGVO-konform und in wenigen Wochen einsatzbereit.</p>
 
       <div class="hero-ctas">
         <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting-decentnodes" target="_blank" rel="noopener"><button class="hero-cta-primary">▶ Kostenloses Erstgespräch</button></a>
@@ -1017,12 +1032,12 @@ footer {
     <p style="font-size:17px;color:var(--ink-soft);margin-top:8px">Kompakte Lösungen, die sofort Wirkung zeigen — individuell auf Ihr Unternehmen zugeschnitten.</p>
 
     <div class="tabs">
-      <div class="tab active">Intelligente Workflows</div>
-      <div class="tab">Lokale KI-Anwendungen</div>
-      <div class="tab">Individuelle Web-Tools</div>
+      <div class="tab active" data-tab="workflows">Intelligente Workflows</div>
+      <div class="tab" data-tab="ki">Lokale KI-Anwendungen</div>
+      <div class="tab" data-tab="webtools">Individuelle Web-Tools</div>
     </div>
 
-    <div class="tab-pane">
+    <div class="tab-pane active" data-pane="workflows">
       <div>
         <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:14px">Lösung 01 · Workflow-Automatisierung</div>
         <h3 style="font-size:22px;font-family:'Inter', system-ui, sans-serif;font-weight:600;letter-spacing:-0.025em;margin-bottom:14px">Geschäftsprozesse automatisieren — Ende zu Ende</h3>
@@ -1051,6 +1066,66 @@ footer {
         <img src="screenshot_prozess.png" alt="Lösung-Screenshot / Mockup" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
     </div>
+
+    <div class="tab-pane" data-pane="ki">
+      <div>
+        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:14px">Lösung 02 · Lokale KI-Anwendungen</div>
+        <h3 style="font-size:22px;font-family:'Inter', system-ui, sans-serif;font-weight:600;letter-spacing:-0.025em;margin-bottom:14px">KI-Modelle, die Ihre Daten nie verlassen</h3>
+        <p style="font-size:16px;color:var(--ink-soft);line-height:1.6;margin-bottom:4px">Große Sprachmodelle, Dokumentenanalyse und KI-Assistenten — vollständig auf Ihrer eigenen Hardware. Auf Wunsch betreiben wir die KI direkt auf Ihren bestehenden Servern oder stellen Ihnen dedizierte Server-Hardware bereit, die wir konfigurieren, warten und bei Ihnen vor Ort einrichten.</p>
+        <div class="tab-check-list">
+          <div class="tab-check-row">
+            <div class="tab-check-icon"></div>
+            <span style="font-size:15px;color:var(--ink-mid)">Betrieb auf Ihrer eigenen Server-Infrastruktur</span>
+          </div>
+          <div class="tab-check-row">
+            <div class="tab-check-icon"></div>
+            <span style="font-size:15px;color:var(--ink-mid)">Alternativ: Dedizierte Hardware durch uns bereitgestellt</span>
+          </div>
+          <div class="tab-check-row">
+            <div class="tab-check-icon"></div>
+            <span style="font-size:15px;color:var(--ink-mid)">Keine Daten in fremden Clouds — echte Datensouveränität</span>
+          </div>
+          <div class="tab-check-row">
+            <div class="tab-check-icon"></div>
+            <span style="font-size:15px;color:var(--ink-mid)">Chatbots, Dokumenten-KI und Wissensdatenbanken</span>
+          </div>
+        </div>
+        <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting-decentnodes" target="_blank" rel="noopener"><button class="tab-btn">Erstgespräch buchen <span>→</span></button></a>
+      </div>
+      <div class="tab-visual" style="overflow:hidden">
+        <img src="hero-main-image.png" alt="Lokale KI auf eigener Hardware" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+    </div>
+
+    <div class="tab-pane" data-pane="webtools">
+      <div>
+        <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:14px">Lösung 03 · Individuelle Web-Tools</div>
+        <h3 style="font-size:22px;font-family:'Inter', system-ui, sans-serif;font-weight:600;letter-spacing:-0.025em;margin-bottom:14px">Maßgeschneiderte Software — zu bezahlbaren Preisen</h3>
+        <p style="font-size:16px;color:var(--ink-soft);line-height:1.6;margin-bottom:4px">Individualsoftware muss heute keine fünf- oder sechsstelligen Budgets mehr verschlingen. Dank moderner Tools und Frameworks entwickeln wir passgenaue Web-Anwendungen in einem Bruchteil der Zeit — und zu einem Bruchteil der klassischen Kosten. Und: Viele Prozesse lassen sich bereits ohne KI automatisieren. Klassische Logik, smarte Workflows und saubere Integrationen reichen oft völlig aus, um spürbar Zeit zu sparen.</p>
+        <div class="tab-check-list">
+          <div class="tab-check-row">
+            <div class="tab-check-icon"></div>
+            <span style="font-size:15px;color:var(--ink-mid)">Bezahlbare Individualsoftware statt teurer Standardlösungen</span>
+          </div>
+          <div class="tab-check-row">
+            <div class="tab-check-icon"></div>
+            <span style="font-size:15px;color:var(--ink-mid)">Automatisierung ohne KI — wo es sinnvoll ist</span>
+          </div>
+          <div class="tab-check-row">
+            <div class="tab-check-icon"></div>
+            <span style="font-size:15px;color:var(--ink-mid)">Interne Tools, Dashboards &amp; Kundenportale</span>
+          </div>
+          <div class="tab-check-row">
+            <div class="tab-check-icon"></div>
+            <span style="font-size:15px;color:var(--ink-mid)">Integration in bestehende Systeme und Datenquellen</span>
+          </div>
+        </div>
+        <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting-decentnodes" target="_blank" rel="noopener"><button class="tab-btn">Erstgespräch buchen <span>→</span></button></a>
+      </div>
+      <div class="tab-visual" style="overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--paper-2)">
+        <img src="dev.svg" alt="Individuelle Web-Tools" style="width:70%;height:70%;object-fit:contain;display:block">
+      </div>
+    </div>
   </section>
 
   <!-- ══════════════════════════════════════
@@ -1076,7 +1151,7 @@ footer {
         <div class="step-num-badge">2</div>
         <div class="step-label-dark">Entwicklung &amp; Build</div>
         <p style="font-size:17px;font-weight:500;color:#fff;margin-bottom:12px">Lösung bauen</p>
-        <p style="font-size:15px;color:rgba(255,255,255,0.72);line-height:1.6">Wir entwickeln Ihre maßgeschneiderte Lösung iterativ, mit regelmäßigen Demos. Sie sehen in Wochen — nicht Monaten — erste Ergebnisse.</p>
+        <p style="font-size:15px;color:rgba(255,255,255,0.72);line-height:1.6">Wir entwickeln Ihre maßgeschneiderte Lösung iterativ, mit regelmäßigen Demos. Sie sehen in wenigen Wochen — nicht Monaten — erste Ergebnisse.</p>
         <div class="step-connector">→</div>
       </div>
       <div class="process-step">
@@ -1177,7 +1252,7 @@ footer {
         <div class="compare-cell center highlight-col"><span class="ic-yes">✓</span></div>
       </div>
       <div class="compare-row">
-        <div class="compare-cell"><span style="font-size:15px;color:var(--ink-mid)">In Wochen einsatzbereit</span></div>
+        <div class="compare-cell"><span style="font-size:15px;color:var(--ink-mid)">In wenigen Wochen einsatzbereit</span></div>
         <div class="compare-cell center"><span class="ic-no">✕</span></div>
         <div class="compare-cell center"><span class="ic-mid">~</span></div>
         <div class="compare-cell center highlight-col"><span class="ic-yes">✓</span></div>
@@ -1190,7 +1265,7 @@ footer {
       </div>
     </div>
     <p style="font-size:11px;color:var(--ink-faint);margin-top:12px;letter-spacing:0.05em">
-      Kriterien: DSGVO lokal · Keine Cloud-Abhängigkeit · Festpreis · In Wochen live · Maßgeschneidert
+      Kriterien: DSGVO lokal · Keine Cloud-Abhängigkeit · Festpreis · In wenigen Wochen live · Maßgeschneidert
     </p>
   </section>
 
@@ -1206,31 +1281,31 @@ footer {
     <p style="font-size:17px;color:var(--ink-soft);margin-top:8px">Was Sie vor dem Erstgespräch wissen sollten.</p>
 
     <div class="faq-list">
-      <!-- open item -->
-      <div class="faq-open">
-        <p style="font-size:16px;font-weight:500;color:var(--ink);margin-bottom:12px">Was kostet eine maßgeschneiderte Lösung?</p>
-        <p style="font-size:15px;color:var(--ink-soft);line-height:1.6">Wir arbeiten mit transparenten Festpreisen. Nach der kostenlosen Erstanalyse erhalten Sie ein verbindliches Angebot — ohne versteckte Kosten oder laufende Lizenzgebühren.</p>
-      </div>
-      <div class="faq-row">
-        <span style="font-size:16px;color:var(--ink)">Welche Hardware brauche ich für lokale KI?</span>
-        <div class="faq-icon">+</div>
-      </div>
-      <div class="faq-row">
-        <span style="font-size:16px;color:var(--ink)">Wie lange dauert die Umsetzung?</span>
-        <div class="faq-icon">+</div>
-      </div>
-      <div class="faq-row">
-        <span style="font-size:16px;color:var(--ink)">Was passiert nach dem Go-Live?</span>
-        <div class="faq-icon">+</div>
-      </div>
-      <div class="faq-row">
-        <span style="font-size:16px;color:var(--ink)">Kann ich bestehende Systeme integrieren?</span>
-        <div class="faq-icon">+</div>
-      </div>
+      <details class="faq-item" open>
+        <summary>Was kostet eine maßgeschneiderte Lösung?<div class="faq-icon">+</div></summary>
+        <div class="faq-answer">Wir arbeiten mit transparenten Festpreisen — kein Stundenzettel, keine Überraschungen. Nach einer kostenlosen Erstanalyse erhalten Sie ein verbindliches Angebot mit klar definiertem Leistungsumfang. Dank moderner Entwicklungswerkzeuge sind individuelle Lösungen heute deutlich günstiger als früher: Viele unserer Projekte bewegen sich im vier- bis niedrigen fünfstelligen Bereich — ein Bruchteil dessen, was klassische Individualsoftware früher gekostet hat. Laufende Lizenzgebühren oder Cloud-Abos fallen nicht an.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Welche Hardware brauche ich für lokale KI?<div class="faq-icon">+</div></summary>
+        <div class="faq-answer">Das hängt vom Anwendungsfall ab. Für viele Aufgaben wie Dokumentenanalyse, Chatbots oder Wissensdatenbanken reichen bereits moderne Workstation-GPUs oder ein kompakter Server mit einer aktuellen NVIDIA-Karte. Für anspruchsvollere Modelle empfehlen wir dedizierte KI-Server. Sie haben zwei Optionen: Entweder wir nutzen Ihre vorhandene Infrastruktur — oder wir stellen Ihnen passende Hardware bereit, die wir konfigurieren, warten und bei Ihnen vor Ort einrichten. In der Analyse-Phase klären wir gemeinsam, was für Ihren Use-Case wirklich nötig ist.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Wie lange dauert die Umsetzung?<div class="faq-icon">+</div></summary>
+        <div class="faq-answer">Die meisten unserer Projekte sind innerhalb weniger Wochen einsatzbereit — nicht Monate. Nach der Analyse-Phase (meist 1–2 Wochen) folgt die iterative Entwicklung mit regelmäßigen Demos, sodass Sie früh erste Ergebnisse sehen und Feedback einfließen lassen können. Kleinere Workflow-Automatisierungen sind oft in 2–4 Wochen live, umfangreichere KI-Anwendungen oder individuelle Web-Tools benötigen je nach Komplexität 6–12 Wochen. Einen verbindlichen Zeitplan erhalten Sie mit dem Angebot.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Was passiert nach dem Go-Live?<div class="faq-icon">+</div></summary>
+        <div class="faq-answer">Mit dem Go-Live sind wir nicht weg. Wir übergeben die Lösung inklusive Dokumentation und Schulung Ihres Teams, sodass Sie selbst damit arbeiten können. Auf Wunsch übernehmen wir den laufenden Support, Updates, Monitoring und die Weiterentwicklung. Da alles lokal läuft, sind Sie nicht von uns abhängig — der Quellcode und die Infrastruktur gehören Ihnen. Sie entscheiden, wie eng die Zusammenarbeit danach bleibt.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Kann ich bestehende Systeme integrieren?<div class="faq-icon">+</div></summary>
+        <div class="faq-answer">Ja — Integration ist fast immer möglich. Wir verbinden uns mit Ihrem ERP, CRM, DMS, Warenwirtschaft, E-Mail-System oder Datenbanken — egal ob über REST-APIs, Datenbanken, Datei-Schnittstellen oder klassische Exporte/Importe. Ziel ist, dass sich unsere Lösung nahtlos in Ihre bestehende Landschaft einfügt, statt eine neue Insel zu schaffen. In der Analyse-Phase prüfen wir Ihre Systeme und legen gemeinsam fest, welche Schnittstellen benötigt werden.</div>
+      </details>
     </div>
-    <p style="font-size:11px;color:var(--ink-faint);margin-top:16px;letter-spacing:0.05em">
-      FAQ-Themen: Was kostet es? · Welche Hardware brauche ich? · Wie lange dauert die Umsetzung? · Was passiert nach Go-Live?
-    </p>
   </section>
 
   <!-- ══════════════════════════════════════
@@ -1315,5 +1390,19 @@ footer {
   </footer>
 
 </div>
+
+<script>
+  // Tab switching für Leistungen-Section
+  document.querySelectorAll('.tabs .tab').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      var target = tab.getAttribute('data-tab');
+      document.querySelectorAll('.tabs .tab').forEach(function(t){ t.classList.remove('active'); });
+      tab.classList.add('active');
+      document.querySelectorAll('.tab-pane').forEach(function(p){
+        p.classList.toggle('active', p.getAttribute('data-pane') === target);
+      });
+    });
+  });
+</script>
 </body>
 </html>
