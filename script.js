@@ -41,6 +41,46 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
   });
 });
 
+// ── Scroll-Reveal (Fade-up) ──
+// Nutzt native IntersectionObserver — keine Abhängigkeiten, sehr leichtgewichtig.
+(function () {
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var selectors = [
+    '.section-eyebrow',
+    '.section-h2',
+    '.bcard',
+    '.tab-visual',
+    '.process-step',
+    '.compare-wrap',
+    '.faq-item',
+    '.cta-deco'
+  ];
+  var targets = document.querySelectorAll(selectors.join(','));
+
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    // Fallback: sofort sichtbar, keine Animation
+    targets.forEach(function (el) { el.classList.add('in-view'); });
+    return;
+  }
+
+  targets.forEach(function (el) { el.classList.add('reveal'); });
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    rootMargin: '0px 0px -8% 0px',
+    threshold: 0.12
+  });
+
+  targets.forEach(function (el) { observer.observe(el); });
+})();
+
 // ── Beim Laden: Tab aus Hash aktivieren (#leistungen-ki etc.) ──
 (function () {
   var hash = window.location.hash;
