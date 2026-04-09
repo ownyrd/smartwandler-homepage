@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^smartwandler\.de [NC]
+RewriteRule ^(.*)$ http://www.smartwandler.de/$1 [L,R=301]
