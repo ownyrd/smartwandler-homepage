@@ -600,7 +600,7 @@ section.dark {
 }
 .compare-head {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.2fr;
+  grid-template-columns: 2fr 1fr 1.2fr;
   background: var(--paper-2);
   border-bottom: 1px solid var(--line);
 }
@@ -620,7 +620,7 @@ section.dark {
 }
 .compare-row {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.2fr;
+  grid-template-columns: 2fr 1fr 1.2fr;
   border-bottom: 1px solid var(--line-soft);
   align-items: center;
 }
@@ -866,10 +866,9 @@ footer {
     gap: 40px;
   }
   .hero-h1 { font-size: 36px; }
-  .hero-h1 br { display: none; }
 
   .hero-visual { order: -1; }
-  .hero-main-img { height: 260px; }
+  .hero-main-img { height: auto; aspect-ratio: 16 / 10; }
   .hero-float-card { display: none; }
   .hero-float-badge { right: 8px; top: 12px; font-size: 11px; padding: 6px 12px; }
 
@@ -903,18 +902,16 @@ footer {
   .compare-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .compare-head,
   .compare-row {
-    grid-template-columns: 1.8fr 1fr 1fr 1.2fr;
-    min-width: 520px;
+    grid-template-columns: 1.8fr 1fr 1.2fr;
+    min-width: 400px;
   }
   .compare-col-head,
   .compare-cell { padding: 12px 14px; font-size: 12px; }
 
   .section-h2 { font-size: 30px; }
-  .section-h2 br { display: none; }
 
   .cta-final { padding: 64px 24px; }
   .cta-final h2 { font-size: 30px !important; }
-  .cta-final h2 br { display: none; }
   .cta-btns { flex-direction: column; align-items: center; }
   .cta-deco { width: 100%; max-width: 340px; }
 
@@ -952,7 +949,7 @@ footer {
   }
   .hero-h1 { font-size: 28px; line-height: 1.15; }
   .hero-badge-text { font-size: 11px; }
-  .hero-main-img { height: 200px; }
+  .hero-main-img { height: auto; aspect-ratio: 16 / 10; }
   .hero-ctas { flex-direction: column; }
   .hero-cta-primary,
   .hero-cta-secondary { width: 100%; justify-content: center; text-align: center; }
@@ -975,7 +972,7 @@ footer {
 
   .cta-final { padding: 48px 16px; }
   .cta-final h2 { font-size: 26px !important; }
-  .cta-deco { gap: 12px; height: 80px; }
+  .cta-deco { gap: 12px; height: auto; padding: 16px 20px; }
 
   footer { padding: 32px 16px 24px; }
   .footer-top { grid-template-columns: 1fr; gap: 28px; }
