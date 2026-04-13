@@ -41,6 +41,36 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
   });
 });
 
+// ── Über-uns Carousel ──
+(function () {
+  var track = document.querySelector('.carousel-track');
+  if (!track) return;
+
+  var slides = track.querySelectorAll('.carousel-slide');
+  var dots = document.querySelectorAll('.carousel-dot');
+  var btnPrev = document.querySelector('.carousel-btn-prev');
+  var btnNext = document.querySelector('.carousel-btn-next');
+  var current = 0;
+
+  function goTo(index) {
+    if (index < 0) index = slides.length - 1;
+    if (index >= slides.length) index = 0;
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = index;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  btnPrev.addEventListener('click', function () { goTo(current - 1); });
+  btnNext.addEventListener('click', function () { goTo(current + 1); });
+  dots.forEach(function (dot) {
+    dot.addEventListener('click', function () {
+      goTo(parseInt(dot.getAttribute('data-dot'), 10));
+    });
+  });
+})();
+
 // ── Scroll-Reveal (Fade-up) ──
 // Nutzt native IntersectionObserver — keine Abhängigkeiten, sehr leichtgewichtig.
 (function () {
@@ -52,6 +82,7 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
     '.bcard',
     '.tab-visual',
     '.process-step',
+    '.carousel',
     '.compare-wrap',
     '.faq-item',
     '.cta-deco'
