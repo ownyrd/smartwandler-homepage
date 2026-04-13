@@ -829,6 +829,7 @@ footer {
   object-fit: cover;
   object-position: center;
   display: block;
+  filter: sepia(0.15) saturate(0.85) brightness(0.97);
 }
 .carousel-slide-content {
   padding: 48px 44px;
