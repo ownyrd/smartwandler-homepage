@@ -6,6 +6,24 @@ if (navToggleBtn) {
   });
 }
 
+// ── Open meetergo sidebar from CTA buttons ──
+function openMeetergoSidebar(e) {
+  var sidebarBtn = document.querySelector('.mg-sidebar-toggle');
+  if (sidebarBtn) {
+    e.preventDefault();
+    sidebarBtn.click();
+  }
+  // If sidebar button not found, the link falls back to its href (opens meetergo externally)
+  // Close mobile nav if open
+  var navLinks = document.querySelector('.nav-links');
+  if (navLinks) navLinks.classList.remove('open');
+}
+
+document.querySelectorAll('.js-open-meetergo').forEach(function (link) {
+  link.addEventListener('click', openMeetergoSidebar);
+});
+
+
 // ── Tab switching für Leistungen-Section ──
 function activateTab(targetId) {
   var found = false;
