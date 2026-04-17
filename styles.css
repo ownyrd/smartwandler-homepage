@@ -1149,6 +1149,63 @@ footer {
   text-underline-offset: 2px;
 }
 
+/* Cookie toggle switches */
+.cookie-toggles {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cookie-toggle {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+.cookie-toggle input { display: none; }
+.cookie-toggle-slider {
+  flex-shrink: 0;
+  width: 38px;
+  height: 22px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.2);
+  position: relative;
+  transition: background 0.2s;
+  margin-top: 1px;
+}
+.cookie-toggle-slider::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s;
+}
+.cookie-toggle input:checked + .cookie-toggle-slider {
+  background: var(--gold);
+}
+.cookie-toggle input:checked + .cookie-toggle-slider::after {
+  transform: translateX(16px);
+}
+.cookie-toggle-label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cookie-toggle-label strong {
+  font-size: 13px;
+  color: #fff;
+  font-weight: 500;
+}
+.cookie-toggle-label span {
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.4;
+}
+
 .cookie-banner-actions {
   display: flex;
   gap: 10px;
@@ -1169,6 +1226,10 @@ footer {
 .cookie-btn:hover { opacity: 0.85; }
 
 .cookie-btn-reject {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+}
+.cookie-btn-save {
   background: rgba(255,255,255,0.12);
   color: #fff;
 }
@@ -1197,7 +1258,6 @@ footer {
     flex-direction: column;
     padding: 20px 16px;
     gap: 16px;
-    text-align: center;
   }
   .cookie-banner-actions {
     width: 100%;
@@ -1206,3 +1266,7 @@ footer {
   .cookie-btn { flex: 1; }
 }
 
+/* ── meetergo sidebar panel override ── */
+.mg-sidebar {
+  background: #fff !important;
+}

@@ -573,33 +573,34 @@
   <div class="cookie-banner-inner">
     <div class="cookie-banner-text">
       <p class="cookie-banner-title">Cookie-Einstellungen</p>
-      <p class="cookie-banner-desc">Wir nutzen den Facebook-Pixel (Meta), um die Wirksamkeit unserer Werbeanzeigen zu messen und Ihnen relevantere Inhalte anzuzeigen. Dabei werden Daten an Meta Platforms Ireland Ltd. übermittelt. Details finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+      <p class="cookie-banner-desc">Wir nutzen externe Dienste, die Cookies setzen oder Daten an Dritte übermitteln können. Sie können diese einzeln aktivieren oder deaktivieren. Details finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+      <div class="cookie-toggles">
+        <label class="cookie-toggle">
+          <input type="checkbox" id="consent-meetergo" checked>
+          <span class="cookie-toggle-slider"></span>
+          <span class="cookie-toggle-label">
+            <strong>Terminbuchung (meetergo)</strong>
+            <span>Ermöglicht die Online-Terminvereinbarung direkt auf der Website. Daten werden an meetergo GmbH, Deutschland übermittelt.</span>
+          </span>
+        </label>
+        <label class="cookie-toggle">
+          <input type="checkbox" id="consent-facebook">
+          <span class="cookie-toggle-slider"></span>
+          <span class="cookie-toggle-label">
+            <strong>Marketing (Facebook-Pixel)</strong>
+            <span>Misst die Wirksamkeit unserer Werbeanzeigen. Daten werden an Meta Platforms Ireland Ltd. übermittelt.</span>
+          </span>
+        </label>
+      </div>
     </div>
     <div class="cookie-banner-actions">
       <button id="cookie-reject" class="cookie-btn cookie-btn-reject">Ablehnen</button>
-      <button id="cookie-accept" class="cookie-btn cookie-btn-accept">Akzeptieren</button>
+      <button id="cookie-accept" class="cookie-btn cookie-btn-save">Auswahl speichern</button>
+      <button id="cookie-accept-all" class="cookie-btn cookie-btn-accept">Alle akzeptieren</button>
     </div>
   </div>
 </div>
 
 <script src="script.js"></script>
-
-<!-- meetergo sidebar widget + iframe handler -->
-<script>
-  window.meetergo = window.meetergo || function(){ (window.meetergo.q = window.meetergo.q || []).push(arguments); };
-  meetergo('init', {
-    sidebar: {
-      position: "right",
-      width: "400px",
-      link: "https://cal.meetergo.com/philipp-anders/30-min-meeting-decentnodes",
-      buttonText: "Termin buchen",
-      buttonIcon: "CalendarPlus2",
-      buttonPosition: "middle-right",
-      backgroundColor: "#C8A96A",
-      textColor: "#3A3631"
-    },
-  });
-</script>
-<script defer src="https://liv-showcase.s3.eu-central-1.amazonaws.com/browser-v4.js"></script>
 </body>
 </html>

@@ -146,37 +146,77 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
 
 // ══════════════════════════════════════
 // COOKIE CONSENT — DSGVO-konform
-// Facebook Pixel wird NUR nach expliziter Einwilligung geladen.
+// Externe Dienste werden NUR nach expliziter Einwilligung geladen.
 // ══════════════════════════════════════
 (function () {
-  var CONSENT_KEY = 'cookie_consent_marketing';
+  var CONSENT_KEY_MEETERGO = 'cookie_consent_meetergo';
+  var CONSENT_KEY_FACEBOOK = 'cookie_consent_facebook';
+
   var banner = document.getElementById('cookie-consent');
   var btnAccept = document.getElementById('cookie-accept');
   var btnReject = document.getElementById('cookie-reject');
   var btnRevoke = document.getElementById('cookie-revoke');
+  var toggleMeetergo = document.getElementById('consent-meetergo');
+  var toggleFacebook = document.getElementById('consent-facebook');
 
   // TODO: Eigene Facebook Pixel ID hier eintragen
   var FB_PIXEL_ID = 'DEINE_PIXEL_ID';
 
-  function getConsent() {
-    return localStorage.getItem(CONSENT_KEY); // 'granted' | 'denied' | null
-  }
-
-  function setConsent(value) {
-    localStorage.setItem(CONSENT_KEY, value);
-  }
-
   function showBanner() {
-    if (banner) banner.hidden = false;
+    if (!banner) return;
+    // Restore toggle states from stored consent (for revoke scenario)
+    // First visit: meetergo defaults to checked (set in HTML), facebook to unchecked
+    var storedMeetergo = localStorage.getItem(CONSENT_KEY_MEETERGO);
+    var storedFacebook = localStorage.getItem(CONSENT_KEY_FACEBOOK);
+    if (toggleMeetergo && storedMeetergo !== null) toggleMeetergo.checked = storedMeetergo === 'granted';
+    if (toggleFacebook && storedFacebook !== null) toggleFacebook.checked = storedFacebook === 'granted';
+    banner.hidden = false;
   }
 
   function hideBanner() {
     if (banner) banner.hidden = true;
   }
 
-  // Facebook Pixel laden (nur einmal)
+  // ── meetergo ──
+  function loadMeetergo() {
+    if (document.querySelector('script[src*="browser-v4.js"]')) return;
+    // Init sidebar config
+    window.meetergo = window.meetergo || function () { (window.meetergo.q = window.meetergo.q || []).push(arguments); };
+    meetergo('init', {
+      sidebar: {
+        position: 'right',
+        width: '400px',
+        link: 'https://cal.meetergo.com/philipp-anders/30-min-meeting-decentnodes',
+        buttonText: 'Termin buchen',
+        buttonIcon: 'CalendarPlus2',
+        buttonPosition: 'middle-right',
+        backgroundColor: '#C8A96A',
+        textColor: '#3A3631'
+      }
+    });
+    // Load the SDK
+    var s = document.createElement('script');
+    s.src = 'https://liv-showcase.s3.eu-central-1.amazonaws.com/browser-v4.js';
+    s.defer = true;
+    document.body.appendChild(s);
+  }
+
+  function removeMeetergo() {
+    // Remove script
+    var script = document.querySelector('script[src*="browser-v4.js"]');
+    if (script) script.remove();
+    // Remove sidebar elements
+    var sidebar = document.querySelector('.mg-sidebar-toggle');
+    if (sidebar) sidebar.remove();
+    var sidebarPanel = document.querySelector('.mg-sidebar');
+    if (sidebarPanel) sidebarPanel.remove();
+    // Clean up global
+    if (window.meetergo) delete window.meetergo;
+  }
+
+  // ── Facebook Pixel ──
   function loadFacebookPixel() {
-    if (window.fbq) return; // bereits geladen
+    if (window.fbq) return;
     (function (f, b, e, v, n, t, s) {
       if (f.fbq) return;
       n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
@@ -190,50 +230,62 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
     fbq('track', 'PageView');
   }
 
-  // Facebook Pixel entfernen & Cookies löschen
   function removeFacebookPixel() {
-    // fbq-Objekt zurücksetzen
-    if (window.fbq) {
-      delete window.fbq;
-      delete window._fbq;
-    }
-    // Facebook-Cookies löschen
-    var fbCookies = ['_fbp', '_fbc'];
-    fbCookies.forEach(function (name) {
+    if (window.fbq) { delete window.fbq; delete window._fbq; }
+    ['_fbp', '_fbc'].forEach(function (name) {
       document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + location.hostname;
       document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     });
   }
 
+  // ── Consent anwenden ──
+  function applyConsent() {
+    var meetergo = localStorage.getItem(CONSENT_KEY_MEETERGO);
+    var facebook = localStorage.getItem(CONSENT_KEY_FACEBOOK);
+
+    if (meetergo === 'granted') { loadMeetergo(); } else { removeMeetergo(); }
+    if (facebook === 'granted') { loadFacebookPixel(); } else { removeFacebookPixel(); }
+  }
+
+  // ── Banner-Aktionen ──
   function handleAccept() {
-    setConsent('granted');
+    // Speichere individuelle Toggle-Werte
+    localStorage.setItem(CONSENT_KEY_MEETERGO, toggleMeetergo && toggleMeetergo.checked ? 'granted' : 'denied');
+    localStorage.setItem(CONSENT_KEY_FACEBOOK, toggleFacebook && toggleFacebook.checked ? 'granted' : 'denied');
     hideBanner();
-    loadFacebookPixel();
+    applyConsent();
   }
 
   function handleReject() {
-    setConsent('denied');
+    localStorage.setItem(CONSENT_KEY_MEETERGO, 'denied');
+    localStorage.setItem(CONSENT_KEY_FACEBOOK, 'denied');
     hideBanner();
-    removeFacebookPixel();
+    applyConsent();
   }
 
   function handleRevoke() {
-    localStorage.removeItem(CONSENT_KEY);
-    removeFacebookPixel();
     showBanner();
+  }
+
+  var btnAcceptAll = document.getElementById('cookie-accept-all');
+
+  function handleAcceptAll() {
+    localStorage.setItem(CONSENT_KEY_MEETERGO, 'granted');
+    localStorage.setItem(CONSENT_KEY_FACEBOOK, 'granted');
+    hideBanner();
+    applyConsent();
   }
 
   // Event-Listener
   if (btnAccept) btnAccept.addEventListener('click', handleAccept);
+  if (btnAcceptAll) btnAcceptAll.addEventListener('click', handleAcceptAll);
   if (btnReject) btnReject.addEventListener('click', handleReject);
   if (btnRevoke) btnRevoke.addEventListener('click', handleRevoke);
 
   // Beim Laden: Consent prüfen
-  var consent = getConsent();
-  if (consent === 'granted') {
-    loadFacebookPixel();
-  } else if (consent === 'denied') {
-    // Nutzer hat abgelehnt — nichts laden
+  var hasConsent = localStorage.getItem(CONSENT_KEY_MEETERGO) !== null || localStorage.getItem(CONSENT_KEY_FACEBOOK) !== null;
+  if (hasConsent) {
+    applyConsent();
   } else {
     // Kein Consent vorhanden — Banner zeigen
     showBanner();
