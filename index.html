@@ -562,10 +562,27 @@
       <div class="footer-legal">
         <a href="impressum.html" style="font-size:11px;color:rgba(255,255,255,0.6);text-decoration:none">Impressum</a>
         <a href="datenschutz.html" style="font-size:11px;color:rgba(255,255,255,0.6);text-decoration:none">Datenschutz</a>
+        <button id="cookie-revoke" class="cookie-revoke-link">Cookie-Einstellungen</button>
       </div>
     </div>
   </footer>
 
+</div>
+
+<!-- ══════════════════════════════════════
+     COOKIE CONSENT BANNER (DSGVO)
+══════════════════════════════════════ -->
+<div id="cookie-consent" class="cookie-banner" role="dialog" aria-label="Cookie-Einstellungen" aria-modal="false" hidden>
+  <div class="cookie-banner-inner">
+    <div class="cookie-banner-text">
+      <p class="cookie-banner-title">Cookie-Einstellungen</p>
+      <p class="cookie-banner-desc">Wir nutzen den Facebook-Pixel (Meta), um die Wirksamkeit unserer Werbeanzeigen zu messen und Ihnen relevantere Inhalte anzuzeigen. Dabei werden Daten an Meta Platforms Ireland Ltd. übermittelt. Details finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+    </div>
+    <div class="cookie-banner-actions">
+      <button id="cookie-reject" class="cookie-btn cookie-btn-reject">Ablehnen</button>
+      <button id="cookie-accept" class="cookie-btn cookie-btn-accept">Akzeptieren</button>
+    </div>
+  </div>
 </div>
 
 <script src="script.js"></script>

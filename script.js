@@ -125,3 +125,99 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
     }
   }
 })();
+
+// ══════════════════════════════════════
+// COOKIE CONSENT — DSGVO-konform
+// Facebook Pixel wird NUR nach expliziter Einwilligung geladen.
+// ══════════════════════════════════════
+(function () {
+  var CONSENT_KEY = 'cookie_consent_marketing';
+  var banner = document.getElementById('cookie-consent');
+  var btnAccept = document.getElementById('cookie-accept');
+  var btnReject = document.getElementById('cookie-reject');
+  var btnRevoke = document.getElementById('cookie-revoke');
+
+  // TODO: Eigene Facebook Pixel ID hier eintragen
+  var FB_PIXEL_ID = 'DEINE_PIXEL_ID';
+
+  function getConsent() {
+    return localStorage.getItem(CONSENT_KEY); // 'granted' | 'denied' | null
+  }
+
+  function setConsent(value) {
+    localStorage.setItem(CONSENT_KEY, value);
+  }
+
+  function showBanner() {
+    if (banner) banner.hidden = false;
+  }
+
+  function hideBanner() {
+    if (banner) banner.hidden = true;
+  }
+
+  // Facebook Pixel laden (nur einmal)
+  function loadFacebookPixel() {
+    if (window.fbq) return; // bereits geladen
+    (function (f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+      if (!f._fbq) f._fbq = n;
+      n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = [];
+      t = b.createElement(e); t.async = !0; t.src = v;
+      s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+    })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', FB_PIXEL_ID);
+    fbq('track', 'PageView');
+  }
+
+  // Facebook Pixel entfernen & Cookies löschen
+  function removeFacebookPixel() {
+    // fbq-Objekt zurücksetzen
+    if (window.fbq) {
+      delete window.fbq;
+      delete window._fbq;
+    }
+    // Facebook-Cookies löschen
+    var fbCookies = ['_fbp', '_fbc'];
+    fbCookies.forEach(function (name) {
+      document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + location.hostname;
+      document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    });
+  }
+
+  function handleAccept() {
+    setConsent('granted');
+    hideBanner();
+    loadFacebookPixel();
+  }
+
+  function handleReject() {
+    setConsent('denied');
+    hideBanner();
+    removeFacebookPixel();
+  }
+
+  function handleRevoke() {
+    localStorage.removeItem(CONSENT_KEY);
+    removeFacebookPixel();
+    showBanner();
+  }
+
+  // Event-Listener
+  if (btnAccept) btnAccept.addEventListener('click', handleAccept);
+  if (btnReject) btnReject.addEventListener('click', handleReject);
+  if (btnRevoke) btnRevoke.addEventListener('click', handleRevoke);
+
+  // Beim Laden: Consent prüfen
+  var consent = getConsent();
+  if (consent === 'granted') {
+    loadFacebookPixel();
+  } else if (consent === 'denied') {
+    // Nutzer hat abgelehnt — nichts laden
+  } else {
+    // Kein Consent vorhanden — Banner zeigen
+    showBanner();
+  }
+})();
