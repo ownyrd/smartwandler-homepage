@@ -159,8 +159,8 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
   var toggleMeetergo = document.getElementById('consent-meetergo');
   var toggleFacebook = document.getElementById('consent-facebook');
 
-  // TODO: Eigene Facebook Pixel ID hier eintragen
-  var FB_PIXEL_ID = 'DEINE_PIXEL_ID';
+  // Eigene Facebook Pixel ID hier eintragen
+  var FB_PIXEL_ID = '978129395179680';
 
   function showBanner() {
     if (!banner) return;
@@ -186,7 +186,7 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
       sidebar: {
         position: 'right',
         width: '400px',
-        link: 'https://cal.meetergo.com/philipp-anders/30-min-meeting-decentnodes',
+        link: 'https://cal.meetergo.com/philipp-anders/30-min-meeting',
         buttonText: 'Termin buchen',
         buttonIcon: 'CalendarPlus2',
         buttonPosition: 'middle-right',
