@@ -10,6 +10,93 @@
   Matomo & Meta Pixel werden ausschließlich nach Cookie-Consent
   durch script.js geladen (siehe loadMatomo / loadFacebookPixel).
 -->
+<style>
+/* === Landing-Page-spezifische CTA-Verstärkungen === */
+
+/* Inline CTA zwischen Benefits & About */
+.lp-inline-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 56px 24px 64px;
+  background: #faf3e1;
+}
+.lp-inline-cta-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 14px;
+}
+.lp-inline-cta-text {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ink);
+  max-width: 560px;
+  margin: 0 0 24px;
+  line-height: 1.45;
+}
+
+/* Mobile-only Nav-CTA (immer sichtbar, neben Burger) */
+.nav-cta-mobile-link { display: none; }
+
+/* Sticky Mobile CTA */
+.lp-sticky-cta-link {
+  display: none;
+  position: fixed;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 90;
+  text-decoration: none;
+}
+.lp-sticky-cta {
+  display: block;
+  width: 100%;
+  background: var(--gold);
+  color: var(--ink);
+  border: none;
+  padding: 16px 22px;
+  border-radius: 100px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  letter-spacing: -0.01em;
+}
+
+/* Cookie-Banner über Sticky-CTA */
+.cookie-banner { z-index: 1000; }
+
+@media (max-width: 700px) {
+  .nav-cta-mobile-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    margin-left: auto;
+    margin-right: 12px;
+  }
+  .nav-cta-mobile {
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    padding: 9px 16px;
+    border-radius: 100px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+  }
+  .lp-sticky-cta-link { display: block; }
+  body { padding-bottom: 80px; }
+  .lp-inline-cta { padding: 40px 18px 48px; }
+  .lp-inline-cta-text { font-size: 16px; }
+}
+</style>
 </head>
 <body>
 <div class="page">
@@ -22,6 +109,7 @@
       <img src="images/logo-small.png" alt="smartwandler Logo" class="nav-logo-img">
       <span class="nav-logo-wordmark">smartwandler</span>
     </a>
+    <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo nav-cta-mobile-link" aria-label="Termin buchen"><button class="nav-cta-mobile">Termin →</button></a>
     <button class="nav-toggle" aria-label="Menü">
       <span></span><span></span><span></span>
     </button>
@@ -204,6 +292,15 @@
       </div>
     </div>
   </section>
+
+  <!-- ══════════════════════════════════════
+       INLINE CTA (zwischen Benefits & About)
+  ══════════════════════════════════════ -->
+  <div class="lp-inline-cta">
+    <div class="lp-inline-cta-eyebrow">Bereit für den nächsten Schritt?</div>
+    <p class="lp-inline-cta-text">Sie haben gesehen, was möglich ist. Buchen Sie Ihr unverbindliches Strategiegespräch.</p>
+    <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="hero-cta-primary">▶ Kostenloses 30-Min-Strategiegespräch</button></a>
+  </div>
 
   <!-- ══════════════════════════════════════
        ÜBER PHILIPP
@@ -399,6 +496,11 @@
     </div>
   </div>
 </div>
+
+<!-- ══════════════════════════════════════
+     STICKY MOBILE CTA (immer sichtbar auf Mobile)
+══════════════════════════════════════ -->
+<a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo lp-sticky-cta-link" aria-label="Kostenloses Strategiegespräch buchen"><button class="lp-sticky-cta">▶ Kostenloses Strategiegespräch</button></a>
 
 <script src="script.js"></script>
 </body>
