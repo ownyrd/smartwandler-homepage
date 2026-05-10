@@ -5,38 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Datenschutzerklärung — smartwandler.de</title>
 <link rel="stylesheet" href="styles.css">
-<!-- Matomo -->
-<script>
-  var _paq = window._paq = window._paq || [];
-  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="https://analytics.decentnodes.de/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '1']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<!-- End Matomo Code -->
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '978129395179680');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=978129395179680&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+<!--
+  Matomo & Meta Pixel werden ausschließlich nach Cookie-Consent
+  durch script.js geladen (siehe loadMatomo / loadFacebookPixel).
+-->
 </head>
 <body>
 <div class="page">
@@ -311,10 +283,54 @@ src="https://www.facebook.com/tr?id=978129395179680&ev=PageView&noscript=1"
       <div class="footer-legal">
         <a href="impressum.html" style="font-size:11px;color:rgba(255,255,255,0.6);text-decoration:none">Impressum</a>
         <a href="datenschutz.html" style="font-size:11px;color:rgba(255,255,255,0.6);text-decoration:none">Datenschutz</a>
+        <button id="cookie-revoke" class="cookie-revoke-link">Cookie-Einstellungen</button>
       </div>
     </div>
   </footer>
 
+</div>
+
+<!-- ══════════════════════════════════════
+     COOKIE CONSENT BANNER (DSGVO)
+══════════════════════════════════════ -->
+<div id="cookie-consent" class="cookie-banner" role="dialog" aria-label="Cookie-Einstellungen" aria-modal="false" hidden>
+  <div class="cookie-banner-inner">
+    <div class="cookie-banner-text">
+      <p class="cookie-banner-title">Cookie-Einstellungen</p>
+      <p class="cookie-banner-desc">Wir nutzen externe Dienste, die Cookies setzen oder Daten an Dritte übermitteln können. Sie können diese einzeln aktivieren oder deaktivieren. Details finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+      <div class="cookie-toggles">
+        <label class="cookie-toggle">
+          <input type="checkbox" id="consent-meetergo" checked>
+          <span class="cookie-toggle-slider"></span>
+          <span class="cookie-toggle-label">
+            <strong>Terminbuchung (meetergo)</strong>
+            <span>Ermöglicht die Online-Terminvereinbarung direkt auf der Website. Daten werden an meetergo GmbH, Deutschland übermittelt.</span>
+          </span>
+        </label>
+        <label class="cookie-toggle">
+          <input type="checkbox" id="consent-matomo">
+          <span class="cookie-toggle-slider"></span>
+          <span class="cookie-toggle-label">
+            <strong>Statistik (Matomo)</strong>
+            <span>Reichweitenanalyse zur Verbesserung unserer Website. Daten werden auf unserem eigenen Server (analytics.decentnodes.de) verarbeitet.</span>
+          </span>
+        </label>
+        <label class="cookie-toggle">
+          <input type="checkbox" id="consent-facebook">
+          <span class="cookie-toggle-slider"></span>
+          <span class="cookie-toggle-label">
+            <strong>Marketing (Facebook-Pixel)</strong>
+            <span>Misst die Wirksamkeit unserer Werbeanzeigen. Daten werden an Meta Platforms Ireland Ltd. übermittelt.</span>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div class="cookie-banner-actions">
+      <button id="cookie-accept" class="cookie-btn cookie-btn-save">Auswahl speichern</button>
+      <button id="cookie-reject" class="cookie-btn cookie-btn-reject">Ablehnen</button>
+      <button id="cookie-accept-all" class="cookie-btn cookie-btn-accept">Alle akzeptieren</button>
+    </div>
+  </div>
 </div>
 
 <script src="script.js"></script>

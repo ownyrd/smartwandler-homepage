@@ -5,38 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>smartwandler.de — Digitalisierung & Automatisierung vor Ort</title>
 <link rel="stylesheet" href="styles.css">
-<!-- Matomo -->
-<script>
-  var _paq = window._paq = window._paq || [];
-  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="https://analytics.decentnodes.de/";
-    _paq.push(['setTrackerUrl', u+'matomo.php']);
-    _paq.push(['setSiteId', '1']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<!-- End Matomo Code -->
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '978129395179680');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=978129395179680&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+<!--
+  Matomo & Meta Pixel werden ausschließlich nach Cookie-Consent
+  durch script.js geladen (siehe loadMatomo / loadFacebookPixel).
+-->
 </head>
 <body>
 <div class="page">
@@ -616,6 +588,14 @@ src="https://www.facebook.com/tr?id=978129395179680&ev=PageView&noscript=1"
           </span>
         </label>
         <label class="cookie-toggle">
+          <input type="checkbox" id="consent-matomo">
+          <span class="cookie-toggle-slider"></span>
+          <span class="cookie-toggle-label">
+            <strong>Statistik (Matomo)</strong>
+            <span>Reichweitenanalyse zur Verbesserung unserer Website. Daten werden auf unserem eigenen Server (analytics.decentnodes.de) verarbeitet.</span>
+          </span>
+        </label>
+        <label class="cookie-toggle">
           <input type="checkbox" id="consent-facebook">
           <span class="cookie-toggle-slider"></span>
           <span class="cookie-toggle-label">
@@ -626,8 +606,8 @@ src="https://www.facebook.com/tr?id=978129395179680&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="cookie-banner-actions">
-      <button id="cookie-reject" class="cookie-btn cookie-btn-reject">Ablehnen</button>
       <button id="cookie-accept" class="cookie-btn cookie-btn-save">Auswahl speichern</button>
+      <button id="cookie-reject" class="cookie-btn cookie-btn-reject">Ablehnen</button>
       <button id="cookie-accept-all" class="cookie-btn cookie-btn-accept">Alle akzeptieren</button>
     </div>
   </div>

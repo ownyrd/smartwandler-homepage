@@ -1226,8 +1226,8 @@ footer {
 .cookie-btn:hover { opacity: 0.85; }
 
 .cookie-btn-reject {
-  background: rgba(255,255,255,0.12);
-  color: #fff;
+  background: var(--gold);
+  color: var(--ink);
 }
 .cookie-btn-save {
   background: rgba(255,255,255,0.12);
