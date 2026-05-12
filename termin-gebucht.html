@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Termin gebucht | smartwandler.de</title>
+<meta name="description" content="Vielen Dank für Ihre Terminbuchung. Sie erhalten in Kürze eine Bestätigung per E-Mail.">
+<link rel="stylesheet" href="styles.css">
+<!--
+  Matomo & Meta Pixel werden ausschließlich nach Cookie-Consent
+  durch script.js geladen (siehe loadMatomo / loadFacebookPixel).
+  Der "meeting_scheduled"-Event wird zusätzlich serverseitig
+  über fb-capi.php an die Meta Conversions API gesendet.
+-->
+<style>
+.thanks-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 96px 24px 80px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.thanks-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  background: var(--paper-2);
+  border: 1px solid var(--paper-3);
+  border-radius: 100px;
+  margin-bottom: 32px;
+}
+.thanks-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2e7d32;
+  box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.15);
+}
+.thanks-badge-text {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+.thanks-h1 {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  color: var(--ink);
+  margin: 0 0 24px;
+}
+.thanks-lead {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0 0 40px;
+  max-width: 560px;
+}
+.thanks-next {
+  width: 100%;
+  max-width: 560px;
+  background: var(--paper-2);
+  border: 1px solid var(--paper-3);
+  border-radius: var(--r-lg);
+  padding: 32px;
+  text-align: left;
+  margin-bottom: 40px;
+}
+.thanks-next-title {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 18px;
+}
+.thanks-next-step {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+.thanks-next-step:last-child { margin-bottom: 0; }
+.thanks-next-num {
+  flex: 0 0 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+.thanks-next-text {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-mid);
+  padding-top: 3px;
+}
+.thanks-home-link {
+  font-size: 14px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid var(--paper-3);
+  padding-bottom: 2px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.thanks-home-link:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+@media (max-width: 700px) {
+  .thanks-hero { padding: 56px 18px 64px; }
+  .thanks-h1 { font-size: 34px; }
+  .thanks-lead { font-size: 16px; }
+  .thanks-next { padding: 24px 20px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════════════════════════════════
+       NAV (minimal)
+  ══════════════════════════════════════ -->
+  <nav>
+    <a href="index.html" class="nav-logo" style="text-decoration:none">
+      <img src="images/logo-small.png" alt="smartwandler Logo" class="nav-logo-img">
+      <span class="nav-logo-wordmark">smartwandler</span>
+    </a>
+    <button class="nav-toggle" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="index.html" style="font-size:15px;color:var(--ink-soft);text-decoration:none">Zur Startseite</a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       HERO / BESTÄTIGUNG
+  ══════════════════════════════════════ -->
+  <div class="thanks-hero">
+    <div class="thanks-badge">
+      <div class="thanks-badge-dot"></div>
+      <span class="thanks-badge-text">Termin bestätigt</span>
+    </div>
+
+    <h1 class="thanks-h1">Vielen Dank — Ihr Termin steht.</h1>
+
+    <p class="thanks-lead">Sie erhalten in Kürze eine Bestätigung per E-Mail mit allen Details und einem Kalender-Eintrag. Ich freue mich auf unser Gespräch.</p>
+
+    <div class="thanks-next">
+      <div class="thanks-next-title">Was als nächstes passiert</div>
+      <div class="thanks-next-step">
+        <div class="thanks-next-num">1</div>
+        <div class="thanks-next-text">Sie bekommen sofort eine Buchungsbestätigung per E-Mail. Schauen Sie ggf. auch im Spam-Ordner nach.</div>
+      </div>
+      <div class="thanks-next-step">
+        <div class="thanks-next-num">2</div>
+        <div class="thanks-next-text">Kurz vor dem Termin erhalten Sie eine Erinnerung mit dem Link zum Videocall.</div>
+      </div>
+      <div class="thanks-next-step">
+        <div class="thanks-next-num">3</div>
+        <div class="thanks-next-text">Im Gespräch klären wir Ihre Ausgangslage und einen konkreten Weg nach vorn — ehrlich, ohne Verkaufsdruck.</div>
+      </div>
+    </div>
+
+    <a href="index.html" class="thanks-home-link">← Zurück zur Startseite</a>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <img src="images/logo-small.png" alt="smartwandler Logo" class="footer-logo-mark">
+        <p style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:4px">Digitalisierung & Automatisierung</p>
+        <p style="font-size:15px;color:rgba(255,255,255,0.55);line-height:1.6">Lokal. Sicher. Maßgeschneidert.</p>
+        <p style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:20px;letter-spacing:0.05em">smartwandler · ein Projekt von decentnodes.de</p>
+      </div>
+      <div>
+        <p style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Leistungen</p>
+        <a href="index.html#leistungen-beratung" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Beratung &amp; Analyse</a>
+        <a href="index.html#leistungen-workflows" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Workflow-Automatisierung</a>
+        <a href="index.html#leistungen-ki" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Lokale KI-Anwendungen</a>
+        <a href="index.html#leistungen-webtools" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none">Individuelle Web-Tools</a>
+      </div>
+      <div>
+        <p style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Unternehmen</p>
+        <a href="index.html#ueber-uns" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Über uns</a>
+        <a href="index.html#zusammenarbeit" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Zusammenarbeit</a>
+        <a href="index.html#faq" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none">FAQ</a>
+      </div>
+      <div>
+        <p style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Kontakt</p>
+        <a href="mailto:info@smartwandler.de" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">info@smartwandler.de</a>
+        <a href="https://www.linkedin.com/in/philipp-anders-16ba2814a/" target="_blank" rel="noopener noreferrer" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p style="font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:0.04em">© 2026 smartwandler.de · Alle Rechte vorbehalten</p>
+      <div class="footer-legal">
+        <a href="impressum.html" style="font-size:11px;color:rgba(255,255,255,0.6);text-decoration:none">Impressum</a>
+        <a href="datenschutz.html" style="font-size:11px;color:rgba(255,255,255,0.6);text-decoration:none">Datenschutz</a>
+        <button id="cookie-revoke" class="cookie-revoke-link">Cookie-Einstellungen</button>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     COOKIE CONSENT BANNER (DSGVO)
+══════════════════════════════════════ -->
+<div id="cookie-consent" class="cookie-banner" role="dialog" aria-label="Cookie-Einstellungen" aria-modal="false" hidden>
+  <div class="cookie-banner-inner">
+    <div class="cookie-banner-text">
+      <p class="cookie-banner-title">Cookie-Einstellungen</p>
+      <p class="cookie-banner-desc">Wir nutzen externe Dienste, die Cookies setzen oder Daten an Dritte übermitteln können. Sie können diese einzeln aktivieren oder deaktivieren. Details finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+      <div class="cookie-toggles">
+        <label class="cookie-toggle">
+          <input type="checkbox" id="consent-meetergo" checked>
+          <span class="cookie-toggle-slider"></span>
+          <span class="cookie-toggle-label">
+            <strong>Terminbuchung (meetergo)</strong>
+            <span>Ermöglicht die Online-Terminvereinbarung direkt auf der Website. Daten werden an meetergo GmbH, Deutschland übermittelt.</span>
+          </span>
+        </label>
+        <label class="cookie-toggle">
+          <input type="checkbox" id="consent-matomo">
+          <span class="cookie-toggle-slider"></span>
+          <span class="cookie-toggle-label">
+            <strong>Statistik (Matomo)</strong>
+            <span>Reichweitenanalyse zur Verbesserung unserer Website. Daten werden auf unserem eigenen Server (analytics.decentnodes.de) verarbeitet.</span>
+          </span>
+        </label>
+        <label class="cookie-toggle">
+          <input type="checkbox" id="consent-facebook">
+          <span class="cookie-toggle-slider"></span>
+          <span class="cookie-toggle-label">
+            <strong>Marketing (Facebook-Pixel)</strong>
+            <span>Misst die Wirksamkeit unserer Werbeanzeigen. Daten werden an Meta Platforms Ireland Ltd. übermittelt.</span>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div class="cookie-banner-actions">
+      <button id="cookie-accept" class="cookie-btn cookie-btn-save">Auswahl speichern</button>
+      <button id="cookie-reject" class="cookie-btn cookie-btn-reject">Ablehnen</button>
+      <button id="cookie-accept-all" class="cookie-btn cookie-btn-accept">Alle akzeptieren</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+<!-- ══════════════════════════════════════
+     META EVENT: meeting_scheduled
+     Browser-Pixel + Server-CAPI mit gemeinsamer event_id zur Deduplication.
+     Nur bei erteilter Facebook-Einwilligung.
+══════════════════════════════════════ -->
+<script>
+(function () {
+  var EVENT_NAME = 'meeting_scheduled';
+  var CONSENT_KEY = 'cookie_consent_facebook';
+
+  function uuidv4() {
+    if (window.crypto && typeof crypto.randomUUID === 'function') {
+      return crypto.randomUUID();
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      var r = (Math.random() * 16) | 0;
+      var v = c === 'x' ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  }
+
+  function getCookie(name) {
+    var m = document.cookie.match('(^|; )' + name + '=([^;]*)');
+    return m ? decodeURIComponent(m[2]) : null;
+  }
+
+  function sendCapi(eventId) {
+    var payload = {
+      event_id: eventId,
+      event_name: EVENT_NAME,
+      event_source_url: window.location.href,
+      fbp: getCookie('_fbp'),
+      fbc: getCookie('_fbc')
+    };
+    try {
+      fetch('fb-capi.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        credentials: 'same-origin',
+        keepalive: true
+      }).catch(function () { /* swallow — best effort */ });
+    } catch (e) { /* swallow */ }
+  }
+
+  function sendPixel(eventId, retries) {
+    if (window.fbq) {
+      try { fbq('track', EVENT_NAME, {}, { eventID: eventId }); } catch (e) {}
+      return;
+    }
+    if (retries > 0) {
+      setTimeout(function () { sendPixel(eventId, retries - 1); }, 200);
+    }
+  }
+
+  function fireOnce() {
+    if (localStorage.getItem(CONSENT_KEY) !== 'granted') return;
+    var eventId = uuidv4();
+    sendPixel(eventId, 25);  // bis ~5s auf fbq warten
+    sendCapi(eventId);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fireOnce);
+  } else {
+    fireOnce();
+  }
+})();
+</script>
+
+</body>
+</html>

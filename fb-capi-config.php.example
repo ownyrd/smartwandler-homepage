@@ -1,0 +1,33 @@
+<?php
+// ════════════════════════════════════════════════════════════════════
+// fb-capi-config.php — TEMPLATE
+//
+// 1. Kopiere diese Datei zu  fb-capi-config.php
+// 2. Trage echten Access Token + Pixel ID ein
+// 3. Lade fb-capi-config.php aufs FTP NEBEN fb-capi.php
+//    (NICHT ins Git — steht in .gitignore)
+//
+// Access Token erstellen:
+//   Meta Events Manager → Dataset (Pixel) auswählen → Settings →
+//   Conversions API → Generate Access Token
+// ════════════════════════════════════════════════════════════════════
+
+return [
+    // Pixel- bzw. Dataset-ID (identisch mit FB_PIXEL_ID in script.js)
+    'pixel_id'        => '978129395179680',
+
+    // Conversions-API-Access-Token (geheim!)
+    'access_token'    => 'HIER_DEINEN_ACCESS_TOKEN_EINSETZEN',
+
+    // Graph-API-Version. Im Zweifel auf der aktuellen lassen.
+    'api_version'     => 'v21.0',
+
+    // Optional: solange aktiv, landen Events im "Test Events"-Tab
+    // im Events Manager (nicht in der echten Auswertung).
+    // Nach erfolgreichem Test leeren bzw. komplett entfernen.
+    'test_event_code' => '',
+
+    // Optional: Pfad zu einer Log-Datei. Leer lassen = kein Logging.
+    // Beispiel: __DIR__ . '/fb-capi.log'
+    'log_file'        => '',
+];
