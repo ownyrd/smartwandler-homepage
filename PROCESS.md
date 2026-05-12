@@ -31,3 +31,17 @@
     - Mit aktiviertem AdBlocker testen: dann sollte nur das Server-Event ankommen
   4. Match-Quality im Events Manager nach ein paar Tagen prüfen — falls sie für meeting_scheduled niedrig ausfällt, können wir später
   Email/Telefon (sha256-gehashed) aus dem meetergo-Redirect-URL-Parameter mit übergeben. Erstmal ist es so aber sauber.
+
+
+
+
+
+TODO
+https://www.facebook.com/legal/controller_addendum
+https://www.facebook.com/legal/terms/dataprocessing
+https://www.facebook.com/legal/technology_terms
+unterschreiben
+
+
+## Instagram Enrichtung
+* damit der Ads Account richtig funtkioniert muss man bei INstagram auf Settings gehen --> dann Account Center --> Ad Preferences und dann kostenlose Werbung auswählen
