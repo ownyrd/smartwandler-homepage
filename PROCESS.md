@@ -1,3 +1,10 @@
+1. meta business account anlegen
+2. instagram und facebook page connecten
+3. ads account erstellen
+4. unter settings bei business Infomrationen über business und email adresse hinterlegen sonst geht access token für CAPI nicht
+5. pixel datensatz im events manger erstellen
+
+
 # TODO
 
   1. Config-Datei vorbereiten (lokal, einmalig):
