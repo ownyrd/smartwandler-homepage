@@ -43,5 +43,9 @@ https://www.facebook.com/legal/technology_terms
 unterschreiben
 
 
+todo:
+* footer links von anderen subopages gägig machen
+
+
 ## Instagram Enrichtung
 * damit der Ads Account richtig funtkioniert muss man bei INstagram auf Settings gehen --> dann Account Center --> Ad Preferences und dann kostenlose Werbung auswählen
