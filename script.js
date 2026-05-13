@@ -167,16 +167,25 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
   var MATOMO_URL = 'https://analytics.decentnodes.de/';
   var MATOMO_SITE_ID = '1';
 
+  // Aktualisiert das "Aus / An"-Label neben dem Schalter
+  function syncToggleState(input) {
+    if (!input) return;
+    var stateEl = input.parentElement && input.parentElement.querySelector('.cookie-toggle-state');
+    if (stateEl) stateEl.textContent = input.checked ? 'An' : 'Aus';
+  }
+
   function showBanner() {
     if (!banner) return;
-    // Restore toggle states from stored consent (for revoke scenario)
-    // First visit: meetergo defaults to checked (set in HTML), matomo & facebook to unchecked
+    // Defaults: ALLES disabled — vorher gespeicherte Auswahl überschreibt das.
     var storedMeetergo = localStorage.getItem(CONSENT_KEY_MEETERGO);
     var storedMatomo   = localStorage.getItem(CONSENT_KEY_MATOMO);
     var storedFacebook = localStorage.getItem(CONSENT_KEY_FACEBOOK);
-    if (toggleMeetergo && storedMeetergo !== null) toggleMeetergo.checked = storedMeetergo === 'granted';
-    if (toggleMatomo   && storedMatomo   !== null) toggleMatomo.checked   = storedMatomo   === 'granted';
-    if (toggleFacebook && storedFacebook !== null) toggleFacebook.checked = storedFacebook === 'granted';
+    if (toggleMeetergo) toggleMeetergo.checked = storedMeetergo === 'granted';
+    if (toggleMatomo)   toggleMatomo.checked   = storedMatomo   === 'granted';
+    if (toggleFacebook) toggleFacebook.checked = storedFacebook === 'granted';
+    syncToggleState(toggleMeetergo);
+    syncToggleState(toggleMatomo);
+    syncToggleState(toggleFacebook);
     banner.hidden = false;
   }
 
@@ -223,18 +232,34 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
 
   // ── Facebook Pixel ──
   function loadFacebookPixel() {
-    if (window.fbq) return;
-    (function (f, b, e, v, n, t, s) {
-      if (f.fbq) return;
-      n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
-      if (!f._fbq) f._fbq = n;
-      n.push = n; n.loaded = !0; n.version = '2.0';
-      n.queue = [];
-      t = b.createElement(e); t.async = !0; t.src = v;
-      s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
-    })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', FB_PIXEL_ID);
-    fbq('track', 'PageView');
+    if (window.fbq && window.fbq.loaded) {
+      console.info('[consent] Facebook Pixel bereits geladen.');
+      return;
+    }
+    // fbq-Stub vor dem Skript-Inject anlegen, damit init/track queued werden.
+    if (!window.fbq) {
+      var n = window.fbq = function () {
+        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+      };
+      if (!window._fbq) window._fbq = n;
+      n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+    }
+    // Skript einhängen (kein abhängiger erster Script-Tag mehr)
+    if (!document.querySelector('script[src*="fbevents.js"]')) {
+      var t = document.createElement('script');
+      t.async = true;
+      t.src = 'https://connect.facebook.net/en_US/fbevents.js';
+      t.onload  = function () { console.info('[consent] fbevents.js geladen.'); };
+      t.onerror = function () { console.error('[consent] fbevents.js konnte nicht geladen werden (geblockt?).'); };
+      document.head.appendChild(t);
+    }
+    try {
+      fbq('init', FB_PIXEL_ID);
+      fbq('track', 'PageView');
+      console.info('[consent] Facebook Pixel initialisiert (ID ' + FB_PIXEL_ID + ').');
+    } catch (e) {
+      console.error('[consent] Facebook Pixel init failed:', e);
+    }
   }
 
   // Cookie auf allen plausiblen Domain-Varianten löschen.
@@ -275,16 +300,25 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
 
   // ── Matomo ──
   function loadMatomo() {
-    if (window._paq && window._paq.matomoLoaded) return;
+    if (window._paq && window._paq.matomoLoaded) {
+      console.info('[consent] Matomo bereits geladen.');
+      return;
+    }
     var _paq = window._paq = window._paq || [];
-    _paq.push(['trackPageView']);
-    _paq.push(['enableLinkTracking']);
     _paq.push(['setTrackerUrl', MATOMO_URL + 'matomo.php']);
     _paq.push(['setSiteId', MATOMO_SITE_ID]);
+    _paq.push(['enableLinkTracking']);
+    _paq.push(['trackPageView']);
     _paq.matomoLoaded = true;
-    var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-    g.async = true; g.src = MATOMO_URL + 'matomo.js'; g.setAttribute('data-matomo', '1');
-    s.parentNode.insertBefore(g, s);
+
+    var g = document.createElement('script');
+    g.async = true;
+    g.src = MATOMO_URL + 'matomo.js';
+    g.setAttribute('data-matomo', '1');
+    g.onload  = function () { console.info('[consent] matomo.js geladen.'); };
+    g.onerror = function () { console.error('[consent] matomo.js konnte nicht geladen werden (Netzwerk / Blocker / falsche MATOMO_URL?).'); };
+    document.head.appendChild(g);
+    console.info('[consent] Matomo wird initialisiert (Site ID ' + MATOMO_SITE_ID + ').');
   }
 
   function removeMatomo() {
@@ -301,14 +335,25 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
   }
 
   // ── Consent anwenden ──
+  // Jeder Loader läuft in seinem eigenen try/catch — ein Fehler in einem Dienst
+  // darf nicht verhindern, dass die anderen geladen werden.
   function applyConsent() {
     var meetergo = localStorage.getItem(CONSENT_KEY_MEETERGO);
     var matomo   = localStorage.getItem(CONSENT_KEY_MATOMO);
     var facebook = localStorage.getItem(CONSENT_KEY_FACEBOOK);
+    console.info('[consent] applyConsent — meetergo:', meetergo, '· matomo:', matomo, '· facebook:', facebook);
 
-    if (meetergo === 'granted') { loadMeetergo(); } else { removeMeetergo(); }
-    if (matomo   === 'granted') { loadMatomo(); }   else { removeMatomo(); }
-    if (facebook === 'granted') { loadFacebookPixel(); } else { removeFacebookPixel(); }
+    try {
+      if (meetergo === 'granted') loadMeetergo(); else removeMeetergo();
+    } catch (e) { console.error('[consent] meetergo loader failed:', e); }
+
+    try {
+      if (matomo === 'granted') loadMatomo(); else removeMatomo();
+    } catch (e) { console.error('[consent] matomo loader failed:', e); }
+
+    try {
+      if (facebook === 'granted') loadFacebookPixel(); else removeFacebookPixel();
+    } catch (e) { console.error('[consent] facebook loader failed:', e); }
   }
 
   // Snapshot der gespeicherten Consents (vor dem Speichern neuer Werte)
@@ -379,6 +424,35 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
   if (btnAcceptAll) btnAcceptAll.addEventListener('click', handleAcceptAll);
   if (btnReject) btnReject.addEventListener('click', handleReject);
   if (btnRevoke) btnRevoke.addEventListener('click', handleRevoke);
+
+  // Inline-Link "Cookie-Einstellungen" innerhalb des Banner-Lead-Texts
+  document.querySelectorAll('[data-cookie-revoke]').forEach(function (el) {
+    el.addEventListener('click', function (e) { e.preventDefault(); handleRevoke(); });
+  });
+
+  // Toggle-Label "Aus/An" beim Umschalten aktualisieren
+  [toggleMeetergo, toggleMatomo, toggleFacebook].forEach(function (input) {
+    if (!input) return;
+    input.addEventListener('change', function () { syncToggleState(input); });
+  });
+
+  // Klick auf den Toggle in <summary> soll das <details> NICHT auf-/zuklappen
+  if (banner) {
+    banner.querySelectorAll('[data-cookie-stop]').forEach(function (el) {
+      el.addEventListener('click', function (e) { e.stopPropagation(); });
+    });
+
+    // Beim Aufklappen die Kategorie sanft in den Sichtbereich scrollen
+    banner.querySelectorAll('details.cookie-cat').forEach(function (d) {
+      d.addEventListener('toggle', function () {
+        if (!d.open) return;
+        var summary = d.querySelector('summary');
+        if (summary && summary.scrollIntoView) {
+          summary.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+    });
+  }
 
   // Beim Laden: Consent prüfen
   var hasConsent =

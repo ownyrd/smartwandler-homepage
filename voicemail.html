@@ -457,43 +457,150 @@
 <!-- ══════════════════════════════════════
      COOKIE CONSENT BANNER (DSGVO)
 ══════════════════════════════════════ -->
-<div id="cookie-consent" class="cookie-banner" role="dialog" aria-label="Cookie-Einstellungen" aria-modal="false" hidden>
-  <div class="cookie-banner-inner">
-    <div class="cookie-banner-text">
-      <p class="cookie-banner-title">Cookie-Einstellungen</p>
-      <p class="cookie-banner-desc">Wir nutzen externe Dienste, die Cookies setzen oder Daten an Dritte übermitteln können. Du kannst diese einzeln aktivieren oder deaktivieren. Details findest du in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
-      <div class="cookie-toggles">
-        <label class="cookie-toggle">
-          <input type="checkbox" id="consent-meetergo" checked>
-          <span class="cookie-toggle-slider"></span>
-          <span class="cookie-toggle-label">
-            <strong>Terminbuchung (meetergo)</strong>
-            <span>Ermöglicht die Online-Terminvereinbarung direkt auf der Website. Daten werden an meetergo GmbH, Deutschland übermittelt.</span>
-          </span>
-        </label>
-        <label class="cookie-toggle">
-          <input type="checkbox" id="consent-matomo">
-          <span class="cookie-toggle-slider"></span>
-          <span class="cookie-toggle-label">
-            <strong>Statistik (Matomo)</strong>
-            <span>Reichweitenanalyse zur Verbesserung unserer Website. Daten werden auf unserem eigenen Server (analytics.decentnodes.de) verarbeitet.</span>
-          </span>
-        </label>
-        <label class="cookie-toggle">
-          <input type="checkbox" id="consent-facebook">
-          <span class="cookie-toggle-slider"></span>
-          <span class="cookie-toggle-label">
-            <strong>Marketing (Facebook-Pixel)</strong>
-            <span>Misst die Wirksamkeit unserer Werbeanzeigen. Daten werden an Meta Platforms Ireland Ltd. übermittelt.</span>
-          </span>
-        </label>
-      </div>
+<div id="cookie-consent" class="cookie-banner" role="dialog" aria-label="Datenschutzeinstellungen" aria-modal="true" hidden>
+  <div class="cookie-backdrop"></div>
+  <div class="cookie-card" role="document">
+    <header class="cookie-card-head">
+      <h2 class="cookie-card-title">Datenschutzeinstellungen</h2>
+      <p class="cookie-card-lead">
+        Wir nutzen Cookies und ähnliche Technologien auf unserer Website. Einige davon helfen uns,
+        die Website und deine Erfahrung zu verbessern – andere sind für eingebundene Dienste (z. B.
+        Terminbuchung, Reichweitenanalyse oder Werbeanzeigen) erforderlich. Du entscheidest, was du
+        zulässt. Per Default ist alles deaktiviert. Deine Auswahl kannst du jederzeit über
+        <button type="button" class="cookie-inline-link" data-cookie-revoke>„Cookie-Einstellungen"</button>
+        im Footer ändern. Mehr in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.
+      </p>
+    </header>
+
+    <div class="cookie-categories">
+
+      <!-- ─── Essenziell ─── -->
+      <section class="cookie-cat" data-cat="essential">
+        <header class="cookie-cat-row">
+          <button type="button" class="cookie-cat-expand" aria-expanded="false" aria-controls="cookie-cat-essential-body">
+            <span class="cookie-cat-chev" aria-hidden="true"></span>
+            <span class="cookie-cat-name">Essenziell <span class="cookie-cat-count">(0)</span></span>
+          </button>
+          <span class="cookie-cat-state cookie-cat-state-info">Keine</span>
+        </header>
+        <div class="cookie-cat-body" id="cookie-cat-essential-body" hidden>
+          <p class="cookie-cat-empty">
+            Auf dieser Website werden <strong>keine essenziellen Cookies</strong> gesetzt. Die
+            Seite funktioniert vollständig ohne Einwilligung – externe Dienste lädst du nur
+            dann, wenn du sie unten aktivierst.
+          </p>
+        </div>
+      </section>
+
+      <!-- ─── Funktional ─── -->
+      <section class="cookie-cat" data-cat="functional">
+        <header class="cookie-cat-row">
+          <button type="button" class="cookie-cat-expand" aria-expanded="false" aria-controls="cookie-cat-functional-body">
+            <span class="cookie-cat-chev" aria-hidden="true"></span>
+            <span class="cookie-cat-name">Funktional <span class="cookie-cat-count">(1)</span></span>
+          </button>
+          <label class="cookie-cat-toggle">
+            <input type="checkbox" id="consent-meetergo" data-cat-master="functional">
+            <span class="cookie-toggle-slider"></span>
+            <span class="cookie-toggle-state" aria-hidden="true">Aus</span>
+          </label>
+        </header>
+        <div class="cookie-cat-body" id="cookie-cat-functional-body" hidden>
+          <p class="cookie-cat-intro">
+            Wir arbeiten mit <strong>meetergo</strong> zusammen – einem
+            <strong>DSGVO-konformen, in der EU gehosteten Kalenderservice</strong>, der es uns
+            und dir deutlich einfacher macht, einen passenden Termin zu finden. meetergo legt
+            – wie wir – großen Wert auf Datenschutz und ist eine ausdrücklich europäische
+            Alternative zu US-Anbietern.
+          </p>
+          <div class="cookie-service">
+            <dl class="cookie-service-meta">
+              <div><dt>Name</dt><dd>meetergo</dd></div>
+              <div><dt>Anbieter</dt><dd>meetergo GmbH, Schloss-Rahe-Straße 15, 52072 Aachen, Deutschland</dd></div>
+              <div><dt>Zweck</dt><dd>Einbettung eines Buchungs-Widgets zur Online-Terminvereinbarung.</dd></div>
+              <div><dt>Datenschutzerklärung</dt><dd><a href="https://www.meetergo.com/legal/privacy" target="_blank" rel="noopener noreferrer">meetergo.com/legal/privacy</a></dd></div>
+              <div><dt>Host</dt><dd>EU (Deutschland)</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── Statistik & Analyse ─── -->
+      <section class="cookie-cat" data-cat="statistics">
+        <header class="cookie-cat-row">
+          <button type="button" class="cookie-cat-expand" aria-expanded="false" aria-controls="cookie-cat-statistics-body">
+            <span class="cookie-cat-chev" aria-hidden="true"></span>
+            <span class="cookie-cat-name">Statistik &amp; Analyse <span class="cookie-cat-count">(1)</span></span>
+          </button>
+          <label class="cookie-cat-toggle">
+            <input type="checkbox" id="consent-matomo" data-cat-master="statistics">
+            <span class="cookie-toggle-slider"></span>
+            <span class="cookie-toggle-state" aria-hidden="true">Aus</span>
+          </label>
+        </header>
+        <div class="cookie-cat-body" id="cookie-cat-statistics-body" hidden>
+          <p class="cookie-cat-intro">
+            Hier betreiben wir eine <strong>eigene Analyse-Plattform</strong>. Die Daten landen
+            auf dem <strong>gleichen Server</strong>, der ohnehin beim Aufruf der Website
+            kontaktiert wird – lediglich Informationen wie <strong>IP-Adresse und Browser</strong>
+            werden für die interne Auswertung gespeichert. Diese Daten gehen
+            <strong>auf keinen Fall an Drittanbieter</strong> weiter.
+          </p>
+          <div class="cookie-service">
+            <dl class="cookie-service-meta">
+              <div><dt>Name</dt><dd>Matomo (selbst gehostet)</dd></div>
+              <div><dt>Anbieter</dt><dd>smartwandler.de · analytics.decentnodes.de</dd></div>
+              <div><dt>Zweck</dt><dd>Reichweitenanalyse zur Verbesserung der Website. Keine Weitergabe an Dritte.</dd></div>
+              <div><dt>Datenschutzerklärung</dt><dd><a href="datenschutz.html">Unsere Datenschutzerklärung</a></dd></div>
+              <div><dt>Cookie-Namen</dt><dd>_pk_id, _pk_ses, _pk_ref, _pk_cvar, _pk_hsr</dd></div>
+              <div><dt>Cookie-Laufzeit</dt><dd>bis zu 13 Monate</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── Marketing ─── -->
+      <section class="cookie-cat" data-cat="marketing">
+        <header class="cookie-cat-row">
+          <button type="button" class="cookie-cat-expand" aria-expanded="false" aria-controls="cookie-cat-marketing-body">
+            <span class="cookie-cat-chev" aria-hidden="true"></span>
+            <span class="cookie-cat-name">Marketing <span class="cookie-cat-count">(1)</span></span>
+          </button>
+          <label class="cookie-cat-toggle">
+            <input type="checkbox" id="consent-facebook" data-cat-master="marketing">
+            <span class="cookie-toggle-slider"></span>
+            <span class="cookie-toggle-state" aria-hidden="true">Aus</span>
+          </label>
+        </header>
+        <div class="cookie-cat-body" id="cookie-cat-marketing-body" hidden>
+          <p class="cookie-cat-intro">
+            Wir versuchen so gut es geht, auf Datenschutz zu achten – und verstehen es voll und
+            ganz, wenn du gar keine Daten übermitteln möchtest. Gäbe es eine vergleichbare
+            deutsche Alternative, würden wir unsere Werbung lieber über einen deutschen
+            Anbieter ausspielen. Da <strong>Meta</strong> in diesem Bereich jedoch der
+            Platzhirsch schlechthin ist, nutzen auch wir den Dienst – und freuen uns sehr,
+            wenn du das erlaubst.
+          </p>
+          <div class="cookie-service">
+            <dl class="cookie-service-meta">
+              <div><dt>Name</dt><dd>Facebook Pixel</dd></div>
+              <div><dt>Anbieter</dt><dd>Meta Platforms Ireland Ltd., 4 Grand Canal Square, Dublin 2, Irland</dd></div>
+              <div><dt>Zweck</dt><dd>Cookie zur Messung der Wirksamkeit unserer Werbeanzeigen (Conversion-Tracking, Retargeting).</dd></div>
+              <div><dt>Datenschutzerklärung</dt><dd><a href="https://www.facebook.com/policies/cookies/" target="_blank" rel="noopener noreferrer">facebook.com/policies/cookies</a></dd></div>
+              <div><dt>Cookie-Namen</dt><dd>_fbp, _fbc, fr, pixel_ration, pl, presence, sb, spin, wd, xs</dd></div>
+              <div><dt>Cookie-Laufzeit</dt><dd>Sitzung bis 1 Jahr</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
     </div>
-    <div class="cookie-banner-actions">
+
+    <footer class="cookie-card-actions">
+      <button id="cookie-accept-all" class="cookie-btn cookie-btn-accept">Alle akzeptieren</button>
       <button id="cookie-accept" class="cookie-btn cookie-btn-save">Auswahl speichern</button>
       <button id="cookie-reject" class="cookie-btn cookie-btn-reject">Ablehnen</button>
-      <button id="cookie-accept-all" class="cookie-btn cookie-btn-accept">Alle akzeptieren</button>
-    </div>
+    </footer>
   </div>
 </div>
 
