@@ -33,18 +33,11 @@
   Email/Telefon (sha256-gehashed) aus dem meetergo-Redirect-URL-Parameter mit übergeben. Erstmal ist es so aber sauber.
 
 
-
-
-
-TODO
+AVV von MEta wird mit Nutzung des Dienstes geshclossen. Folgende Seiten kann man sich durchlesen:
 https://www.facebook.com/legal/controller_addendum
 https://www.facebook.com/legal/terms/dataprocessing
 https://www.facebook.com/legal/technology_terms
 unterschreiben
-
-
-todo:
-* footer links von anderen subopages gägig machen
 
 
 ## Instagram Enrichtung
