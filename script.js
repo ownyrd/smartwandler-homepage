@@ -442,6 +442,18 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
       el.addEventListener('click', function (e) { e.stopPropagation(); });
     });
 
+    // Mobile-Toggle: Lead-Volltext + Kategorien ein-/ausklappen
+    var mobileToggle = banner.querySelector('.cookie-mobile-toggle');
+    var card = banner.querySelector('.cookie-card');
+    if (mobileToggle && card) {
+      mobileToggle.addEventListener('click', function () {
+        var expanded = card.classList.toggle('is-expanded');
+        mobileToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        var label = mobileToggle.querySelector('.cookie-mobile-toggle-label');
+        if (label) label.textContent = expanded ? 'Details ausblenden' : 'Details & Einstellungen';
+      });
+    }
+
     // Beim Aufklappen die Kategorie sanft in den Sichtbereich scrollen
     banner.querySelectorAll('details.cookie-cat').forEach(function (d) {
       d.addEventListener('toggle', function () {

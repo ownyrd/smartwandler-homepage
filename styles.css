@@ -1179,6 +1179,8 @@ footer {
   color: var(--ink-soft);
   margin: 0;
 }
+/* Default (Desktop): Kurzfassung ausblenden, Volltext zeigen */
+.cookie-card-lead-short { display: none; }
 .cookie-card-lead a,
 .cookie-inline-link {
   color: var(--ink);
@@ -1474,9 +1476,19 @@ footer {
     border-radius: var(--r-lg) var(--r-lg) 0 0;
     border-bottom: 0;
   }
-  .cookie-card-head { padding: 22px 20px 14px; }
-  .cookie-card-title { font-size: 18px; }
-  .cookie-categories { padding: 8px 12px 10px; }
+  .cookie-card-head { padding: 22px 20px 12px; }
+  .cookie-card-title { font-size: 18px; margin-bottom: 8px; }
+  .cookie-card-lead {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  /* Mobile-Default: Kurztext zeigen, Volltext verstecken */
+  .cookie-card-lead-short { display: block; }
+  .cookie-card-lead-full  { display: none; }
+  .cookie-categories {
+    padding: 8px 12px 10px;
+    display: none;
+  }
   .cookie-cat-row { padding: 12px 14px; }
   .cookie-cat-body { padding: 4px 14px 14px; }
   .cookie-service-meta {
@@ -1493,6 +1505,49 @@ footer {
   .cookie-btn-accept,
   .cookie-btn-save,
   .cookie-btn-reject { flex: 0 0 auto; width: 100%; }
+
+  /* Expanded-Modus: Toggle wurde getippt → Volltext + Kategorien sichtbar */
+  .cookie-card.is-expanded .cookie-card-lead-short { display: none; }
+  .cookie-card.is-expanded .cookie-card-lead-full  { display: block; }
+  .cookie-card.is-expanded .cookie-categories { display: block; }
+  .cookie-card.is-expanded .cookie-mobile-toggle { margin-bottom: 4px; }
+  .cookie-card.is-expanded .cookie-mobile-toggle-chev { transform: rotate(-135deg); margin-top: 4px; margin-bottom: 0; }
+
+  /* Mobile-Toggle */
+  .cookie-mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: calc(100% - 24px);
+    margin: 14px 12px 14px;
+    padding: 12px 14px;
+    background: var(--paper-2);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--r-sm);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--ink);
+    cursor: pointer;
+    text-align: left;
+  }
+  .cookie-mobile-toggle:hover { background: var(--paper-3); }
+  .cookie-mobile-toggle-chev {
+    width: 12px;
+    height: 12px;
+    border-right: 2px solid var(--ink-soft);
+    border-bottom: 2px solid var(--ink-soft);
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    margin-bottom: 4px;
+  }
+}
+
+/* Desktop: Mobile-Toggle ausblenden */
+@media (min-width: 641px) {
+  .cookie-mobile-toggle { display: none; }
 }
 
 /* ── meetergo sidebar panel override ── */

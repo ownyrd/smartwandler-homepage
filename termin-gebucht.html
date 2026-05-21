@@ -233,7 +233,12 @@
   <div class="cookie-card" role="document">
     <header class="cookie-card-head">
       <h2 class="cookie-card-title">Datenschutzeinstellungen</h2>
-      <p class="cookie-card-lead">
+      <p class="cookie-card-lead cookie-card-lead-short">
+        Wir nutzen Cookies und ähnliche Technologien. Per Default ist alles aus, du entscheidest.
+        Details und einzelne Kategorien findest du unten unter <strong>„Details &amp; Einstellungen"</strong>.
+        Mehr: <a href="datenschutz.html">Datenschutzerklärung</a> · <a href="impressum.html">Impressum</a>.
+      </p>
+      <p class="cookie-card-lead cookie-card-lead-full">
         Wir nutzen Cookies und ähnliche Technologien auf unserer Website. Einige davon helfen uns,
         die Website und deine Erfahrung zu verbessern, andere sind für eingebundene Dienste (z. B.
         Terminbuchung, Reichweitenanalyse oder Werbeanzeigen) erforderlich. Du entscheidest, was du
@@ -243,7 +248,12 @@
       </p>
     </header>
 
-    <div class="cookie-categories">
+    <button type="button" class="cookie-mobile-toggle" aria-expanded="false" aria-controls="cookie-categories">
+      <span class="cookie-mobile-toggle-label">Details &amp; Einstellungen</span>
+      <span class="cookie-mobile-toggle-chev" aria-hidden="true"></span>
+    </button>
+
+    <div class="cookie-categories" id="cookie-categories">
 
       <!-- ─── Essenziell ─── -->
       <details class="cookie-cat" data-cat="essential">
