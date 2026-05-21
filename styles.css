@@ -1445,12 +1445,50 @@ footer {
   transform: translateY(0);
 }
 
-/* Desktop-Reihenfolge: Ablehnen · Auswahl speichern · Alle akzeptieren
-   Mobile (Spalten-Layout) behält HTML-Reihenfolge → "Alle akzeptieren" oben. */
+/* Desktop-Reihenfolge: Ablehnen · Auswahl speichern · Alle akzeptieren · ⚙ */
 @media (min-width: 641px) {
-  #cookie-reject     { order: 1; }
-  #cookie-accept     { order: 2; }
-  #cookie-accept-all { order: 3; }
+  #cookie-reject              { order: 1; }
+  #cookie-accept              { order: 2; }
+  #cookie-accept-all          { order: 3; }
+  .cookie-mobile-icon-toggle  { order: 4; }
+}
+
+/* ── Kategorien & Save-Button per Default versteckt — nur sichtbar, wenn
+   .cookie-card.is-expanded gesetzt ist (Toggle über Einstellungs-Icon) ── */
+.cookie-categories { display: none; }
+.cookie-card.is-expanded .cookie-categories { display: block; }
+.cookie-btn-save { display: none; }
+.cookie-card.is-expanded .cookie-btn-save {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Einstellungs-Icon-Toggle (mobil + Desktop) */
+.cookie-mobile-icon-toggle {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--line-soft);
+  border-radius: 100px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+.cookie-mobile-icon-toggle:hover {
+  background: var(--paper-3);
+  color: var(--ink);
+}
+.cookie-mobile-icon-toggle svg { display: block; }
+.cookie-card.is-expanded .cookie-mobile-icon-toggle {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
 }
 
 /* Footer revoke link */
@@ -1488,10 +1526,7 @@ footer {
   /* Mobile-Default: Kurztext zeigen, Volltext verstecken */
   .cookie-card-lead-short { display: block; }
   .cookie-card-lead-full  { display: none; }
-  .cookie-categories {
-    padding: 0 12px 6px;
-    display: none;
-  }
+  .cookie-categories { padding: 0 12px 6px; }
   .cookie-cat-row { padding: 12px 14px; }
   .cookie-cat-body { padding: 4px 14px 14px; }
   .cookie-service-meta {
@@ -1523,58 +1558,28 @@ footer {
     padding: 10px 8px;
     font-size: 13px;
   }
-  /* Mobile-Reihenfolge: Ablehnen · Akzeptieren · ⚙ */
+  /* Mobile-Reihenfolge: Ablehnen · Akzeptieren · ⚙ (überschreibt Desktop-Order) */
   #cookie-reject              { order: 1; }
   #cookie-accept-all          { order: 2; }
   .cookie-mobile-icon-toggle  { order: 3; }
-  /* "Auswahl speichern" nur sichtbar, wenn Detail-Bereich geöffnet ist */
+  /* "Auswahl speichern" — Mobile-Layout: volle Breite, eigene Zeile */
   .cookie-btn-save {
     flex: 1 1 100%;
     order: 99;
     width: 100%;
     padding: 10px 14px;
     font-size: 13px;
-    display: none;
   }
 
-  /* Icon-Toggle für Detail-Einstellungen */
-  .cookie-mobile-icon-toggle {
-    flex: 0 0 auto;
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    background: transparent;
-    border: 1px solid var(--line-soft);
-    border-radius: 100px;
-    color: var(--ink-soft);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
-  }
-  .cookie-mobile-icon-toggle:hover {
-    background: var(--paper-3);
-    color: var(--ink);
-  }
-  .cookie-mobile-icon-toggle svg { display: block; }
-
-  /* Expanded-Modus */
+  /* Expanded-Modus auf Mobile: Lead-Volltext zeigen, Kurztext verbergen */
   .cookie-card.is-expanded .cookie-card-lead-short { display: none; }
   .cookie-card.is-expanded .cookie-card-lead-full  { display: block; }
-  .cookie-card.is-expanded .cookie-categories { display: block; padding: 4px 12px 8px; }
-  .cookie-card.is-expanded .cookie-btn-save { display: inline-flex; align-items: center; justify-content: center; }
-  .cookie-card.is-expanded .cookie-mobile-icon-toggle {
-    background: var(--ink);
-    border-color: var(--ink);
-    color: #fff;
-  }
+  .cookie-card.is-expanded .cookie-categories { padding: 4px 12px 8px; }
 }
 
-/* Desktop: Mobile-Toggles ausblenden */
+/* Desktop: nur den großen Text-Toggle ausblenden (Icon-Toggle bleibt sichtbar) */
 @media (min-width: 641px) {
-  .cookie-mobile-toggle,
-  .cookie-mobile-icon-toggle { display: none; }
+  .cookie-mobile-toggle { display: none; }
 }
 
 /* ── meetergo sidebar panel override ── */
