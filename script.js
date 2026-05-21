@@ -443,14 +443,19 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
     });
 
     // Mobile-Toggle: Lead-Volltext + Kategorien ein-/ausklappen
-    var mobileToggle = banner.querySelector('.cookie-mobile-toggle');
+    // Mehrere Auslöser möglich (kompakter Icon-Button + ggf. alter Text-Toggle)
     var card = banner.querySelector('.cookie-card');
-    if (mobileToggle && card) {
-      mobileToggle.addEventListener('click', function () {
-        var expanded = card.classList.toggle('is-expanded');
-        mobileToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-        var label = mobileToggle.querySelector('.cookie-mobile-toggle-label');
-        if (label) label.textContent = expanded ? 'Details ausblenden' : 'Details & Einstellungen';
+    var mobileToggles = banner.querySelectorAll('.cookie-mobile-toggle, .cookie-mobile-icon-toggle');
+    if (card && mobileToggles.length) {
+      mobileToggles.forEach(function (toggle) {
+        toggle.addEventListener('click', function () {
+          var expanded = card.classList.toggle('is-expanded');
+          mobileToggles.forEach(function (t) {
+            t.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+          });
+          var label = toggle.querySelector('.cookie-mobile-toggle-label');
+          if (label) label.textContent = expanded ? 'Details ausblenden' : 'Details & Einstellungen';
+        });
       });
     }
 

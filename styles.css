@@ -1476,17 +1476,20 @@ footer {
     border-radius: var(--r-lg) var(--r-lg) 0 0;
     border-bottom: 0;
   }
-  .cookie-card-head { padding: 22px 20px 12px; }
-  .cookie-card-title { font-size: 18px; margin-bottom: 8px; }
+  .cookie-card-head {
+    padding: 16px 16px 12px;
+    border-bottom: 0;
+  }
+  .cookie-card-title { font-size: 16px; margin-bottom: 6px; letter-spacing: -0.005em; }
   .cookie-card-lead {
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 12.5px;
+    line-height: 1.45;
   }
   /* Mobile-Default: Kurztext zeigen, Volltext verstecken */
   .cookie-card-lead-short { display: block; }
   .cookie-card-lead-full  { display: none; }
   .cookie-categories {
-    padding: 8px 12px 10px;
+    padding: 0 12px 6px;
     display: none;
   }
   .cookie-cat-row { padding: 12px 14px; }
@@ -1497,57 +1500,81 @@ footer {
   }
   .cookie-service-meta dt { padding-bottom: 0; padding-top: 8px; }
   .cookie-service-meta dd { padding-top: 0; }
+
+  /* Bulky Text-Toggle ausblenden — kompakte Icon-Variante übernimmt */
+  .cookie-mobile-toggle { display: none; }
+
+  /* Actions: 2 Buttons + Icon-Toggle in einer Reihe */
   .cookie-card-actions {
-    padding: 14px 16px 18px;
-    flex-direction: column;
+    padding: 8px 12px 14px;
+    border-top: 1px solid var(--line-soft);
+    background: transparent;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: stretch;
   }
   .cookie-btn,
   .cookie-btn-accept,
-  .cookie-btn-save,
-  .cookie-btn-reject { flex: 0 0 auto; width: 100%; }
+  .cookie-btn-reject {
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+  /* Mobile-Reihenfolge: Ablehnen · Akzeptieren · ⚙ */
+  #cookie-reject              { order: 1; }
+  #cookie-accept-all          { order: 2; }
+  .cookie-mobile-icon-toggle  { order: 3; }
+  /* "Auswahl speichern" nur sichtbar, wenn Detail-Bereich geöffnet ist */
+  .cookie-btn-save {
+    flex: 1 1 100%;
+    order: 99;
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 13px;
+    display: none;
+  }
 
-  /* Expanded-Modus: Toggle wurde getippt → Volltext + Kategorien sichtbar */
+  /* Icon-Toggle für Detail-Einstellungen */
+  .cookie-mobile-icon-toggle {
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--line-soft);
+    border-radius: 100px;
+    color: var(--ink-soft);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  }
+  .cookie-mobile-icon-toggle:hover {
+    background: var(--paper-3);
+    color: var(--ink);
+  }
+  .cookie-mobile-icon-toggle svg { display: block; }
+
+  /* Expanded-Modus */
   .cookie-card.is-expanded .cookie-card-lead-short { display: none; }
   .cookie-card.is-expanded .cookie-card-lead-full  { display: block; }
-  .cookie-card.is-expanded .cookie-categories { display: block; }
-  .cookie-card.is-expanded .cookie-mobile-toggle { margin-bottom: 4px; }
-  .cookie-card.is-expanded .cookie-mobile-toggle-chev { transform: rotate(-135deg); margin-top: 4px; margin-bottom: 0; }
-
-  /* Mobile-Toggle */
-  .cookie-mobile-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    width: calc(100% - 24px);
-    margin: 14px 12px 14px;
-    padding: 12px 14px;
-    background: var(--paper-2);
-    border: 1px solid var(--line-soft);
-    border-radius: var(--r-sm);
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 13.5px;
-    font-weight: 500;
-    color: var(--ink);
-    cursor: pointer;
-    text-align: left;
-  }
-  .cookie-mobile-toggle:hover { background: var(--paper-3); }
-  .cookie-mobile-toggle-chev {
-    width: 12px;
-    height: 12px;
-    border-right: 2px solid var(--ink-soft);
-    border-bottom: 2px solid var(--ink-soft);
-    transform: rotate(45deg);
-    transition: transform 0.2s ease;
-    flex-shrink: 0;
-    margin-bottom: 4px;
+  .cookie-card.is-expanded .cookie-categories { display: block; padding: 4px 12px 8px; }
+  .cookie-card.is-expanded .cookie-btn-save { display: inline-flex; align-items: center; justify-content: center; }
+  .cookie-card.is-expanded .cookie-mobile-icon-toggle {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fff;
   }
 }
 
-/* Desktop: Mobile-Toggle ausblenden */
+/* Desktop: Mobile-Toggles ausblenden */
 @media (min-width: 641px) {
-  .cookie-mobile-toggle { display: none; }
+  .cookie-mobile-toggle,
+  .cookie-mobile-icon-toggle { display: none; }
 }
 
 /* ── meetergo sidebar panel override ── */
