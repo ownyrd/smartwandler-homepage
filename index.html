@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>smartwandler.de — Digitalisierung & Automatisierung vor Ort</title>
+<link rel="preload" href="fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="images/hero-main-image.webp" type="image/webp" fetchpriority="high">
 <link rel="stylesheet" href="styles.css">
 <!--
   Matomo & Meta Pixel werden ausschließlich nach Cookie-Consent
@@ -18,7 +20,10 @@
   ══════════════════════════════════════ -->
   <nav>
     <div class="nav-logo">
-      <img src="images/logo-small.png" alt="smartwandler Logo" class="nav-logo-img">
+      <picture>
+        <source srcset="images/logo-small.webp" type="image/webp">
+        <img src="images/logo-small.png" alt="smartwandler Logo" class="nav-logo-img" width="200" height="200">
+      </picture>
       <span class="nav-logo-wordmark">smartwandler</span>
     </div>
     <button class="nav-toggle" aria-label="Menü">
@@ -59,9 +64,18 @@
       <div class="hero-trust">
         <div class="trust-label">Zertifizierungen</div>
         <div class="trust-logos">
-          <img src="images/badge-aws.png" alt="AWS Solutions Architect Associate" style="height:48px;width:auto">
-          <img src="images/badge_ckad.png" alt="Certified Kubernetes Application Developer" style="height:48px;width:auto">
-          <img src="images/badge_tf.png" alt="Terraform Certified Associate" style="height:48px;width:auto">
+          <picture>
+            <source srcset="images/badge-aws.webp" type="image/webp">
+            <img src="images/badge-aws.png" alt="AWS Solutions Architect Associate" width="192" height="192" loading="lazy" style="height:48px;width:auto">
+          </picture>
+          <picture>
+            <source srcset="images/badge_ckad.webp" type="image/webp">
+            <img src="images/badge_ckad.png" alt="Certified Kubernetes Application Developer" width="192" height="192" loading="lazy" style="height:48px;width:auto">
+          </picture>
+          <picture>
+            <source srcset="images/badge_tf.webp" type="image/webp">
+            <img src="images/badge_tf.png" alt="Terraform Certified Associate" width="192" height="192" loading="lazy" style="height:48px;width:auto">
+          </picture>
         </div>
       </div>
     </div>
@@ -69,7 +83,10 @@
     <!-- Hero right -->
     <div class="hero-visual">
       <div class="hero-main-img">
-        <img src="images/hero-main-image.png" alt="Lokale Automatisierung & On-Premise KI" style="width:100%;height:100%;object-fit:cover;display:block">
+        <picture>
+          <source srcset="images/hero-main-image.webp" type="image/webp">
+          <img src="images/hero-main-image.png" alt="Lokale Automatisierung & On-Premise KI" width="900" height="603" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;display:block">
+        </picture>
       </div>
       <div class="hero-float-card">
         <div class="float-card-label">Zeitersparnis / Woche</div>
@@ -102,7 +119,10 @@
         <p style="font-size:17px;font-weight:500;color:var(--ink);margin-bottom:8px">Wiederkehrende Aufgaben fressen deine Arbeitszeit</p>
         <p style="font-size:15px;color:var(--ink-soft);line-height:1.5">E-Mails sortieren, Daten übertragen, Berichte erstellen - dein Team verbringt Stunden mit Aufgaben, die automatisiert ablaufen könnten.</p>
         <div class="bcard-illus" style="height:100px;border-radius:var(--r-md);overflow:hidden">
-          <img src="images/manuelle-prozesse.png" alt="Illustration: Manuelle Prozesse" style="width:100%;height:100%;object-fit:cover;display:block">
+          <picture>
+            <source srcset="images/manuelle-prozesse.webp" type="image/webp">
+            <img src="images/manuelle-prozesse.png" alt="Illustration: Manuelle Prozesse" width="1400" height="196" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+          </picture>
         </div>
       </div>
 
@@ -189,7 +209,10 @@
         <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="tab-btn">Erstgespräch buchen <span>→</span></button></a>
       </div>
       <div class="tab-visual">
-        <img src="images/pen-consulting-process.png" alt="Beratung & Analyse" class="tab-visual-zoom">
+        <picture>
+          <source srcset="images/pen-consulting-process.webp" type="image/webp">
+          <img src="images/pen-consulting-process.png" alt="Beratung & Analyse" class="tab-visual-zoom" width="578" height="432" loading="lazy">
+        </picture>
       </div>
     </div>
     
@@ -219,7 +242,10 @@
         <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="tab-btn">Erstgespräch buchen <span>→</span></button></a>
       </div>
       <div class="tab-visual">
-        <img src="images/screenshot_prozess.png" alt="Lösung-Screenshot / Mockup">
+        <picture>
+          <source srcset="images/screenshot_prozess.webp" type="image/webp">
+          <img src="images/screenshot_prozess.png" alt="Lösung-Screenshot / Mockup" width="578" height="432" loading="lazy">
+        </picture>
       </div>
     </div>
 
@@ -249,7 +275,10 @@
         <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="tab-btn">Erstgespräch buchen <span>→</span></button></a>
       </div>
       <div class="tab-visual">
-        <img src="images/lokale-ki-anwendungen.png" alt="Lokale KI auf eigener Hardware">
+        <picture>
+          <source srcset="images/lokale-ki-anwendungen.webp" type="image/webp">
+          <img src="images/lokale-ki-anwendungen.png" alt="Lokale KI auf eigener Hardware" width="578" height="432" loading="lazy">
+        </picture>
       </div>
     </div>
 
@@ -279,7 +308,10 @@
         <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="tab-btn">Erstgespräch buchen <span>→</span></button></a>
       </div>
       <div class="tab-visual">
-        <img src="images/custom-tools.png" alt="Individuelle Web-Tools">
+        <picture>
+          <source srcset="images/custom-tools.webp" type="image/webp">
+          <img src="images/custom-tools.png" alt="Individuelle Web-Tools" width="578" height="432" loading="lazy">
+        </picture>
       </div>
     </div>
   </section>
@@ -338,7 +370,10 @@
         <!-- Slide 1 — Gründer -->
         <div class="carousel-slide active" data-slide="0">
           <div class="carousel-slide-img">
-            <img src="images/founder.jpg" alt="Philipp Anders, Gründer von smartwandler" loading="lazy">
+            <picture>
+              <source srcset="images/founder.webp" type="image/webp">
+              <img src="images/founder.jpg" alt="Philipp Anders, Gründer von smartwandler" width="1120" height="746" loading="lazy">
+            </picture>
           </div>
           <div class="carousel-slide-content">
             <div class="carousel-slide-label">Gründer</div>
@@ -355,7 +390,10 @@
         <!-- Slide 2 — Beratung -->
         <div class="carousel-slide" data-slide="1">
           <div class="carousel-slide-img">
-            <img src="images/beratung.jpg" alt="Individuelle Beratung bei smartwandler" loading="lazy">
+            <picture>
+              <source srcset="images/beratung.webp" type="image/webp">
+              <img src="images/beratung.jpg" alt="Individuelle Beratung bei smartwandler" width="1120" height="747" loading="lazy">
+            </picture>
           </div>
           <div class="carousel-slide-content">
             <div class="carousel-slide-label">Beratung</div>
@@ -371,7 +409,10 @@
         <!-- Slide 3 — Umsetzung -->
         <div class="carousel-slide" data-slide="2">
           <div class="carousel-slide-img">
-            <img src="images/umsetzung.jpg" alt="Technische Umsetzung bei smartwandler" loading="lazy">
+            <picture>
+              <source srcset="images/umsetzung.webp" type="image/webp">
+              <img src="images/umsetzung.jpg" alt="Technische Umsetzung bei smartwandler" width="1120" height="747" loading="lazy">
+            </picture>
           </div>
           <div class="carousel-slide-content">
             <div class="carousel-slide-label">Umsetzung</div>
@@ -533,7 +574,10 @@
   <footer>
     <div class="footer-top">
       <div>
-        <img src="images/logo-small.png" alt="smartwandler Logo" class="footer-logo-mark">
+        <picture>
+          <source srcset="images/logo-small.webp" type="image/webp">
+          <img src="images/logo-small.png" alt="smartwandler Logo" class="footer-logo-mark" width="200" height="200" loading="lazy">
+        </picture>
         <p style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:4px">Digitalisierung & Automatisierung</p>
         <p style="font-size:15px;color:rgba(255,255,255,0.55);line-height:1.6">Lokal. Sicher. Maßgeschneidert.</p>
         <p style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:20px;letter-spacing:0.05em">smartwandler · ein Projekt von decentnodes.de</p>

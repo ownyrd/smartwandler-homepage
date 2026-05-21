@@ -1030,7 +1030,17 @@ footer {
   .cta-final { padding: 64px 24px; }
   .cta-final h2 { font-size: 30px !important; }
   .cta-btns { flex-direction: column; align-items: center; }
-  .cta-deco { width: 100%; max-width: 340px; }
+  .cta-deco {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 16px;
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    padding: 22px 24px;
+    text-align: center;
+  }
+  .cta-deco-div { display: none; }
 
   footer { padding: 40px 24px 32px; }
   .footer-top {
@@ -1094,7 +1104,16 @@ footer {
 
   .cta-final { padding: 48px 16px; }
   .cta-final h2 { font-size: 26px !important; }
-  .cta-deco { gap: 12px; height: auto; padding: 16px 20px; }
+  .cta-deco {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 16px;
+    height: auto;
+    padding: 22px 24px;
+    max-width: 320px;
+    text-align: center;
+  }
+  .cta-deco-div { display: none; }
 
   footer { padding: 32px 16px 24px; }
   .footer-top { grid-template-columns: 1fr; gap: 28px; }

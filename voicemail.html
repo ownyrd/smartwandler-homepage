@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KI-Anfragenmanagement: keine Anfrage geht mehr verloren | smartwandler.de</title>
 <meta name="description" content="Fast jeder vierte Anruf bleibt unbeantwortet. Eine KI, die alle Anfragen automatisch erfasst, transkribiert und nach Dringlichkeit priorisiert. Kostenloses Strategiegespräch buchen.">
+<link rel="preload" href="fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="images/lokale-ki-anwendungen.webp" type="image/webp" fetchpriority="high">
 <link rel="stylesheet" href="styles.css">
 <!--
   Matomo & Meta Pixel werden ausschließlich nach Cookie-Consent
@@ -106,7 +108,10 @@
   ══════════════════════════════════════ -->
   <nav>
     <a href="index.html" class="nav-logo" style="text-decoration:none">
-      <img src="images/logo-small.png" alt="smartwandler Logo" class="nav-logo-img">
+      <picture>
+        <source srcset="images/logo-small.webp" type="image/webp">
+        <img src="images/logo-small.png" alt="smartwandler Logo" class="nav-logo-img" width="200" height="200">
+      </picture>
       <span class="nav-logo-wordmark">smartwandler</span>
     </a>
     <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo nav-cta-mobile-link" aria-label="Termin buchen"><button class="nav-cta-mobile">Termin →</button></a>
@@ -148,7 +153,10 @@
     <!-- Hero right -->
     <div class="hero-visual">
       <div class="hero-main-img">
-        <img src="images/lokale-ki-anwendungen.png" alt="KI-gestützte Anfrageverarbeitung lokal" style="width:100%;height:100%;object-fit:cover;display:block">
+        <picture>
+          <source srcset="images/lokale-ki-anwendungen.webp" type="image/webp">
+          <img src="images/lokale-ki-anwendungen.png" alt="KI-gestützte Anfrageverarbeitung lokal" width="578" height="432" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;display:block">
+        </picture>
       </div>
       <div class="hero-float-card">
         <div class="float-card-label">Verlorene Anrufe</div>
@@ -181,7 +189,10 @@
         <p style="font-size:17px;font-weight:500;color:var(--ink);margin-bottom:8px">Der Anrufer probiert es bei deinem Wettbewerber</p>
         <p style="font-size:15px;color:var(--ink-soft);line-height:1.5">Mitarbeiter sind im Außendienst, in Meetings, im Feierabend. Ein Interessent ruft an, niemand geht ans Telefon und der Auftrag ist womöglich verloren.</p>
         <div class="bcard-illus" style="height:100px;border-radius:var(--r-md);overflow:hidden">
-          <img src="images/manuelle-prozesse.png" alt="Illustration verlorener Anruf" style="width:100%;height:100%;object-fit:cover;display:block">
+          <picture>
+            <source srcset="images/manuelle-prozesse.webp" type="image/webp">
+            <img src="images/manuelle-prozesse.png" alt="Illustration verlorener Anruf" width="1400" height="196" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+          </picture>
         </div>
       </div>
 
@@ -314,7 +325,10 @@
 
     <div style="display:flex;gap:48px;margin-top:32px;align-items:flex-start;flex-wrap:wrap">
       <div style="flex:0 0 280px;max-width:100%">
-        <img src="images/founder.jpg" alt="Philipp Anders, Gründer von smartwandler" style="width:100%;border-radius:var(--r-lg);display:block">
+        <picture>
+          <source srcset="images/founder.webp" type="image/webp">
+          <img src="images/founder.jpg" alt="Philipp Anders, Gründer von smartwandler" width="1120" height="746" loading="lazy" style="width:100%;height:auto;border-radius:var(--r-lg);display:block">
+        </picture>
       </div>
       <div style="flex:1;min-width:280px">
         <p style="font-size:17px;line-height:1.7;color:var(--ink-mid);margin-bottom:16px">Ich habe IT-Projekte bei <strong>Mercedes-Benz</strong> und <strong>Volkswagen</strong> umgesetzt und in <strong>Hochsicherheitsumgebungen für den öffentlichen Sektor</strong> gearbeitet. Über zehn Jahre Enterprise-Erfahrung im Aufbau zuverlässiger IT-Systeme.</p>
@@ -322,9 +336,18 @@
         <p style="font-size:17px;line-height:1.7;color:var(--ink-mid)">Ich baue dir ein System, das deine Mitarbeiter schneller und effizienter macht, DSGVO-konform, lokal, schlüsselfertig. Keine Cloud-Abhängigkeit, kein Vendor Lock-in.</p>
 
         <div style="display:flex;gap:24px;margin-top:28px;flex-wrap:wrap;align-items:center">
-          <img src="images/badge-aws.png" alt="AWS Solutions Architect Associate" style="height:48px;width:auto">
-          <img src="images/badge_ckad.png" alt="Certified Kubernetes Application Developer" style="height:48px;width:auto">
-          <img src="images/badge_tf.png" alt="Terraform Certified Associate" style="height:48px;width:auto">
+          <picture>
+            <source srcset="images/badge-aws.webp" type="image/webp">
+            <img src="images/badge-aws.png" alt="AWS Solutions Architect Associate" width="192" height="192" loading="lazy" style="height:48px;width:auto">
+          </picture>
+          <picture>
+            <source srcset="images/badge_ckad.webp" type="image/webp">
+            <img src="images/badge_ckad.png" alt="Certified Kubernetes Application Developer" width="192" height="192" loading="lazy" style="height:48px;width:auto">
+          </picture>
+          <picture>
+            <source srcset="images/badge_tf.webp" type="image/webp">
+            <img src="images/badge_tf.png" alt="Terraform Certified Associate" width="192" height="192" loading="lazy" style="height:48px;width:auto">
+          </picture>
         </div>
       </div>
     </div>
@@ -417,7 +440,10 @@
   <footer>
     <div class="footer-top">
       <div>
-        <img src="images/logo-small.png" alt="smartwandler Logo" class="footer-logo-mark">
+        <picture>
+          <source srcset="images/logo-small.webp" type="image/webp">
+          <img src="images/logo-small.png" alt="smartwandler Logo" class="footer-logo-mark" width="200" height="200" loading="lazy">
+        </picture>
         <p style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:4px">Digitalisierung & Automatisierung</p>
         <p style="font-size:15px;color:rgba(255,255,255,0.55);line-height:1.6">Lokal. Sicher. Maßgeschneidert.</p>
         <p style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:20px;letter-spacing:0.05em">smartwandler · ein Projekt von decentnodes.de</p>
