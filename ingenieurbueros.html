@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digitaler Werkstudent fürs Ingenieurbüro: lokal, DSGVO-konform | smartwandler.de</title>
+<meta name="description" content="Ein lokal laufender KI-Assistent für Ingenieur- und Planungsbüros. Übernimmt Baubesprechungsprotokolle, Honorarangebote, LV-Texte und Schreibtisch-Kram. Ihre Projektdaten bleiben im Haus. 20-Min-Erstgespräch unter Kollegen.">
+<link rel="preload" href="fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="images/lokale-ki-anwendungen.webp" type="image/webp" fetchpriority="high">
+<link rel="stylesheet" href="styles.css">
+<!--
+  Matomo & Meta Pixel werden ausschließlich nach Cookie-Consent
+  durch script.js geladen (siehe loadMatomo / loadFacebookPixel).
+-->
+<style>
+/* === Landing-Page-spezifische CTA-Verstärkungen === */
+
+/* Inline CTA zwischen Benefits & About */
+.lp-inline-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 56px 24px 64px;
+  background: #faf3e1;
+}
+.lp-inline-cta-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 14px;
+}
+.lp-inline-cta-text {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ink);
+  max-width: 560px;
+  margin: 0 0 24px;
+  line-height: 1.45;
+}
+
+/* Mobile-only Nav-CTA (immer sichtbar, neben Burger) */
+.nav-cta-mobile-link { display: none; }
+
+/* Sticky Mobile CTA */
+.lp-sticky-cta-link {
+  display: none;
+  position: fixed;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 90;
+  text-decoration: none;
+}
+.lp-sticky-cta {
+  display: block;
+  width: 100%;
+  background: var(--gold);
+  color: var(--ink);
+  border: none;
+  padding: 16px 22px;
+  border-radius: 100px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  letter-spacing: -0.01em;
+}
+
+/* === Demo-Sektion mit Video === */
+.lp-demo {
+  background: var(--paper-2, #f5efe0);
+  padding: 80px 24px;
+}
+.lp-demo-inner {
+  max-width: 980px;
+  margin: 0 auto;
+}
+.lp-demo h2 {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 38px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  margin: 12px 0 16px;
+}
+.lp-demo-lead {
+  font-size: 17px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 720px;
+  margin: 0 0 32px;
+}
+.lp-demo-video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--ink);
+  border-radius: var(--r-lg, 16px);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+}
+.lp-demo-video video,
+.lp-demo-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.lp-demo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2a24 100%);
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  padding: 24px;
+}
+.lp-demo-placeholder-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: 18px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+.lp-demo-placeholder-label {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 8px;
+}
+.lp-demo-placeholder-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  max-width: 460px;
+  line-height: 1.5;
+}
+
+/* === Hero-Demo-Preview (klickbar, statt Autoplay) === */
+.lp-hero-demo-preview {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--r-lg, 16px);
+  overflow: hidden;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+}
+.lp-hero-demo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.lp-hero-demo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.35) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+.lp-hero-demo-preview:hover .lp-hero-demo-overlay {
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.45) 100%);
+}
+.lp-hero-demo-play {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  padding-left: 4px;
+}
+.lp-hero-demo-caption {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Cookie-Banner über Sticky-CTA */
+.cookie-banner { z-index: 1000; }
+
+@media (max-width: 900px) {
+  .lp-demo h2 { font-size: 30px; }
+}
+@media (max-width: 700px) {
+  .nav-cta-mobile-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    margin-left: auto;
+    margin-right: 12px;
+  }
+  .nav-cta-mobile {
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    padding: 9px 16px;
+    border-radius: 100px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+  }
+  .lp-sticky-cta-link { display: block; }
+  body { padding-bottom: 80px; }
+  .lp-inline-cta { padding: 40px 18px 48px; }
+  .lp-inline-cta-text { font-size: 16px; }
+  .lp-demo { padding: 56px 18px; }
+  .lp-demo h2 { font-size: 26px; }
+  .lp-demo-lead { font-size: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════════════════════════════════
+       NAV (minimal für Landing Page)
+  ══════════════════════════════════════ -->
+  <nav>
+    <a href="index.html" class="nav-logo" style="text-decoration:none">
+      <picture>
+        <source srcset="images/logo-small.webp" type="image/webp">
+        <img src="images/logo-small.png" alt="smartwandler Logo" class="nav-logo-img" width="200" height="200">
+      </picture>
+      <span class="nav-logo-wordmark">smartwandler</span>
+    </a>
+    <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo nav-cta-mobile-link" aria-label="Termin buchen"><button class="nav-cta-mobile">Termin →</button></a>
+    <button class="nav-toggle" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="#faq" style="font-size:15px;color:var(--ink-soft);text-decoration:none">FAQ</a>
+      <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="nav-cta">Erstgespräch unter Kollegen</button></a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <div class="hero">
+    <div>
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        <span class="hero-badge-text">Für Ingenieur- und Planungsbüros · Lokal · DSGVO-konform</span>
+      </div>
+
+      <h1 class="hero-h1">Ihr digitaler Werkstudent fürs Ingenieurbüro.</h1>
+
+      <p style="font-size:18px;line-height:1.6;color:var(--ink-soft);margin-bottom:32px;max-width:560px">Er übernimmt den Schreibtisch-Kram – Baubesprechungsprotokolle, Entwürfe für Honorarangebote und LV-Texte, Dokumente sortieren, Standard-E-Mails – und läuft <strong>lokal bei Ihnen im Haus</strong>. Ihre Projektdaten verlassen das Büro nicht.</p>
+
+      <div class="hero-ctas">
+        <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="hero-cta-primary">Wo verliert Ihr Büro Zeit? 20 Min, unter Kollegen →</button></a>
+      </div>
+
+      <div class="hero-trust">
+        <div class="trust-label">Von einem Elektroingenieur,</div>
+        <div class="trust-logos" style="font-size:14px;color:var(--ink-soft);font-weight:500;letter-spacing:0.01em">
+          der selbst jahrelang in Planungsbüros gearbeitet hat.
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero right -->
+    <div class="hero-visual">
+      <div class="hero-main-img">
+        <a href="#demo" class="lp-hero-demo-preview" aria-label="Demo ansehen: aus Besprechung wird Protokoll">
+          <picture>
+            <source srcset="images/lokale-ki-anwendungen.webp" type="image/webp">
+            <img src="images/lokale-ki-anwendungen.png" alt="Vorschau: aus Baubesprechungs-Audio wird ein fertiges Protokoll" width="578" height="432" fetchpriority="high">
+          </picture>
+          <div class="lp-hero-demo-overlay">
+            <div class="lp-hero-demo-play" aria-hidden="true">▶</div>
+          </div>
+          <span class="lp-hero-demo-caption">Demo · 90 Sek</span>
+        </a>
+      </div>
+      <div class="hero-float-card">
+        <div class="float-card-label">Im Haus</div>
+        <div style="font-family:'Inter', system-ui, sans-serif;font-size:28px;font-weight:600;line-height:1;color:var(--ink);letter-spacing:-0.035em;margin-bottom:10px">100&thinsp;%</div>
+        <div style="height:6px;background:var(--paper-3);border-radius:100px;overflow:hidden">
+          <div style="width:100%;height:100%;background:var(--gold);border-radius:100px"></div>
+        </div>
+        <div style="font-size:11px;color:var(--ink-soft);margin-top:8px;letter-spacing:0.02em">Projektdaten bleiben vor Ort</div>
+      </div>
+      <div class="hero-float-badge">Protokoll · Angebot · LV-Text</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       DEMO (volles Video) — direkt nach dem Hero
+  ══════════════════════════════════════ -->
+  <section class="lp-demo" id="demo">
+    <div class="lp-demo-inner">
+      <div class="section-eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">Demo</span>
+      </div>
+      <h2>Sehen Sie es in 90 Sekunden:<br>aus Besprechung wird Protokoll.</h2>
+      <p class="lp-demo-lead">Aufnahme der Baubesprechung in einen Ordner legen – kurz darauf liegt ein fertiges, strukturiertes Protokoll bereit: Anwesende, Themen, Entscheidungen, Aufgaben mit Verantwortlichem und Termin. Alles direkt auf dem Gerät in Ihrem Büro. Kein Byte verlässt das Haus.</p>
+
+      <div class="lp-demo-video">
+        <!-- Video einbetten — sobald verfügbar: <video controls poster="..." preload="metadata"><source src="..." type="video/mp4"></video> -->
+        <div class="lp-demo-placeholder">
+          <div class="lp-demo-placeholder-icon" aria-hidden="true">▶</div>
+          <div class="lp-demo-placeholder-label">Screen-Recording · 60–90 Sek</div>
+          <div class="lp-demo-placeholder-text">Hier kommt die Demo: Aufnahme rein, fertiges Protokoll raus – live aus einem Ingenieurbüro.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       3) WAS ER IHNEN ABNIMMT (Bento)
+  ══════════════════════════════════════ -->
+  <section class="alt">
+    <div class="section-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Was er Ihnen abnimmt</span>
+    </div>
+    <h2 class="section-h2">Sie kennen den Schreibtisch-Kram.<br>Hier ist, was er Ihnen abnimmt.</h2>
+    <p style="font-size:17px;color:var(--ink-soft);margin-top:12px;max-width:620px">Gute Projektleute sind kaum zu finden – und die, die Sie haben, sollten planen statt tippen. Statt eine weitere Stelle auszuschreiben, entlasten Sie Ihr Team bei genau der Routine, die niemand machen will.</p>
+
+    <div class="bento">
+
+      <!-- Card A, wide — wichtigster Punkt -->
+      <div class="bcard b-a">
+        <div class="bcard-eyebrow">Aufgabe 01 · Baubesprechungen</div>
+        <p style="font-size:17px;font-weight:500;color:var(--ink);margin-bottom:8px">Aus der Tonaufnahme wird ein fertiges Protokoll</p>
+        <p style="font-size:15px;color:var(--ink-soft);line-height:1.5">Baubesprechungs- und Jour-fixe-Protokolle aus der Tonaufnahme – strukturiert nach Anwesenden, Themen, Entscheidungen und Aufgaben mit Verantwortlichem und Termin.</p>
+        <div class="bcard-illus" style="height:100px;border-radius:var(--r-md);overflow:hidden">
+          <picture>
+            <source srcset="images/manuelle-prozesse.webp" type="image/webp">
+            <img src="images/manuelle-prozesse.png" alt="Illustration: Baubesprechungsprotokoll" width="1400" height="196" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+          </picture>
+        </div>
+      </div>
+
+      <!-- Card B -->
+      <div class="bcard b-b">
+        <div class="bcard-eyebrow">Aufgabe 02 · Honorar &amp; LV</div>
+        <p style="font-size:17px;font-weight:500;color:var(--ink);margin-bottom:8px">Entwürfe auf Basis Ihrer Vorlagen</p>
+        <p style="font-size:15px;color:var(--ink-soft);line-height:1.5">Entwürfe für Honorarangebote nach HOAI und LV-Texte – aus Ihren eigenen, geprüften Vorlagen. Sie geben die Eckdaten, er liefert den ersten Wurf zum Überarbeiten.</p>
+        <div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap">
+          <span style="font-size:12px;padding:5px 12px;border-radius:100px;background:var(--paper-3);color:var(--ink-soft)">HOAI</span>
+          <span style="font-size:12px;padding:5px 12px;border-radius:100px;background:var(--paper-3);color:var(--ink-soft)">LV-Texte</span>
+          <span style="font-size:12px;padding:5px 12px;border-radius:100px;background:var(--paper-3);color:var(--ink-soft)">Vorlagen</span>
+        </div>
+      </div>
+
+      <!-- Card C -->
+      <div class="bcard b-c">
+        <div class="bcard-eyebrow">Aufgabe 03 · Standardpost</div>
+        <p style="font-size:17px;font-weight:500;color:var(--ink);margin-bottom:8px">Korrespondenz vorformuliert</p>
+        <p style="font-size:15px;color:var(--ink-soft);line-height:1.5">Standardkorrespondenz mit Bauherren, Architekten und Behörden – vorformuliert in Ihrem Ton, fertig zum Prüfen und Freigeben.</p>
+      </div>
+
+      <!-- Card D, stat card -->
+      <div class="bcard b-d" style="background:var(--ink);border-color:transparent;display:flex;flex-direction:column;justify-content:center">
+        <div style="font-size:52px;font-family:'Inter', system-ui, sans-serif;font-weight:600;color:#fff;letter-spacing:-0.04em;line-height:1">
+          Junior
+        </div>
+        <div style="margin-top:12px">
+          <p style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.5">Er ist ein zuverlässiger Junior, kein Senior-Ingenieur: Er bereitet vor, <strong style="color:#fff">Sie prüfen und geben frei</strong>. Die fachliche Verantwortung bleibt immer bei Ihnen.</p>
+        </div>
+      </div>
+
+      <!-- Card E -->
+      <div class="bcard b-e">
+        <div class="bcard-eyebrow">Aufgabe 04 · Ablage &amp; Suche</div>
+        <p style="font-size:17px;font-weight:500;color:var(--ink);margin-bottom:8px">Pläne, Datenblätter, Eingangspost</p>
+        <p style="font-size:15px;color:var(--ink-soft);line-height:1.5">Eingangspost, Pläne und Herstellerdatenblätter automatisch benennen, sortieren und ablegen. Plus: Stichwortsuche über Ihre eigenen Projektunterlagen – „Was haben wir damals zu X festgelegt?"</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       4) ÜBER MICH / KOLLEGEN-STORY
+  ══════════════════════════════════════ -->
+  <section>
+    <div class="section-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Wer baut das?</span>
+    </div>
+    <h2 class="section-h2">Ich kenne Ihren Alltag –<br>ich saß selbst an dem Schreibtisch.</h2>
+
+    <div style="display:flex;gap:48px;margin-top:32px;align-items:flex-start;flex-wrap:wrap">
+      <div style="flex:0 0 280px;max-width:100%">
+        <picture>
+          <source srcset="images/founder.webp" type="image/webp">
+          <img src="images/founder.jpg" alt="Philipp Anders, Gründer von smartwandler" width="1120" height="746" loading="lazy" style="width:100%;height:auto;border-radius:var(--r-lg);display:block">
+        </picture>
+      </div>
+      <div style="flex:1;min-width:280px">
+        <p style="font-size:17px;line-height:1.7;color:var(--ink-mid);margin-bottom:16px">Ich bin <strong>Elektroingenieur</strong> und habe einige Jahre in Planungsbüros gearbeitet. Honorarangebote nach HOAI, Leistungsverzeichnisse, Baubesprechungen, die E-Mail-Flut mit Architekten und Fachplanern – das kenne ich nicht aus einer Broschüre, sondern aus der eigenen Projektarbeit.</p>
+        <p style="font-size:17px;line-height:1.7;color:var(--ink-mid);margin-bottom:16px">Dazu kommt <strong>über ein Jahrzehnt Erfahrung</strong> im technischen Aufbau und Betrieb komplexer Systeme – u.&nbsp;a. bei Mercedes-Benz, Volkswagen und in Hochsicherheitsumgebungen für den öffentlichen Sektor.</p>
+        <p style="font-size:17px;line-height:1.7;color:var(--ink-mid)">Diese Kombination ist der Punkt: Ich verstehe, <em>was</em> in Ihrem Büro wirklich Zeit kostet – und kann die Technik bauen, die es übernimmt. Lokal, sauber, ohne dass Sie zum IT-Experten werden müssen.</p>
+
+        <div style="display:flex;gap:24px;margin-top:28px;flex-wrap:wrap;align-items:center">
+          <picture>
+            <source srcset="images/badge-aws.webp" type="image/webp">
+            <img src="images/badge-aws.png" alt="AWS Solutions Architect Associate" width="192" height="192" loading="lazy" style="height:48px;width:auto">
+          </picture>
+          <picture>
+            <source srcset="images/badge_ckad.webp" type="image/webp">
+            <img src="images/badge_ckad.png" alt="Certified Kubernetes Application Developer" width="192" height="192" loading="lazy" style="height:48px;width:auto">
+          </picture>
+          <picture>
+            <source srcset="images/badge_tf.webp" type="image/webp">
+            <img src="images/badge_tf.png" alt="Terraform Certified Associate" width="192" height="192" loading="lazy" style="height:48px;width:auto">
+          </picture>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       5) WARUM LOKAL + Vergleichstabelle
+  ══════════════════════════════════════ -->
+  <section class="alt">
+    <div class="section-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Warum lokal</span>
+    </div>
+    <h2 class="section-h2">Ihre Projektdaten<br>bleiben im Haus.</h2>
+    <p style="font-size:17px;color:var(--ink-soft);margin-top:12px;max-width:640px">Sensible Pläne und Kundendaten in einer US-Cloud sind für viele Projekte – Industrie, KRITIS, Verteidigung – schlicht tabu. Deshalb läuft Ihr digitaler Werkstudent auf einem kompakten Gerät bei Ihnen vor Ort (z.&nbsp;B. einem Mac mini oder kleinen Server), nicht in einer fremden Cloud. Keine US-Server, kein Abo-Zwang, kein Vendor-Lock-in. Was er verarbeitet, bleibt dort, wo es hingehört: bei Ihnen.</p>
+
+    <div class="compare-wrap" style="margin-top:40px">
+      <div class="compare-head">
+        <div class="compare-col-head">Kriterium</div>
+        <div class="compare-col-head center">Standard SaaS</div>
+        <div class="compare-col-head highlight center">smartwandler ✓</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell"><span style="font-size:15px;color:var(--ink-mid)">DSGVO-konform lokal</span></div>
+        <div class="compare-cell center"><span class="ic-no">✕</span></div>
+        <div class="compare-cell center highlight-col"><span class="ic-yes">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell"><span style="font-size:15px;color:var(--ink-mid)">Keine Cloud-Abhängigkeit</span></div>
+        <div class="compare-cell center"><span class="ic-no">✕</span></div>
+        <div class="compare-cell center highlight-col"><span class="ic-yes">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell"><span style="font-size:15px;color:var(--ink-mid)">Festpreis statt Abo</span></div>
+        <div class="compare-cell center"><span class="ic-mid">~</span></div>
+        <div class="compare-cell center highlight-col"><span class="ic-yes">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell"><span style="font-size:15px;color:var(--ink-mid)">In wenigen Wochen einsatzbereit</span></div>
+        <div class="compare-cell center"><span class="ic-yes">✓</span></div>
+        <div class="compare-cell center highlight-col"><span class="ic-yes">✓</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell"><span style="font-size:15px;color:var(--ink-mid)">Maßgeschneidert auf Ihr Büro</span></div>
+        <div class="compare-cell center"><span class="ic-no">✕</span></div>
+        <div class="compare-cell center highlight-col"><span class="ic-yes">✓</span></div>
+      </div>
+    </div>
+    <p style="font-size:11px;color:var(--ink-faint);margin-top:12px;letter-spacing:0.05em">
+      Vergleich: Standard SaaS vs. smartwandler On-Premise-Lösungen
+    </p>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       INLINE CTA
+  ══════════════════════════════════════ -->
+  <div class="lp-inline-cta">
+    <div class="lp-inline-cta-eyebrow">Bereit, mal drauf zu schauen?</div>
+    <p class="lp-inline-cta-text">20 Minuten unter Kollegen. Wir schauen, wo bei Ihnen Zeit liegen bleibt – ohne Verkaufsgespräch.</p>
+    <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="hero-cta-primary">Kostenloses Erstgespräch buchen →</button></a>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       6) IN DREI SCHRITTEN (dark)
+  ══════════════════════════════════════ -->
+  <section class="dark">
+    <div class="section-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">So läuft es ab</span>
+    </div>
+    <h2 class="section-h2" style="color:#fff">Klein anfangen,<br>mitwachsen lassen</h2>
+    <p style="font-size:17px;color:rgba(255,255,255,0.7);margin-top:12px;max-width:600px">Keine Big-Bang-Umstellung. Wir fangen mit der einen Aufgabe an, die bei Ihnen am meisten nervt – und bauen darauf auf.</p>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num-badge">1</div>
+        <div class="step-label-dark">Gespräch unter Kollegen</div>
+        <p style="font-size:17px;font-weight:500;color:#fff;margin-bottom:12px">Welche Aufgabe lohnt sich zuerst?</p>
+        <p style="font-size:15px;color:rgba(255,255,255,0.72);line-height:1.6">Wir schauen gemeinsam, welche wiederkehrende Aufgabe sich bei Ihnen zuerst lohnt – ohne Technik-Kauderwelsch, mit echten Beispielen aus Ihrem Alltag.</p>
+        <div class="step-connector">→</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num-badge">2</div>
+        <div class="step-label-dark">Einarbeiten</div>
+        <p style="font-size:17px;font-weight:500;color:#fff;margin-bottom:12px">Eine Aufgabe, sauber gelernt</p>
+        <p style="font-size:15px;color:rgba(255,255,255,0.72);line-height:1.6">Ich richte den digitalen Werkstudenten lokal bei Ihnen ein und bringe ihm genau diese eine Aufgabe bei – mit Ihren echten Vorlagen und Beispielen.</p>
+        <div class="step-connector">→</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num-badge">3</div>
+        <div class="step-label-dark">Wächst mit</div>
+        <p style="font-size:17px;font-weight:500;color:#fff;margin-bottom:12px">Nächste Aufgabe, gleicher Werkstudent</p>
+        <p style="font-size:15px;color:rgba(255,255,255,0.72);line-height:1.6">Läuft die erste Aufgabe rund, lernt er die nächste. Sie zahlen eine planbare monatliche Betreuung – kein Abo-Wirrwarr, Updates und Support inklusive.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       7) FAQ
+  ══════════════════════════════════════ -->
+  <section id="faq">
+    <div class="section-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Häufige Fragen</span>
+    </div>
+    <h2 class="section-h2">Was Sie vorab wissen sollten</h2>
+    <p style="font-size:17px;color:var(--ink-soft);margin-top:8px">Damit Sie ins Erstgespräch mit den richtigen Fragen kommen.</p>
+
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>Was kann er – und was nicht?<div class="faq-icon">+</div></summary>
+        <div class="faq-answer">Er ist stark bei wiederkehrender Schreibtischarbeit: Protokolle aus Audio, Dokumente sortieren und zusammenfassen, Textentwürfe aus Ihren Vorlagen, Suche in Ihren Unterlagen. Er ist <em>kein</em> Ersatz für Ihr Fachurteil und liefert keine rechts- oder normverbindlichen Aussagen – er bereitet vor, Sie prüfen und geben frei. Diese ehrliche Grenze ist Absicht: So bleibt das Ergebnis verlässlich.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Ersetzt das meine Mitarbeiter?<div class="faq-icon">+</div></summary>
+        <div class="faq-answer">Nein. Er nimmt Ihrem Team die langweilige Routine ab, damit Ihre Ingenieure wieder planen statt tippen. Gerade wenn Sie ohnehin keine neuen Leute finden, ist das die schnellste Entlastung – ohne neue Stelle, ohne Onboarding.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Welche Hardware brauche ich?<div class="faq-icon">+</div></summary>
+        <div class="faq-answer">Für die meisten Büroaufgaben reicht ein kompaktes Gerät vor Ort – ein Mac mini bzw. Studio mit genug Arbeitsspeicher oder ein kleiner Server. Entweder nutzen wir vorhandene Hardware oder ich empfehle passende, die ich konfiguriere, einrichte und warte. Was nötig ist, klären wir vorher gemeinsam.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Was kostet das?<div class="faq-icon">+</div></summary>
+        <div class="faq-answer">Transparent und planbar: eine einmalige Einrichtung (Festpreis nach kurzer Analyse) plus eine monatliche Betreuung für Updates, Support und Weiterentwicklung. Keine versteckten Lizenz- oder Cloud-Gebühren. Den genauen Rahmen bekommen Sie schriftlich, bevor irgendetwas startet.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Was ist mit Datenschutz und DSGVO?<div class="faq-icon">+</div></summary>
+        <div class="faq-answer">Alles läuft lokal in Ihrem Haus, Ihre Daten verlassen das Büro nicht. Das ist der ganze Sinn der Lösung – besonders für Projekte mit sensiblen oder geheimhaltungspflichtigen Inhalten (Industrie, KRITIS, Verteidigung).</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Bin ich danach von Ihnen abhängig?<div class="faq-icon">+</div></summary>
+        <div class="faq-answer">Nein. Die Lösung läuft auf Ihrer Hardware und gehört Ihnen. Sie entscheiden, wie eng die Zusammenarbeit danach bleibt – die monatliche Betreuung ist ein Angebot, kein Käfig.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       8) ABSCHLUSS-CTA
+  ══════════════════════════════════════ -->
+  <div class="cta-final">
+    <div class="section-eyebrow cta-eyebrow" style="justify-content:center">
+      <div class="eyebrow-line" style="background:rgba(255,255,255,0.35)"></div>
+      <span class="eyebrow-text" style="color:rgba(255,255,255,0.65)">Reden wir</span>
+      <div class="eyebrow-line" style="background:rgba(255,255,255,0.35)"></div>
+    </div>
+    <h2 style="font-family:'Inter', system-ui, sans-serif;font-size:44px;font-weight:600;color:#fff;letter-spacing:-0.035em;line-height:1.08;margin-bottom:12px;position:relative;z-index:1">Reden wir 20 Minuten –<br>unter Kollegen.</h2>
+    <p style="font-size:17px;color:rgba(255,255,255,0.72);margin-bottom:40px;position:relative;z-index:1">Kein Verkaufsgespräch. Ich höre, wo bei Ihnen Zeit liegen bleibt, und sage Ihnen ehrlich, was sich lohnt – und was nicht.</p>
+    <div class="cta-btns">
+      <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="cta-btn-primary">Kostenloses Erstgespräch buchen →</button></a>
+    </div>
+    <div class="cta-deco">
+      <div class="cta-deco-stat">
+        <div style="font-family:'Inter', system-ui, sans-serif;font-size:24px;font-weight:600;line-height:1;color:#fff;letter-spacing:-0.035em;margin-bottom:6px">20 Min</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">unter Kollegen</div>
+      </div>
+      <div class="cta-deco-div"></div>
+      <div class="cta-deco-stat">
+        <div style="font-family:'Inter', system-ui, sans-serif;font-size:24px;font-weight:600;line-height:1;color:#fff;letter-spacing:-0.035em;margin-bottom:6px">0 €</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">Erstgespräch</div>
+      </div>
+      <div class="cta-deco-div"></div>
+      <div class="cta-deco-stat">
+        <div style="font-family:'Inter', system-ui, sans-serif;font-size:24px;font-weight:600;line-height:1;color:#fff;letter-spacing:-0.035em;margin-bottom:6px">100 %</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">lokal bei Ihnen</div>
+      </div>
+      <div class="cta-deco-div"></div>
+      <div class="cta-deco-stat">
+        <div style="font-family:'Inter', system-ui, sans-serif;font-size:24px;font-weight:600;line-height:1;color:#fff;letter-spacing:-0.035em;margin-bottom:6px">Ingenieur</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">spricht mit Ingenieur</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <picture>
+          <source srcset="images/logo-small.webp" type="image/webp">
+          <img src="images/logo-small.png" alt="smartwandler Logo" class="footer-logo-mark" width="200" height="200" loading="lazy">
+        </picture>
+        <p style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:4px">Digitalisierung & Automatisierung</p>
+        <p style="font-size:15px;color:rgba(255,255,255,0.55);line-height:1.6">Lokal. Sicher. Maßgeschneidert.</p>
+        <p style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:20px;letter-spacing:0.05em">smartwandler · ein Projekt von decentnodes.de</p>
+      </div>
+      <div>
+        <p style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Leistungen</p>
+        <a href="index.html#leistungen" data-tab-link="beratung" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Beratung &amp; Analyse</a>
+        <a href="index.html#leistungen" data-tab-link="workflows" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Workflow-Automatisierung</a>
+        <a href="index.html#leistungen" data-tab-link="ki" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Lokale KI-Anwendungen</a>
+        <a href="index.html#leistungen" data-tab-link="webtools" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Individuelle Web-Tools</a>
+      </div>
+      <div>
+        <p style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Unternehmen</p>
+        <a href="index.html#ueber-uns" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Über uns</a>
+        <a href="index.html#zusammenarbeit" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Zusammenarbeit</a>
+        <a href="index.html#faq" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none">FAQ</a>
+      </div>
+      <div>
+        <p style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Kontakt</p>
+        <a href="mailto:info@smartwandler.de" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">info@smartwandler.de</a>
+        <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Erstgespräch buchen</a>
+        <a href="https://www.linkedin.com/in/philipp-anders-16ba2814a/" target="_blank" rel="noopener noreferrer" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p style="font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:0.04em">© 2026 smartwandler.de · Alle Rechte vorbehalten</p>
+      <div class="footer-legal">
+        <a href="impressum.html" style="font-size:11px;color:rgba(255,255,255,0.6);text-decoration:none">Impressum</a>
+        <a href="datenschutz.html" style="font-size:11px;color:rgba(255,255,255,0.6);text-decoration:none">Datenschutz</a>
+        <button id="cookie-revoke" class="cookie-revoke-link">Cookie-Einstellungen</button>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     COOKIE CONSENT BANNER (DSGVO)
+══════════════════════════════════════ -->
+<div id="cookie-consent" class="cookie-banner" role="region" aria-label="Datenschutzeinstellungen" hidden>
+  <div class="cookie-card" role="document">
+    <header class="cookie-card-head">
+      <h2 class="cookie-card-title">Datenschutzeinstellungen</h2>
+      <p class="cookie-card-lead cookie-card-lead-short">
+        Wir nutzen Cookies und ähnliche Technologien. Standardmäßig ist alles deaktiviert, du entscheidest was erlaubt ist. Individuelle Einstellungen kannst du über das <strong>Einstellungs-Symbol</strong> unten rechts vornehmen. <a href="datenschutz.html">Datenschutzerklärung</a> · <a href="impressum.html">Impressum</a>.
+      </p>
+      <p class="cookie-card-lead cookie-card-lead-full">
+        Wir nutzen Cookies und ähnliche Technologien auf unserer Website. Einige davon helfen uns,
+        die Website und deine Erfahrung zu verbessern, andere sind für eingebundene Dienste (z. B.
+        Terminbuchung, Reichweitenanalyse oder Werbeanzeigen) erforderlich. Du entscheidest, was du
+        zulässt. Per Default ist alles deaktiviert. Individuelle Einstellungen kannst du über das
+        Einstellungs-Symbol unten rechts vornehmen. Deine Auswahl kannst du jederzeit über
+        <button type="button" class="cookie-inline-link" data-cookie-revoke>„Cookie-Einstellungen"</button>
+        im Footer ändern. Weitere Informationen findest du in unserer <a href="datenschutz.html">Datenschutzerklärung</a>, sowie im <a href="impressum.html">Impressum</a>.
+      </p>
+    </header>
+
+    <button type="button" class="cookie-mobile-toggle" aria-expanded="false" aria-controls="cookie-categories">
+      <span class="cookie-mobile-toggle-label">Details &amp; Einstellungen</span>
+      <span class="cookie-mobile-toggle-chev" aria-hidden="true"></span>
+    </button>
+
+    <div class="cookie-categories" id="cookie-categories">
+
+      <!-- ─── Essenziell ─── -->
+      <details class="cookie-cat" data-cat="essential">
+        <summary class="cookie-cat-row">
+          <span class="cookie-cat-chev" aria-hidden="true"></span>
+          <span class="cookie-cat-name">Essenziell <span class="cookie-cat-count">(0)</span></span>
+          <span class="cookie-cat-trail">
+            <span class="cookie-cat-state cookie-cat-state-info">Keine</span>
+          </span>
+        </summary>
+        <div class="cookie-cat-body">
+          <p class="cookie-cat-empty">
+            Auf dieser Website werden <strong>keine essenziellen Cookies</strong> gesetzt. Die
+            Seite funktioniert vollständig ohne Einwilligung – externe Dienste lädst du nur
+            dann, wenn du sie unten aktivierst.
+          </p>
+        </div>
+      </details>
+
+      <!-- ─── Funktional ─── -->
+      <details class="cookie-cat" data-cat="functional">
+        <summary class="cookie-cat-row">
+          <span class="cookie-cat-chev" aria-hidden="true"></span>
+          <span class="cookie-cat-name">Funktional <span class="cookie-cat-count">(1)</span></span>
+          <span class="cookie-cat-trail">
+            <label class="cookie-cat-toggle" data-cookie-stop>
+              <input type="checkbox" id="consent-meetergo">
+              <span class="cookie-toggle-slider"></span>
+              <span class="cookie-toggle-state" aria-hidden="true">Aus</span>
+            </label>
+          </span>
+        </summary>
+        <div class="cookie-cat-body">
+          <p class="cookie-cat-intro">
+            Wir arbeiten mit <strong>meetergo</strong> zusammen. Meetergo ist ein
+            <strong>DSGVO-konformer, in der EU gehosteter Kalenderservice</strong>, der es uns
+            und dir deutlich einfacher macht, einen passenden Termin zu finden. Meetergo legt,
+            wie wir, großen Wert auf Datenschutz und ist eine ausdrücklich europäische
+            Alternative zu US-Anbietern.
+          </p>
+          <div class="cookie-service">
+            <dl class="cookie-service-meta">
+              <div><dt>Name</dt><dd>meetergo</dd></div>
+              <div><dt>Anbieter</dt><dd>meetergo GmbH, Hauptstrasse 44, 40789 Monheim am Rhein, Deutschland</dd></div>
+              <div><dt>Zweck</dt><dd>Einbettung eines Buchungs-Widgets zur Online-Terminvereinbarung.</dd></div>
+              <div><dt>Datenschutzerklärung</dt><dd><a href="https://meetergo.com/datenschutz" target="_blank" rel="noopener noreferrer">meetergo.com/datenschutz</a></dd></div>
+              <div><dt>Host</dt><dd>EU (Deutschland)</dd></div>
+            </dl>
+          </div>
+        </div>
+      </details>
+
+      <!-- ─── Statistik & Analyse ─── -->
+      <details class="cookie-cat" data-cat="statistics">
+        <summary class="cookie-cat-row">
+          <span class="cookie-cat-chev" aria-hidden="true"></span>
+          <span class="cookie-cat-name">Statistik &amp; Analyse <span class="cookie-cat-count">(1)</span></span>
+          <span class="cookie-cat-trail">
+            <label class="cookie-cat-toggle" data-cookie-stop>
+              <input type="checkbox" id="consent-matomo">
+              <span class="cookie-toggle-slider"></span>
+              <span class="cookie-toggle-state" aria-hidden="true">Aus</span>
+            </label>
+          </span>
+        </summary>
+        <div class="cookie-cat-body">
+          <p class="cookie-cat-intro">
+            Hier betreiben wir eine <strong>eigene Analyse-Plattform</strong>. Die Daten landen
+            auf dem <strong>gleichen Server</strong>, der ohnehin beim Aufruf der Website
+            kontaktiert wird. Informationen wie z.B. <strong>IP-Adresse und Browser</strong>
+            werden für die interne Auswertung gespeichert. Diese Daten gehen
+            <strong>nicht an andere Anbieter</strong> weiter. Sie bleiben auf unserem Server, der bei all-inkl.com gehosted ist.
+          </p>
+          <div class="cookie-service">
+            <dl class="cookie-service-meta">
+              <div><dt>Name</dt><dd>Matomo (selbst gehostet)</dd></div>
+              <div><dt>Anbieter</dt><dd>smartwandler.de · analytics.decentnodes.de</dd></div>
+              <div><dt>Zweck</dt><dd>Reichweitenanalyse zur Verbesserung der Website. Keine Weitergabe von Daten an Dritte.</dd></div>
+              <div><dt>Datenschutzerklärung</dt><dd><a href="datenschutz.html">Unsere Datenschutzerklärung</a></dd></div>
+              <div><dt>Cookie-Namen</dt><dd>_pk_id, _pk_ses, _pk_ref, _pk_cvar, _pk_hsr</dd></div>
+              <div><dt>Cookie-Laufzeit</dt><dd>bis zu 13 Monate</dd></div>
+            </dl>
+          </div>
+        </div>
+      </details>
+
+      <!-- ─── Marketing ─── -->
+      <details class="cookie-cat" data-cat="marketing">
+        <summary class="cookie-cat-row">
+          <span class="cookie-cat-chev" aria-hidden="true"></span>
+          <span class="cookie-cat-name">Marketing <span class="cookie-cat-count">(1)</span></span>
+          <span class="cookie-cat-trail">
+            <label class="cookie-cat-toggle" data-cookie-stop>
+              <input type="checkbox" id="consent-facebook">
+              <span class="cookie-toggle-slider"></span>
+              <span class="cookie-toggle-state" aria-hidden="true">Aus</span>
+            </label>
+          </span>
+        </summary>
+        <div class="cookie-cat-body">
+          <p class="cookie-cat-intro">
+            Wir versuchen so gut es geht, auf Datenschutz zu achten und verstehen es voll und
+            ganz, wenn du gar keine Daten übermitteln möchtest. Gäbe es eine vergleichbare
+            deutsche Alternative, würden wir unsere Werbung lieber über einen deutschen
+            Anbieter ausspielen. Da <strong>Meta</strong> in diesem Bereich jedoch der
+            Platzhirsch schlechthin ist, kommen wir nicht drum herum auch diesen Dienst zu nutzen.
+            Wir würden uns sehr freuen, wenn du diese Funktion aktivierst. Damit trägst du dazu bei,
+            dass unsere Werbung effektiver wird und wirklich nur an Menschen ausgespielt wird, die mit hoher Wahrscheinlichkeit
+            ein Interesse an unseren Dienstleistungen haben. Du trägst somit auch dazu bei, dass unsere Werbung
+            keinen langweilt, der mit unserem Angebot nichts anzufangen weiß.
+          </p>
+          <div class="cookie-service">
+            <dl class="cookie-service-meta">
+              <div><dt>Name</dt><dd>Facebook Pixel</dd></div>
+              <div><dt>Anbieter</dt><dd>Meta Platforms Ireland Ltd., Merrion Road, Dublin 4, D04 X2K5, Ireland</dd></div>
+              <div><dt>Zweck</dt><dd>Cookie zur Messung der Wirksamkeit unserer Werbeanzeigen (Conversion-Tracking, Retargeting).</dd></div>
+              <div><dt>Datenschutzerklärung</dt><dd><a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener noreferrer">facebook.com/privacy/policy</a></dd></div>
+              <div><dt>Cookie-Namen</dt><dd>_fbp, _fbc, fr, pixel_ration, pl, presence, sb, spin, wd, xs</dd></div>
+              <div><dt>Cookie-Laufzeit</dt><dd>Sitzung bis zu 1 Jahr, normalerweise jedoch 3 Monate</dd></div>
+            </dl>
+          </div>
+        </div>
+      </details>
+
+    </div>
+
+    <footer class="cookie-card-actions">
+      <button id="cookie-accept-all" class="cookie-btn cookie-btn-accept">Alle akzeptieren</button>
+      <button id="cookie-accept" class="cookie-btn cookie-btn-save">Auswahl speichern</button>
+      <button id="cookie-reject" class="cookie-btn cookie-btn-reject">Ablehnen</button>
+      <button type="button" class="cookie-mobile-icon-toggle" aria-label="Details &amp; Einstellungen" aria-expanded="false" aria-controls="cookie-categories">
+        <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="10.5" y2="6"/>
+          <line x1="15.5" y1="6" x2="17" y2="6"/>
+          <circle cx="13" cy="6" r="2.2"/>
+          <line x1="3" y1="14" x2="5" y2="14"/>
+          <line x1="10" y1="14" x2="17" y2="14"/>
+          <circle cx="7.5" cy="14" r="2.2"/>
+        </svg>
+      </button>
+    </footer>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     STICKY MOBILE CTA (immer sichtbar auf Mobile)
+══════════════════════════════════════ -->
+<a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo lp-sticky-cta-link" aria-label="Kostenloses Erstgespräch buchen"><button class="lp-sticky-cta">Kostenloses Erstgespräch buchen →</button></a>
+
+<script src="script.js"></script>
+</body>
+</html>

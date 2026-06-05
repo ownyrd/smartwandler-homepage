@@ -4,6 +4,28 @@ RewriteCond %{HTTP_HOST} ^smartwandler\.de$ [NC]
 RewriteRule ^(.*)$ https://www.smartwandler.de/$1 [R=301,L]
 
 # ─────────────────────────────────────────
+# Clean URLs für Landingpages (ohne .html-Endung)
+# ─────────────────────────────────────────
+# 1) Wenn jemand /<slug>.html aufruft → 301-Redirect auf /<slug>
+RewriteCond %{THE_REQUEST} \s/+ingenieurbueros\.html[\s?] [NC]
+RewriteRule ^ /ingenieurbueros [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+lokale-ki\.html[\s?] [NC]
+RewriteRule ^ /lokale-ki [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+meeting-transkription\.html[\s?] [NC]
+RewriteRule ^ /meeting-transkription [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+voicemail\.html[\s?] [NC]
+RewriteRule ^ /voicemail [R=301,L]
+
+# 2) Intern /<slug> → /<slug>.html ausliefern (URL bleibt sauber)
+RewriteRule ^ingenieurbueros/?$ ingenieurbueros.html [L]
+RewriteRule ^lokale-ki/?$ lokale-ki.html [L]
+RewriteRule ^meeting-transkription/?$ meeting-transkription.html [L]
+RewriteRule ^voicemail/?$ voicemail.html [L]
+
+# ─────────────────────────────────────────
 # MIME-Types (sicherstellen, dass WebP/WOFF2 korrekt ausgeliefert werden)
 # ─────────────────────────────────────────
 <IfModule mod_mime.c>
