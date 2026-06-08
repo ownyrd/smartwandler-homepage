@@ -26,7 +26,7 @@
     width: 210mm;
     height: 297mm;
     margin: 0 auto;
-    padding: 14mm 20mm 12mm 25mm;   /* DIN 5008: links 25, rechts 20 */
+    padding: 0;
     background: #fff;
     position: relative;
     font-size: 10.5pt;
@@ -40,8 +40,14 @@
     .sheet { box-shadow: 0 4px 24px rgba(0,0,0,0.12); margin: 24px auto; }
   }
 
-  /* ── Absender-Kopfzeile mit Logo (rechts) ─ */
+  /* ── Absender-Kopfzeile mit Logo (rechts) ─
+     Absolut positioniert, damit das Anschriftenfeld
+     darunter exakt nach DIN 5008 sitzen kann.        */
   .briefkopf {
+    position: absolute;
+    top: 14mm;
+    left: 25mm;
+    right: 20mm;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -63,32 +69,50 @@
     display: block;
   }
 
-  /* ── Anschriftenfeld ─────────────────── */
+  /* ── Anschriftenfeld nach DIN 5008 Form B ──
+     Position: 45 mm von oben, 20 mm von links
+     Größe:    85 mm × 45 mm
+     Aufbau:   5 mm Rücksendeangabe + 40 mm Anschrift  */
   .anschrift {
+    position: absolute;
+    top: 45mm;
+    left: 20mm;
     width: 85mm;
-    min-height: 32mm;
-    font-size: 10.5pt;
-    margin-top: 8mm;
+    height: 45mm;
+    font-size: 10pt;
+    line-height: 1.3;
+    color: #000;
   }
   .ruecksendeangabe {
     font-size: 7pt;
     text-decoration: underline;
     color: #444;
     margin-bottom: 5mm;
+    height: 5mm;
   }
-  .placeholder {
-    color: #aaa;
-    font-style: italic;
+  .empfaenger {
+    color: #000;
+    font-size: 10pt;
+    line-height: 1.3;
+    font-weight: 400;
+  }
+
+  /* ── Brieftext-Block (startet nach Anschriftenfeld)
+     Linker Rand 20 mm: bündig zum Anschriftenfeld
+     Top 92 mm: knapp unter dem Anschriftenfeld (90 mm) –
+     etwas enger als DIN-Empfehlung, damit alles auf
+     eine Seite passt.                                 */
+  .brief-content {
+    padding: 92mm 20mm 12mm 20mm;
   }
 
   /* ── Datum + Betreff ──────────────────── */
   .datum {
     text-align: right;
-    margin-top: 5mm;
     font-size: 10.5pt;
   }
   .betreff {
-    margin-top: 6mm;
+    margin-top: 8mm;
     font-weight: 700;
     font-size: 11pt;
     line-height: 1.3;
@@ -139,7 +163,7 @@
 
   /* ── Gruß + Unterschrift ─────────────── */
   .gruss { margin-top: 4mm; }
-  .unterschrift-platz { height: 11mm; }
+  .unterschrift-platz { height: 10mm; }
   .signatur { font-weight: 600; }
   .signatur-zusatz { font-size: 10pt; color: #444; }
 
@@ -168,27 +192,29 @@
     </div>
   </div>
 
-  <!-- ░░░ Anschriftenfeld ░░░ -->
+  <!-- ░░░ Anschriftenfeld nach DIN 5008 Form B (45 mm v. oben · 20 mm v. links · 85 × 45 mm) ░░░ -->
   <div class="anschrift">
     <div class="ruecksendeangabe">
       Philipp Anders · Wilischstr. 8 · 01279 Dresden
     </div>
     <!-- ▼▼▼ EMPFÄNGER-ADRESSE HIER EINTRAGEN ▼▼▼ -->
-    <div class="placeholder">
-      [Firma / Ingenieurbüro]<br>
-      [Anrede Vorname Nachname]<br>
-      Kleiststraße 10a, 01129 Dresden<br>
-      [PLZ] [Ort]
+    <div class="empfaenger">
+      BAUGRUND DRESDEN Ingenieurgesellschaft mbH<br>
+      Prof. Dr.-Ing. habil. Peter-Andreas von Wolffersdorff<br>
+      Kleiststraße 10a<br>
+      01129 Dresden
     </div>
     <!-- ▲▲▲ EMPFÄNGER-ADRESSE HIER EINTRAGEN ▲▲▲ -->
   </div>
+
+  <!-- ░░░ Brieftext-Block (startet bei 98 mm, also nach Anschriftenfeld) ░░░ -->
+  <div class="brief-content">
 
   <div class="datum">Dresden, 08.06.2026</div>
 
   <!-- ░░░ Betreff ░░░ -->
   <div class="betreff">
-    Wertschöpfung statt Tipparbeit:<br>
-    Ein digitaler Mitarbeiter für Ihr Ingenieurbüro
+    Wertschöpfung statt Tipparbeit: Ein digitaler Mitarbeiter für Ihr Ingenieurbüro
   </div>
 
   <!-- ░░░ Anrede ░░░ -->
@@ -223,6 +249,8 @@
   <div class="unterschrift-platz"></div>
   <div class="signatur">Dipl.-Ing. (FH) Philipp Anders</div>
   <div class="signatur-zusatz">www.smartwandler.de</div>
+
+  </div><!-- /.brief-content -->
 </div>
 
 </body>
