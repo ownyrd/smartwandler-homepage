@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Anschreiben – smartwandler · Ingenieurbüros</title>
+<style>
+  /* ──────────────────────────────────────────
+     DIN-5008-Form-B Geschäftsbrief, 1 Seite A4
+     Druck:  Chrome → ⌘P → "Als PDF speichern"
+            Ränder: "Keine" oder "Standard"
+     Google Docs: Datei → Öffnen → Hochladen
+     ────────────────────────────────────────── */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #e9e9e9;
+    font-family: "Arial", "Helvetica", sans-serif;
+    color: #111;
+  }
+  .sheet {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    padding: 14mm 20mm 12mm 25mm;   /* DIN 5008: links 25, rechts 20 */
+    background: #fff;
+    position: relative;
+    font-size: 10.5pt;
+    line-height: 1.4;
+  }
+  @media print {
+    body { background: #fff; }
+    .sheet { box-shadow: none; margin: 0; }
+  }
+  @media screen {
+    .sheet { box-shadow: 0 4px 24px rgba(0,0,0,0.12); margin: 24px auto; }
+  }
+
+  /* ── Absender-Kopfzeile mit Logo (rechts) ─ */
+  .briefkopf {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5mm;
+  }
+  .briefkopf-text {
+    text-align: right;
+    font-size: 9pt;
+    line-height: 1.35;
+    color: #222;
+  }
+  .briefkopf-text strong { font-size: 11pt; letter-spacing: 0.02em; }
+  .briefkopf-logo {
+    flex: 0 0 auto;
+  }
+  .briefkopf-logo img {
+    width: 20mm;
+    height: 20mm;
+    display: block;
+  }
+
+  /* ── Anschriftenfeld ─────────────────── */
+  .anschrift {
+    width: 85mm;
+    min-height: 32mm;
+    font-size: 10.5pt;
+    margin-top: 8mm;
+  }
+  .ruecksendeangabe {
+    font-size: 7pt;
+    text-decoration: underline;
+    color: #444;
+    margin-bottom: 5mm;
+  }
+  .placeholder {
+    color: #aaa;
+    font-style: italic;
+  }
+
+  /* ── Datum + Betreff ──────────────────── */
+  .datum {
+    text-align: right;
+    margin-top: 5mm;
+    font-size: 10.5pt;
+  }
+  .betreff {
+    margin-top: 6mm;
+    font-weight: 700;
+    font-size: 11pt;
+    line-height: 1.3;
+  }
+
+  /* ── Fließtext ───────────────────────── */
+  .anrede { margin-top: 5mm; }
+  p { margin: 0 0 2.8mm 0; }
+  .body p { text-align: justify; hyphens: auto; }
+
+  /* ── CTA-Box mit QR-Code ─────────────── */
+  .cta {
+    margin-top: 3mm;
+    border: 0.6pt solid #C8A96A;
+    border-radius: 2mm;
+    background: #FBF7EF;
+    padding: 3mm 4.5mm;
+    display: flex;
+    align-items: center;
+    gap: 5mm;
+  }
+  .cta-qr {
+    flex: 0 0 25mm;
+    text-align: center;
+  }
+  .cta-qr img {
+    width: 25mm;
+    height: 25mm;
+    display: block;
+    border: 0.4pt solid #ddd;
+  }
+  .cta-qr-url {
+    font-size: 6.5pt;
+    color: #555;
+    margin-top: 0.8mm;
+    word-break: break-all;
+    line-height: 1.15;
+  }
+  .cta-channels { flex: 1; font-size: 10pt; line-height: 1.5; }
+  .cta-channels .row { display: flex; gap: 2.5mm; margin-bottom: 1.2mm; }
+  .cta-channels .row:last-child { margin-bottom: 0; }
+  .cta-channels .ic {
+    width: 4.5mm;
+    flex: 0 0 4.5mm;
+    color: #8a6e2e;
+    font-weight: 700;
+  }
+
+  /* ── Gruß + Unterschrift ─────────────── */
+  .gruss { margin-top: 4mm; }
+  .unterschrift-platz { height: 11mm; }
+  .signatur { font-weight: 600; }
+  .signatur-zusatz { font-size: 10pt; color: #444; }
+
+  .ps {
+    margin-top: 4mm;
+    font-size: 10pt;
+    border-top: 0.4pt solid #ddd;
+    padding-top: 2.5mm;
+  }
+  .ps strong { letter-spacing: 0.05em; }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <!-- ░░░ Absenderkopf: Kontakt links neben Logo, alles rechtsbündig ░░░ -->
+  <div class="briefkopf">
+    <div class="briefkopf-text">
+      <strong>www.smartwandler.de</strong><br>
+      Dipl.-Ing. (FH) Philipp Anders<br>
+      Wilischstr. 8, 01279 Dresden
+    </div>
+    <div class="briefkopf-logo">
+      <img src="images/logo-white.png" alt="smartwandler Logo">
+    </div>
+  </div>
+
+  <!-- ░░░ Anschriftenfeld ░░░ -->
+  <div class="anschrift">
+    <div class="ruecksendeangabe">
+      Philipp Anders · Wilischstr. 8 · 01279 Dresden
+    </div>
+    <!-- ▼▼▼ EMPFÄNGER-ADRESSE HIER EINTRAGEN ▼▼▼ -->
+    <div class="placeholder">
+      [Firma / Ingenieurbüro]<br>
+      [Anrede Vorname Nachname]<br>
+      Kleiststraße 10a, 01129 Dresden<br>
+      [PLZ] [Ort]
+    </div>
+    <!-- ▲▲▲ EMPFÄNGER-ADRESSE HIER EINTRAGEN ▲▲▲ -->
+  </div>
+
+  <div class="datum">Dresden, 08.06.2026</div>
+
+  <!-- ░░░ Betreff ░░░ -->
+  <div class="betreff">
+    Wertschöpfung statt Tipparbeit:<br>
+    Ein digitaler Mitarbeiter für Ihr Ingenieurbüro
+  </div>
+
+  <!-- ░░░ Anrede ░░░ -->
+  <p class="anrede">Sehr geehrte(r) Frau/Herr …..,</p>
+
+  <!-- ░░░ Body ░░░ -->
+  <div class="body">
+    <p>Ihre wertvollste Ressource sind Ihre Ingenieure. Doch nach jeder Baubesprechung tippen sie Protokolle, sortieren die E-Mail-Flut von Architekten und Fachplanern oder tragen Stundennachweise aus drei Systemen für die Rechnung zusammen. Bei spürbarem Fachkräftemangel wird jede Stunde Administration zur teuren Fehlallokation.</p>
+
+    <p>Lassen Sie ab jetzt Routineaufgaben von einem von uns installierten digitalen Mitarbeiter erledigen. Er erstellt bspw. Protokollentwürfe aus Audio-Mitschnitten, Erstentwürfe für Prüfberichte und Gutachten, Rechnungsvorlagen aus Ihren Stundenzetteln und übernimmt die Triage des Projekt-Postfachs. Die fachliche Verantwortung bleibt vollständig bei Ihrem Team, die Tipparbeit übernimmt das System.</p>
+
+    <p>Der entscheidende Unterschied zu Cloud-Anbietern wie ChatGPT: Unsere Software läuft zu 100 % lokal auf Ihrer Hardware. Kein Byte verlässt Ihr Haus, absolut datenschutzkonform und prädestiniert für sensible Projekte im Gutachter-, Industrie- oder KRITIS-Sektor. Ihr Team lernt kein neues Programm; der digitale Mitarbeiter klinkt sich direkt in Outlook, Ihre Dateiablage und CAD-Software ein.</p>
+
+    <p>Wir sitzen im Raum Dresden und begleiten Sie persönlich vor Ort. Lassen Sie uns in 30 Minuten unverbindlich klären, welche Aufgabe wir bei Ihnen konkret automatisieren können. Wir sind über folgende Wege für Sie erreichbar:</p>
+  </div>
+
+  <!-- ░░░ CTA mit QR-Code ░░░ -->
+  <div class="cta">
+    <div class="cta-qr">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=0&data=https%3A%2F%2Fsmartwandler.de%2Fingenieurbueros.html" alt="QR-Code zur Landing-Page">
+      <div class="cta-qr-url">smartwandler.de/<br>ingenieurbueros.html</div>
+    </div>
+    <div class="cta-channels">
+      <div class="row"><span class="ic">▢</span><span><strong>QR-Code scannen</strong>&nbsp;·&nbsp; Demovideo ansehen &amp; Termin direkt online buchen</span></div>
+      <div class="row"><span class="ic">☎</span><span><strong>+49 152 21078262</strong> &nbsp;·&nbsp; auch per WhatsApp</span></div>
+      <div class="row"><span class="ic">✉</span><span><strong>info@smartwandler.de</strong></span></div>
+    </div>
+  </div>
+
+  <!-- ░░░ Grußformel ░░░ -->
+  <p class="gruss">Mit freundlichen Grüßen</p>
+  <div class="unterschrift-platz"></div>
+  <div class="signatur">Dipl.-Ing. (FH) Philipp Anders</div>
+  <div class="signatur-zusatz">www.smartwandler.de</div>
+</div>
+
+</body>
+</html>
