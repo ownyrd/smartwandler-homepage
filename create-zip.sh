@@ -16,6 +16,8 @@ zip -r "$OUTPUT" \
     "$WORKING_DIR"/*.css \
     "$WORKING_DIR"/*.js \
     "$WORKING_DIR"/fb-capi.php \
-    "$WORKING_DIR/.htaccess"
+    "$WORKING_DIR/.htaccess" \
+    "$WORKING_DIR/video/smartwandler-demo-720p.mp4" \
+    "$WORKING_DIR/video/smartwandler-demo-poster.jpg"
 
 echo "Archive created: $OUTPUT"
