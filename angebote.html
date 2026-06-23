@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angebotspakete: Starter, Professional, Ultimate | smartwandler.de</title>
+<meta name="description" content="Drei transparente Festpreis-Pakete für Ihren lokalen, DSGVO-konformen digitalen Mitarbeiter. Förderfähig in Sachsen und NRW. Einmaliger Festpreis plus überschaubare Monatsbetreuung.">
+<link rel="preload" href="fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<style>
+/* === Angebots-Seite: Pricing-Karten === */
+
+.price-intro {
+  font-size: 17px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 720px;
+  margin-top: 12px;
+}
+
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 44px;
+  align-items: stretch;
+}
+
+.price-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 32px 28px 30px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.price-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.07);
+  border-color: rgba(58, 54, 49, 0.2);
+}
+
+.price-card.featured {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+}
+.price-card.featured:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.22);
+}
+
+.price-card-flag {
+  position: absolute;
+  top: 0;
+  right: 24px;
+  transform: translateY(-50%);
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 100px;
+}
+
+.price-card-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink-faint);
+  margin-bottom: 10px;
+}
+.price-card.featured .price-card-eyebrow {
+  color: var(--gold);
+}
+
+.price-card-name {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.price-card-claim {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  line-height: 1.4;
+  margin-bottom: 16px;
+  min-height: 42px;
+}
+.price-card.featured .price-card-claim {
+  color: rgba(255,255,255,0.78);
+}
+
+.price-card-for {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  padding: 12px 14px;
+  background: var(--paper-2);
+  border-radius: var(--r-md);
+  margin-bottom: 22px;
+}
+.price-card.featured .price-card-for {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.82);
+}
+
+.price-card-price-block {
+  margin-bottom: 22px;
+}
+.price-card-price-once {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.price-card-price-label {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 500;
+}
+.price-card.featured .price-card-price-label {
+  color: rgba(255,255,255,0.55);
+}
+.price-card-price-monthly {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+}
+.price-card.featured .price-card-price-monthly {
+  color: rgba(255,255,255,0.7);
+  border-top-color: rgba(255,255,255,0.15);
+}
+.price-card-price-monthly strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.price-card.featured .price-card-price-monthly strong {
+  color: #fff;
+}
+
+.price-card-list-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.price-card.featured .price-card-list-label {
+  color: rgba(255,255,255,0.55);
+}
+
+.price-card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  flex: 1;
+}
+.price-card-list li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-mid);
+  margin-bottom: 12px;
+}
+.price-card.featured .price-card-list li {
+  color: rgba(255,255,255,0.85);
+}
+.price-card-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--ink);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3.5 8.4l3 3 6-6.4' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-size: 16px 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.price-card.featured .price-card-list li::before {
+  background-color: var(--gold);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3.5 8.4l3 3 6-6.4' fill='none' stroke='%233A3631' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+}
+
+.price-card-monthly-note {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+  background: var(--paper-2);
+  border-radius: var(--r-md);
+  padding: 12px 14px;
+  margin-bottom: 22px;
+}
+.price-card.featured .price-card-monthly-note {
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.7);
+}
+
+.price-card-funding {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  margin-bottom: 22px;
+}
+.price-card.featured .price-card-funding {
+  border-top-color: rgba(255,255,255,0.15);
+}
+.price-card-funding-label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.price-card.featured .price-card-funding-label {
+  color: var(--gold);
+}
+.price-card-funding-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 13.5px;
+  color: var(--ink-mid);
+  padding: 4px 0;
+}
+.price-card.featured .price-card-funding-row {
+  color: rgba(255,255,255,0.85);
+}
+.price-card-funding-row strong {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  color: var(--ink);
+}
+.price-card.featured .price-card-funding-row strong {
+  color: #fff;
+}
+.price-card-funding-row .funding-region {
+  color: var(--ink-soft);
+}
+.price-card.featured .price-card-funding-row .funding-region {
+  color: rgba(255,255,255,0.6);
+}
+
+.price-card-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 100px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  width: 100%;
+  transition: background 0.2s ease;
+}
+.price-card-cta:hover { background: #2A2620; }
+.price-card.featured .price-card-cta {
+  background: var(--gold);
+  color: var(--ink);
+}
+.price-card.featured .price-card-cta:hover {
+  background: #B89954;
+}
+
+/* === Paket 0 · Potenzial-Check (Fuß-in-die-Tür) === */
+.potential-check {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 0;
+  margin-top: 40px;
+  background: var(--gold-bg);
+  border: 1px solid rgba(200, 169, 106, 0.45);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(58, 54, 49, 0.06);
+}
+.potential-check-left {
+  padding: 32px 32px 28px;
+}
+.potential-check-right {
+  padding: 32px 32px 28px;
+  background: #fff;
+  border-left: 1px solid rgba(200, 169, 106, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.potential-check-tag {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 100px;
+  margin-bottom: 14px;
+}
+.potential-check-title {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.potential-check-subtitle {
+  font-size: 16px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+.potential-check-for {
+  font-size: 13.5px;
+  color: var(--ink-mid);
+  line-height: 1.55;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.6);
+  border-radius: var(--r-md);
+  margin-bottom: 22px;
+}
+.potential-check-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.potential-check-list li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-mid);
+  margin-bottom: 12px;
+}
+.potential-check-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--gold);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3.5 8.4l3 3 6-6.4' fill='none' stroke='%233A3631' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-size: 16px 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.potential-check-price-block {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.potential-check-price-once {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.potential-check-price-label {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 500;
+}
+.potential-check-variants {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.potential-check-variants strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.potential-check-credit {
+  background: var(--ink);
+  color: #fff;
+  padding: 14px 16px;
+  border-radius: var(--r-md);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.potential-check-credit strong {
+  color: var(--gold);
+  font-weight: 600;
+}
+.potential-check-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 100px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  margin-top: auto;
+  transition: background 0.2s ease;
+}
+.potential-check-cta:hover { background: #2A2620; }
+
+.step-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 56px 0 0;
+}
+.step-divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.step-divider-text {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+/* === Förder-Hinweis === */
+.funding-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 36px;
+}
+.funding-info-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 26px 26px;
+}
+.funding-info-card h3 {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.funding-info-rate {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  color: var(--gold);
+  margin-bottom: 10px;
+  line-height: 1;
+}
+.funding-info-card p {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* === Vergleichstabelle (4 Spalten) === */
+.compare-wrap.compare-4 .compare-head,
+.compare-wrap.compare-4 .compare-row {
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+}
+.compare-wrap .compare-col-head.center,
+.compare-wrap .compare-cell.center { text-align: center; }
+.compare-wrap.compare-4 .compare-col-head.highlight {
+  background: var(--ink);
+  color: rgba(255,255,255,0.85);
+}
+.compare-wrap.compare-4 .compare-cell.highlight-col {
+  background: rgba(58, 54, 49, 0.04);
+}
+.compare-wrap.compare-4 .compare-cell strong {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+}
+.compare-wrap.compare-4 .compare-cell {
+  font-size: 14px;
+  color: var(--ink-mid);
+}
+
+/* Footnote unter Tabelle */
+.compare-footnote {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: var(--gold-bg);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--r-md);
+}
+
+/* Mobile-only Nav-CTA */
+.nav-cta-mobile-link { display: none; }
+
+@media (max-width: 1024px) {
+  .price-grid { grid-template-columns: 1fr; gap: 24px; }
+  .funding-info { grid-template-columns: 1fr; }
+  .price-card-flag { right: 20px; }
+  .potential-check { grid-template-columns: 1fr; }
+  .potential-check-right { border-left: none; border-top: 1px solid rgba(200, 169, 106, 0.35); }
+}
+
+@media (max-width: 900px) {
+  .compare-wrap.compare-4 { overflow-x: auto; }
+  .compare-wrap.compare-4 .compare-head,
+  .compare-wrap.compare-4 .compare-row {
+    min-width: 640px;
+  }
+}
+
+@media (max-width: 700px) {
+  .nav-cta-mobile-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    margin-left: auto;
+    margin-right: 12px;
+  }
+  .nav-cta-mobile {
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    padding: 9px 16px;
+    border-radius: 100px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+  }
+  .price-card { padding: 28px 22px 26px; }
+  .price-card-name { font-size: 24px; }
+  .price-card-price-once { font-size: 30px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════════════════════════════════
+       NAV
+  ══════════════════════════════════════ -->
+  <nav>
+    <a href="index.html" class="nav-logo" style="text-decoration:none">
+      <picture>
+        <source srcset="images/logo-small.webp" type="image/webp">
+        <img src="images/logo-small.png" alt="smartwandler Logo" class="nav-logo-img" width="200" height="200">
+      </picture>
+      <span class="nav-logo-wordmark">smartwandler</span>
+    </a>
+    <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo nav-cta-mobile-link" aria-label="Termin buchen"><button class="nav-cta-mobile">Termin →</button></a>
+    <button class="nav-toggle" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="#vergleich" style="font-size:15px;color:var(--ink-soft);text-decoration:none">Vergleich</a>
+      <a href="#foerderung" style="font-size:15px;color:var(--ink-soft);text-decoration:none">Förderung</a>
+      <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="nav-cta">Kostenloses Erstgespräch</button></a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section>
+    <div class="section-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Angebotspakete</span>
+    </div>
+    <h2 class="section-h2">Drei klare Pakete<br>für Ihren digitalen Mitarbeiter</h2>
+    <p class="price-intro">Transparente Festpreise, kein Token-Abo, keine versteckten Cloud-Gebühren. Jedes Paket besteht aus einer einmaligen Ersteinrichtung plus überschaubarer monatlicher Betreuung. Alle drei Pakete sind förderfähig: in Sachsen bis zu 60 %, in NRW bis zu 50 % Zuschuss.</p>
+
+    <!-- ══════════════════════════════════════
+         PAKET 0 · POTENZIAL-CHECK (Fuß-in-die-Tür)
+    ══════════════════════════════════════ -->
+    <article class="potential-check">
+      <div class="potential-check-left">
+        <span class="potential-check-tag">Bezahlte Analyse</span>
+        <h3 class="potential-check-title">Potenzial-Check</h3>
+        <div class="potential-check-for"><strong>Für wen:</strong> Interessenten, die nach dem Erstgespräch eine konkrete, schriftliche Empfehlung samt Förder-Einschätzung möchten.</div>
+        <ul class="potential-check-list">
+          <li>Termin (60–90 Min, remote oder vor Ort): Prozesse &amp; Tools aufnehmen</li>
+          <li>Ehrliche Einschätzung, welche Routineaufgaben den größten Zeithebel haben, was sich lokal automatisieren lässt und was nicht</li>
+          <li>Grober Hardware-Bedarf</li>
+          <li>Schriftliche Empfehlung: Top-Prozesse, geschätzte Zeitersparnis, passendes Paket</li>
+          <li>Förder-Einschätzung für Ihr Bundesland: passendes Programm, grobe Zuschusshöhe, korrekte Antragsreihenfolge</li>
+          <li>Aufgeschlüsseltes Richt-Angebot – direkt als Basis für den Förderantrag</li>
+        </ul>
+      </div>
+      <div class="potential-check-right">
+        <div class="potential-check-price-block">
+          <div class="potential-check-price-once">750 € <span style="font-size:14px;color:var(--ink-faint);font-weight:400">netto</span></div>
+          <div class="potential-check-price-label">Festpreis (remote)</div>
+        </div>
+        <div class="potential-check-variants">
+          <div><strong>Remote-Variante</strong> 750 €</div>
+          <div><strong>Ausführlich vor Ort</strong> 950 €</div>
+        </div>
+        <div class="potential-check-credit">
+          <strong>100 % anrechenbar</strong> – bei Beauftragung eines Pakets wird der Festpreis voll auf die Ersteinrichtung angerechnet.
+        </div>
+        <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo potential-check-cta">Potenzial-Check anfragen →</a>
+      </div>
+    </article>
+
+    <div class="step-divider">
+      <div class="step-divider-line"></div>
+      <span class="step-divider-text">Danach: Umsetzung in einem der drei Pakete</span>
+      <div class="step-divider-line"></div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         PRICING GRID
+    ══════════════════════════════════════ -->
+    <div class="price-grid">
+
+      <!-- ─── STARTER ─── -->
+      <article class="price-card">
+        <div class="price-card-eyebrow">Paket 1</div>
+        <h3 class="price-card-name">Starter</h3>
+        <p class="price-card-claim">Ihr digitaler Mitarbeiter lernt seinen ersten Skill.</p>
+        <div class="price-card-for"><strong>Für wen:</strong> KMU, die mit dem zeitgrößten Engpass starten und das Projekt fördern lassen wollen. Bewusst knapp über die Förder-Mindestkosten dimensioniert.</div>
+
+        <div class="price-card-price-block">
+          <div class="price-card-price-once">5.900 € <span style="font-size:14px;color:var(--ink-faint);font-weight:400">netto</span></div>
+          <div class="price-card-price-label">Einmalige Ersteinrichtung</div>
+          <div class="price-card-price-monthly"><strong>290 € netto / Monat</strong> · Betreuung</div>
+        </div>
+
+        <div class="price-card-list-label">Ersteinrichtung enthält</div>
+        <ul class="price-card-list">
+          <li>Analyse-Workshop: den Prozess mit dem größten Hebel identifizieren</li>
+          <li>Dedizierte lokale KI-Appliance (Mac Mini / Mini-PC mit GPU), eingerichtet als Recheneinheit für das lokale LLM – nicht als „Büro-PC" (wichtig für die Förderfähigkeit)</li>
+          <li>Lokales LLM-Setup, offline-fähig, DSGVO-konform</li>
+          <li>1 automatisierter Workflow (z. B. Audio→Protokoll, E-Mail-Triage oder Dokument-Entwurf), integriert in 1 bestehendes Tool</li>
+          <li>Einweisung (halber Tag) + Kurzdoku, Abnahme &amp; Feintuning</li>
+        </ul>
+
+        <div class="price-card-monthly-note">
+          <strong>Monatlich enthalten:</strong> LLM-/Sicherheits-Updates, E-Mail-Support, 1 Wartungscheck pro Quartal, kleine Anpassungen am bestehenden Workflow. Neue Skills als Add-on buchbar.
+        </div>
+
+        <div class="price-card-funding">
+          <div class="price-card-funding-label">Eigenanteil nach Förderung</div>
+          <div class="price-card-funding-row"><span class="funding-region">Sachsen 60 %</span><strong>2.360 €</strong></div>
+          <div class="price-card-funding-row"><span class="funding-region">NRW 50 %</span><strong>2.950 €</strong></div>
+        </div>
+
+        <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo price-card-cta">Starter besprechen →</a>
+      </article>
+
+      <!-- ─── PROFESSIONAL (Featured) ─── -->
+      <article class="price-card featured">
+        <div class="price-card-flag">Empfohlen</div>
+        <div class="price-card-eyebrow">Paket 2</div>
+        <h3 class="price-card-name">Professional</h3>
+        <p class="price-card-claim">Ihr digitaler Mitarbeiter wird zum eingearbeiteten Kollegen.</p>
+        <div class="price-card-for"><strong>Für wen:</strong> KMU, die mehr als eine Routine abgeben wollen – das solide Mittelpaket.</div>
+
+        <div class="price-card-price-block">
+          <div class="price-card-price-once">10.900 € <span style="font-size:14px;color:rgba(255,255,255,0.55);font-weight:400">netto</span></div>
+          <div class="price-card-price-label">Einmalige Ersteinrichtung</div>
+          <div class="price-card-price-monthly"><strong>490 € netto / Monat</strong> · Betreuung</div>
+        </div>
+
+        <div class="price-card-list-label">Zusätzlich zu Starter</div>
+        <ul class="price-card-list">
+          <li>2 automatisierte Workflows (z. B. Protokolle + E-Mail-Triage)</li>
+          <li>Integration in bis zu 2 Systeme (z. B. Outlook + Dateiablage)</li>
+          <li>Etwas stärkere Appliance (mehr RAM für flüssigere Nutzung)</li>
+          <li>Team-Einweisung (1 Tag) + Dokumentation</li>
+          <li>Basis-Backupkonzept</li>
+        </ul>
+
+        <div class="price-card-monthly-note">
+          <strong>Monatlich enthalten:</strong> alles aus Starter + priorisierter Support &lt; 24 h Reaktionszeit, 1 Optimierungs-Call pro Quartal, 1 neuer Mini-Workflow pro Jahr inklusive.
+        </div>
+
+        <div class="price-card-funding">
+          <div class="price-card-funding-label">Eigenanteil nach Förderung</div>
+          <div class="price-card-funding-row"><span class="funding-region">Sachsen 60 %</span><strong>4.360 €</strong></div>
+          <div class="price-card-funding-row"><span class="funding-region">NRW 50 %</span><strong>5.450 €</strong></div>
+        </div>
+
+        <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo price-card-cta">Professional besprechen →</a>
+      </article>
+
+      <!-- ─── ULTIMATE ─── -->
+      <article class="price-card">
+        <div class="price-card-eyebrow">Paket 3 · Förder-Maximierer</div>
+        <h3 class="price-card-name">Ultimate</h3>
+        <p class="price-card-claim">Ihr digitales Backoffice.</p>
+        <div class="price-card-for"><strong>Für wen:</strong> KMU, die ihre Kern-Routinen umfassend automatisieren – und in Sachsen die Förderung nahezu voll ausschöpfen wollen.</div>
+
+        <div class="price-card-price-block">
+          <div class="price-card-price-once">15.900 € <span style="font-size:14px;color:var(--ink-faint);font-weight:400">netto</span></div>
+          <div class="price-card-price-label">Einmalige Ersteinrichtung</div>
+          <div class="price-card-price-monthly"><strong>690 € netto / Monat</strong> · Betreuung</div>
+        </div>
+
+        <div class="price-card-list-label">Zusätzlich zu Professional</div>
+        <ul class="price-card-list">
+          <li>3 automatisierte Workflows (z. B. Protokolle + E-Mail-Triage + Dokument-Entwürfe)</li>
+          <li><strong>„Fragen Sie Ihre Dokumente"</strong> – lokale Wissens-/Dokumentenabfrage über Ihre eigenen Dateien (Verträge, Mieter-/Mandanten-/Projektakten, Normen) – das Premium-Feature</li>
+          <li>Integration in mehrere Systeme (Outlook + Dateiserver + Zeiterfassung/Projekt- oder Branchensoftware)</li>
+          <li>Stärkere Appliance (mehr GPU/RAM für parallele Nutzung)</li>
+          <li>Team-Schulung (1 Tag) + Playbook, Rollen- &amp; Rechtekonzept, vollständiges Backup-/Notfallkonzept, Admin-Einweisung für eine interne Ansprechperson</li>
+        </ul>
+
+        <div class="price-card-monthly-note">
+          <strong>Monatlich enthalten:</strong> alles aus Professional + dedizierter Ansprechpartner mit Reaktions-SLA, monatlicher Optimierungs-Call, 2 neue Workflows pro Jahr inklusive, halbjährlicher Review + Refresher-Schulung.
+        </div>
+
+        <div class="price-card-funding">
+          <div class="price-card-funding-label">Eigenanteil nach Förderung</div>
+          <div class="price-card-funding-row"><span class="funding-region">Sachsen 60 %</span><strong>6.360 €</strong></div>
+          <div class="price-card-funding-row"><span class="funding-region">NRW 50 %</span><strong>7.950 €</strong></div>
+        </div>
+
+        <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo price-card-cta">Ultimate besprechen →</a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       VERGLEICH AUF EINEN BLICK
+  ══════════════════════════════════════ -->
+  <section class="alt" id="vergleich">
+    <div class="section-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Vergleich</span>
+    </div>
+    <h2 class="section-h2">Die Pakete<br>auf einen Blick</h2>
+    <p style="font-size:17px;color:var(--ink-soft);margin-top:12px;max-width:660px">Vergleichen Sie Leistungsumfang, Festpreis und Eigenanteil nach Förderung direkt nebeneinander.</p>
+
+    <div class="compare-wrap compare-4" style="margin-top:40px;background:#fff">
+      <div class="compare-head">
+        <div class="compare-col-head">Kriterium</div>
+        <div class="compare-col-head center">Starter</div>
+        <div class="compare-col-head highlight center">Professional</div>
+        <div class="compare-col-head center">Ultimate</div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell">Automatisierte Workflows</div>
+        <div class="compare-cell center">1</div>
+        <div class="compare-cell center highlight-col"><strong>2</strong></div>
+        <div class="compare-cell center">3</div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell">„Fragen Sie Ihre Dokumente" (lokale Wissensabfrage)</div>
+        <div class="compare-cell center"><span class="ic-no">✕</span></div>
+        <div class="compare-cell center highlight-col"><span class="ic-no">✕</span></div>
+        <div class="compare-cell center"><span class="ic-yes">✓</span></div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell">Integrierte Systeme</div>
+        <div class="compare-cell center">1</div>
+        <div class="compare-cell center highlight-col"><strong>bis 2</strong></div>
+        <div class="compare-cell center">mehrere</div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell">Backup-/Rechtekonzept</div>
+        <div class="compare-cell center"><span class="ic-no">✕</span></div>
+        <div class="compare-cell center highlight-col"><strong>Basis</strong></div>
+        <div class="compare-cell center">Voll</div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell">Inklusive neue Workflows pro Jahr</div>
+        <div class="compare-cell center" style="color:var(--ink-faint)">– (Add-on)</div>
+        <div class="compare-cell center highlight-col"><strong>1</strong></div>
+        <div class="compare-cell center">2</div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell">Einmalig netto</div>
+        <div class="compare-cell center"><strong>5.900 €</strong></div>
+        <div class="compare-cell center highlight-col"><strong>10.900 €</strong></div>
+        <div class="compare-cell center"><strong>15.900 €</strong></div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell">Monatlich netto</div>
+        <div class="compare-cell center">290 €</div>
+        <div class="compare-cell center highlight-col"><strong>490 €</strong></div>
+        <div class="compare-cell center">690 €</div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell">Eigenanteil nach Sachsen 60 %</div>
+        <div class="compare-cell center">2.360 €</div>
+        <div class="compare-cell center highlight-col"><strong>4.360 €</strong></div>
+        <div class="compare-cell center">6.360 €</div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell">Eigenanteil nach NRW 50 %</div>
+        <div class="compare-cell center">2.950 €</div>
+        <div class="compare-cell center highlight-col"><strong>5.450 €</strong></div>
+        <div class="compare-cell center">7.950 €</div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell">Förderfähig?</div>
+        <div class="compare-cell center"><span class="ic-yes">✓</span> ja, überall</div>
+        <div class="compare-cell center highlight-col"><span class="ic-yes">✓</span> ja</div>
+        <div class="compare-cell center"><span class="ic-yes">✓</span> ja</div>
+      </div>
+    </div>
+
+    <div class="compare-footnote">
+      <strong>Zusatz-Skills</strong> über das Inklusivkontingent hinaus: ab <strong>1.900 € einmalig</strong>. Betreuungskunden zu Vorzugskonditionen.
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FÖRDERUNG
+  ══════════════════════════════════════ -->
+  <section id="foerderung">
+    <div class="section-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Förderfähig</span>
+    </div>
+    <h2 class="section-h2">Bis zu 60 % Zuschuss<br>vom Bundesland</h2>
+    <p style="font-size:17px;color:var(--ink-soft);margin-top:12px;max-width:680px">Die Ersteinrichtung ist in allen drei Paketen so dimensioniert, dass sie in den gängigen Digitalisierungs-Förderprogrammen für kleine und mittlere Unternehmen liegt. Wir unterstützen Sie bei der Auswahl des passenden Programms und bei der Antragstellung.</p>
+
+    <div class="funding-info">
+      <div class="funding-info-card">
+        <div class="funding-info-rate">60 %</div>
+        <h3>Sachsen</h3>
+        <p>Bis zu 60 % Zuschuss auf die Ersteinrichtung. Im Paket Ultimate wird das Programm-Maximum nahezu voll ausgeschöpft. Eigenanteil zwischen 2.360 € und 6.360 € netto.</p>
+      </div>
+      <div class="funding-info-card">
+        <div class="funding-info-rate">50 %</div>
+        <h3>Nordrhein-Westfalen</h3>
+        <p>Bis zu 50 % Zuschuss auf die Ersteinrichtung. Auch hier sind alle drei Pakete förderfähig. Eigenanteil zwischen 2.950 € und 7.950 € netto.</p>
+      </div>
+    </div>
+
+    <p style="font-size:12px;color:var(--ink-faint);margin-top:18px;letter-spacing:0.02em;line-height:1.6;max-width:720px">
+      Hinweis: Förderquoten und -bedingungen sind Stand der Programmrichtlinien zum Zeitpunkt der Erstellung. Verbindliche Auskunft erteilt die jeweilige Förderbank. Andere Bundesländer auf Anfrage.
+    </p>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       ABSCHLUSS-CTA
+  ══════════════════════════════════════ -->
+  <div class="cta-final">
+    <div class="section-eyebrow cta-eyebrow" style="justify-content:center">
+      <div class="eyebrow-line" style="background:rgba(255,255,255,0.35)"></div>
+      <span class="eyebrow-text" style="color:rgba(255,255,255,0.65)">Jetzt kostenloses Erstgespräch buchen</span>
+      <div class="eyebrow-line" style="background:rgba(255,255,255,0.35)"></div>
+    </div>
+    <h2 style="font-family:'Inter', system-ui, sans-serif;font-size:44px;font-weight:600;color:#fff;letter-spacing:-0.035em;line-height:1.08;margin-bottom:12px;position:relative;z-index:1">Welches Paket passt<br>zu Ihrem Büro?</h2>
+    <p style="font-size:17px;color:rgba(255,255,255,0.72);margin-bottom:40px;position:relative;z-index:1;max-width:620px;margin-left:auto;margin-right:auto">Kein Verkaufsgespräch. Sie nennen Ihre lästigste Aufgabe und wir sagen Ihnen ehrlich, welches Paket sich rechnet, ob eine Förderung greift und wie der Zeitplan aussieht.</p>
+    <div class="cta-btns">
+      <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="cta-btn-primary">Kostenloses Erstgespräch buchen →</button></a>
+    </div>
+    <div class="cta-deco">
+      <div class="cta-deco-stat">
+        <div style="font-family:'Inter', system-ui, sans-serif;font-size:24px;font-weight:600;line-height:1;color:#fff;letter-spacing:-0.035em;margin-bottom:6px">30 Min</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">unverbindlich</div>
+      </div>
+      <div class="cta-deco-div"></div>
+      <div class="cta-deco-stat">
+        <div style="font-family:'Inter', system-ui, sans-serif;font-size:24px;font-weight:600;line-height:1;color:#fff;letter-spacing:-0.035em;margin-bottom:6px">0 €</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">Erstgespräch</div>
+      </div>
+      <div class="cta-deco-div"></div>
+      <div class="cta-deco-stat">
+        <div style="font-family:'Inter', system-ui, sans-serif;font-size:24px;font-weight:600;line-height:1;color:#fff;letter-spacing:-0.035em;margin-bottom:6px">100 %</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">lokal bei Ihnen</div>
+      </div>
+      <div class="cta-deco-div"></div>
+      <div class="cta-deco-stat">
+        <div style="font-family:'Inter', system-ui, sans-serif;font-size:24px;font-weight:600;line-height:1;color:#fff;letter-spacing:-0.035em;margin-bottom:6px">&lt; 24 h</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">Antwortzeit</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <picture>
+          <source srcset="images/logo-small.webp" type="image/webp">
+          <img src="images/logo-small.png" alt="smartwandler Logo" class="footer-logo-mark" width="200" height="200" loading="lazy">
+        </picture>
+        <p style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:4px">Digitalisierung &amp; Automatisierung</p>
+        <p style="font-size:15px;color:rgba(255,255,255,0.55);line-height:1.6">Lokal. Sicher. Maßgeschneidert.</p>
+        <p style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:20px;letter-spacing:0.05em">smartwandler · ein Projekt von decentnodes.de</p>
+      </div>
+      <div>
+        <p style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Leistungen</p>
+        <a href="index.html#leistungen" data-tab-link="beratung" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Beratung &amp; Analyse</a>
+        <a href="index.html#leistungen" data-tab-link="workflows" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Workflow-Automatisierung</a>
+        <a href="index.html#leistungen" data-tab-link="ki" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Lokale KI-Anwendungen</a>
+        <a href="index.html#leistungen" data-tab-link="webtools" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Individuelle Web-Tools</a>
+      </div>
+      <div>
+        <p style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Unternehmen</p>
+        <a href="index.html#ueber-uns" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Über uns</a>
+        <a href="index.html#zusammenarbeit" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Zusammenarbeit</a>
+        <a href="index.html#faq" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none">FAQ</a>
+      </div>
+      <div>
+        <p style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Kontakt</p>
+        <a href="mailto:info@smartwandler.de" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">info@smartwandler.de</a>
+        <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Erstgespräch buchen</a>
+        <a href="https://www.linkedin.com/in/philipp-anders-16ba2814a/" target="_blank" rel="noopener noreferrer" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p style="font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:0.04em">© 2026 smartwandler.de · Alle Rechte vorbehalten</p>
+      <div class="footer-legal">
+        <a href="impressum.html" style="font-size:11px;color:rgba(255,255,255,0.6);text-decoration:none">Impressum</a>
+        <a href="datenschutz.html" style="font-size:11px;color:rgba(255,255,255,0.6);text-decoration:none">Datenschutz</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
