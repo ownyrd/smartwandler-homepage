@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Preisliste · smartwandler</title>
+<style>
+  /* ──────────────────────────────────────────────────────────
+     Druck als PDF: Chrome → ⌘P → "Als PDF speichern"
+                    Ränder: "Standard"  ·  Hintergrundgrafik: AN
+     ────────────────────────────────────────────────────────── */
+  @page {
+    size: A4;
+    margin: 18mm 18mm 22mm 18mm;
+    @bottom-left {
+      content: "smartwandler.de · Preisliste";
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 8pt;
+      color: #7C766C;
+    }
+    @bottom-right {
+      content: "Seite " counter(page) " / " counter(pages);
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 8pt;
+      color: #7C766C;
+    }
+  }
+
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url('../fonts/inter-variable.woff2') format('woff2');
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink:       #3A3631;
+    --ink-mid:   #4B4640;
+    --ink-soft:  #5F5952;
+    --ink-faint: #7C766C;
+    --paper:     #FAF8F5;
+    --paper-2:   #F2EFE9;
+    --paper-3:   #E8E3DC;
+    --line:      rgba(58,54,49,0.14);
+    --line-soft: rgba(58,54,49,0.08);
+    --gold:      #C8A96A;
+    --gold-bg:   #F7F0E3;
+  }
+
+  html {
+    background: #EDEBE6;
+  }
+  body {
+    font-family: 'Inter', Arial, sans-serif;
+    color: var(--ink);
+    font-size: 10.5pt;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── Sheet (A4) ── */
+  .sheet {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 28px auto;
+    background: var(--paper);
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.04),
+      0 8px 24px rgba(0,0,0,0.07);
+    padding: 18mm 18mm 22mm 18mm;
+    position: relative;
+  }
+
+  @media print {
+    html { background: #fff; }
+    body { background: #fff; }
+    .sheet {
+      width: auto;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+  }
+
+  /* ── Briefkopf ── */
+  .briefkopf {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12mm;
+    padding-bottom: 6mm;
+    border-bottom: 0.6pt solid var(--line);
+    margin-bottom: 8mm;
+  }
+  .briefkopf-left {
+    flex: 1;
+  }
+  .briefkopf-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 8pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: 3mm;
+  }
+  .briefkopf-eyebrow::before {
+    content: "";
+    width: 16mm;
+    height: 0.6pt;
+    background: var(--gold);
+  }
+  .briefkopf-title {
+    font-size: 22pt;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+  .briefkopf-sub {
+    font-size: 10pt;
+    color: var(--ink-soft);
+    margin-top: 2mm;
+    max-width: 130mm;
+  }
+  .briefkopf-right {
+    text-align: right;
+    font-size: 8.5pt;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .briefkopf-right .logo {
+    width: 16mm; height: 16mm;
+    margin-left: auto;
+    margin-bottom: 2mm;
+    display: block;
+  }
+  .briefkopf-right strong {
+    font-size: 9.5pt;
+    color: var(--ink);
+  }
+
+  /* ── Sektionen ── */
+  h2.sec {
+    font-size: 12pt;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-top: 7mm;
+    margin-bottom: 1.5mm;
+  }
+  h2.sec .num {
+    color: var(--gold);
+    font-weight: 600;
+    margin-right: 2mm;
+  }
+  p.lead {
+    font-size: 10pt;
+    color: var(--ink-soft);
+    margin-bottom: 3mm;
+    max-width: 165mm;
+  }
+
+  /* ── Positions-Tabelle ── */
+  table.pos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2mm;
+    font-size: 9.8pt;
+  }
+  table.pos thead th {
+    text-align: left;
+    padding: 2.2mm 3mm;
+    font-size: 8pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink-soft);
+    border-bottom: 0.8pt solid var(--ink);
+  }
+  table.pos thead th.num { text-align: right; }
+  table.pos thead th.pos { width: 12mm; }
+  table.pos thead th.amount { width: 34mm; }
+  table.pos tbody td {
+    padding: 2.4mm 3mm;
+    vertical-align: top;
+    border-bottom: 0.4pt solid var(--line-soft);
+  }
+  table.pos tbody td.pos {
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+  table.pos tbody td.label strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  table.pos tbody td.label .descr {
+    font-size: 9pt;
+    color: var(--ink-soft);
+    margin-top: 0.8mm;
+  }
+  table.pos tbody td.num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  table.pos tbody tr.sum td {
+    border-top: 0.8pt solid var(--ink);
+    border-bottom: none;
+    padding-top: 3mm;
+    background: var(--gold-bg);
+    font-weight: 600;
+    color: var(--ink);
+  }
+  table.pos tbody tr.sum td.num {
+    font-size: 11pt;
+  }
+  table.pos tbody tr.divider td {
+    background: var(--paper-2);
+    font-size: 8.5pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    padding-top: 3mm;
+    border-bottom: 0.4pt solid var(--line);
+  }
+
+  /* ── Mini-Boxen ── */
+  .note {
+    background: var(--gold-bg);
+    border-left: 2pt solid var(--gold);
+    padding: 3mm 4.5mm;
+    font-size: 9pt;
+    color: var(--ink-mid);
+    margin: 3mm 0;
+    border-radius: 0 1.5mm 1.5mm 0;
+    break-inside: avoid;
+  }
+  .note strong { color: var(--ink); }
+
+  /* ── Förder-Karten als Tabelle ── */
+  table.foerder {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2mm;
+    font-size: 9.8pt;
+  }
+  table.foerder th, table.foerder td {
+    text-align: left;
+    padding: 2.2mm 3mm;
+    border-bottom: 0.4pt solid var(--line-soft);
+    vertical-align: top;
+  }
+  table.foerder thead th {
+    font-size: 8pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink-soft);
+    border-bottom: 0.8pt solid var(--ink);
+  }
+  table.foerder td.label { font-weight: 600; color: var(--ink); }
+  table.foerder td.num, table.foerder th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  table.foerder .gold { color: var(--gold); font-weight: 600; }
+
+  .small-note {
+    font-size: 8.5pt;
+    color: var(--ink-faint);
+    margin-top: 5mm;
+    line-height: 1.5;
+  }
+
+  /* ── Avoid splits ── */
+  table { break-inside: auto; }
+  table.pos thead { display: table-header-group; }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <!-- ░░░ Briefkopf ░░░ -->
+  <div class="briefkopf">
+    <div class="briefkopf-left">
+      <div class="briefkopf-eyebrow">Anlage · Preisliste</div>
+      <div class="briefkopf-title">Preisliste</div>
+      <div class="briefkopf-sub">Festpreise für lokale, DSGVO-konforme digitale Mitarbeiter. Alle Preise netto, zzgl. gesetzlicher Umsatzsteuer. Stand: 26.06.2026.</div>
+    </div>
+    <div class="briefkopf-right">
+      <img src="../images/logo-small.png" alt="smartwandler" class="logo">
+      <strong>smartwandler.de</strong><br>
+      Philipp Anders<br>
+      Wilischstr. 8<br>
+      01279 Dresden<br>
+      info@smartwandler.de
+    </div>
+  </div>
+
+  <!-- ░░░ A · Einstiegsleistungen ░░░ -->
+  <h2 class="sec"><span class="num">A</span>Einstiegsleistungen</h2>
+  <p class="lead">Bezahlte Vor-Leistungen zur Klärung der Tragfähigkeit. Festpreis-Anteil ist bei späterer Beauftragung eines Pakets zu 100&nbsp;% anrechenbar.</p>
+  <table class="pos">
+    <thead>
+      <tr>
+        <th class="pos">Pos.</th>
+        <th>Leistung</th>
+        <th class="num amount">Festpreis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="pos">A.1</td>
+        <td class="label">
+          <strong>Potenzial-Check (remote)</strong>
+          <div class="descr">60–90&nbsp;Min Termin, schriftliche Empfehlung, Förder-Einschätzung, Richt-Angebot.</div>
+        </td>
+        <td class="num">750 € einmalig</td>
+      </tr>
+      <tr>
+        <td class="pos">A.2</td>
+        <td class="label">
+          <strong>Potenzial-Check (vor Ort)</strong>
+          <div class="descr">Ausführlich vor Ort, sonst identischer Umfang wie A.1.</div>
+        </td>
+        <td class="num">950 € einmalig</td>
+      </tr>
+      <tr>
+        <td class="pos">A.3</td>
+        <td class="label">
+          <strong>Proof of Concept (1 Workflow)</strong>
+          <div class="descr">Workshop, Aufbau auf smartwandler-Entwicklungs&shy;appliance, Kalibrierung mit anonymisierten Beispieldaten, 1&nbsp;Iterationsschleife, Abschluss-Demo &amp; Entscheidungsvorlage.</div>
+        </td>
+        <td class="num">1.900 € einmalig</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <strong>Anrechnung:</strong> Bei Beauftragung eines Pakets (B) innerhalb 90&nbsp;Tagen nach Abschluss von A wird der Festpreis von A zu 100&nbsp;% auf die einmalige Ersteinrichtung des Pakets angerechnet.
+  </div>
+
+  <!-- ░░░ B · Pakete · Ersteinrichtung ░░░ -->
+  <h2 class="sec"><span class="num">B</span>Pakete · Einmalige Ersteinrichtung</h2>
+  <p class="lead">Vollausrollung der lokalen KI-Lösung bei Ihnen vor Ort, inkl. Hardware, Software-Setup, Integration und Übergabe in den Regelbetrieb.</p>
+  <table class="pos">
+    <thead>
+      <tr>
+        <th class="pos">Pos.</th>
+        <th>Paket</th>
+        <th class="num amount">Festpreis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="pos">B.1</td>
+        <td class="label">
+          <strong>Starter</strong>
+          <div class="descr">Mac&nbsp;Mini-Appliance, lokales LLM, 1&nbsp;Workflow, Integration in 1&nbsp;System, Einweisung (½&nbsp;Tag), Kurzdoku.</div>
+        </td>
+        <td class="num">5.900 € einmalig</td>
+      </tr>
+      <tr>
+        <td class="pos">B.2</td>
+        <td class="label">
+          <strong>Professional</strong>
+          <div class="descr">Wie Starter + 2&nbsp;Workflows, Integration in bis zu 2&nbsp;Systeme, stärkere Appliance, Team-Einweisung (1&nbsp;Tag), Basis-Backup.</div>
+        </td>
+        <td class="num">10.900 € einmalig</td>
+      </tr>
+      <tr>
+        <td class="pos">B.3</td>
+        <td class="label">
+          <strong>Ultimate</strong>
+          <div class="descr">Wie Professional + 3.&nbsp;Workflow, „Fragen Sie Ihre Dokumente", mehrere Integrationen, Rollen-/Backup-Konzept, Playbook, Admin-Einweisung.</div>
+        </td>
+        <td class="num">15.900 € einmalig</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ░░░ C · Pakete · Monatliche Betreuung ░░░ -->
+  <h2 class="sec"><span class="num">C</span>Pakete · Monatliche Betreuung</h2>
+  <p class="lead">Empfohlen ab Inbetriebnahme. Mindestvertragslaufzeit gemäß AGB Teil&nbsp;C §&nbsp;6.</p>
+  <table class="pos">
+    <thead>
+      <tr>
+        <th class="pos">Pos.</th>
+        <th>Leistung</th>
+        <th class="num amount">Preis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="pos">C.1</td>
+        <td class="label">
+          <strong>Betreuung Starter</strong>
+          <div class="descr">LLM-/Sicherheits-Updates, E-Mail-Support, 1&nbsp;Wartungscheck/Quartal, kleine Anpassungen am bestehenden Workflow.</div>
+        </td>
+        <td class="num">290 € / Monat</td>
+      </tr>
+      <tr>
+        <td class="pos">C.2</td>
+        <td class="label">
+          <strong>Betreuung Professional</strong>
+          <div class="descr">Wie C.1 + priorisierter Support &lt;24&nbsp;h, 1&nbsp;Optimierungs-Call/Quartal, 1&nbsp;neuer Mini-Workflow/Jahr inkl.</div>
+        </td>
+        <td class="num">490 € / Monat</td>
+      </tr>
+      <tr>
+        <td class="pos">C.3</td>
+        <td class="label">
+          <strong>Betreuung Ultimate</strong>
+          <div class="descr">Wie C.2 + dedizierter Ansprechpartner mit SLA, monatlicher Optimierungs-Call, 2&nbsp;neue Workflows/Jahr inkl., halbjährlicher Review.</div>
+        </td>
+        <td class="num">690 € / Monat</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ░░░ D · Add-Ons ░░░ -->
+  <h2 class="sec"><span class="num">D</span>Add-Ons &amp; Zusatzleistungen</h2>
+  <table class="pos">
+    <thead>
+      <tr>
+        <th class="pos">Pos.</th>
+        <th>Leistung</th>
+        <th class="num amount">Preis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="pos">D.1</td>
+        <td class="label">
+          <strong>Zusätzlicher Workflow (Add-on)</strong>
+          <div class="descr">Aufbau eines weiteren Workflows auf bestehender Appliance. Betreuungskunden zu Vorzugskonditionen.</div>
+        </td>
+        <td class="num">ab 1.900 € einmalig</td>
+      </tr>
+      <tr>
+        <td class="pos">D.2</td>
+        <td class="label">
+          <strong>Erweiterung Hardware / Upgrade Appliance</strong>
+          <div class="descr">Aufrüstung oder Tausch der Recheneinheit bei steigendem Bedarf. Nach Aufwand.</div>
+        </td>
+        <td class="num">nach Aufwand</td>
+      </tr>
+      <tr>
+        <td class="pos">D.3</td>
+        <td class="label">
+          <strong>Vor-Ort-Einsatz außerhalb Sachsen</strong>
+          <div class="descr">Reise- und Übernachtungspauschalen nach Entfernung.</div>
+        </td>
+        <td class="num">nach Aufwand</td>
+      </tr>
+      <tr>
+        <td class="pos">D.4</td>
+        <td class="label">
+          <strong>Stundensatz für Sonder-/Mehraufwand</strong>
+          <div class="descr">Wenn Leistungen nicht durch Festpreis oder Betreuungspaket abgedeckt sind.</div>
+        </td>
+        <td class="num">120 € / Stunde</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ░░░ Förderung ░░░ -->
+  <h2 class="sec"><span class="num">E</span>Eigenanteil nach Förderung</h2>
+  <p class="lead">Alle Pakete sind förderfähig. Eigenanteil bezogen auf die einmalige Ersteinrichtung (B), Betreuung (C) wird nicht gefördert.</p>
+  <table class="foerder">
+    <thead>
+      <tr>
+        <th>Paket</th>
+        <th class="num">Listenpreis</th>
+        <th class="num">Sachsen <span class="gold">60 %</span></th>
+        <th class="num">NRW <span class="gold">50 %</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="label">Starter (B.1)</td>
+        <td class="num">5.900 €</td>
+        <td class="num">2.360 €</td>
+        <td class="num">2.950 €</td>
+      </tr>
+      <tr>
+        <td class="label">Professional (B.2)</td>
+        <td class="num">10.900 €</td>
+        <td class="num">4.360 €</td>
+        <td class="num">5.450 €</td>
+      </tr>
+      <tr>
+        <td class="label">Ultimate (B.3)</td>
+        <td class="num">15.900 €</td>
+        <td class="num">6.360 €</td>
+        <td class="num">7.950 €</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="small-note">
+    Förderquoten und -bedingungen sind Stand der Programmrichtlinien zum Zeitpunkt der Erstellung. Verbindliche Auskunft erteilt die jeweilige Förderbank. Andere Bundesländer auf Anfrage. Alle Preise zzgl. der gesetzlichen Umsatzsteuer.
+  </p>
+
+</div>
+
+</body>
+</html>

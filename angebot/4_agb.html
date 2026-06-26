@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Allgemeine Geschäftsbedingungen · smartwandler</title>
+<style>
+  /* ──────────────────────────────────────────────────────────
+     Druck als PDF: Chrome → ⌘P → "Als PDF speichern"
+                    Ränder: "Standard"  ·  Hintergrundgrafik: AN
+     ────────────────────────────────────────────────────────── */
+  @page {
+    size: A4;
+    margin: 16mm 16mm 20mm 16mm;
+    @bottom-left {
+      content: "smartwandler.de · AGB";
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 8pt;
+      color: #7C766C;
+    }
+    @bottom-right {
+      content: "Seite " counter(page) " / " counter(pages);
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 8pt;
+      color: #7C766C;
+    }
+  }
+
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url('../fonts/inter-variable.woff2') format('woff2');
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink:       #3A3631;
+    --ink-mid:   #4B4640;
+    --ink-soft:  #5F5952;
+    --ink-faint: #7C766C;
+    --paper:     #FAF8F5;
+    --paper-2:   #F2EFE9;
+    --line:      rgba(58,54,49,0.14);
+    --gold:      #C8A96A;
+    --gold-bg:   #F7F0E3;
+  }
+
+  html { background: #EDEBE6; }
+  body {
+    font-family: 'Inter', Arial, sans-serif;
+    color: var(--ink);
+    font-size: 9.5pt;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  /* ── Sheet (A4) ── */
+  .sheet {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 28px auto;
+    background: var(--paper);
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.04),
+      0 8px 24px rgba(0,0,0,0.07);
+    padding: 18mm 18mm 22mm 18mm;
+    position: relative;
+  }
+  @media print {
+    html, body { background: #fff; }
+    .sheet {
+      width: auto;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+  }
+
+  /* ── Kopfbereich ── */
+  .doc-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12mm;
+    padding-bottom: 8mm;
+    border-bottom: 0.6pt solid var(--line);
+    margin-bottom: 8mm;
+    text-align: left;
+  }
+  .doc-head-left { flex: 1; }
+  .doc-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 8pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: 4mm;
+  }
+  .doc-eyebrow::before {
+    content: "";
+    width: 18mm;
+    height: 0.6pt;
+    background: var(--gold);
+  }
+  .doc-title {
+    font-size: 24pt;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+  }
+  .doc-sub {
+    font-size: 10.5pt;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-top: 3mm;
+    max-width: 130mm;
+  }
+  .doc-head-right {
+    text-align: right;
+    font-size: 8pt;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+  .doc-head-right .logo {
+    width: 16mm; height: 16mm;
+    margin-left: auto;
+    margin-bottom: 2.5mm;
+    display: block;
+  }
+  .doc-head-right strong {
+    font-size: 9.5pt;
+    color: var(--ink);
+  }
+
+  /* ── Teil-Trenner ── */
+  h1.teil {
+    font-size: 14pt;
+    font-weight: 600;
+    color: #fff;
+    background: var(--ink);
+    padding: 3mm 5mm;
+    margin-top: 7mm;
+    margin-bottom: 5mm;
+    border-radius: 1.5mm;
+    letter-spacing: -0.01em;
+    text-align: left;
+    break-after: avoid;
+    break-before: avoid;
+  }
+  h1.teil:first-of-type { margin-top: 0; }
+  h1.teil .label {
+    font-size: 7.5pt;
+    letter-spacing: 0.16em;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.5mm;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* ── Paragraf-Header ── */
+  h2.par {
+    font-size: 10.5pt;
+    font-weight: 600;
+    color: var(--ink);
+    margin-top: 5mm;
+    margin-bottom: 2mm;
+    text-align: left;
+    break-after: avoid;
+  }
+  h2.par .par-num {
+    color: var(--gold);
+    margin-right: 1mm;
+  }
+
+  p { margin-bottom: 2mm; }
+
+  ol.legal {
+    list-style: none;
+    counter-reset: legal-counter;
+    margin-left: 0;
+  }
+  ol.legal > li {
+    counter-increment: legal-counter;
+    position: relative;
+    padding-left: 9mm;
+    margin-bottom: 2mm;
+    break-inside: avoid;
+  }
+  ol.legal > li::before {
+    content: "(" counter(legal-counter) ")";
+    position: absolute;
+    left: 0;
+    width: 8mm;
+    color: var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+  }
+  ol.legal ol {
+    list-style: lower-latin;
+    margin-left: 6mm;
+    margin-top: 1.5mm;
+  }
+  ol.legal ol li {
+    margin-bottom: 1.2mm;
+  }
+
+  .note {
+    background: var(--gold-bg);
+    border-left: 2pt solid var(--gold);
+    padding: 3mm 4mm;
+    font-size: 9pt;
+    color: var(--ink-mid);
+    line-height: 1.5;
+    margin: 3mm 0;
+    border-radius: 0 1.5mm 1.5mm 0;
+    text-align: left;
+    break-inside: avoid;
+  }
+  .note strong { color: var(--ink); }
+
+  /* ── Inhaltsverzeichnis ── */
+  .toc {
+    background: var(--paper-2);
+    border-radius: 2mm;
+    padding: 5mm 6mm;
+    margin-bottom: 7mm;
+    text-align: left;
+  }
+  .toc h3 {
+    font-size: 8.5pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: 3mm;
+  }
+  .toc ul {
+    list-style: none;
+    columns: 2;
+    column-gap: 8mm;
+  }
+  .toc li {
+    font-size: 10pt;
+    color: var(--ink-mid);
+    padding: 1mm 0;
+    break-inside: avoid;
+  }
+  .toc li strong { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+<!-- ░░░ Deckkopf ░░░ -->
+<div class="doc-head">
+  <div class="doc-head-left">
+    <div class="doc-eyebrow">Anlage · AGB</div>
+    <div class="doc-title">Allgemeine Geschäftsbedingungen</div>
+    <div class="doc-sub">Stand: 26.06.2026 · Philipp Anders, Inhaber der Marke „smartwandler" – Beratung, Einrichtung und Betrieb lokaler KI-Lösungen, Workflow-Automatisierungen und damit verbundener Dienstleistungen.</div>
+  </div>
+  <div class="doc-head-right">
+    <img src="../images/logo-small.png" alt="smartwandler" class="logo">
+    <strong>smartwandler.de</strong><br>
+    Philipp Anders<br>
+    Wilischstr. 8<br>
+    01279 Dresden<br>
+    info@smartwandler.de
+  </div>
+</div>
+
+<!-- ░░░ Inhaltsverzeichnis ░░░ -->
+<div class="toc">
+  <h3>Inhalt</h3>
+  <ul>
+    <li><strong>Teil A</strong> — Allgemeine Bestimmungen für alle Verträge &amp; Leistungen</li>
+    <li><strong>Teil B</strong> — Werkleistungen: Einrichtung lokaler KI-Lösungen und Automatisierungen</li>
+    <li><strong>Teil C</strong> — Dauerdienstleistungen (Betreuung, Pflege, Optimierung)</li>
+    <li><strong>Teil D</strong> — Proof of Concept (PoC) für KI-Workflows</li>
+  </ul>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     TEIL A — ALLGEMEINE BESTIMMUNGEN
+     ════════════════════════════════════════════ -->
+<h1 class="teil"><span class="label">Teil A</span>Allgemeine Bestimmungen für alle Verträge &amp; Leistungen</h1>
+
+<h2 class="par"><span class="par-num">§ 1</span>Geltungsbereich der AGB, Änderungen der AGB</h2>
+<ol class="legal">
+  <li>Die nachstehenden Allgemeinen Geschäftsbedingungen gelten für sämtliche Verträge und Leistungen der Firma Philipp Anders – IT-Beratung, Inhaber der Marke „smartwandler" (i.&nbsp;F. „Anbieter") in ihrer jeweils im Zeitpunkt des Vertragsschlusses gültigen Fassung. Die im jeweiligen Vertrag (Angebot und Auftragsbestätigung) und den dort enthaltenen Leistungsbeschreibungen zwischen Anbieter und Kunde getroffenen Vereinbarungen haben grundsätzlich Geltungsvorrang vor diesen Allgemeinen Geschäftsbedingungen. Die Geschäftsbedingungen untergliedern sich in einen Allgemeinen Teil (Teil&nbsp;A) und leistungsspezifische bzw. modulbezogene Bestimmungen (Teile&nbsp;B – D). Die im Allgemeinen Teil enthaltenen Regelungen gelten ergänzend zu den leistungsspezifischen Bestimmungen für sämtliche Leistungen, soweit im Vertrag oder den leistungsspezifischen Bestimmungen nicht ausdrücklich abweichendes geregelt ist. Im Falle sich widersprechender Bestimmungen gelten im Zweifel die leistungsspezifischen Bestimmungen (Teile&nbsp;B – D) vorrangig.</li>
+  <li>Von diesen AGB abweichende oder entgegenstehende Bedingungen der Kunden werden vom Anbieter nicht anerkannt, sofern er diesen nicht ausdrücklich zugestimmt hat. Eine Abweichung im vorstehenden Sinne liegt auch vor, wenn nur die AGB des Kunden einen diesseits nicht geregelten Sachverhalt regeln. Die Durchführung der Leistungen kann nicht als eine solche Zustimmung gewertet werden.</li>
+  <li>Änderungen dieser Geschäftsbedingungen werden dem Kunden in Textform (insbesondere per E-Mail) mitgeteilt. Widerspricht er diesen Änderungen nicht innerhalb von 4&nbsp;Wochen nach Zugang der Mitteilung, gelten die Änderungen als durch den Kunden anerkannt. Auf das Widerspruchsrecht und die Rechtsfolgen des Schweigens wird der Kunde im Falle der Änderung der Geschäftsbedingungen gesondert hingewiesen.</li>
+  <li>Der Anbieter erbringt seine Leistungen ausschließlich an Unternehmer im Sinne des § 14 BGB.</li>
+</ol>
+
+<h2 class="par"><span class="par-num">§ 2</span>Leistungen und Pflichten des Anbieters</h2>
+<ol class="legal">
+  <li>Die Hauptleistungspflichten des Anbieters bestimmen sich ausschließlich nach dem Angebot/Vertrag, ggfs. den einbezogenen Leistungsbeschreibungen und/oder dem Pflichtenheft sowie ggfs. sonstigen in den Vertrag einbezogenen Konzepten, Skizzen und Entwürfen. Die Leistungsbeschreibungen und Leistungspflichten des Kunden gegenüber seinen Endkunden sind für die Beschaffenheit der Leistungen des Anbieters nur maßgeblich, wenn diese ausdrücklich, namentlich und in Textform in diesen Vertrag einbezogen werden.</li>
+  <li>Spezielle Kenntnisse des Anbieters zur Branche des Kunden werden vom Anbieter grundsätzlich nicht geschuldet. Soweit für die Erbringung einer Leistung Branchen- oder Fachkenntnis erforderlich ist, wird diese vom Kunden im Rahmen der Mitwirkung (§&nbsp;10, §&nbsp;11) beigestellt.</li>
+  <li>Die Leistungserbringung durch vom Anbieter nach eigenem fachlichen Ermessen beauftragte, gleichwertig qualifizierte Dritte ist zulässig, soweit aus Sicht des Kunden kein objektiver, wichtiger Grund gegen die Person/Firma des/der Unterbeauftragten spricht. Eine Vorabinformation des Anbieters an den Kunden über den beabsichtigten Einsatz von Subunternehmern ist nicht erforderlich.</li>
+  <li>Soweit der Anbieter vertragsgemäß Inhalte bzw. Software-Produkte von Dritten (Vorlieferanten) beziehen soll, ist der Anbieter nicht dazu verpflichtet, die Informationen Dritter hinsichtlich ihrer Richtigkeit, Vollständigkeit oder Verwertbarkeit zu überprüfen. Abgesehen von der Beachtung der urheberrechtlichen Lizenzbestimmungen des Vorlieferanten steht er nicht dafür ein, dass der Inhalt rechtlich (z.&nbsp;B. wettbewerbs-, marken-, datenschutz- oder äußerungsrechtlich) beanstandungsfrei vom Kunden eingesetzt werden kann. Insbesondere besteht keine Verpflichtung des Anbieters, das Bestehen behaupteter Nutzungsrechte des Vorlieferanten zu überprüfen. In Bezug auf von Dritten bezogene Inhalte ist der Vorlieferant vorrangig in Anspruch zu nehmen. Der Anbieter tritt dem Kunden alle Ansprüche auf Schadensersatz gegen den Vorlieferanten bereits jetzt ab.</li>
+  <li>Soweit im Rahmen der Leistungserbringung Software unter Open-Source-Lizenzen (z.&nbsp;B. MIT, Apache&nbsp;2.0, AGPL-3.0) eingesetzt wird, weist der Anbieter den Kunden auf die jeweils geltenden Lizenzbedingungen hin. Eine Haftung für die fortwährende Verfügbarkeit, Wartung oder Lizenz-Konformität der eingesetzten Open-Source-Komponenten durch deren Urheber wird nicht übernommen.</li>
+</ol>
+
+<h2 class="par"><span class="par-num">§ 3</span>Preise, Vergütung, Zahlungsbedingungen</h2>
+<ol class="legal">
+  <li>Sämtliche Preise und Pauschalen verstehen sich zuzüglich der jeweils geltenden gesetzlichen Umsatzsteuer.</li>
+  <li>Vereinbarte Vergütungen für Einzel- bzw. Einmalleistungen sind nach Leistungserbringung und Zugang einer ordnungsgemäßen Rechnung zur Zahlung fällig, sofern keine abweichenden Vereinbarungen im Einzelfall getroffen werden. Die vereinbarte Vergütung für Dauerleistungen ist monatlich nach Leistungserbringung und Zugang einer ordnungsgemäßen Rechnung zur Zahlung fällig, sofern keine abweichenden Vereinbarungen im Einzelfall getroffen werden.</li>
+  <li>Der Anbieter ist berechtigt, noch ausstehende Leistungen nur gegen Vorauszahlung oder Sicherheitsleistung zu erbringen, wenn dem Anbieter nach Abschluss des Vertrages Umstände bekannt werden, welche die Kreditwürdigkeit des Kunden wesentlich zu mindern geeignet sind und durch welche die Bezahlung der offenen Forderungen des Anbieters durch den Kunden aus dem jeweiligen Vertragsverhältnis gefährdet wird.</li>
+  <li>Soweit nach dem jeweiligen Vertrag oder diesen AGB Leistungen bzw. Sonder- oder Mehraufwände des Anbieters nach Stundensatz vergütet werden, beträgt dieser <strong>120&nbsp;€ zzgl. MwSt.</strong>, sofern nicht hiervon abweichend ein anderer Stundensatz vereinbart wurde. Hiervon unberührt bleibt unentgeltlicher Mehraufwand im Rahmen der Gewährleistungspflichten. Die Stundenvergütung wird in Zeiteinheiten von angefangenen 1/12&nbsp;Stunden (5&nbsp;Minuten) abgerechnet.</li>
+  <li>Die Aufrechnung ist dem Kunden nur mit unbestrittenen oder rechtskräftig festgestellten Gegenforderungen erlaubt. Der vorstehende Satz gilt nicht, wenn mit einem Anspruch, der auf einer mangelhaften Leistung des Anbieters beruht, gegen dessen Vergütungsanspruch aufgerechnet wird. Ein Zurückbehaltungsrecht kann der Kunde nur geltend machen, wenn es auf demselben Vertragsverhältnis beruht.</li>
+  <li>Forderungen gegenüber dem Anbieter können nur mit Zustimmung des Anbieters an Dritte abgetreten werden. Die Vorschrift des § 354a HGB bleibt hiervon unberührt.</li>
+  <li>Der Kunde gerät ohne das Erfordernis einer zusätzlichen Mahnung bei Ablauf von 4&nbsp;Wochen ab Rechnungszugang gemäß §&nbsp;286&nbsp;Abs.&nbsp;2 BGB in Zahlungsverzug. Der Anbieter ist für diesen Fall berechtigt, die Vertragsleistungen bis zum Rechnungsausgleich zurückzuhalten. Das Recht zur Zugangssperrung besteht als milderes Mittel auch dann, wenn der Anbieter ein Recht zur außerordentlichen Kündigung hat. Die Regelung des §&nbsp;320&nbsp;Abs.&nbsp;2 BGB sowie die Geltendmachung weitergehender verzugsbedingter Ansprüche bleiben unberührt.</li>
+</ol>
+
+<h2 class="par"><span class="par-num">§ 4</span>Termine, Fälligkeiten</h2>
+<ol class="legal">
+  <li>Es gelten grundsätzlich nur die in Schrift- oder Textform vertraglich vereinbarten Termine für die Leistungen und Lieferungen des Anbieters.</li>
+  <li>Termine für die Erbringung von Leistungen begründen nur dann die Fälligkeit der Leistungen, wenn dies ausdrücklich so bestimmt wird. Ansonsten handelt es sich lediglich um Zieltermine, welche im Rahmen des Projektmanagements fortentwickelt werden. Bei Zielterminen darf der Kunde nach deren Ablauf die Erbringung der ausstehenden Leistungen unter angemessener Fristsetzung schriftlich anfordern; mit Ablauf dieser Frist ist der Anspruch des Kunden auf diese Leistung fällig.</li>
+  <li>Vereinbarte Termine nach Ziffer&nbsp;(2) begründen im Zweifelsfall lediglich die Fälligkeit der Vertragsleistungen/-lieferungen und stellen somit weder relative Fixschulden i.&nbsp;S.&nbsp;d. §&nbsp;323&nbsp;Abs.&nbsp;2&nbsp;Nr.&nbsp;2 BGB noch absolute Fixschulden des Anbieters dar, wenn dies nicht von den Parteien so vereinbart worden ist. Ferner ist die Überschreitung dieser Termine durch den Anbieter entgegen §&nbsp;286&nbsp;Abs.&nbsp;2&nbsp;Nr.&nbsp;1 BGB nur nach ordnungsgemäßer Mahnung verzugsbegründend.</li>
+  <li>Festgelegte Fertigstellungs- bzw. Liefertermine sind für den Anbieter nicht verbindlich, sofern diese aus Gründen nicht eingehalten werden können, die der Kunde allein oder überwiegend zu verantworten hat. Dies gilt insbesondere im Fall einer Verletzung der Mitwirkungsverpflichtungen des Kunden sowie bei der Umsetzung von Änderungswünschen des Kunden, die eine Anpassung des Zeitplanes erforderlich machen.</li>
+</ol>
+
+<h2 class="par"><span class="par-num">§ 5</span>Haftung und Schadensersatz des Anbieters</h2>
+<ol class="legal">
+  <li>Der Anbieter haftet nach den gesetzlichen Vorschriften uneingeschränkt für Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit, die auf einer vorsätzlichen oder fahrlässigen Pflichtverletzung oder einer vorsätzlichen oder fahrlässigen Pflichtverletzung seiner Erfüllungsgehilfen beruht.</li>
+  <li>Darüber hinaus haftet der Anbieter uneingeschränkt nach den gesetzlichen Vorschriften für sonstige Schäden, wenn diese auf der Verletzung einer wesentlichen Vertragspflicht beruhen. Dies ist der Fall, wenn sich die Pflichtverletzung auf eine Pflicht bezieht, deren Erfüllung den Vertrag prägt und die ordnungsgemäße Durchführung des Vertrages überhaupt erst ermöglicht und auf deren Einhaltung der Kunde üblicherweise vertrauen darf. Bei Verletzung einer wesentlichen Vertragspflicht ist die Haftung jedoch auf den vorhersehbaren, vertragstypischen Schaden begrenzt.</li>
+  <li>Der Anbieter haftet auch uneingeschränkt für das Fehlen oder den Wegfall einer zugesicherten Eigenschaft bzw. für die Nichteinhaltung einer Garantie sowie bei Ansprüchen nach dem Produkthaftungsgesetz.</li>
+  <li>Für alle übrigen Pflichtverletzungen haftet der Anbieter nur bei Vorsatz und grober Fahrlässigkeit. Dies gilt ausnahmslos für alle Schadensersatzansprüche, ohne Rücksicht auf deren Rechtsnatur, sowie für Aufwendungsersatzansprüche, welche anstelle eines Schadensersatzanspruchs geltend gemacht werden.</li>
+  <li>Für den Verlust von Daten und/oder Programmen haftet der Anbieter insoweit nicht, als der Schaden darauf beruht, dass es der Kunde unterlassen hat, Datensicherungen durchzuführen und dadurch sicherzustellen, dass verloren gegangene Daten mit vertretbarem Aufwand wiederhergestellt werden können.</li>
+  <li>Soweit die Schadensersatzhaftung nach vorstehenden Regelungen ausgeschlossen oder eingeschränkt ist, gilt dies auch im Hinblick auf die persönliche Schadensersatzhaftung der Angestellten, Arbeitnehmer, Mitarbeiter, Vertreter und Erfüllungsgehilfen des Anbieters.</li>
+  <li>Eine Umkehr der Beweislast ist mit den vorstehenden Regelungen nicht verbunden.</li>
+  <li>Inhaltlich-fachliche Fehler oder Auslassungen in KI-generierten Ergebnissen (sog. „Halluzinationen", fehlerhafte Klassifikationen, unvollständige Transkriptionen o.&nbsp;Ä.) sind systemimmanent und stellen für sich allein genommen keinen Mangel der vom Anbieter geschuldeten Werk- oder Dienstleistung dar, sofern die vereinbarten Qualitätsmaße (Akzeptanzkriterien) im Mittel eingehalten werden. Die fachliche Endkontrolle der erzeugten Inhalte obliegt dem Kunden.</li>
+</ol>
+
+<h2 class="par"><span class="par-num">§ 6</span>Nutzungsrechte an Kundeninhalten</h2>
+<p>Der Kunde räumt dem Anbieter die zur Vertragserfüllung erforderlichen Nutzungsrechte an den dem Anbieter überlassenen Daten, Inhalten und Medien ein. Zur Beseitigung von Störungen ist der Anbieter auch berechtigt, Änderungen an der Struktur der Daten oder dem Datenformat vorzunehmen. Der Kunde versichert, zur Nutzungsrechtseinräumung befugt zu sein. Wird der Anbieter wegen angeblicher Schutzrechtsverletzungen an diesen Inhalten von Dritten in Anspruch genommen, stellt ihn der Kunde von diesen Ansprüchen einschließlich der notwendigen Rechtsverfolgungskosten frei.</p>
+
+<h2 class="par"><span class="par-num">§ 7</span>Allgemeine Mitwirkungspflichten des Kunden</h2>
+<ol class="legal">
+  <li>Der Kunde ist verpflichtet, den Anbieter mit angemessenem und zumutbarem Aufwand bei dessen Leistungserbringung zu unterstützen, soweit die Mitwirkung des Kunden für die verzögerungs- und mangelfreie Durchführung des Vertrages erforderlich oder zweckmäßig ist. Bei sämtlichen Mitwirkungspflichten des Kunden handelt es sich um echte Pflichten des Kunden.</li>
+  <li>Der Kunde hat dem Anbieter Störungen und Mängel der Vertragsleistungen unverzüglich anzuzeigen und den Anbieter bei der Feststellung der Ursachen sowie bei deren Beseitigung in zumutbarem Umfang zu unterstützen sowie alle zumutbaren Maßnahmen zur Verhütung und Minderung von Schäden zu treffen.</li>
+  <li>Sofern der Anbieter dem Kunden Vorschläge, Entwürfe, Testversionen oder Ähnliches zur Verfügung stellt, wird der Kunde im Rahmen des Zumutbaren eine schnelle und sorgfältige Prüfung vornehmen. Beanstandungen und Änderungswünsche wird der Kunde dem Anbieter jeweils unverzüglich mitteilen.</li>
+  <li>Soweit Testläufe oder Abnahmetests, Präsentationen oder andere Zusammenkünfte notwendig oder zweckmäßig werden, wird der Kunde sachkundige Mitarbeiter zur Teilnahme an den Zusammenkünften abstellen, die bevollmächtigt sind, alle notwendigen oder zweckmäßigen Entscheidungen zu treffen.</li>
+  <li>Der Kunde trifft angemessene Vorkehrungen zur Datensicherung, damit die Daten bei Softwarefehlern oder -ausfällen mit vertretbarem Aufwand wieder reproduziert werden können.</li>
+  <li>Ist der Anbieter der Ansicht, dass der Kunde eine ihm obliegende Mitwirkungs- oder Beistellleistung nicht vertragsgemäß erbringt, wird der Anbieter den Kunden hierauf unverzüglich hinweisen und dem Kunden eine angemessene Nachfrist für die Erbringung der Mitwirkungs- oder Beistellleistung setzen; gegebenenfalls wird der Anbieter den Kunden auf etwaige nachteilige Folgen der nicht vertragsgemäßen Erbringung der Mitwirkungs- oder Beistellleistung im Rahmen der Nachfristsetzung hinweisen.</li>
+  <li>Solange Mitwirkungs- oder Beistellleistungen nicht vertragsgemäß erbracht sind, ist der Anbieter von seiner betreffenden Leistungspflicht ganz oder teilweise insoweit befreit, wie der Anbieter auf die jeweilige Mitwirkung oder Beistellung angewiesen ist. Der Anbieter ist nicht verantwortlich für Leistungsstörungen, die durch die nicht vertragsgemäße Erbringung von Mitwirkungs-/Beistellleistungen durch den Kunden entstehen.</li>
+  <li>Durch die nicht vertragsgemäße Erbringung der Mitwirkungs-/Beistellleistung entstehender Mehraufwand kann vom Anbieter gesondert in Rechnung gestellt werden. Ggf. weitergehende Ansprüche des Anbieters bleiben unberührt.</li>
+  <li>Sollte ein Projekt aufgrund der nicht vertragsgemäßen Erbringung der Mitwirkungs-/Beistellleistungen durch den Kunden um mehr als zehn Werktage unterbrochen werden, ist der Anbieter dazu berechtigt, dem Auftraggeber eine Abschlagszahlung in Rechnung zu stellen. Die Höhe der Abschlagszahlung richtet sich nach dem Wert der bereits erbrachten Leistungen des Anbieters entsprechend der Kalkulation.</li>
+</ol>
+
+<h2 class="par"><span class="par-num">§ 8</span>Besondere Mitwirkungspflichten des Kunden</h2>
+<ol class="legal">
+  <li>Der Kunde stellt – soweit nach der konkreten Leistung erforderlich – die für die Leistungserbringung notwendige Infrastruktur und Beistellungen zur Verfügung. Hierzu zählen je nach Leistungsumfang insbesondere:
+    <ol>
+      <li>Stellfläche, Stromversorgung und Netzwerkanschluss für eine vom Anbieter beigestellte lokale KI-Appliance,</li>
+      <li>Zugriff auf bestehende IT-Systeme des Kunden (z.&nbsp;B. E-Mail-Server, Dateiablagen, Branchensoftware) zum Zweck der Integration,</li>
+      <li>Bereitstellung von Beispiel- und Testdaten in geeigneter, datenschutzkonformer Form (anonymisiert oder pseudonymisiert),</li>
+      <li>Benennung jeweils einer fachlich und einer technisch verantwortlichen Ansprechperson.</li>
+    </ol>
+  </li>
+  <li>Soweit der Anbieter zu Einrichtungs-, Wartungs- oder Supportzwecken Fernzugriff auf Systeme des Kunden benötigt, richtet der Kunde diesen über eine gesicherte Verbindung (z.&nbsp;B. VPN, RDP, SSH) ein und stellt die erforderlichen Zugangsdaten und Zertifikate bereit. Sofern für die Nutzung des Fernzugriffs ein vom Kunden bereitgestelltes Endgerät erforderlich ist, stellt der Kunde dieses zur Verfügung.</li>
+  <li>Dem Anbieter wird auf dessen Anfordern der Kontakt zu internen Fachabteilungen, IT-Verantwortlichen oder externen Dienstleistern des Kunden hergestellt, soweit dies für die Leistungserbringung erforderlich ist.</li>
+</ol>
+
+<h2 class="par"><span class="par-num">§ 9</span>Datenschutzpflichten des Kunden</h2>
+<ol class="legal">
+  <li>Soweit der Kunde bei Inanspruchnahme der vertraglichen Leistungen die Verarbeitung personenbezogener Daten Dritter durchführt, garantiert er dem Anbieter, dass dies im Einklang mit allen in Betracht kommenden datenschutzrechtlichen Anforderungen und Vorschriften geschieht. Insbesondere hat er im Falle einer Datenübermittlung an den Anbieter bzw. einer sonstigen Datenverarbeitung durch diesen in eigener Verantwortung dafür Sorge zu tragen, dass die betroffenen Personen entweder in der gesetzlich vorgesehenen Art und Weise in die beabsichtigte Datenverarbeitung beim bzw. durch den Anbieter einwilligen oder die Datenverarbeitung anderweitig gesetzlich zulässig ist (vgl. etwa Art.&nbsp;6&nbsp;ff. DSGVO) und dass dem Anbieter – sofern nötig – ein ordnungsgemäßer Auftrag zur Auftragsverarbeitung gemäß Art.&nbsp;28&nbsp;Abs.&nbsp;3 DSGVO durch den Kunden erteilt wird.</li>
+  <li>Soweit Leistungen des Anbieters die Verarbeitung personenbezogener Daten durch den Anbieter im Auftrag des Kunden erfordern, schließen die Parteien vor Beginn der entsprechenden Verarbeitung einen gesonderten Auftragsverarbeitungsvertrag i.&nbsp;S.&nbsp;d. Art.&nbsp;28 DSGVO. Bis zum wirksamen Abschluss eines solchen Vertrages findet eine produktive Verarbeitung personenbezogener Daten durch den Anbieter nicht statt.</li>
+  <li>Soweit im Rahmen der Auftragsdatenverarbeitung vom Kunden erteilte Weisungen mit den Haupt- oder Nebenpflichten der Parteien aus diesem Vertrag kollidieren und dadurch der Anbieter seine Leistungen nicht bzw. nur eingeschränkt erbringen kann oder ihm daraus wirtschaftliche Nachteile entstehen, geht dies zu Lasten des Kunden.</li>
+  <li>Der Kunde stellt den Anbieter im Falle einer schuldhaften Verletzung dieser Pflichten von allen Ansprüchen Dritter einschließlich notwendiger Rechtsverfolgungskosten frei, die diese aufgrund der Pflichtverletzung gegen den Anbieter geltend machen könnten.</li>
+</ol>
+
+<h2 class="par"><span class="par-num">§ 10</span>Kooperations- und Geheimhaltungspflichten der Parteien</h2>
+<p>Die Parteien werden sich wechselseitig alle zur Vertragserfüllung notwendigen Informationen und Unterlagen zur Verfügung stellen. Die Parteien verpflichten sich, alle im Rahmen dieses Vertrages zur Verfügung gestellten oder erstellten Unterlagen ordnungsgemäß aufzubewahren und vor Einsichtnahme Dritter zu schützen. Sie verpflichten sich, sämtliche im Rahmen der Zusammenarbeit erhaltenen Informationen und Dokumente, gleich welcher Art, streng vertraulich zu behandeln und nur im Rahmen des Vertragszwecks zu verwenden. Die Vertraulichkeitsverpflichtung besteht für die Dauer von drei Jahren nach Beendigung des jeweiligen Vertrages fort.</p>
+
+<h2 class="par"><span class="par-num">§ 11</span>Schlussbestimmungen</h2>
+<ol class="legal">
+  <li>Alle Änderungen und Ergänzungen der Verträge zwischen den Parteien bedürfen der Textform. Dies gilt ebenso für die Aufhebung dieses Textformerfordernisses.</li>
+  <li>Sollten einzelne Regelungen des Vertrages oder dieser Allgemeinen Geschäftsbedingungen unwirksam sein oder werden, wird die Wirksamkeit im Übrigen nicht betroffen. Die Parteien verpflichten sich, an der Vereinbarung einer Regelung mitzuwirken, die den wirtschaftlichen Zweck der unwirksamen Regelung möglichst weitgehend zur Geltung bringt und diese ersetzt.</li>
+  <li>Es gilt ausschließlich das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts.</li>
+  <li>Ist der Kunde ein Kaufmann, eine juristische Person des öffentlichen Rechts oder ein öffentlich-rechtliches Sondervermögen oder hat er in der Bundesrepublik Deutschland keinen allgemeinen Gerichtsstand, so ist Gerichtsstand für alle etwaigen Streitigkeiten aus der Geschäftsbeziehung zwischen dem Anbieter und dem Kunden nach Wahl des Anbieters <strong>Dresden</strong> oder der Sitz des Kunden. Für Klagen gegen den Anbieter ist in diesen Fällen <strong>Dresden</strong> ausschließlicher Gerichtsstand. Zwingende gesetzliche Bestimmungen über ausschließliche Gerichtsstände bleiben von dieser Regelung unberührt.</li>
+</ol>
+
+
+<!-- ════════════════════════════════════════════
+     TEIL B — WERKLEISTUNGEN
+     ════════════════════════════════════════════ -->
+<h1 class="teil"><span class="label">Teil B</span>Werkleistungen: Einrichtung lokaler KI-Lösungen und Automatisierungen</h1>
+
+<h2 class="par"><span class="par-num">§ 1</span>Geltungsbereich</h2>
+<p>Die nachfolgenden Bedingungen gelten ausschließlich für werkvertragliche Einzelleistungen des Anbieters, insbesondere die Planung, Installation, Konfiguration und Integration lokaler KI-Lösungen, Workflow-Automatisierungen und damit verbundener Software-Werke (siehe Leistungsbeschreibung).</p>
+
+<h2 class="par"><span class="par-num">§ 2</span>Abnahme</h2>
+<ol class="legal">
+  <li>Hat der Anbieter die vertraglich vereinbarten Leistungen vollständig erbracht, stellt er diese dem Kunden zur Überprüfung und Abnahme zur Verfügung.</li>
+  <li>Die Abnahme setzt eine erfolgreiche Funktionsprüfung durch den Kunden voraus. Maßstab der Funktionsprüfung sind die im Vertrag bzw. der Leistungsbeschreibung definierten Akzeptanzkriterien. Die Funktionsprüfung beginnt, sobald der Anbieter dem Kunden die Leistungen zur Verfügung gestellt und die Funktionsfähigkeit mitgeteilt hat. Der Prüfungszeitraum beträgt zwei Wochen, soweit nichts Abweichendes vertraglich geregelt ist. Stellt der Kunde während der Funktionsprüfung nicht nur unwesentliche Mängel fest, hat er diese unverzüglich dem Anbieter zu melden. Die Funktionsprüfung gilt als erfolgreich durchgeführt, wenn die Leistungen in allen wesentlichen Punkten die vertraglich vorgesehenen Anforderungen bzw. Akzeptanzkriterien erfüllen.</li>
+  <li>Nach Ende der Funktionsprüfung ist der Kunde verpflichtet, entweder unverzüglich die Abnahme zu erklären oder die Abnahme unter Angabe wenigstens eines nicht nur unwesentlichen Mangels zu verweigern. Der/die Mängel sind dabei hinreichend konkret zu beschreiben.</li>
+  <li>Hat der Kunde die Abnahme nicht unverzüglich nach Ablauf der Prüfungszeit erklärt bzw. verweigert, so setzt ihm der Anbieter eine angemessene Abnahmefrist. Die Leistungen gelten als abgenommen, wenn der Kunde die Abnahme nicht innerhalb dieser Frist unter Angabe mindestens eines Mangels verweigert.</li>
+  <li>Teilabnahmen finden nur statt, wenn sie ausdrücklich vereinbart sind.</li>
+</ol>
+
+<h2 class="par"><span class="par-num">§ 3</span>Gewährleistung / Mängel</h2>
+<ol class="legal">
+  <li>Soweit für die Leistungen des Anbieters Werkvertragsrecht Anwendung findet, haftet der Anbieter für Mängel nach Maßgabe der geltenden gesetzlichen Gewährleistungsbestimmungen, soweit nachfolgend keine abweichenden Regelungen getroffen werden.</li>
+  <li>Der Kunde hat die Leistungen des Anbieters unverzüglich nach der Ablieferung durch den Anbieter, soweit dies nach ordnungsgemäßem Geschäftsgang tunlich ist, zu untersuchen. Bei der Untersuchung erkennbare Mängel sind unverzüglich zu rügen. Bei der Untersuchung nicht erkennbare oder später auftretende (z.&nbsp;B. bei Dauerleistungen) Mängel sind unverzüglich nach Entdeckung zu rügen. Die Rüge hat in Textform zu erfolgen.</li>
+  <li>Das Wahlrecht, ob die Nacherfüllung durch Beseitigung des Mangels oder Lieferung einer mangelfreien Sache erfolgt, steht dem Anbieter zu.</li>
+  <li>Soweit der Kunde ohne Zustimmung des Anbieters Änderungen an den Leistungen des Anbieters durchführt oder durch Dritte durchführen lässt, ohne dass dies wegen Verzugs des Anbieters und des ergebnislosen Ablaufs einer vom Kunden gesetzten Nachfrist oder aus anderen Gründen erforderlich ist, um eine vertragsgemäße Nutzung zu ermöglichen, bleibt der Anbieter nur zur Beseitigung der von diesen Änderungen nicht betroffenen Mängel verpflichtet. Mehraufwand, der durch die vom Kunden gemäß Satz&nbsp;1 einseitig vorgenommenen Änderungen (mit-)verursacht worden ist, hat der Kunde zu tragen.</li>
+  <li>Mängelansprüche verjähren in zwölf Monaten. Hiervon ausgenommen sind auf Mängeln beruhende Schadensersatzansprüche gegen den Anbieter, dessen gesetzliche Vertreter oder Erfüllungsgehilfen für Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit, auf Vorsatz oder grober Fahrlässigkeit beruhende Schadensersatzansprüche, für Ansprüche nach dem Produkthaftungsgesetz oder aufgrund von Garantien sowie für Ansprüche wegen der Verletzung vertragswesentlicher Pflichten.</li>
+  <li>Der Kunde stellt dem Anbieter auf Anforderung in zumutbarem Umfang Unterlagen und Informationen zur Verfügung, die dieser zur Beurteilung und Beseitigung von Mängeln benötigt.</li>
+  <li>Sofern ein behaupteter Mangel nach entsprechender Untersuchung nicht einer Mängelhaftungsverpflichtung des Anbieters zuzuordnen ist und der Kunde dies hätte erkennen können, kann der Kunde mit den für die Verifizierung und Fehlerbehebung entstandenen Aufwendungen des Anbieters zu den jeweils gültigen Vergütungssätzen belastet werden.</li>
+</ol>
+
+<h2 class="par"><span class="par-num">§ 4</span>Nutzungsrechte am Werk</h2>
+<ol class="legal">
+  <li>An sämtlichen vom Anbieter im Rahmen der Werkleistungen erstellten und an den Kunden übergebenen Arbeitsergebnissen (insbesondere Konfigurationen, Workflow-Definitionen, Prompts, Skripte und Dokumentation; i.&nbsp;F. „Werk") behält der Anbieter die zugrundeliegenden Urheber- und sonstigen Schutzrechte.</li>
+  <li>Der Kunde erhält mit vollständiger Bezahlung der vereinbarten Vergütung ein <strong>einfaches, nicht ausschließliches, zeitlich und räumlich unbegrenztes, nicht übertragbares</strong> Nutzungsrecht am Werk für den eigenen Geschäftsbetrieb.</li>
+  <li>Der Kunde darf das Werk für eigene Zwecke <strong>erweitern, anpassen und durch Dritte anpassen lassen</strong>. Dies gilt insbesondere für die Einbindung des Werks in neue Prozesse, die Anpassung an veränderte Eingabeformate, das Hinzufügen weiterer Verarbeitungsschritte und die Pflege durch interne oder externe IT-Dienstleister des Kunden.</li>
+  <li>Nicht gestattet ist die <strong>Weiterveräußerung, entgeltliche oder unentgeltliche Weitergabe, Unterlizenzierung, Vermietung, Bereitstellung als Software-as-a-Service für Dritte oder das Anbieten als eigenes Produkt</strong>. Untersagt ist insbesondere die Verwertung des Werks oder wesentlicher Bestandteile davon im Rahmen entgeltlicher Leistungen des Kunden gegenüber Dritten, soweit diese Leistungen mit den Leistungen des Anbieters in unmittelbarem Wettbewerb stehen.</li>
+  <li>Eine über Abs.&nbsp;4 hinausgehende Nutzung bedarf der vorherigen Zustimmung des Anbieters in Textform. Der Anbieter wird die Zustimmung nicht ohne sachlichen Grund verweigern; sie kann von einer angemessenen zusätzlichen Vergütung abhängig gemacht werden.</li>
+  <li>Die vorstehenden Regelungen gelten entsprechend für Folge- und Erweiterungsleistungen, die der Anbieter dem Kunden im Rahmen der Betreuung oder als separat beauftragte Werkleistungen zur Verfügung stellt.</li>
+</ol>
+
+<h2 class="par"><span class="par-num">§ 5</span>Freie Kündigung nach § 648 BGB</h2>
+<p>Kündigt der Kunde den Vertrag nach §&nbsp;648 BGB, kann der Anbieter nach seiner Wahl entweder die ihm nach §&nbsp;648&nbsp;S.&nbsp;2 BGB zustehenden Vergütungsansprüche geltend machen oder an ihrer Stelle die für den bis zur Kündigung erbrachten Teil der Leistungen geschuldete Vergütung (Alternative). Eine Anrechnung ersparter Aufwendungen oder des unterlassenen Erwerbs im Sinne des §&nbsp;648&nbsp;S.&nbsp;2 2.&nbsp;HS BGB findet im Fall der Alternative nicht statt.</p>
+
+
+<!-- ════════════════════════════════════════════
+     TEIL C — DAUERDIENSTLEISTUNGEN
+     ════════════════════════════════════════════ -->
+<h1 class="teil"><span class="label">Teil C</span>Dauerdienstleistungen (Betreuung, Pflege, Optimierung)</h1>
+
+<h2 class="par"><span class="par-num">§ 1</span>Geltungsbereich</h2>
+<p>Die nachfolgenden Bedingungen gelten ausschließlich für Beratungs-, Optimierungs-, Pflege- und Überwachungsleistungen des Anbieters im Zusammenhang mit beim Kunden eingerichteten lokalen KI-Lösungen und Workflow-Automatisierungen sowie für sonstige damit zusammenhängende Dauerdienstleistungen.</p>
+
+<h2 class="par"><span class="par-num">§ 2</span>Leistungsgegenstand</h2>
+<p>Der Anbieter erbringt die Leistungen als dienstvertragliche Leistung im eigenen fachlichen, qualitativen und quantitativen Ermessen nach besten Bemühen im Mindestmaß mittlerer Art und Güte i.&nbsp;S.&nbsp;d. §§&nbsp;611&nbsp;ff. BGB. Ein konkreter dem Werkvertragsrecht unterfallender Erfolg ist nicht geschuldet.</p>
+
+<h2 class="par"><span class="par-num">§ 3</span>Leistungsort</h2>
+<p>Soweit eine Durchführung der Leistungen in den Geschäftsräumen des Kunden nicht erforderlich ist, ist der Anbieter in der Auswahl des Leistungsortes frei. Die Wartung und Betreuung erfolgt regelmäßig über die vom Kunden eingerichtete Fernzugriffsverbindung (vgl. Teil&nbsp;A §&nbsp;8 Abs.&nbsp;2).</p>
+
+<h2 class="par"><span class="par-num">§ 4</span>Anpassung der Vergütung</h2>
+<p>Der Anbieter behält es sich vor, das monatliche Nutzungsentgelt nach Ablauf von einem Vertragsjahr nach billigem Ermessen (§&nbsp;315 BGB) angemessen, höchstens aber um 10&nbsp;%, zu erhöhen. Die vorstehende Gebührenerhöhung ist nur im Falle steigender Kosten für die Leistungserbringung durch den Anbieter gerechtfertigt. Die beabsichtigte Erhöhung ist dem Kunden unter Beachtung einer Frist von 2&nbsp;Monaten bis zu ihrem Inkrafttreten anzuzeigen. Der Kunde erhält das Recht, den Vertrag auf den Zeitpunkt der Entgelterhöhung außerordentlich zu kündigen. Weitere Entgelterhöhungen dürfen frühestens nach Ablauf von zwei Jahren seit der letzten Erhöhung erfolgen. Sinken die nach Satz&nbsp;2 genannten Kosten, kann der Kunde eine den sinkenden Kosten entsprechende Preissenkung verlangen.</p>
+
+<h2 class="par"><span class="par-num">§ 5</span>Qualitative Leistungsstörungen</h2>
+<ol class="legal">
+  <li>Der Kunde hat den Anbieter unverzüglich schriftlich oder in Textform zu informieren, wenn er erkennt, dass eine Leistung des Anbieters nicht vertragsgemäß erbracht worden ist. Er hat dabei die nicht vertragsgemäße Leistungserbringung gegenüber dem Anbieter so detailliert wie möglich zu spezifizieren.</li>
+  <li>Soweit der Kunde seiner Informationspflicht gemäß Abs.&nbsp;1 nachgekommen ist, ist der Anbieter zunächst berechtigt und verpflichtet, die betroffene Leistung ohne Mehrkosten für den Kunden innerhalb einer angemessenen Frist vertragsgemäß zu erbringen, sofern diese Nachholung der Leistung möglich und sinnvoll ist (Nacherfüllung). Der Anbieter ist zur Nacherfüllung nicht verpflichtet, soweit die nicht vertragsgemäße Leistungserbringung nicht durch ihn zu vertreten ist; die Vermutungswirkung des §&nbsp;280&nbsp;Abs.&nbsp;1 S.&nbsp;2 BGB findet (entsprechende) Anwendung.</li>
+  <li>Soweit eine Nacherfüllung einer vom Anbieter zu vertretenden nicht vertragsgemäßen Leistungserbringung nicht möglich ist oder aus vom Anbieter zu vertretenden Gründen auch innerhalb einer vom Kunden gesetzten angemessenen Nachfrist in wesentlichen Teilen nicht gelingt, ist der Kunde berechtigt, den Vertrag aus wichtigem Grund fristlos zu kündigen. In diesem Fall hat der Anbieter Anspruch auf die Vergütung für die bis zum Wirksamwerden der Kündigung erbrachten Leistungen. Der Anspruch auf Vergütung aus vorstehendem Satz&nbsp;2 entfällt jedoch für solche Leistungen, die für den Kunden infolge der Kündigung ohne Interesse sind. Der Kunde hat dem Anbieter binnen zwei Wochen nach Zugang der Kündigung substantiiert schriftlich darzulegen, auf welche Leistungen dies zutrifft.</li>
+  <li>Weitergehende Ansprüche wegen qualitativer Leistungsstörungen sind ausgeschlossen. Dieser Ausschluss gilt nicht für Schadensersatzansprüche, bezüglich derer gemäß Teil&nbsp;A §&nbsp;5 die Haftung nicht ausgeschlossen oder eingeschränkt werden kann.</li>
+  <li>Die Ansprüche wegen qualitativer Leistungsstörungen verjähren nach einem Jahr ab dem gesetzlichen Verjährungsbeginn. Dies gilt nicht für Schadensersatzansprüche, bezüglich derer gemäß Teil&nbsp;A §&nbsp;5 die Haftung nicht ausgeschlossen oder eingeschränkt werden kann.</li>
+</ol>
+
+<h2 class="par"><span class="par-num">§ 6</span>Kündigung und Laufzeiten</h2>
+<ol class="legal">
+  <li>Für die Wirksamkeit von Kündigungserklärungen genügt die Textform.</li>
+  <li>Bei Dauerleistungen beträgt die Mindestvertragslaufzeit 6&nbsp;Monate, wenn nicht die Parteien eine abweichende Laufzeit vereinbart haben. Der Vertrag ist dann für beide Parteien mit einer Frist von einem Monat zum Ende der Vertragslaufzeit ordentlich kündbar. Wird der Vertrag nicht fristgemäß gekündigt, verlängert er sich jeweils um 6&nbsp;Monate. Das Recht zur außerordentlichen Kündigung aus wichtigem Grund oder etwaige nach diesem Vertrag oder nach dem Gesetz bestehende Sonderkündigungsrechte bleiben unberührt.</li>
+  <li>Die Parteien sind ungeachtet sonstiger vertraglicher oder gesetzlicher Rücktrittsrechte zur außerordentlichen Kündigung aus wichtigem Grund berechtigt. Vor einer solchen Kündigung hat die kündigende Vertragspartei innerhalb eines Zeitraums von zwei Wochen, nachdem ihr der wichtige Grund bekannt wurde, zunächst erfolglos schriftlich eine Abhilfefrist zu setzen oder die andere Vertragspartei schriftlich abzumahnen.</li>
+</ol>
+
+
+<!-- ════════════════════════════════════════════
+     TEIL D — PROOF OF CONCEPT
+     ════════════════════════════════════════════ -->
+<h1 class="teil"><span class="label">Teil D</span>Proof of Concept (PoC) für KI-Workflows</h1>
+
+<h2 class="par"><span class="par-num">§ 1</span>Geltungsbereich und Charakter des PoC</h2>
+<ol class="legal">
+  <li>Die nachfolgenden Bedingungen gelten ausschließlich für werkvertragliche Einzelleistungen des Anbieters in Form eines Proof of Concept (PoC) zum Aufbau und zur Demonstration eines lokalen KI-Workflows auf einer beim Anbieter betriebenen Entwicklungsumgebung.</li>
+  <li>Der PoC dient ausschließlich dem Nachweis der grundsätzlichen technischen und fachlichen Tragfähigkeit eines Workflows anhand vom Kunden beigestellter, anonymisierter oder pseudonymisierter Beispieldaten. Er stellt keinen produktiven Betrieb und keine produktive Verarbeitung personenbezogener Echtdaten dar.</li>
+  <li>Eine darüberhinausgehende Nutzung des PoC-Aufbaus durch den Kunden – insbesondere die produktive Verarbeitung personenbezogener Daten oder geschäftskritischer Inhalte – ist nicht Gegenstand des PoC und vom Anbieter ausdrücklich nicht geschuldet.</li>
+</ol>
+
+<h2 class="par"><span class="par-num">§ 2</span>Akzeptanzkriterien und Abnahme des PoC</h2>
+<ol class="legal">
+  <li>Vor Beginn der Aufbauarbeiten werden im Rahmen des Anforderungs-Workshops gemeinsam zwischen Anbieter und Kunde objektive, messbare Akzeptanzkriterien für den PoC festgelegt. Die Akzeptanzkriterien sind in Textform zu dokumentieren und werden Vertragsbestandteil.</li>
+  <li>Die Akzeptanzkriterien sind so zu fassen, dass sie an einer endlichen, vor PoC-Beginn vereinbarten Menge von Test-Inputs des Kunden überprüfbar sind. Subjektive Gefallenskriterien („Zufriedenheit" o.&nbsp;Ä.) sind keine zulässigen Akzeptanzkriterien.</li>
+  <li>Im Rahmen des PoC ist eine Iterationsschleife enthalten. Erfüllt der erstmalige Aufbau die Akzeptanzkriterien noch nicht, arbeitet der Anbieter ein vom Kunden innerhalb von 10&nbsp;Werktagen nach erster Demonstration in Textform übermitteltes Feedback in einer Überarbeitung ein.</li>
+  <li>Im Abschluss-Termin wird der PoC anhand der vereinbarten Test-Inputs gemeinsam auf Einhaltung der Akzeptanzkriterien überprüft. Werden diese in allen wesentlichen Punkten erreicht, gilt der PoC als abgenommen.</li>
+  <li>Werden die Akzeptanzkriterien auch nach der Iterationsschleife in wesentlichen Punkten nicht erreicht, vereinbaren die Parteien zunächst eine zweite Nachbesserung. Bleibt auch diese ergebnislos und liegen die Ursachen überwiegend im Verantwortungsbereich des Anbieters, kann der Kunde den auf den Aufbau entfallenden Anteil der Vergütung (1.150&nbsp;€ netto) zurückverlangen; der Anteil für den durchgeführten Workshop und die erstellten Erkenntnisse (750&nbsp;€ netto) verbleibt beim Anbieter, da er dem Kunden unabhängig vom technischen Ergebnis Erkenntniswert liefert.</li>
+</ol>
+
+<h2 class="par"><span class="par-num">§ 3</span>Mitwirkung des Kunden im PoC</h2>
+<ol class="legal">
+  <li>Über die allgemeinen Mitwirkungspflichten nach Teil&nbsp;A §§&nbsp;7 und 8 hinaus stellt der Kunde im PoC insbesondere bereit:
+    <ol>
+      <li>einen fachlichen Ansprechpartner mit Entscheidungsbefugnis für die Definition und Freigabe der Akzeptanzkriterien,</li>
+      <li>eine im Workshop konkret zu vereinbarende Menge anonymisierter oder pseudonymisierter Beispiel-Eingangsdaten,</li>
+      <li>eine vergleichbare Menge bestehender, von ihm als „guter Output" akzeptierter Soll-Vorlagen (Referenz-Outputs) zur Kalibrierung,</li>
+      <li>zeitnahes Feedback (in Textform, innerhalb von 10&nbsp;Werktagen nach Erst-Demonstration) zur Iterationsschleife.</li>
+    </ol>
+  </li>
+  <li>Verzögerungen oder Lücken in den Beistellungen nach Abs.&nbsp;1 verschieben den Zeitplan und die Fristen des PoC entsprechend; insoweit gilt Teil&nbsp;A §&nbsp;7 Abs.&nbsp;6 bis 9 ergänzend.</li>
+</ol>
+
+<h2 class="par"><span class="par-num">§ 4</span>Daten und Vertraulichkeit im PoC</h2>
+<ol class="legal">
+  <li>Der Anbieter verarbeitet im PoC ausschließlich die vom Kunden ausdrücklich für PoC-Zwecke beigestellten Beispieldaten. Eine darüberhinausgehende Datenverarbeitung findet nicht statt.</li>
+  <li>Der Kunde stellt sicher, dass die übermittelten Beispieldaten entweder vollständig anonymisiert sind oder, soweit eine Pseudonymisierung erfolgt, keine besonderen Kategorien personenbezogener Daten i.&nbsp;S.&nbsp;d. Art.&nbsp;9 DSGVO und keine geschäftskritischen Geheimnisse Dritter ohne deren Zustimmung enthalten.</li>
+  <li>Eine produktive Verarbeitung personenbezogener Echtdaten durch den Anbieter im PoC findet nur statt, wenn vor Beginn der Verarbeitung ein gesonderter Auftragsverarbeitungsvertrag gemäß Art.&nbsp;28 DSGVO geschlossen wurde.</li>
+  <li>Die vom Kunden beigestellten Beispieldaten werden vom Anbieter ausschließlich für die Durchführung des PoC und – im Fall einer anschließenden Vollausrollung – zur Übertragung der Konfiguration in den Produktivbetrieb verwendet. Werden keine Anschlussleistungen beauftragt, löscht der Anbieter die Beispieldaten spätestens 30&nbsp;Tage nach Abnahme bzw. Abbruch des PoC nachweislich und unwiderruflich.</li>
+  <li>Im Übrigen gilt die Vertraulichkeitsregelung des Teil&nbsp;A §&nbsp;10 ergänzend.</li>
+</ol>
+
+<h2 class="par"><span class="par-num">§ 5</span>Anrechenbarkeit auf eine Vollausrollung</h2>
+<ol class="legal">
+  <li>Bei Beauftragung einer Vollausrollung im Sinne des Angebots des Anbieters innerhalb von 90&nbsp;Kalendertagen nach Abnahme oder Abbruch des PoC wird der für den PoC vereinbarte Festpreis zu 100&nbsp;% auf die einmalige Ersteinrichtung der Vollausrollung angerechnet.</li>
+  <li>Maßgeblich für die Wahrung der Frist nach Abs.&nbsp;1 ist der Zugang der durch den Kunden unterzeichneten Beauftragung beim Anbieter.</li>
+  <li>Nach Ablauf der Frist nach Abs.&nbsp;1 entfällt die Anrechenbarkeit. Eine spätere Beauftragung der Vollausrollung erfolgt zum dann gültigen Listenpreis ohne Anrechnung.</li>
+</ol>
+
+<h2 class="par"><span class="par-num">§ 6</span>Nutzungsrechte am PoC-Ergebnis</h2>
+<ol class="legal">
+  <li>Sämtliche im Rahmen des PoC erstellten Konfigurationen, Workflow-Definitionen, Prompts und sonstigen Bauteile (i.&nbsp;F. „PoC-Ergebnis") verbleiben urheberrechtlich beim Anbieter.</li>
+  <li>Der Kunde erhält am PoC-Ergebnis ein einfaches, nicht übertragbares, zeitlich unbegrenztes Nutzungsrecht für interne Evaluations- und Entscheidungszwecke. Eine produktive Nutzung des PoC-Ergebnisses durch den Kunden ohne anschließende Beauftragung der Vollausrollung ist nicht gestattet.</li>
+  <li>Mit Beauftragung und vollständiger Bezahlung der Vollausrollung erhält der Kunde an dem für die produktive Einrichtung verwendeten Workflow die Nutzungsrechte nach Teil&nbsp;B §&nbsp;4 (einfaches, nicht ausschließliches, zeitlich und räumlich unbegrenztes, nicht übertragbares Nutzungsrecht für den eigenen Geschäftsbetrieb; Erweiterung und Anpassung gestattet, Weiterveräußerung und Bereitstellung gegenüber Dritten untersagt).</li>
+</ol>
+
+<h2 class="par"><span class="par-num">§ 7</span>Betriebsdauer und Beendigung des PoC</h2>
+<ol class="legal">
+  <li>Der PoC wird auf der Entwicklungsumgebung des Anbieters für den Zeitraum betrieben, der für Aufbau, Iteration und Abnahme erforderlich ist, längstens jedoch für 8&nbsp;Wochen ab erstmaliger Inbetriebnahme bei dem Anbieter. Eine Verlängerung kann gesondert in Textform vereinbart werden.</li>
+  <li>Nach Abnahme bzw. Abbruch des PoC fährt der Anbieter den PoC-Betrieb in einem angemessenen Zeitraum geordnet herunter und löscht die Beispieldaten gemäß §&nbsp;4 Abs.&nbsp;4.</li>
+  <li>Eine darüberhinausgehende Verfügbarkeit des PoC-Aufbaus für den Kunden ist nicht geschuldet.</li>
+</ol>
+
+<h2 class="par"><span class="par-num">§ 8</span>Haftung im PoC</h2>
+<ol class="legal">
+  <li>Es gilt die Haftungsregelung des Teil&nbsp;A §&nbsp;5.</li>
+  <li>Aufgrund des Demonstrationscharakters und der fehlenden Eignung des PoC für den Produktivbetrieb haftet der Anbieter nicht für Schäden, die dem Kunden oder Dritten aus einer entgegen §&nbsp;1 Abs.&nbsp;3 und §&nbsp;6 Abs.&nbsp;2 erfolgten produktiven Nutzung des PoC-Aufbaus oder des PoC-Ergebnisses entstehen.</li>
+</ol>
+
+<p style="margin-top: 8mm; font-size: 9pt; color: var(--ink-faint); text-align: center;">— Ende der AGB —</p>
+
+</div>
+
+</body>
+</html>

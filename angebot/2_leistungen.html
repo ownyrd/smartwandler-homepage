@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Leistungen im Detail · smartwandler</title>
+<style>
+  /* ──────────────────────────────────────────────────────────
+     Druck als PDF: Chrome → ⌘P → "Als PDF speichern"
+                    Ränder: "Standard"  ·  Hintergrundgrafik: AN
+     ────────────────────────────────────────────────────────── */
+  @page {
+    size: A4;
+    margin: 18mm 18mm 22mm 18mm;
+    @bottom-left {
+      content: "smartwandler.de · Leistungen im Detail";
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 8pt;
+      color: #7C766C;
+    }
+    @bottom-right {
+      content: "Seite " counter(page) " / " counter(pages);
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 8pt;
+      color: #7C766C;
+    }
+  }
+
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url('../fonts/inter-variable.woff2') format('woff2');
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink:       #3A3631;
+    --ink-mid:   #4B4640;
+    --ink-soft:  #5F5952;
+    --ink-faint: #7C766C;
+    --paper:     #FAF8F5;
+    --paper-2:   #F2EFE9;
+    --paper-3:   #E8E3DC;
+    --line:      rgba(58,54,49,0.14);
+    --line-soft: rgba(58,54,49,0.08);
+    --gold:      #C8A96A;
+    --gold-bg:   #F7F0E3;
+  }
+
+  html { background: #EDEBE6; }
+  body {
+    font-family: 'Inter', Arial, sans-serif;
+    color: var(--ink);
+    font-size: 10.5pt;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── Sheet ── */
+  .sheet {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 28px auto;
+    background: var(--paper);
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.04),
+      0 8px 24px rgba(0,0,0,0.07);
+    padding: 18mm 18mm 22mm 18mm;
+    position: relative;
+  }
+  @media print {
+    html, body { background: #fff; }
+    .sheet {
+      width: auto;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+  }
+
+  /* ── Briefkopf ── */
+  .briefkopf {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12mm;
+    padding-bottom: 6mm;
+    border-bottom: 0.6pt solid var(--line);
+    margin-bottom: 8mm;
+  }
+  .briefkopf-left { flex: 1; }
+  .briefkopf-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 8pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: 3mm;
+  }
+  .briefkopf-eyebrow::before {
+    content: "";
+    width: 16mm;
+    height: 0.6pt;
+    background: var(--gold);
+  }
+  .briefkopf-title {
+    font-size: 22pt;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+  .briefkopf-sub {
+    font-size: 10pt;
+    color: var(--ink-soft);
+    margin-top: 2mm;
+    max-width: 130mm;
+  }
+  .briefkopf-right {
+    text-align: right;
+    font-size: 8.5pt;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .briefkopf-right .logo {
+    width: 16mm; height: 16mm;
+    margin-left: auto;
+    margin-bottom: 2mm;
+    display: block;
+  }
+  .briefkopf-right strong {
+    font-size: 9.5pt;
+    color: var(--ink);
+  }
+
+  /* ── Phasen-Header ── */
+  .phase {
+    margin-top: 7mm;
+  }
+  .phase-head {
+    display: flex;
+    align-items: baseline;
+    gap: 4mm;
+    padding-bottom: 2mm;
+    border-bottom: 0.8pt solid var(--ink);
+    margin-bottom: 4mm;
+    break-after: avoid;
+  }
+  .phase-num {
+    font-size: 18pt;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    min-width: 10mm;
+  }
+  .phase-titles { flex: 1; }
+  .phase-eyebrow {
+    font-size: 7.5pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: 1mm;
+  }
+  .phase-title {
+    font-size: 13pt;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .phase-duration {
+    font-size: 9pt;
+    color: var(--ink-soft);
+    margin-top: 1mm;
+  }
+
+  /* ── Modul-Tabelle (Phasen-Inhalte als Positions-Tabelle) ── */
+  table.pos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2mm;
+    font-size: 9.8pt;
+  }
+  table.pos thead th {
+    text-align: left;
+    padding: 2.2mm 3mm;
+    font-size: 8pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink-soft);
+    border-bottom: 0.6pt solid var(--ink);
+  }
+  table.pos thead th.pos { width: 14mm; }
+  table.pos thead th.scope { width: 28mm; text-align: center; }
+  table.pos tbody td {
+    padding: 2.6mm 3mm;
+    vertical-align: top;
+    border-bottom: 0.4pt solid var(--line-soft);
+  }
+  table.pos tbody td.pos {
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+  table.pos tbody td.label strong { font-weight: 600; color: var(--ink); }
+  table.pos tbody td.label .descr {
+    font-size: 9pt;
+    color: var(--ink-soft);
+    margin-top: 0.8mm;
+    line-height: 1.5;
+  }
+  table.pos tbody td.scope {
+    text-align: center;
+    font-size: 8.5pt;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  /* ── Mini-Boxen ── */
+  .note {
+    background: var(--gold-bg);
+    border-left: 2pt solid var(--gold);
+    padding: 3mm 4.5mm;
+    font-size: 9.3pt;
+    color: var(--ink-mid);
+    margin: 3mm 0 4mm;
+    border-radius: 0 1.5mm 1.5mm 0;
+    line-height: 1.5;
+    break-inside: avoid;
+  }
+  .note strong { color: var(--ink); }
+
+  .warning {
+    border: 0.6pt solid var(--line);
+    background: #fff;
+    padding: 3.5mm 4.5mm;
+    margin: 3mm 0 4mm;
+    border-radius: 1.5mm;
+    font-size: 9.3pt;
+    break-inside: avoid;
+  }
+  .warning h5 {
+    font-size: 8pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: 1.5mm;
+  }
+  .warning ul {
+    list-style: none;
+    margin: 0;
+  }
+  .warning li {
+    position: relative;
+    padding-left: 5mm;
+    margin-bottom: 1mm;
+    color: var(--ink-mid);
+  }
+  .warning li::before {
+    content: "✕";
+    position: absolute;
+    left: 0;
+    color: var(--ink-faint);
+    font-weight: 600;
+  }
+
+  /* ── Sektionen ── */
+  h2.sec {
+    font-size: 12pt;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-top: 7mm;
+    margin-bottom: 2mm;
+  }
+  h2.sec .num {
+    color: var(--gold);
+    margin-right: 2mm;
+  }
+  p { margin-bottom: 2.5mm; }
+  p.lead { color: var(--ink-soft); }
+
+  /* Tech-Liste */
+  ul.bul {
+    list-style: none;
+    font-size: 9.8pt;
+    margin-top: 2mm;
+  }
+  ul.bul li {
+    position: relative;
+    padding-left: 5mm;
+    margin-bottom: 1.2mm;
+    color: var(--ink-mid);
+    line-height: 1.5;
+  }
+  ul.bul li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 1.8mm;
+    width: 2mm; height: 2mm;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+  ul.bul li strong { color: var(--ink); }
+
+  /* Beistell-Tabelle */
+  table.beistell {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2mm;
+    font-size: 9.5pt;
+  }
+  table.beistell thead th {
+    text-align: left;
+    padding: 2.2mm 3mm;
+    font-size: 8pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink-soft);
+    border-bottom: 0.6pt solid var(--ink);
+  }
+  table.beistell tbody td {
+    padding: 2.5mm 3mm;
+    vertical-align: top;
+    border-bottom: 0.4pt solid var(--line-soft);
+    color: var(--ink-mid);
+  }
+  table.beistell tbody td.phase-col {
+    width: 28mm;
+    font-size: 8.5pt;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  table.beistell tbody td.label {
+    width: 60mm;
+    font-weight: 600;
+    color: var(--ink);
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <!-- ░░░ Briefkopf ░░░ -->
+  <div class="briefkopf">
+    <div class="briefkopf-left">
+      <div class="briefkopf-eyebrow">Anlage 1 · Leistungen im Detail</div>
+      <div class="briefkopf-title">Leistungen im Detail</div>
+      <div class="briefkopf-sub">Aufbau eines lokal betriebenen KI-Workflows als Proof of Concept, gefolgt von optionaler Vollausrollung auf einer dedizierten Appliance beim Kunden.</div>
+    </div>
+    <div class="briefkopf-right">
+      <img src="../images/logo-small.png" alt="smartwandler" class="logo">
+      <strong>smartwandler.de</strong><br>
+      Philipp Anders<br>
+      Wilischstr. 8<br>
+      01279 Dresden<br>
+      info@smartwandler.de
+    </div>
+  </div>
+
+  <!-- ░░░ Überblick ░░░ -->
+  <h2 class="sec">Überblick</h2>
+  <p class="lead">Das Angebot gliedert sich in zwei klar getrennte Phasen. Phase&nbsp;1 ist der Festpreis-PoC dieses Angebots. Phase&nbsp;2 wird gesondert beauftragt – der PoC-Festpreis ist dann zu 100&nbsp;% anrechenbar.</p>
+  <div class="note">
+    <strong>Phase 1 · Proof of Concept</strong> (1.900&nbsp;€ netto, Inhalt dieses Angebots) – demonstriert die Tragfähigkeit eines lokalen KI-Workflows anhand Ihrer realen Beispieldaten, ohne produktiven Betrieb.<br>
+    <strong>Phase 2 · Vollausrollung</strong> (4.000&nbsp;€ netto Ersteinrichtung + 290&nbsp;€ netto/Monat Betreuung, optional) – dedizierte Appliance bei Ihnen, Anbindung an Produktivsysteme, Übergabe in den Regelbetrieb.
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       PHASE 1
+       ════════════════════════════════════════════ -->
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-num">01</div>
+      <div class="phase-titles">
+        <div class="phase-eyebrow">Phase 1 · Festpreis 1.900 € netto</div>
+        <div class="phase-title">Proof of Concept – Aufbau und Demonstration</div>
+        <div class="phase-duration">Zeitraum: ca. 4 Wochen ab Auftragserteilung und Lieferung der Beispieldaten</div>
+      </div>
+    </div>
+
+    <table class="pos">
+      <thead>
+        <tr>
+          <th class="pos">Pos.</th>
+          <th>Modul</th>
+          <th class="scope">Umfang</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="pos">1.1</td>
+          <td class="label">
+            <strong>Anforderungs-Workshop</strong>
+            <div class="descr">Gemeinsamer Termin (½&nbsp;Tag, remote oder vor Ort im Raum Dresden). Prozessaufnahme des Ziel-Workflows (Erstellung des Protokolls einer WEG-Versammlung), Identifikation der Eingangsdaten (Audio, Tagesordnung, Teilnehmerliste, Beschlussvorlagen) und der Soll-Ausgabe. Abstimmung Anonymisierung der Beispieldaten. Festlegung messbarer Akzeptanzkriterien.</div>
+          </td>
+          <td class="scope">½ Tag</td>
+        </tr>
+        <tr>
+          <td class="pos">1.2</td>
+          <td class="label">
+            <strong>Aufbau Workflow auf smartwandler-Entwicklungsappliance</strong>
+            <div class="descr">Vollständiger Aufbau auf einer beim Anbieter betriebenen lokalen KI-Appliance. Konfiguration des lokalen Sprachmodells (LLM), Speech-to-Text (Whisper, lokal), n8n-Automatisierungsstrecke Eingabe → Transkription → Strukturierung → Ausgabe. Prompt-Kalibrierung anhand Ihrer Soll-Vorlagen.</div>
+          </td>
+          <td class="scope">2 Wochen</td>
+        </tr>
+        <tr>
+          <td class="pos">1.3</td>
+          <td class="label">
+            <strong>Kalibrierung mit 5–20 anonymisierten Beispiel-Inputs</strong>
+            <div class="descr">Verarbeitung Ihrer gelieferten Beispieldaten zur Qualitätsmessung. Dokumentation der Konfiguration als Code – wiederverwendbar für Phase&nbsp;2 ohne Doppelaufbau.</div>
+          </td>
+          <td class="scope">1 Woche</td>
+        </tr>
+        <tr>
+          <td class="pos">1.4</td>
+          <td class="label">
+            <strong>Iterationsschleife</strong>
+            <div class="descr">Eine Iterationsrunde ist Bestandteil des Festpreises. Nach Erst-Demonstration werden Ihre Anpassungswünsche bezüglich Ausgabeformat, Detailtiefe und Klassifikationslogik eingearbeitet (Feedback in Textform binnen 10&nbsp;Werktagen).</div>
+          </td>
+          <td class="scope">3–5 Tage</td>
+        </tr>
+        <tr>
+          <td class="pos">1.5</td>
+          <td class="label">
+            <strong>Abschluss-Demonstration und Entscheidungsvorlage</strong>
+            <div class="descr">Live-Demonstration des fertigen PoC mit Ihren Beispiel-Inputs (vor Ort oder remote, ca.&nbsp;90&nbsp;Min). Gemeinsame Bewertung der Ergebnisse anhand der definierten Akzeptanzkriterien. Schriftliche Entscheidungsvorlage: Empfehlung Vollausrollung ja/nein, geschätzte Zeitersparnis, Vorschlag Hardware-Dimensionierung, Förder-Einschätzung.</div>
+          </td>
+          <td class="scope">½ Tag</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      <strong>Akzeptanzkriterien:</strong> Werden im Workshop gemeinsam objektiv festgelegt – zum Beispiel: Mindestquote korrekt erfasster Beschlüsse, korrekt zugeordneter Tagesordnungspunkte, Anteil ohne manuelle Nacharbeit übernehmbarer Protokollabschnitte. Daran wird der PoC gemessen.
+    </div>
+
+    <div class="warning">
+      <h5>Nicht im PoC enthalten</h5>
+      <ul>
+        <li>Produktive Verarbeitung Ihrer Echtdaten im laufenden Betrieb</li>
+        <li>Anbindung an Ihre Produktivsysteme (Outlook, Dateiserver, Verwaltungssoftware)</li>
+        <li>Hardware-Stellung bei Ihnen vor Ort</li>
+        <li>Dauerbetrieb über das Demonstrations-/Iterationsfenster hinaus</li>
+        <li>Schulung größerer Anwendergruppen</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       PHASE 2
+       ════════════════════════════════════════════ -->
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-num">02</div>
+      <div class="phase-titles">
+        <div class="phase-eyebrow">Phase 2 · optional · 4.000 € netto + Betreuung</div>
+        <div class="phase-title">Vollausrollung – Produktivbetrieb bei Ihnen</div>
+        <div class="phase-duration">Beauftragung innerhalb 90 Tagen nach PoC-Abschluss → PoC zu 100 % anrechenbar</div>
+      </div>
+    </div>
+
+    <p class="lead">Die Vollausrollung übersetzt den im PoC validierten Workflow in einen produktiven, dauerhaft betriebsfähigen Aufbau bei Ihnen. Die im PoC erstellte Konfiguration wird übernommen – es wird nicht erneut entwickelt.</p>
+
+    <table class="pos">
+      <thead>
+        <tr>
+          <th class="pos">Pos.</th>
+          <th>Modul</th>
+          <th class="scope">Umfang</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="pos">2.1</td>
+          <td class="label">
+            <strong>Dedizierte lokale KI-Appliance</strong>
+            <div class="descr">Beschaffung und Vorkonfiguration einer dedizierten Recheneinheit (Mac&nbsp;Mini oder Mini-PC mit GPU), dimensioniert auf Ihren Bedarf. Lokales LLM, Whisper, n8n und Sicherheits-Setup vorinstalliert. Eingerichtet als reine KI-Recheneinheit (nicht als „Büro-PC") – relevant für Förderfähigkeit und Sicherheits-Trennung.</div>
+          </td>
+          <td class="scope">enthalten</td>
+        </tr>
+        <tr>
+          <td class="pos">2.2</td>
+          <td class="label">
+            <strong>Inbetriebnahme vor Ort</strong>
+            <div class="descr">Installation im Serverschrank oder geeigneten Standort. Netzwerkanbindung, Konfiguration Fernzugriff für Betreuung (VPN/SSH). Übertragung des im PoC erstellten Workflows in den Produktivbetrieb.</div>
+          </td>
+          <td class="scope">enthalten</td>
+        </tr>
+        <tr>
+          <td class="pos">2.3</td>
+          <td class="label">
+            <strong>Integration in 1 Produktivsystem</strong>
+            <div class="descr">z.&nbsp;B. Postfach, Dateiablage oder Branchensoftware. Workflow läuft anschließend auf Echtdaten.</div>
+          </td>
+          <td class="scope">enthalten</td>
+        </tr>
+        <tr>
+          <td class="pos">2.4</td>
+          <td class="label">
+            <strong>Abnahme und Einweisung</strong>
+            <div class="descr">Funktionsprüfung gegen die im PoC validierten Akzeptanzkriterien. Einweisung (½&nbsp;Tag) der Bedienenden. Übergabedokumentation: Konfiguration, Bedienanleitung, Notfall-Prozesse.</div>
+          </td>
+          <td class="scope">enthalten</td>
+        </tr>
+        <tr>
+          <td class="pos">2.5</td>
+          <td class="label">
+            <strong>Laufende Betreuung</strong>
+            <div class="descr">LLM- und Sicherheits-Updates, E-Mail-Support, Wartungscheck pro Quartal, kleinere Anpassungen am bestehenden Workflow. Mindestlaufzeit gemäß AGB Teil&nbsp;C. Weitere Workflows als Add-on (ab 1.900&nbsp;€ netto/Workflow) buchbar.</div>
+          </td>
+          <td class="scope">290 €/Mo</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       MITWIRKUNG
+       ════════════════════════════════════════════ -->
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-num">03</div>
+      <div class="phase-titles">
+        <div class="phase-eyebrow">Mitwirkung des Kunden</div>
+        <div class="phase-title">Was wir von Ihnen benötigen</div>
+        <div class="phase-duration">Termine und Liefergegenstände werden im Workshop konkret terminiert</div>
+      </div>
+    </div>
+
+    <p class="lead">Damit der PoC zügig zum Erfolg geführt werden kann, sind die folgenden Beistellungen notwendig. Verzögerungen oder Lücken in der Beistellung verschieben den Zeitplan entsprechend.</p>
+
+    <table class="beistell">
+      <thead>
+        <tr>
+          <th>Phase</th>
+          <th>Beistellung</th>
+          <th>Format / Hinweis</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="phase-col">PoC · Workshop</td>
+          <td class="label">Fachlicher Ansprechpartner</td>
+          <td>Person, die den Prozess kennt und Akzeptanzkriterien verbindlich freigeben kann</td>
+        </tr>
+        <tr>
+          <td class="phase-col">PoC · Daten</td>
+          <td class="label">3–5 anonymisierte Audio-Mitschnitte einer WEG-Versammlung</td>
+          <td>MP3 / WAV / M4A, Namen und personenbezogene Angaben vorab geschwärzt oder pseudonymisiert</td>
+        </tr>
+        <tr>
+          <td class="phase-col">PoC · Daten</td>
+          <td class="label">3–5 dazugehörige Tagesordnungen</td>
+          <td>PDF oder Word, in der bei Ihnen üblichen Form</td>
+        </tr>
+        <tr>
+          <td class="phase-col">PoC · Daten</td>
+          <td class="label">3–5 Beispiel-Protokolle (Soll-Output)</td>
+          <td>Fertige, von Ihnen abgenommene Protokolle als Referenz für Stil, Detailtiefe und Aufbau</td>
+        </tr>
+        <tr>
+          <td class="phase-col">PoC · Daten</td>
+          <td class="label">Optional: Beschlussvorlagen, Teilnehmerlisten, Hausordnung</td>
+          <td>Soweit als Kontext für hochwertige Protokollerstellung relevant</td>
+        </tr>
+        <tr>
+          <td class="phase-col">PoC · Iteration</td>
+          <td class="label">Strukturiertes Feedback nach Erst-Demo</td>
+          <td>In Textform innerhalb 5–10 Werktagen</td>
+        </tr>
+        <tr>
+          <td class="phase-col">Vollausrollung</td>
+          <td class="label">Stellfläche und Stromversorgung</td>
+          <td>Geeigneter Standort (Serverschrank oder gleichwertig), Netzwerkanschluss</td>
+        </tr>
+        <tr>
+          <td class="phase-col">Vollausrollung</td>
+          <td class="label">VPN- oder RDP-Zugang</td>
+          <td>Für Fernwartung und Betreuung, Einrichtung durch den Kunden</td>
+        </tr>
+        <tr>
+          <td class="phase-col">Vollausrollung</td>
+          <td class="label">Zugang zum zu integrierenden System</td>
+          <td>z.&nbsp;B. Postfach, Dateiablage – Konten und Rechte nach Abstimmung</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      <strong>Datenschutz im PoC:</strong> Wir verarbeiten ausschließlich anonymisierte bzw. pseudonymisierte Beispieldaten. Eine produktive Verarbeitung personenbezogener Echtdaten findet im PoC nicht statt. Alle gelieferten Beispieldaten werden nach Abschluss des PoC und Ablauf einer 30-tägigen Karenzfrist nachweislich gelöscht, sofern keine Vollausrollung beauftragt wird.
+    </div>
+  </div>
+
+  <!-- ░░░ Technologien ░░░ -->
+  <h2 class="sec">Eingesetzte Technologien (Auswahl)</h2>
+  <ul class="bul">
+    <li><strong>Lokales Sprachmodell:</strong> Aktuelle Open-Weight-Modelle (z.&nbsp;B. Llama 3, Mistral, Qwen), Auswahl je nach Anforderung und Hardware-Dimensionierung. Keine Lizenzkosten, kein Token-Abo.</li>
+    <li><strong>Sprache-zu-Text:</strong> Whisper bzw. whisper.cpp, vollständig lokal.</li>
+    <li><strong>Workflow-Engine:</strong> n8n (self-hosted, Open Source) für die Orchestrierung der Verarbeitungsschritte.</li>
+    <li><strong>Appliance:</strong> Mac&nbsp;Mini mit Apple Silicon oder Mini-PC mit dedizierter GPU, je nach Modellgröße und Parallelitätsbedarf.</li>
+    <li><strong>Sicherheit:</strong> Lokaler Betrieb hinter Ihrer Firewall, verschlüsselter Fernzugriff ausschließlich über VPN/SSH, keine ausgehenden Verbindungen zu Cloud-LLM-Anbietern.</li>
+  </ul>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Angebot · smartwandler</title>
+<style>
+  /* ──────────────────────────────────────────────────────────
+     Druck als PDF: Chrome → ⌘P → "Als PDF speichern"
+                    Ränder: "Standard"  ·  Hintergrundgrafik: AN
+     ────────────────────────────────────────────────────────── */
+  @page {
+    size: A4;
+    margin: 18mm 18mm 22mm 18mm;
+    @bottom-left {
+      content: "smartwandler.de · Angebot 2026-XXX";
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 8pt;
+      color: #7C766C;
+    }
+    @bottom-right {
+      content: "Seite " counter(page) " / " counter(pages);
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 8pt;
+      color: #7C766C;
+    }
+  }
+
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url('../fonts/inter-variable.woff2') format('woff2');
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink:       #3A3631;
+    --ink-mid:   #4B4640;
+    --ink-soft:  #5F5952;
+    --ink-faint: #7C766C;
+    --paper:     #FAF8F5;
+    --paper-2:   #F2EFE9;
+    --paper-3:   #E8E3DC;
+    --line:      rgba(58,54,49,0.14);
+    --line-soft: rgba(58,54,49,0.08);
+    --gold:      #C8A96A;
+    --gold-bg:   #F7F0E3;
+  }
+
+  html { background: #EDEBE6; }
+  body {
+    font-family: 'Inter', Arial, sans-serif;
+    color: var(--ink);
+    font-size: 10.5pt;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── Sheet ── */
+  .sheet {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 28px auto;
+    background: var(--paper);
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.04),
+      0 8px 24px rgba(0,0,0,0.07);
+    padding: 18mm 18mm 22mm 18mm;
+    position: relative;
+  }
+  @media print {
+    html, body { background: #fff; }
+    .sheet {
+      width: auto;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+  }
+
+  /* ── Briefkopf ── */
+  .briefkopf {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12mm;
+    padding-bottom: 6mm;
+    border-bottom: 0.6pt solid var(--line);
+    margin-bottom: 8mm;
+  }
+  .briefkopf-left { flex: 1; }
+  .briefkopf-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 8pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: 3mm;
+  }
+  .briefkopf-eyebrow::before {
+    content: "";
+    width: 16mm;
+    height: 0.6pt;
+    background: var(--gold);
+  }
+  .briefkopf-title {
+    font-size: 20pt;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+  .briefkopf-meta {
+    font-size: 9.5pt;
+    color: var(--ink-soft);
+    margin-top: 2mm;
+  }
+  .briefkopf-meta strong { color: var(--ink); }
+  .briefkopf-right {
+    text-align: right;
+    font-size: 8.5pt;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .briefkopf-right .logo {
+    width: 16mm; height: 16mm;
+    margin-left: auto;
+    margin-bottom: 2mm;
+    display: block;
+  }
+  .briefkopf-right strong {
+    font-size: 9.5pt;
+    color: var(--ink);
+  }
+
+  /* ── Adressen-Zeile ── */
+  .adress-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8mm;
+    margin-bottom: 6mm;
+  }
+  .adress-card {
+    border: 0.5pt solid var(--line);
+    border-radius: 1.5mm;
+    padding: 3.5mm 4.5mm;
+    background: #fff;
+    font-size: 9.8pt;
+    line-height: 1.5;
+  }
+  .adress-card .label {
+    font-size: 7.5pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: 1.5mm;
+  }
+  .adress-card strong { font-weight: 600; }
+
+  /* ── Sektionen ── */
+  h2.sec {
+    font-size: 11.5pt;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-top: 6mm;
+    margin-bottom: 1.5mm;
+  }
+  h2.sec .num {
+    color: var(--gold);
+    margin-right: 2mm;
+  }
+  p { margin-bottom: 2.5mm; }
+  p.lead { color: var(--ink-soft); }
+
+  /* ── Positions-Tabelle ── */
+  table.pos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2mm;
+    font-size: 9.8pt;
+  }
+  table.pos thead th {
+    text-align: left;
+    padding: 2.2mm 3mm;
+    font-size: 8pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink-soft);
+    border-bottom: 0.8pt solid var(--ink);
+  }
+  table.pos thead th.num { text-align: right; }
+  table.pos thead th.pos { width: 12mm; }
+  table.pos thead th.amount { width: 32mm; }
+  table.pos tbody td {
+    padding: 2.4mm 3mm;
+    vertical-align: top;
+    border-bottom: 0.4pt solid var(--line-soft);
+  }
+  table.pos tbody td.pos {
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+  table.pos tbody td.label strong { font-weight: 600; }
+  table.pos tbody td.label .descr {
+    font-size: 9pt;
+    color: var(--ink-soft);
+    margin-top: 0.8mm;
+  }
+  table.pos tbody td.num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    color: var(--ink-soft);
+  }
+  table.pos tbody tr.sum td {
+    border-top: 0.8pt solid var(--ink);
+    border-bottom: none;
+    padding-top: 3mm;
+    background: var(--gold-bg);
+    font-weight: 600;
+    color: var(--ink);
+  }
+  table.pos tbody tr.sum td.num {
+    font-size: 11pt;
+    color: var(--ink);
+  }
+
+  /* ── Mini-Boxen ── */
+  .note {
+    background: var(--gold-bg);
+    border-left: 2pt solid var(--gold);
+    padding: 3mm 4.5mm;
+    font-size: 9pt;
+    color: var(--ink-mid);
+    margin: 3mm 0;
+    border-radius: 0 1.5mm 1.5mm 0;
+    break-inside: avoid;
+  }
+  .note strong { color: var(--ink); }
+
+  /* ── Zwei-Spalten-Liste ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6mm;
+    margin-top: 2mm;
+  }
+  .col-card {
+    border: 0.5pt solid var(--line);
+    border-radius: 1.5mm;
+    padding: 3.5mm 4.5mm;
+    background: #fff;
+    break-inside: avoid;
+  }
+  .col-card h4 {
+    font-size: 9.5pt;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 2mm;
+    padding-bottom: 1.5mm;
+    border-bottom: 0.4pt solid var(--line);
+  }
+  ul.bul {
+    list-style: none;
+    font-size: 9.5pt;
+  }
+  ul.bul li {
+    position: relative;
+    padding-left: 4.5mm;
+    margin-bottom: 1.2mm;
+    color: var(--ink-mid);
+    line-height: 1.45;
+  }
+  ul.bul li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 1.6mm;
+    width: 1.8mm; height: 1.8mm;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  /* ── Anlagen ── */
+  table.anlagen {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2mm;
+    font-size: 9.5pt;
+  }
+  table.anlagen th {
+    text-align: left;
+    padding: 2mm 3mm;
+    font-size: 8pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+    border-bottom: 0.6pt solid var(--ink);
+  }
+  table.anlagen td {
+    padding: 2.4mm 3mm;
+    border-bottom: 0.4pt solid var(--line-soft);
+    color: var(--ink-mid);
+  }
+  table.anlagen td.label { font-weight: 600; color: var(--ink); width: 40mm; }
+
+  /* ── Unterschrift ── */
+  .signature {
+    margin-top: 7mm;
+    break-inside: avoid;
+  }
+  .signature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12mm;
+    margin-top: 5mm;
+  }
+  .signature-line {
+    border-top: 0.5pt solid var(--ink-mid);
+    padding-top: 1.5mm;
+    font-size: 8.5pt;
+    color: var(--ink-soft);
+    min-height: 18mm;
+  }
+  .signature-label {
+    font-size: 8pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+  }
+  .gruss { margin-top: 5mm; }
+  .signatur { font-weight: 600; margin-top: 7mm; }
+  .signatur-zusatz { font-size: 9.5pt; color: var(--ink-soft); }
+
+  .small-note {
+    font-size: 8.5pt;
+    color: var(--ink-faint);
+    margin-top: 3mm;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <!-- ░░░ Briefkopf ░░░ -->
+  <div class="briefkopf">
+    <div class="briefkopf-left">
+      <div class="briefkopf-eyebrow">Angebot</div>
+      <div class="briefkopf-title">Lokaler KI-Workflow als Proof of Concept</div>
+      <div class="briefkopf-meta"><strong>Nr.</strong>&nbsp; 2026-XXX &nbsp;·&nbsp; <strong>Dresden,</strong>&nbsp; 26.06.2026 &nbsp;·&nbsp; <strong>Gültig bis</strong>&nbsp; 26.07.2026</div>
+    </div>
+    <div class="briefkopf-right">
+      <img src="../images/logo-small.png" alt="smartwandler" class="logo">
+      <strong>smartwandler.de</strong><br>
+      Dipl.-Ing. (FH) Philipp Anders<br>
+      Wilischstr. 8, 01279 Dresden<br>
+      info@smartwandler.de<br>
+      +49 152 21078262
+    </div>
+  </div>
+
+  <!-- ░░░ Anbieter / Kunde ░░░ -->
+  <div class="adress-row">
+    <div class="adress-card">
+      <div class="label">Anbieter</div>
+      <strong>Philipp Anders – IT-Beratung</strong><br>
+      Marke smartwandler<br>
+      Wilischstr. 8, 01279 Dresden<br>
+      info@smartwandler.de · +49 152 21078262
+    </div>
+    <div class="adress-card">
+      <div class="label">Kunde</div>
+      [Unternehmensname]<br>
+      [Ansprechpartner]<br>
+      [Straße, Hausnummer]<br>
+      [PLZ Ort]
+    </div>
+  </div>
+
+  <!-- ░░░ Anrede ░░░ -->
+  <p>Sehr geehrte/r Frau/Herr [Name],</p>
+  <p>vielen Dank für das Gespräch und Ihr Interesse, einen ersten Arbeitsschritt aus Ihrem Tagesgeschäft mit einem lokal betriebenen, DSGVO-konformen KI-Workflow zu unterstützen. Sie erhalten hiermit unser Angebot für einen risikoarmen Einstieg über einen Proof of Concept (PoC).</p>
+
+  <!-- ░░░ 1 · Gegenstand ░░░ -->
+  <h2 class="sec"><span class="num">1</span>Gegenstand des Angebots</h2>
+  <p>Wir bauen einen konkret auf Ihre Praxis zugeschnittenen Workflow – die <strong>Erstellung des Protokolls einer Wohnungseigentümer-Versammlung aus einer Audioaufnahme</strong> – als Proof of Concept auf unserer eigenen Entwicklungsappliance auf. Sie sehen anhand Ihrer eigenen Beispieldaten, welche Qualität, welche Zeitersparnis und welche Grenzen ein lokal betriebener KI-Workflow in Ihrem konkreten Fall liefert – ohne dass Sie zu diesem Zeitpunkt in eigene Hardware oder produktive Datenverarbeitung investieren müssen.</p>
+
+  <!-- ░░░ 2 · Positionen Phase 1 ░░░ -->
+  <h2 class="sec"><span class="num">2</span>Positionen Phase 1 – Proof of Concept</h2>
+  <table class="pos">
+    <thead>
+      <tr>
+        <th class="pos">Pos.</th>
+        <th>Leistung</th>
+        <th class="num amount">Festpreis netto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="pos">1.1</td>
+        <td class="label">
+          <strong>Anforderungs-Workshop</strong>
+          <div class="descr">½&nbsp;Tag remote oder vor Ort. Prozessaufnahme, Daten- und Soll-Output-Klärung, Definition messbarer Akzeptanzkriterien.</div>
+        </td>
+        <td class="num">enthalten</td>
+      </tr>
+      <tr>
+        <td class="pos">1.2</td>
+        <td class="label">
+          <strong>Aufbau Workflow auf Entwicklungsappliance</strong>
+          <div class="descr">Lokales LLM, Whisper-Transkription, n8n-Orchestrierung. Konfiguration als Code, reproduzierbar für Phase&nbsp;2.</div>
+        </td>
+        <td class="num">enthalten</td>
+      </tr>
+      <tr>
+        <td class="pos">1.3</td>
+        <td class="label">
+          <strong>Kalibrierung mit anonymisierten Beispieldaten</strong>
+          <div class="descr">Verarbeitung von 5–20 von Ihnen gelieferten Beispiel-Inputs, Prompt-Feinjustage gegen Ihre Referenz-Protokolle.</div>
+        </td>
+        <td class="num">enthalten</td>
+      </tr>
+      <tr>
+        <td class="pos">1.4</td>
+        <td class="label">
+          <strong>1 Iterationsschleife</strong>
+          <div class="descr">Einarbeitung Ihres strukturierten Feedbacks nach erster Demo (in Textform binnen 10&nbsp;Werktagen).</div>
+        </td>
+        <td class="num">enthalten</td>
+      </tr>
+      <tr>
+        <td class="pos">1.5</td>
+        <td class="label">
+          <strong>Abschluss-Demo &amp; Entscheidungsvorlage</strong>
+          <div class="descr">Live-Demonstration (ca.&nbsp;90&nbsp;Min). Bewertung gegen Akzeptanzkriterien. Schriftliche Empfehlung für oder gegen Vollausrollung.</div>
+        </td>
+        <td class="num">enthalten</td>
+      </tr>
+      <tr class="sum">
+        <td></td>
+        <td class="label"><strong>Pauschalfestpreis Phase 1 (PoC)</strong></td>
+        <td class="num">1.900,00 €</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="small-note">Zahlungsplan: 50&nbsp;% bei Auftragserteilung, 50&nbsp;% nach Abnahme. Zahlungsziel jeweils 14&nbsp;Tage. Alle Preise zzgl. der gesetzlichen Umsatzsteuer. Projektzeitraum ca. 4&nbsp;Wochen ab Lieferung der Beispieldaten.</p>
+
+  <!-- ░░░ 3 · Optional Phase 2 ░░░ -->
+  <h2 class="sec"><span class="num">3</span>Positionen Phase 2 – Optionale Vollausrollung</h2>
+  <p class="lead">Separate Beauftragung; Phase&nbsp;1 wird bei Beauftragung innerhalb 90&nbsp;Tagen zu 100&nbsp;% angerechnet.</p>
+  <table class="pos">
+    <thead>
+      <tr>
+        <th class="pos">Pos.</th>
+        <th>Leistung</th>
+        <th class="num amount">Preis netto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="pos">2.1</td>
+        <td class="label">
+          <strong>Dedizierte lokale KI-Appliance</strong>
+          <div class="descr">Mac&nbsp;Mini, vorkonfiguriert mit lokalem LLM, Whisper, n8n und Sicherheits-Setup.</div>
+        </td>
+        <td class="num">enthalten</td>
+      </tr>
+      <tr>
+        <td class="pos">2.2</td>
+        <td class="label">
+          <strong>Inbetriebnahme vor Ort</strong>
+          <div class="descr">Installation im Serverschrank, Netzwerkanbindung, Einrichtung VPN/SSH für Fernwartung.</div>
+        </td>
+        <td class="num">enthalten</td>
+      </tr>
+      <tr>
+        <td class="pos">2.3</td>
+        <td class="label">
+          <strong>Integration in 1 Produktivsystem</strong>
+          <div class="descr">z.&nbsp;B. Postfach oder Dateiablage. Übertragung des in Phase&nbsp;1 erstellten Workflows in den Produktivbetrieb.</div>
+        </td>
+        <td class="num">enthalten</td>
+      </tr>
+      <tr>
+        <td class="pos">2.4</td>
+        <td class="label">
+          <strong>Abnahme, Einweisung (½&nbsp;Tag), Übergabedokumentation</strong>
+          <div class="descr">Funktionsprüfung gegen die in Phase&nbsp;1 validierten Akzeptanzkriterien.</div>
+        </td>
+        <td class="num">enthalten</td>
+      </tr>
+      <tr class="sum">
+        <td></td>
+        <td class="label"><strong>Pauschalfestpreis Ersteinrichtung Phase 2</strong></td>
+        <td class="num">4.000,00 €</td>
+      </tr>
+      <tr>
+        <td class="pos">2.5</td>
+        <td class="label">
+          <strong>Laufende Betreuung</strong>
+          <div class="descr">LLM-/Sicherheits-Updates, E-Mail-Support, 1&nbsp;Wartungscheck/Quartal, kleine Anpassungen. Mindestlaufzeit gem. AGB Teil&nbsp;C.</div>
+        </td>
+        <td class="num">290,00 € / Monat</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>Anrechnung:</strong> Bei Beauftragung der Vollausrollung innerhalb 90&nbsp;Tagen nach PoC-Abschluss werden die 1.900&nbsp;€ aus Phase&nbsp;1 zu 100&nbsp;% auf die 4.000&nbsp;€ Ersteinrichtung der Phase&nbsp;2 angerechnet. Der Listenpreis Starter-Paket (5.900&nbsp;€) ergibt sich genau aus PoC + Vollausrollung.
+  </div>
+
+  <!-- ░░░ 4 · Was wir liefern / brauchen ░░░ -->
+  <h2 class="sec"><span class="num">4</span>Was wir liefern – und was wir von Ihnen brauchen</h2>
+  <div class="two-col">
+    <div class="col-card">
+      <h4>Was wir liefern</h4>
+      <ul class="bul">
+        <li>Sämtliche Positionen 1.1–1.5 (Phase&nbsp;1) als Festpreis-Leistung</li>
+        <li>Aufbau auf unserer lokalen Entwicklungs&shy;appliance – keine Cloud-Dienste, keine Datenübertragung an Dritte</li>
+        <li>Workflow-Konfiguration als Code, reproduzierbar für Phase&nbsp;2</li>
+        <li>Schriftliche Entscheidungsvorlage als Grundlage für die Investitions&shy;entscheidung</li>
+      </ul>
+    </div>
+    <div class="col-card">
+      <h4>Was wir von Ihnen brauchen</h4>
+      <ul class="bul">
+        <li>Fachlicher Ansprechpartner mit Entscheidungsbefugnis</li>
+        <li>3–5 anonymisierte Audio-Mitschnitte einer WEG-Versammlung</li>
+        <li>Die dazugehörigen Tagesordnungen</li>
+        <li>3–5 fertige Referenz-Protokolle als Soll-Vorlage</li>
+        <li>Optional: Beschlussvorlagen, Teilnehmerlisten als Kontext</li>
+        <li>Strukturiertes Feedback innerhalb 5 Werktagen nach Erst-Demo</li>
+        <li>Für spätere Phase&nbsp;2: VPN- oder RDP-Zugang, Stellfläche, Zugriff auf zu integrierendes System</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Datenschutz im PoC:</strong> Wir verarbeiten ausschließlich anonymisierte oder pseudonymisierte Beispieldaten – keine produktive Verarbeitung Ihrer Echtdaten in dieser Phase. Alle Beispieldaten werden nach Abschluss des PoC und Ablauf einer 30-Tage-Karenz nachweislich gelöscht, wenn keine Vollausrollung beauftragt wird (Details: AGB Teil&nbsp;D §&nbsp;4).
+  </div>
+
+  <!-- ░░░ 5 · Erfolg messen ░░░ -->
+  <h2 class="sec"><span class="num">5</span>Wie wir Erfolg messen</h2>
+  <p>Statt einer pauschalen Zufriedenheitsgarantie definieren wir im Workshop gemeinsam objektive, messbare Akzeptanzkriterien – zum Beispiel: Mindestquote korrekt erfasster Beschlüsse, korrekt zugeordneter Tagesordnungspunkte, Anteil ohne manuelle Nacharbeit übernehmbarer Protokollabschnitte. An diesen Kriterien wird der PoC im Abschluss-Termin gemessen. Werden sie auch nach der Iterationsschleife und einer zweiten Nachbesserung in wesentlichen Punkten nicht erreicht und liegen die Ursachen überwiegend bei uns, erstatten wir den auf den Aufbau entfallenden Vergütungsanteil (1.150&nbsp;€ netto). Der Workshop-Anteil (750&nbsp;€ netto) verbleibt, da er Ihnen unabhängig vom technischen Ergebnis dokumentierte Prozesserkenntnisse liefert. Details: AGB Teil&nbsp;D §&nbsp;2.</p>
+
+  <!-- ░░░ 6 · AGB / Anlagen ░░░ -->
+  <h2 class="sec"><span class="num">6</span>Geltung der AGB, Anlagen</h2>
+  <p>Für diesen Vertrag gelten die beigefügten Allgemeinen Geschäftsbedingungen, insbesondere <strong>Teil&nbsp;A</strong> (Allgemeines), <strong>Teil&nbsp;B</strong> (Werkleistungen, inkl. Nutzungsrechte) und <strong>Teil&nbsp;D</strong> (PoC). Für eine etwaige spätere Vollausrollung samt Betreuung gelten zusätzlich <strong>Teil&nbsp;C</strong> (Dauerdienstleistungen).</p>
+  <table class="anlagen">
+    <thead>
+      <tr>
+        <th style="width: 28mm;">Anlage</th>
+        <th>Inhalt</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="label">Anlage 1</td><td>Leistungen im Detail</td></tr>
+      <tr><td class="label">Anlage 2</td><td>Preisliste</td></tr>
+      <tr><td class="label">Anlage 3</td><td>Allgemeine Geschäftsbedingungen (Teile A–D)</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ░░░ Gruss + Unterschrift ░░░ -->
+  <p class="gruss">Wenn Sie das Angebot annehmen möchten, senden Sie uns dieses Dokument unterschrieben zurück an <strong>info@smartwandler.de</strong> oder per Post. Für Rückfragen sind wir telefonisch unter <strong>+49 152 21078262</strong> erreichbar.</p>
+
+  <p class="gruss">Mit freundlichen Grüßen</p>
+  <div class="signatur">Dipl.-Ing. (FH) Philipp Anders</div>
+  <div class="signatur-zusatz">smartwandler · Beratung &amp; Einrichtung lokaler KI-Lösungen</div>
+
+  <div class="signature">
+    <div class="signature-label">Auftrag erteilt durch</div>
+    <div class="signature-row">
+      <div class="signature-line">Ort, Datum</div>
+      <div class="signature-line">Unterschrift / Stempel</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
