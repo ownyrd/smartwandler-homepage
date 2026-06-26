@@ -398,7 +398,7 @@
 
   <!-- ░░░ 1 · Gegenstand ░░░ -->
   <h2 class="sec"><span class="num">1</span>Gegenstand des Angebots</h2>
-  <p>Wir bauen einen konkret auf Ihre Praxis zugeschnittenen Workflow – die <strong>Erstellung des Protokolls einer Wohnungseigentümer-Versammlung aus einer Audioaufnahme</strong> – als Proof of Concept auf unserer eigenen Entwicklungsappliance auf. Sie sehen anhand Ihrer eigenen Beispieldaten, welche Qualität, welche Zeitersparnis und welche Grenzen ein lokal betriebener KI-Workflow in Ihrem konkreten Fall liefert – ohne dass Sie zu diesem Zeitpunkt in eigene Hardware oder produktive Datenverarbeitung investieren müssen.</p>
+  <p>Wir bauen einen konkret auf Ihre Praxis zugeschnittenen Workflow – die <strong>automatisierte Erstellung von Tagesordnungen für WEG-Versammlungen aus den im Jahresverlauf in Ihrer Karthago-Datenbank gesammelten Vorgängen</strong> – als Proof of Concept auf unserer eigenen Entwicklungshardware auf. Sie sehen anhand Ihrer eigenen Beispieldaten, welche Qualität, welche Zeitersparnis und welche Grenzen ein lokal betriebener KI-Workflow in Ihrem konkreten Fall liefert – ohne dass Sie zu diesem Zeitpunkt in eigene Hardware oder produktive Datenverarbeitung investieren müssen.</p>
 
   <!-- ░░░ 2 · Positionen Phase 1 ░░░ -->
   <h2 class="sec"><span class="num">2</span>Positionen Phase 1 – Proof of Concept</h2>
@@ -422,16 +422,16 @@
       <tr>
         <td class="pos">1.2</td>
         <td class="label">
-          <strong>Aufbau Workflow auf Entwicklungsappliance</strong>
-          <div class="descr">Lokales LLM, Whisper-Transkription, n8n-Orchestrierung. Konfiguration als Code, reproduzierbar für Phase&nbsp;2.</div>
+          <strong>Aufbau Workflow auf Entwicklungshardware</strong>
+          <div class="descr">Lokales LLM, n8n-Orchestrierung, Anbindung an einen anonymisierten Karthago-Datenexport. Konfiguration als Code, reproduzierbar für Phase&nbsp;2.</div>
         </td>
         <td class="num">enthalten</td>
       </tr>
       <tr>
         <td class="pos">1.3</td>
         <td class="label">
-          <strong>Kalibrierung mit anonymisierten Beispieldaten</strong>
-          <div class="descr">Verarbeitung von 5–20 von Ihnen gelieferten Beispiel-Inputs, Prompt-Feinjustage gegen Ihre Referenz-Protokolle.</div>
+          <strong>Kalibrierung mit anonymisierten Karthago-Daten</strong>
+          <div class="descr">Verarbeitung der von Ihnen gelieferten Karthago-Vorgänge eines Beispieljahres, Prompt-Feinjustage gegen Ihre Beispiel-Tagesordnungen.</div>
         </td>
         <td class="num">enthalten</td>
       </tr>
@@ -447,7 +447,7 @@
         <td class="pos">1.5</td>
         <td class="label">
           <strong>Abschluss-Demo &amp; Entscheidungsvorlage</strong>
-          <div class="descr">Live-Demonstration (ca.&nbsp;90&nbsp;Min). Bewertung gegen Akzeptanzkriterien. Schriftliche Empfehlung für oder gegen Vollausrollung.</div>
+          <div class="descr">Live-Demonstration (ca.&nbsp;90&nbsp;Min). Bewertung gegen Akzeptanzkriterien. Schriftliche Empfehlung für oder gegen Go-Live.</div>
         </td>
         <td class="num">enthalten</td>
       </tr>
@@ -462,7 +462,7 @@
   <p class="small-note">Zahlungsplan: 50&nbsp;% bei Auftragserteilung, 50&nbsp;% nach Abnahme. Zahlungsziel jeweils 14&nbsp;Tage. Alle Preise zzgl. der gesetzlichen Umsatzsteuer. Projektzeitraum ca. 4&nbsp;Wochen ab Lieferung der Beispieldaten.</p>
 
   <!-- ░░░ 3 · Optional Phase 2 ░░░ -->
-  <h2 class="sec"><span class="num">3</span>Positionen Phase 2 – Optionale Vollausrollung</h2>
+  <h2 class="sec"><span class="num">3</span>Positionen Phase 2 – Optionaler Go-Live</h2>
   <p class="lead">Separate Beauftragung; Phase&nbsp;1 wird bei Beauftragung innerhalb 90&nbsp;Tagen zu 100&nbsp;% angerechnet.</p>
   <table class="pos">
     <thead>
@@ -476,42 +476,34 @@
       <tr>
         <td class="pos">2.1</td>
         <td class="label">
-          <strong>Dedizierte lokale KI-Appliance</strong>
-          <div class="descr">Mac&nbsp;Mini, vorkonfiguriert mit lokalem LLM, Whisper, n8n und Sicherheits-Setup.</div>
+          <strong>Remote-Einrichtung der lokalen KI-Recheneinheit</strong>
+          <div class="descr">Installation lokales LLM, n8n und Sicherheits-Setup auf der von Ihnen beschafften Hardware (Mac&nbsp;Mini, Mac&nbsp;Studio oder MacBook&nbsp;Pro). Zugang erfolgt nach einmaligem physischen Anschluss der Hardware durch Ihren EDV-Beauftragten via TeamViewer.</div>
         </td>
         <td class="num">enthalten</td>
       </tr>
       <tr>
         <td class="pos">2.2</td>
         <td class="label">
-          <strong>Inbetriebnahme vor Ort</strong>
-          <div class="descr">Installation im Serverschrank, Netzwerkanbindung, Einrichtung VPN/SSH für Fernwartung.</div>
+          <strong>Anbindung an Karthago</strong>
+          <div class="descr">Konfiguration eines wiederholbaren Imports der Karthago-Vorgänge in den Workflow. Übertragung des in Phase&nbsp;1 erstellten Workflows in den Produktivbetrieb.</div>
         </td>
         <td class="num">enthalten</td>
       </tr>
       <tr>
         <td class="pos">2.3</td>
         <td class="label">
-          <strong>Integration in 1 Produktivsystem</strong>
-          <div class="descr">z.&nbsp;B. Postfach oder Dateiablage. Übertragung des in Phase&nbsp;1 erstellten Workflows in den Produktivbetrieb.</div>
-        </td>
-        <td class="num">enthalten</td>
-      </tr>
-      <tr>
-        <td class="pos">2.4</td>
-        <td class="label">
-          <strong>Abnahme, Einweisung (½&nbsp;Tag), Übergabedokumentation</strong>
-          <div class="descr">Funktionsprüfung gegen die in Phase&nbsp;1 validierten Akzeptanzkriterien.</div>
+          <strong>Abnahme, Remote-Einweisung, Übergabedokumentation</strong>
+          <div class="descr">Funktionsprüfung gegen die in Phase&nbsp;1 validierten Akzeptanzkriterien. Remote-Einweisung (½&nbsp;Tag) via TeamViewer / Videokonferenz.</div>
         </td>
         <td class="num">enthalten</td>
       </tr>
       <tr class="sum">
         <td></td>
-        <td class="label"><strong>Pauschalfestpreis Ersteinrichtung Phase 2</strong></td>
+        <td class="label"><strong>Pauschalfestpreis Einrichtung Phase 2 (ohne Hardware)</strong></td>
         <td class="num">4.000,00 €</td>
       </tr>
       <tr>
-        <td class="pos">2.5</td>
+        <td class="pos">2.4</td>
         <td class="label">
           <strong>Laufende Betreuung</strong>
           <div class="descr">LLM-/Sicherheits-Updates, E-Mail-Support, 1&nbsp;Wartungscheck/Quartal, kleine Anpassungen. Mindestlaufzeit gem. AGB Teil&nbsp;C.</div>
@@ -522,7 +514,10 @@
   </table>
 
   <div class="note">
-    <strong>Anrechnung:</strong> Bei Beauftragung der Vollausrollung innerhalb 90&nbsp;Tagen nach PoC-Abschluss werden die 1.900&nbsp;€ aus Phase&nbsp;1 zu 100&nbsp;% auf die 4.000&nbsp;€ Ersteinrichtung der Phase&nbsp;2 angerechnet. Der Listenpreis Starter-Paket (5.900&nbsp;€) ergibt sich genau aus PoC + Vollausrollung.
+    <strong>Hardware separat:</strong> Mac&nbsp;Mini, Mac&nbsp;Studio oder MacBook&nbsp;Pro werden von Ihnen direkt beim Hersteller bzw. einem Händler Ihrer Wahl beschafft (Richtwert ca. 1.500–3.500&nbsp;€ netto je nach Modell und Speicherausbau). Wir empfehlen vor Bestellung die geeignete Konfiguration. Voraussetzung für die Einrichtung: Ihr EDV-Beauftragter schließt die Hardware im Serverschrank an Strom und Netzwerk an und richtet einen TeamViewer-Zugang ein – die weitere Einrichtung erfolgt vollständig durch uns remote.
+  </div>
+  <div class="note">
+    <strong>Anrechnung:</strong> Bei Beauftragung des Go-Live innerhalb 90&nbsp;Tagen nach PoC-Abschluss werden die 1.900&nbsp;€ aus Phase&nbsp;1 zu 100&nbsp;% auf die 4.000&nbsp;€ Einrichtung der Phase&nbsp;2 angerechnet.
   </div>
 
   <!-- ░░░ 4 · Was wir liefern / brauchen ░░░ -->
@@ -532,7 +527,7 @@
       <h4>Was wir liefern</h4>
       <ul class="bul">
         <li>Sämtliche Positionen 1.1–1.5 (Phase&nbsp;1) als Festpreis-Leistung</li>
-        <li>Aufbau auf unserer lokalen Entwicklungs&shy;appliance – keine Cloud-Dienste, keine Datenübertragung an Dritte</li>
+        <li>Aufbau auf unserer lokalen Entwicklungshardware – keine Cloud-Dienste, keine Datenübertragung an Dritte</li>
         <li>Workflow-Konfiguration als Code, reproduzierbar für Phase&nbsp;2</li>
         <li>Schriftliche Entscheidungsvorlage als Grundlage für die Investitions&shy;entscheidung</li>
       </ul>
@@ -541,27 +536,26 @@
       <h4>Was wir von Ihnen brauchen</h4>
       <ul class="bul">
         <li>Fachlicher Ansprechpartner mit Entscheidungsbefugnis</li>
-        <li>3–5 anonymisierte Audio-Mitschnitte einer WEG-Versammlung</li>
-        <li>Die dazugehörigen Tagesordnungen</li>
-        <li>3–5 fertige Referenz-Protokolle als Soll-Vorlage</li>
-        <li>Optional: Beschlussvorlagen, Teilnehmerlisten als Kontext</li>
+        <li><strong>Anonymisierter Karthago-Datenexport</strong> der über ein Jahr gesammelten Vorgänge für 2–3 Beispiel-Objekte (Format nach Abstimmung: CSV, JSON oder DB-Dump)</li>
+        <li><strong>3–5 fertige Beispiel-Tagesordnungen</strong>, die Sie aus diesen Vorgängen erstellt haben (Soll-Output für Stil, Struktur und Detailtiefe)</li>
         <li>Strukturiertes Feedback innerhalb 5 Werktagen nach Erst-Demo</li>
-        <li>Für spätere Phase&nbsp;2: VPN- oder RDP-Zugang, Stellfläche, Zugriff auf zu integrierendes System</li>
+        <li>Für spätere Phase&nbsp;2: Beschaffung der Hardware (Mac&nbsp;Mini / Studio / MacBook&nbsp;Pro), physischer Anschluss durch Ihren EDV-Beauftragten, einmaliger TeamViewer-Zugang für die Remote-Einrichtung</li>
       </ul>
     </div>
   </div>
 
   <div class="note">
-    <strong>Datenschutz im PoC:</strong> Wir verarbeiten ausschließlich anonymisierte oder pseudonymisierte Beispieldaten – keine produktive Verarbeitung Ihrer Echtdaten in dieser Phase. Alle Beispieldaten werden nach Abschluss des PoC und Ablauf einer 30-Tage-Karenz nachweislich gelöscht, wenn keine Vollausrollung beauftragt wird (Details: AGB Teil&nbsp;D §&nbsp;4).
+    <strong>Datenschutz im PoC:</strong> Wir verarbeiten ausschließlich anonymisierte oder pseudonymisierte Beispieldaten – keine produktive Verarbeitung Ihrer Echtdaten in dieser Phase. Alle Beispieldaten werden nach Abschluss des PoC und Ablauf einer 30-Tage-Karenz nachweislich gelöscht, wenn kein Go-Live beauftragt wird (Details: AGB Teil&nbsp;D §&nbsp;4).
   </div>
 
   <!-- ░░░ 5 · Erfolg messen ░░░ -->
-  <h2 class="sec"><span class="num">5</span>Wie wir Erfolg messen</h2>
-  <p>Statt einer pauschalen Zufriedenheitsgarantie definieren wir im Workshop gemeinsam objektive, messbare Akzeptanzkriterien – zum Beispiel: Mindestquote korrekt erfasster Beschlüsse, korrekt zugeordneter Tagesordnungspunkte, Anteil ohne manuelle Nacharbeit übernehmbarer Protokollabschnitte. An diesen Kriterien wird der PoC im Abschluss-Termin gemessen. Werden sie auch nach der Iterationsschleife und einer zweiten Nachbesserung in wesentlichen Punkten nicht erreicht und liegen die Ursachen überwiegend bei uns, erstatten wir den auf den Aufbau entfallenden Vergütungsanteil (1.150&nbsp;€ netto). Der Workshop-Anteil (750&nbsp;€ netto) verbleibt, da er Ihnen unabhängig vom technischen Ergebnis dokumentierte Prozesserkenntnisse liefert. Details: AGB Teil&nbsp;D §&nbsp;2.</p>
+  <h2 class="sec"><span class="num">5</span>Was Sie für 1.900 € kaufen</h2>
+  <p>Die 1.900&nbsp;€ kaufen Ihnen <strong>Klarheit</strong>: Sie wissen nach 4&nbsp;Wochen belastbar, ob ein lokal betriebener KI-Workflow in Ihrer Karthago-Praxis funktioniert – und in welcher Qualität. Im Workshop definieren wir dafür gemeinsam objektive, messbare Akzeptanzkriterien (z.&nbsp;B. korrekt erkannte Vorgangsklassen, korrekt zugeordnete Tagesordnungspunkte, Anteil ohne manuelle Nacharbeit übernehmbarer Tagesordnungsentwürfe). An diesen Kriterien wird der PoC im Abschluss-Termin transparent gemessen.</p>
+  <p>Eine pauschale Geld-zurück-Garantie ist <strong>kein</strong> Bestandteil dieses Angebots. Der Festpreis vergütet die durchgeführte Analyse-, Aufbau- und Demonstrationsleistung – unabhängig davon, ob die Antwort am Ende <strong>„geht in der gewünschten Qualität"</strong> oder <strong>„geht in der gewünschten Qualität nicht"</strong> lautet. Auch ein klares „nicht in der gewünschten Qualität" ist ein verkäuflicher Erkenntnisgewinn, der Ihnen eine spätere Fehlinvestition erspart. Details zu Iteration und Abnahme: AGB Teil&nbsp;D §&nbsp;2.</p>
 
   <!-- ░░░ 6 · AGB / Anlagen ░░░ -->
   <h2 class="sec"><span class="num">6</span>Geltung der AGB, Anlagen</h2>
-  <p>Für diesen Vertrag gelten die beigefügten Allgemeinen Geschäftsbedingungen, insbesondere <strong>Teil&nbsp;A</strong> (Allgemeines), <strong>Teil&nbsp;B</strong> (Werkleistungen, inkl. Nutzungsrechte) und <strong>Teil&nbsp;D</strong> (PoC). Für eine etwaige spätere Vollausrollung samt Betreuung gelten zusätzlich <strong>Teil&nbsp;C</strong> (Dauerdienstleistungen).</p>
+  <p>Für diesen Vertrag gelten die beigefügten Allgemeinen Geschäftsbedingungen, insbesondere <strong>Teil&nbsp;A</strong> (Allgemeines), <strong>Teil&nbsp;B</strong> (Werkleistungen, inkl. Nutzungsrechte) und <strong>Teil&nbsp;D</strong> (PoC). Für einen etwaigen späteren Go-Live samt Betreuung gelten zusätzlich <strong>Teil&nbsp;C</strong> (Dauerdienstleistungen).</p>
   <table class="anlagen">
     <thead>
       <tr>

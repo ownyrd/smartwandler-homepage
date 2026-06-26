@@ -207,6 +207,9 @@
     color: var(--ink-soft);
     margin-top: 0.8mm;
   }
+  table.pos tbody td.label ul.descr {
+    padding-left: 1.1em;
+  }
   table.pos tbody td.num {
     text-align: right;
     font-variant-numeric: tabular-nums;
@@ -293,7 +296,7 @@
     <div class="briefkopf-left">
       <div class="briefkopf-eyebrow">Anlage · Preisliste</div>
       <div class="briefkopf-title">Preisliste</div>
-      <div class="briefkopf-sub">Festpreise für lokale, DSGVO-konforme digitale Mitarbeiter. Alle Preise netto, zzgl. gesetzlicher Umsatzsteuer. Stand: 26.06.2026.</div>
+      <div class="briefkopf-sub">Festpreise für lokale, DSGVO-konforme digitale Mitarbeiter. <br>Alle Preise netto, zzgl. gesetzlicher Umsatzsteuer. <br>Stand: 01.01.2026.</div>
     </div>
     <div class="briefkopf-right">
       <img src="../images/logo-small.png" alt="smartwandler" class="logo">
@@ -307,7 +310,7 @@
 
   <!-- ░░░ A · Einstiegsleistungen ░░░ -->
   <h2 class="sec"><span class="num">A</span>Einstiegsleistungen</h2>
-  <p class="lead">Bezahlte Vor-Leistungen zur Klärung der Tragfähigkeit. Festpreis-Anteil ist bei späterer Beauftragung eines Pakets zu 100&nbsp;% anrechenbar.</p>
+  <p class="lead">Bezahlte Beratungsleistungen zur Klärung der Umsetzbarkeit und Tragfähigkeit einer Prozessdigitalisierung mit lokaler KI.</p>
   <table class="pos">
     <thead>
       <tr>
@@ -321,35 +324,38 @@
         <td class="pos">A.1</td>
         <td class="label">
           <strong>Potenzial-Check (remote)</strong>
-          <div class="descr">60–90&nbsp;Min Termin, schriftliche Empfehlung, Förder-Einschätzung, Richt-Angebot.</div>
+          <ul class="descr">
+            <li>60–90&nbsp;Min Termin</li>
+            <li>Identifizierung eines Proof of Concept Workflows</li>
+            <li>schriftliche Empfehlung bzgl. Konzept, Machbarkeit und Hardware Setup (ehrliches Feedback, was in Ihrem Unternehmen Sinn macht und was nicht)</li>
+            <li>Einschätzung zu möglichen Förderungen</li>
+          </ul>
         </td>
-        <td class="num">750 € einmalig</td>
+        <td class="num">600 € einmalig</td>
       </tr>
       <tr>
         <td class="pos">A.2</td>
         <td class="label">
-          <strong>Potenzial-Check (vor Ort)</strong>
-          <div class="descr">Ausführlich vor Ort, sonst identischer Umfang wie A.1.</div>
-        </td>
-        <td class="num">950 € einmalig</td>
-      </tr>
-      <tr>
-        <td class="pos">A.3</td>
-        <td class="label">
-          <strong>Proof of Concept (1 Workflow)</strong>
-          <div class="descr">Workshop, Aufbau auf smartwandler-Entwicklungs&shy;appliance, Kalibrierung mit anonymisierten Beispieldaten, 1&nbsp;Iterationsschleife, Abschluss-Demo &amp; Entscheidungsvorlage.</div>
+          <strong>Proof of Concept (Umsetzung eines Workflows)</strong>
+          <ul class="descr">
+            <li>Anforderungs-Workshop mit dem Auftraggeber, um den Prozess genau zu definieren, benötigte Materialien und Zugänge zu klären, Beispieldaten zu erhalten und Akzeptanzkriterien zu definieren</li>
+            <li>Aufbau des digitalisierten Prozesses auf smartwandler-Entwicklungshardware mit lokaler Konfiguration eines Sprachmodells und individuellen Softwaremodulen für Datenimport, Verarbeitung und Output (ohne externe Schnittstelle)</li>
+            <li>Kalibrierung mit (anonymisierten) Beispieldaten</li>
+            <li>1&nbsp;Iterationsschleife mit Feedback vom Auftraggeber (schriftlich, Sprachmemo, telefonisch)</li>
+            <li>Abschluss-Demo &amp Entscheidungsvorlage für mögliche Umsetzung im Produktivbetrieb</li>
+          </ul>
         </td>
         <td class="num">1.900 € einmalig</td>
       </tr>
     </tbody>
   </table>
   <div class="note">
-    <strong>Anrechnung:</strong> Bei Beauftragung eines Pakets (B) innerhalb 90&nbsp;Tagen nach Abschluss von A wird der Festpreis von A zu 100&nbsp;% auf die einmalige Ersteinrichtung des Pakets angerechnet.
+    <strong>Anrechnung:</strong> Bei Beauftragung eines Pakets (B) innerhalb von 90&nbsp;Tagen nach Abschluss von A wird der Festpreis von A zu 100&nbsp;% auf die einmalige Ersteinrichtung des Pakets angerechnet.
   </div>
 
   <!-- ░░░ B · Pakete · Ersteinrichtung ░░░ -->
   <h2 class="sec"><span class="num">B</span>Pakete · Einmalige Ersteinrichtung</h2>
-  <p class="lead">Go-Live der lokalen KI-Lösung auf vom Kunden beschaffter Hardware. Die genannten Festpreise umfassen Software-Setup, Integration und Übergabe in den Regelbetrieb. Hardware (Mac&nbsp;Mini / Mac&nbsp;Studio / MacBook&nbsp;Pro) ist <strong>nicht</strong> enthalten und wird direkt durch den Kunden beschafft (Richtwert 1.500–3.500&nbsp;€ netto je nach Konfiguration).</p>
+  <p class="lead">Go-Live der lokalen KI-Lösung auf vom Kunden beschaffter Hardware. Die genannten Festpreise umfassen Software-Setup, Integration und Übergabe in den Regelbetrieb. Die Hardware (Mac&nbsp;Mini / Mac&nbsp;Studio / MacBook&nbsp;Pro) ist <strong>nicht</strong> enthalten und wird direkt durch den Kunden beschafft (Richtwert ca. 2.500&nbsp;€ netto je nach Konfiguration).</p>
   <table class="pos">
     <thead>
       <tr>
@@ -362,33 +368,60 @@
       <tr>
         <td class="pos">B.1</td>
         <td class="label">
-          <strong>Starter</strong>
-          <div class="descr">Lokales LLM-Setup auf Ihrer Hardware (Mac), 1&nbsp;Workflow, Integration in 1&nbsp;System, Remote-Einweisung (½&nbsp;Tag), Kurzdoku.</div>
-        </td>
+          <strong>Basis</strong>
+          <ul class="descr">
+            <li>Hardware Empfehlung und Bestellberatung</li>
+            <li>Ersteinrichtung des Betriebssystems inkl. Konfiguration von Sicherheitsmechanismen wie Festplattenverschlüsselung</li>
+            <li>Einrichtung einer sicheren Remote Verbindung via Reverse VPN und TeamViewer als Backup</li>
+            <li>Installation und Konfiguration des Sprachmodells</li>
+            <li>Installation und Konfiguration der Workflow Engine (meist n8n)</li>
+            <li>Installation und Konfiguration Reverse Proxy</li>
+            <li>Installation und Konfiguration der graphischen Nutzeroberflächen zur Bedienung des Systems</li>
+            <li>Installation und Konfiguration von für den ersten Workflow benötigten Helfertools wie PDF Compiler, Speech Encoder etc.</li>
+            <li><strong>alles aus Paket A.2</strong></li>
+            <li>Integration mit einer externen Schnittstelle wie Outlook, ERP, CMS etc.</li>
+            <li>+1 Iterationsschleife mit Feedback vom Auftraggeber (insgesamt 2 Iterationsschleifen)</li>
+            <li>detaillierte Dokumentation mit Screen-Recording Video zur Bedienungshilfe</li>
+            <li>kurze Remote Einweisung von Mitarbeitern</li>
+          </ul>     
+          </td>
         <td class="num">5.900 € einmalig</td>
       </tr>
       <tr>
         <td class="pos">B.2</td>
         <td class="label">
           <strong>Professional</strong>
-          <div class="descr">Wie Starter + 2&nbsp;Workflows, Integration in bis zu 2&nbsp;Systeme, stärkere Hardware-Empfehlung (Mac&nbsp;Studio o.&nbsp;ä.), Remote-Team-Einweisung (1&nbsp;Tag), Basis-Backup.</div>
-        </td>
-        <td class="num">10.900 € einmalig</td>
+          <ul class="descr">
+            <li><strong>alles aus Paket B.1</strong></li>
+            <li>Integration von 2 weiteren Workflows/Prozessen (insgesamt 3)</li>
+            <li>+2 Integrationen mit externen Schnittstellen wie Outlook, ERP, CMS etc. (insgesamt 3)</li>
+            <li>bis zu 3 Iterationsschleifen mit Feedback vom Auftraggeber</li>
+            <li>Bedienungs-Support via Mail für 3 Monate nach Ersteinweisung zusätzlich zur Remote Einweisung der Mitarbeiter</li>
+          </ul>
+          </td>
+        <td class="num">9.900 € einmalig</td>
       </tr>
       <tr>
         <td class="pos">B.3</td>
         <td class="label">
           <strong>Ultimate</strong>
-          <div class="descr">Wie Professional + 3.&nbsp;Workflow, „Fragen Sie Ihre Dokumente", mehrere Integrationen, Rollen-/Backup-Konzept, Playbook, Admin-Einweisung.</div>
+          <ul class="descr">
+            <li><strong>alles aus Paket B.2</strong></li>
+            <li>Integration von 2 weiteren Workflows/Prozessen (insgesamt 5)</li>
+            <li>+2 Integrationen mit externen Schnittstellen wie Outlook, ERP, CMS etc. (insgesamt 5)</li>
+            <li>bis zu 5 Iterationsschleifen mit Feedback vom Auftraggeber</li>
+            <li>priorisierter Support bzgl. Bedienung und Funktionalität via Mail mit Reaktionszeit <24h</li>
+            <li>3 Monate Betreuungspaket C.3 inklusive</li>
+          </ul>
         </td>
-        <td class="num">15.900 € einmalig</td>
+        <td class="num">14.900 € einmalig</td>
       </tr>
     </tbody>
   </table>
 
   <!-- ░░░ C · Pakete · Monatliche Betreuung ░░░ -->
   <h2 class="sec"><span class="num">C</span>Pakete · Monatliche Betreuung</h2>
-  <p class="lead">Empfohlen ab Inbetriebnahme. Mindestvertragslaufzeit gemäß AGB Teil&nbsp;C §&nbsp;6.</p>
+  <p class="lead">Empfohlen ab Inbetriebnahme. Mindestvertragslaufzeit 6 Monate, danach monatlich kündbar (siehe auch AGB Teil&nbsp;C §6.)</p>
   <table class="pos">
     <thead>
       <tr>
@@ -401,15 +434,29 @@
       <tr>
         <td class="pos">C.1</td>
         <td class="label">
-          <strong>Betreuung Starter</strong>
-          <div class="descr">LLM-/Sicherheits-Updates, E-Mail-Support, 1&nbsp;Wartungscheck/Quartal, kleine Anpassungen am bestehenden Workflow.</div>
+          <strong>Betreuung Basis (nutzbar bei max. 2 produktiven Workflows)</strong>
+          <ul class="descr">
+            <li>Sicherheitsupdates der verwendeten Systemkomponenten</li>
+            <li>Updates der verwendeten Sprachmodelle</li>
+            <li>monatlicher Wartungscheck der max. 2 produktiven Workflows</li>
+            <li>eine kleinere Optimierung/Anpassung eines Workflows pro Monat</li>
+            <li>Basis E-Mail Support mit Reaktionszeit <48h</li>
+          </ul>
         </td>
         <td class="num">290 € / Monat</td>
       </tr>
       <tr>
         <td class="pos">C.2</td>
         <td class="label">
-          <strong>Betreuung Professional</strong>
+          <strong>Betreuung Professional (nutzbar bei max. 5 produktiven Workflows)</strong>
+          <ul class="descr">
+            <li>Sicherheitsupdates der verwendeten Systemkomponenten</li>
+            <li>Updates der verwendeten Sprachmodelle</li>
+            <li>monatlicher Wartungscheck der max. 5 produktiven Workflows</li>
+            <li>2 Optimierungen/Anpassungen der produktiven Workflows pro Monat</li>
+            <li>priorisierter E-Mail Support mit Reaktionszeit <24h während der Geschäftszeiten und <48h außerhalb der Geschäftszeiten</li>
+            <li>1 Optimierungs-/Feedback Call pro Quartal</li>
+          </ul>
           <div class="descr">Wie C.1 + priorisierter Support &lt;24&nbsp;h, 1&nbsp;Optimierungs-Call/Quartal, 1&nbsp;neuer Mini-Workflow/Jahr inkl.</div>
         </td>
         <td class="num">490 € / Monat</td>
@@ -417,8 +464,16 @@
       <tr>
         <td class="pos">C.3</td>
         <td class="label">
-          <strong>Betreuung Ultimate</strong>
-          <div class="descr">Wie C.2 + dedizierter Ansprechpartner mit SLA, monatlicher Optimierungs-Call, 2&nbsp;neue Workflows/Jahr inkl., halbjährlicher Review.</div>
+          <strong>Betreuung Ultimate (nutzbar bei max. 10 produktiven Workflows, pro weiterem Workflow 50 € Aufpreis)</strong>
+          <ul class="descr">
+            <li>Sicherheitsupdates der verwendeten Systemkomponenten</li>
+            <li>Updates der verwendeten Sprachmodelle</li>
+            <li>monatlicher Wartungscheck der produktiven Workflows</li>
+            <li>3 Optimierungen/Anpassungen der produktiven Workflows pro Monat</li>
+            <li>priorisierter E-Mail und Messenger Support mit Reaktionszeit <12h während der Geschäftszeiten und <24h außerhalb der Geschäftszeiten</li>
+            <li>1 Optimierungs-/Feedback Call pro Monat (auf Wunsch, kein Muss)</li>
+            <li>dedizierter Ansprechpartner</li>
+          </ul>
         </td>
         <td class="num">690 € / Monat</td>
       </tr>
@@ -440,7 +495,7 @@
         <td class="pos">D.1</td>
         <td class="label">
           <strong>Zusätzlicher Workflow (Add-on)</strong>
-          <div class="descr">Aufbau eines weiteren Workflows auf bestehender Hardware. Betreuungskunden zu Vorzugskonditionen.</div>
+          <div class="descr">Aufbau eines weiteren Workflows auf bestehender Hardware.</div>
         </td>
         <td class="num">ab 1.900 € einmalig</td>
       </tr>
@@ -448,7 +503,7 @@
         <td class="pos">D.2</td>
         <td class="label">
           <strong>Hardware-Wechsel / Neueinrichtung</strong>
-          <div class="descr">Migration der Konfiguration auf eine neue, vom Kunden beschaffte Recheneinheit bei steigendem Bedarf. Nach Aufwand.</div>
+          <div class="descr">Migration der Konfiguration auf eine neue, vom Kunden beschaffte Recheneinheit bei steigendem Bedarf.</div>
         </td>
         <td class="num">nach Aufwand</td>
       </tr>
@@ -464,51 +519,12 @@
         <td class="pos">D.4</td>
         <td class="label">
           <strong>Stundensatz für Sonder-/Mehraufwand</strong>
-          <div class="descr">Wenn Leistungen nicht durch Festpreis oder Betreuungspaket abgedeckt sind.</div>
+          <div class="descr">Wenn Leistungen nicht durch Festpreis oder Betreuungspaket abgedeckt sind. Diese Leistungen werden vor Inanspruchnahme mit dem Auftraggeber abgesprochen und müssen in einem Zusatzvertrag vom Auftraggeber separat freigegeben und signiert werden.</div>
         </td>
         <td class="num">120 € / Stunde</td>
       </tr>
     </tbody>
   </table>
-
-  <!-- ░░░ Förderung ░░░ -->
-  <h2 class="sec"><span class="num">E</span>Eigenanteil nach Förderung</h2>
-  <p class="lead">Alle Pakete sind förderfähig. Eigenanteil bezogen auf die einmalige Ersteinrichtung (B), Betreuung (C) wird nicht gefördert.</p>
-  <table class="foerder">
-    <thead>
-      <tr>
-        <th>Paket</th>
-        <th class="num">Listenpreis</th>
-        <th class="num">Sachsen <span class="gold">60 %</span></th>
-        <th class="num">NRW <span class="gold">50 %</span></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="label">Starter (B.1)</td>
-        <td class="num">5.900 €</td>
-        <td class="num">2.360 €</td>
-        <td class="num">2.950 €</td>
-      </tr>
-      <tr>
-        <td class="label">Professional (B.2)</td>
-        <td class="num">10.900 €</td>
-        <td class="num">4.360 €</td>
-        <td class="num">5.450 €</td>
-      </tr>
-      <tr>
-        <td class="label">Ultimate (B.3)</td>
-        <td class="num">15.900 €</td>
-        <td class="num">6.360 €</td>
-        <td class="num">7.950 €</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <p class="small-note">
-    Förderquoten und -bedingungen sind Stand der Programmrichtlinien zum Zeitpunkt der Erstellung. Verbindliche Auskunft erteilt die jeweilige Förderbank. Andere Bundesländer auf Anfrage. Alle Preise zzgl. der gesetzlichen Umsatzsteuer.
-  </p>
-
 </div>
 
 </body>

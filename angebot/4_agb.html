@@ -365,13 +365,13 @@
 <ol class="legal">
   <li>Der Kunde stellt – soweit nach der konkreten Leistung erforderlich – die für die Leistungserbringung notwendige Infrastruktur und Beistellungen zur Verfügung. Hierzu zählen je nach Leistungsumfang insbesondere:
     <ol>
-      <li>Stellfläche, Stromversorgung und Netzwerkanschluss für eine vom Anbieter beigestellte lokale KI-Appliance,</li>
+      <li>Beschaffung der für den Betrieb benötigten lokalen KI-Recheneinheit (z.&nbsp;B. Mac&nbsp;Mini, Mac&nbsp;Studio, MacBook&nbsp;Pro oder vergleichbar) auf Empfehlung des Anbieters sowie Stellfläche, Stromversorgung und Netzwerkanschluss für diese Recheneinheit,</li>
       <li>Zugriff auf bestehende IT-Systeme des Kunden (z.&nbsp;B. E-Mail-Server, Dateiablagen, Branchensoftware) zum Zweck der Integration,</li>
       <li>Bereitstellung von Beispiel- und Testdaten in geeigneter, datenschutzkonformer Form (anonymisiert oder pseudonymisiert),</li>
       <li>Benennung jeweils einer fachlich und einer technisch verantwortlichen Ansprechperson.</li>
     </ol>
   </li>
-  <li>Soweit der Anbieter zu Einrichtungs-, Wartungs- oder Supportzwecken Fernzugriff auf Systeme des Kunden benötigt, richtet der Kunde diesen über eine gesicherte Verbindung (z.&nbsp;B. VPN, RDP, SSH) ein und stellt die erforderlichen Zugangsdaten und Zertifikate bereit. Sofern für die Nutzung des Fernzugriffs ein vom Kunden bereitgestelltes Endgerät erforderlich ist, stellt der Kunde dieses zur Verfügung.</li>
+  <li>Soweit der Anbieter zu Einrichtungs-, Wartungs- oder Supportzwecken Fernzugriff auf Systeme des Kunden benötigt, richtet der Kunde diesen über eine gesicherte Verbindung (z.&nbsp;B. TeamViewer, VPN, RDP, SSH) ein und stellt die erforderlichen Zugangsdaten und Zertifikate bereit. Für die initiale Einrichtung einer durch den Kunden beschafften lokalen KI-Recheneinheit ist insbesondere ein einmaliger TeamViewer-Zugang ausreichend; der Anbieter erbringt die weitere Konfiguration ohne Vor-Ort-Termin remote.</li>
   <li>Dem Anbieter wird auf dessen Anfordern der Kontakt zu internen Fachabteilungen, IT-Verantwortlichen oder externen Dienstleistern des Kunden hergestellt, soweit dies für die Leistungserbringung erforderlich ist.</li>
 </ol>
 
@@ -489,7 +489,7 @@
   <li>Die Akzeptanzkriterien sind so zu fassen, dass sie an einer endlichen, vor PoC-Beginn vereinbarten Menge von Test-Inputs des Kunden überprüfbar sind. Subjektive Gefallenskriterien („Zufriedenheit" o.&nbsp;Ä.) sind keine zulässigen Akzeptanzkriterien.</li>
   <li>Im Rahmen des PoC ist eine Iterationsschleife enthalten. Erfüllt der erstmalige Aufbau die Akzeptanzkriterien noch nicht, arbeitet der Anbieter ein vom Kunden innerhalb von 10&nbsp;Werktagen nach erster Demonstration in Textform übermitteltes Feedback in einer Überarbeitung ein.</li>
   <li>Im Abschluss-Termin wird der PoC anhand der vereinbarten Test-Inputs gemeinsam auf Einhaltung der Akzeptanzkriterien überprüft. Werden diese in allen wesentlichen Punkten erreicht, gilt der PoC als abgenommen.</li>
-  <li>Werden die Akzeptanzkriterien auch nach der Iterationsschleife in wesentlichen Punkten nicht erreicht, vereinbaren die Parteien zunächst eine zweite Nachbesserung. Bleibt auch diese ergebnislos und liegen die Ursachen überwiegend im Verantwortungsbereich des Anbieters, kann der Kunde den auf den Aufbau entfallenden Anteil der Vergütung (1.150&nbsp;€ netto) zurückverlangen; der Anteil für den durchgeführten Workshop und die erstellten Erkenntnisse (750&nbsp;€ netto) verbleibt beim Anbieter, da er dem Kunden unabhängig vom technischen Ergebnis Erkenntniswert liefert.</li>
+  <li>Werden die Akzeptanzkriterien auch nach der Iterationsschleife in wesentlichen Punkten nicht erreicht, vereinbaren die Parteien zunächst eine zweite Nachbesserung im üblichen Aufwandsrahmen. Bleibt auch diese ergebnislos, dokumentiert der Anbieter im Abschluss-Termin den erreichten Stand sowie eine begründete fachliche Einschätzung, weshalb die Akzeptanzkriterien mit dem gewählten Ansatz nicht erfüllt werden konnten. Die Vergütung für den PoC verbleibt in diesem Fall vollständig beim Anbieter, da der PoC ausdrücklich der Beantwortung der Frage dient, ob ein lokal betriebener KI-Workflow für den konkreten Anwendungsfall des Kunden in der gewünschten Qualität tragfähig ist; eine begründete Antwort „nicht in der gewünschten Qualität tragfähig" ist eine vertragsgemäße Leistung im Sinne dieses Teils&nbsp;D. Eine pauschale Zufriedenheits- oder Geld-zurück-Garantie wird ausdrücklich nicht vereinbart.</li>
 </ol>
 
 <h2 class="par"><span class="par-num">§ 3</span>Mitwirkung des Kunden im PoC</h2>
@@ -510,22 +510,22 @@
   <li>Der Anbieter verarbeitet im PoC ausschließlich die vom Kunden ausdrücklich für PoC-Zwecke beigestellten Beispieldaten. Eine darüberhinausgehende Datenverarbeitung findet nicht statt.</li>
   <li>Der Kunde stellt sicher, dass die übermittelten Beispieldaten entweder vollständig anonymisiert sind oder, soweit eine Pseudonymisierung erfolgt, keine besonderen Kategorien personenbezogener Daten i.&nbsp;S.&nbsp;d. Art.&nbsp;9 DSGVO und keine geschäftskritischen Geheimnisse Dritter ohne deren Zustimmung enthalten.</li>
   <li>Eine produktive Verarbeitung personenbezogener Echtdaten durch den Anbieter im PoC findet nur statt, wenn vor Beginn der Verarbeitung ein gesonderter Auftragsverarbeitungsvertrag gemäß Art.&nbsp;28 DSGVO geschlossen wurde.</li>
-  <li>Die vom Kunden beigestellten Beispieldaten werden vom Anbieter ausschließlich für die Durchführung des PoC und – im Fall einer anschließenden Vollausrollung – zur Übertragung der Konfiguration in den Produktivbetrieb verwendet. Werden keine Anschlussleistungen beauftragt, löscht der Anbieter die Beispieldaten spätestens 30&nbsp;Tage nach Abnahme bzw. Abbruch des PoC nachweislich und unwiderruflich.</li>
+  <li>Die vom Kunden beigestellten Beispieldaten werden vom Anbieter ausschließlich für die Durchführung des PoC und – im Fall einer anschließenden Go-Live – zur Übertragung der Konfiguration in den Produktivbetrieb verwendet. Werden keine Anschlussleistungen beauftragt, löscht der Anbieter die Beispieldaten spätestens 30&nbsp;Tage nach Abnahme bzw. Abbruch des PoC nachweislich und unwiderruflich.</li>
   <li>Im Übrigen gilt die Vertraulichkeitsregelung des Teil&nbsp;A §&nbsp;10 ergänzend.</li>
 </ol>
 
-<h2 class="par"><span class="par-num">§ 5</span>Anrechenbarkeit auf eine Vollausrollung</h2>
+<h2 class="par"><span class="par-num">§ 5</span>Anrechenbarkeit auf einen Go-Live</h2>
 <ol class="legal">
-  <li>Bei Beauftragung einer Vollausrollung im Sinne des Angebots des Anbieters innerhalb von 90&nbsp;Kalendertagen nach Abnahme oder Abbruch des PoC wird der für den PoC vereinbarte Festpreis zu 100&nbsp;% auf die einmalige Ersteinrichtung der Vollausrollung angerechnet.</li>
+  <li>Bei Beauftragung eines Go-Live im Sinne des Angebots des Anbieters innerhalb von 90&nbsp;Kalendertagen nach Abnahme oder Abbruch des PoC wird der für den PoC vereinbarte Festpreis zu 100&nbsp;% auf die einmalige Einrichtung des Go-Live angerechnet.</li>
   <li>Maßgeblich für die Wahrung der Frist nach Abs.&nbsp;1 ist der Zugang der durch den Kunden unterzeichneten Beauftragung beim Anbieter.</li>
-  <li>Nach Ablauf der Frist nach Abs.&nbsp;1 entfällt die Anrechenbarkeit. Eine spätere Beauftragung der Vollausrollung erfolgt zum dann gültigen Listenpreis ohne Anrechnung.</li>
+  <li>Nach Ablauf der Frist nach Abs.&nbsp;1 entfällt die Anrechenbarkeit. Eine spätere Beauftragung des Go-Live erfolgt zum dann gültigen Listenpreis ohne Anrechnung.</li>
 </ol>
 
 <h2 class="par"><span class="par-num">§ 6</span>Nutzungsrechte am PoC-Ergebnis</h2>
 <ol class="legal">
   <li>Sämtliche im Rahmen des PoC erstellten Konfigurationen, Workflow-Definitionen, Prompts und sonstigen Bauteile (i.&nbsp;F. „PoC-Ergebnis") verbleiben urheberrechtlich beim Anbieter.</li>
-  <li>Der Kunde erhält am PoC-Ergebnis ein einfaches, nicht übertragbares, zeitlich unbegrenztes Nutzungsrecht für interne Evaluations- und Entscheidungszwecke. Eine produktive Nutzung des PoC-Ergebnisses durch den Kunden ohne anschließende Beauftragung der Vollausrollung ist nicht gestattet.</li>
-  <li>Mit Beauftragung und vollständiger Bezahlung der Vollausrollung erhält der Kunde an dem für die produktive Einrichtung verwendeten Workflow die Nutzungsrechte nach Teil&nbsp;B §&nbsp;4 (einfaches, nicht ausschließliches, zeitlich und räumlich unbegrenztes, nicht übertragbares Nutzungsrecht für den eigenen Geschäftsbetrieb; Erweiterung und Anpassung gestattet, Weiterveräußerung und Bereitstellung gegenüber Dritten untersagt).</li>
+  <li>Der Kunde erhält am PoC-Ergebnis ein einfaches, nicht übertragbares, zeitlich unbegrenztes Nutzungsrecht für interne Evaluations- und Entscheidungszwecke. Eine produktive Nutzung des PoC-Ergebnisses durch den Kunden ohne anschließende Beauftragung eines Go-Live ist nicht gestattet.</li>
+  <li>Mit Beauftragung und vollständiger Bezahlung des Go-Live erhält der Kunde an dem für die produktive Einrichtung verwendeten Workflow die Nutzungsrechte nach Teil&nbsp;B §&nbsp;4 (einfaches, nicht ausschließliches, zeitlich und räumlich unbegrenztes, nicht übertragbares Nutzungsrecht für den eigenen Geschäftsbetrieb; Erweiterung und Anpassung gestattet, Weiterveräußerung und Bereitstellung gegenüber Dritten untersagt).</li>
 </ol>
 
 <h2 class="par"><span class="par-num">§ 7</span>Betriebsdauer und Beendigung des PoC</h2>
