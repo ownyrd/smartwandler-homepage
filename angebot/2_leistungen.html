@@ -219,6 +219,12 @@
     margin-top: 0.8mm;
     line-height: 1.5;
   }
+  table.pos tbody td.label ul.descr {
+    padding-left: 1.1em;
+  }
+  table.pos tbody td.label ul.descr li {
+    margin-bottom: 0.4mm;
+  }
   table.pos tbody td.scope {
     text-align: center;
     font-size: 8.5pt;
@@ -360,7 +366,7 @@
     <div class="briefkopf-left">
       <div class="briefkopf-eyebrow">Anlage 1 · Leistungen im Detail</div>
       <div class="briefkopf-title">Leistungen im Detail</div>
-      <div class="briefkopf-sub">Aufbau eines lokal betriebenen KI-Workflows als Proof of Concept, gefolgt von optionalem Go-Live auf einer vom Kunden beschafften, lokalen Recheneinheit.</div>
+      <div class="briefkopf-sub">Aufbau eines lokal betriebenen KI-Workflows als Proof of Concept, gefolgt von optionalem Go-Live auf einer vom Kunden beschafften, lokalen Hardware.</div>
     </div>
     <div class="briefkopf-right">
       <img src="../images/logo-small.png" alt="smartwandler" class="logo">
@@ -374,10 +380,10 @@
 
   <!-- ░░░ Überblick ░░░ -->
   <h2 class="sec">Überblick</h2>
-  <p class="lead">Das Angebot gliedert sich in zwei klar getrennte Phasen. Phase&nbsp;1 ist der Festpreis-PoC dieses Angebots. Phase&nbsp;2 wird gesondert beauftragt – der PoC-Festpreis ist dann zu 100&nbsp;% anrechenbar.</p>
+  <p class="lead">Das Angebot gliedert sich in zwei klar getrennte Phasen. Phase&nbsp;1 ist der Festpreis-PoC dieses Angebots. Phase&nbsp;2 wird gesondert beauftragt, der PoC-Festpreis ist dann zu 100&nbsp;% anrechenbar. Genannte Paketnamen (A.2, B.1, C.1 etc) beziehen sich auf die angehängte allgemeine Preisliste.</p>
   <div class="note">
-    <strong>Phase 1 · Proof of Concept</strong> (1.900&nbsp;€ netto, Inhalt dieses Angebots) – demonstriert die Tragfähigkeit eines lokalen KI-Workflows anhand Ihrer realen Beispieldaten, ohne produktiven Betrieb.<br>
-    <strong>Phase 2 · Go-Live</strong> (4.000&nbsp;€ netto Einrichtung + 290&nbsp;€ netto/Monat Betreuung, optional, Hardware separat zu beschaffen) – Remote-Konfiguration der vom Kunden bereitgestellten Hardware via TeamViewer, Anbindung an Karthago, Übergabe in den Regelbetrieb.
+    <strong>Phase 1 · Proof of Concept · siehe Preisliste Paket A.2</strong> (1.900&nbsp;€ netto, Inhalt dieses Angebots), demonstriert die Tragfähigkeit eines lokalen KI-Workflows anhand Ihrer realen Beispieldaten, ohne produktiven Betrieb.<br>
+    <strong>Phase 2 · Go-Live · siehe Preisliste Paket B.1 „Basis"</strong> (Listenpreis 5.900&nbsp;€ netto; abzgl. 1.900&nbsp;€ Anrechnung aus Phase&nbsp;1 = 4.000&nbsp;€ netto verbleibend) optional zzgl. <strong>Paket C.1 „Basis"</strong> Betreuung (290&nbsp;€ netto/Monat, ab Inbetriebnahme empfohlen).
   </div>
 
   <!-- ════════════════════════════════════════════
@@ -387,7 +393,7 @@
     <div class="phase-head">
       <div class="phase-num">01</div>
       <div class="phase-titles">
-        <div class="phase-eyebrow">Phase 1 · Festpreis 1.900 € netto</div>
+        <div class="phase-eyebrow">Phase 1 · Paket A.2 · Festpreis 1.900 € netto</div>
         <div class="phase-title">Proof of Concept – Aufbau und Demonstration</div>
         <div class="phase-duration">Zeitraum: ca. 4 Wochen ab Auftragserteilung und Lieferung der Beispieldaten</div>
       </div>
@@ -406,15 +412,30 @@
           <td class="pos">1.1</td>
           <td class="label">
             <strong>Anforderungs-Workshop</strong>
-            <div class="descr">Gemeinsamer Termin (½&nbsp;Tag, remote oder vor Ort im Raum Dresden). Prozessaufnahme des Ziel-Workflows (Erstellung von Tagesordnungen für WEG-Versammlungen aus Karthago-Vorgängen), Identifikation der relevanten Datenklassen in Karthago (Vorgangstypen, Beschlussanlässe, offene Punkte), Klärung des gewünschten Tagesordnungs-Aufbaus. Abstimmung Anonymisierung der Beispieldaten. Festlegung messbarer Akzeptanzkriterien.</div>
+            <ul class="descr">
+              <li>Gemeinsamer Remote-Workshop (ca. 1 - 2h)</li>
+              <li>Definition/Beschreibung des Ziel-Workflows (Erstellung von Tagesordnungen für WEG-Versammlungen basierend auf Karthago-Vorgängen)</li>
+              <li>Identifikation der relevanten Datenklassen in Karthago (Vorgangstypen, Beschlussanlässe, offene Punkte)</li>
+              <li>Klärung des gewünschten Tagesordnungs-Aufbaus und der Übergabe der Beispieldaten</li>
+              <li>Abstimmung der Anonymisierung der Beispieldaten</li>
+              <li>Abstimmung von IT Zugriffsrechten und evtl. technischen Ansprechpartnern</li>
+              <li>Festlegung messbarer Akzeptanzkriterien</li>
+            </ul>
           </td>
-          <td class="scope">½ Tag</td>
+          <td class="scope">ca. 2h</td>
         </tr>
         <tr>
           <td class="pos">1.2</td>
           <td class="label">
             <strong>Aufbau Workflow auf smartwandler-Entwicklungshardware</strong>
-            <div class="descr">Vollständiger Aufbau auf einer beim Anbieter betriebenen lokalen KI-Recheneinheit. Konfiguration des lokalen Sprachmodells (LLM), Anbindung an einen anonymisierten Karthago-Datenexport, n8n-Automatisierungsstrecke: Karthago-Vorgänge → Klassifikation/Aggregation → strukturierter Tagesordnungs­entwurf. Prompt-Kalibrierung anhand Ihrer Beispiel-Tagesordnungen.</div>
+            <ul class="descr">
+              <li>Vollständiger Aufbau auf einer beim Anbieter betriebenen lokalen KI-Recheneinheit</li>
+              <li>Lokale Konfiguration des Sprachmodells (LLM)</li>
+              <li>Individuelle Softwaremodule für Karthago-Datenimport, Klassifikation/Aggregation und Tagesordnungs-Output</li>
+              <li>n8n-Automatisierungsstrecke: Karthago-Vorgänge → Klassifikation → strukturierter Tagesordnungs&shy;entwurf</li>
+              <li>Ohne externe Produktiv-Schnittstelle in dieser Phase</li>
+              <li>Konfiguration als Code, wiederverwendbar für Phase&nbsp;2</li>
+            </ul>
           </td>
           <td class="scope">2 Wochen</td>
         </tr>
@@ -422,23 +443,36 @@
           <td class="pos">1.3</td>
           <td class="label">
             <strong>Kalibrierung mit anonymisierten Karthago-Daten</strong>
-            <div class="descr">Verarbeitung der gelieferten Karthago-Vorgänge eines Beispieljahres für 2–3 Objekte zur Qualitätsmessung. Dokumentation der Konfiguration als Code – wiederverwendbar für Phase&nbsp;2 ohne Doppelaufbau.</div>
+            <ul class="descr">
+              <li>Verarbeitung der gelieferten Karthago-Vorgänge eines Beispieljahres für mind. 5 Objekte</li>
+              <li>Prompt-Feinjustage gegen Ihre Beispiel-Tagesordnungen als Soll-Output</li>
+              <li>Dokumentation der Konfiguration als Code, ohne Doppelaufbau in Phase&nbsp;2</li>
+            </ul>
           </td>
           <td class="scope">1 Woche</td>
         </tr>
         <tr>
           <td class="pos">1.4</td>
           <td class="label">
-            <strong>Iterationsschleife</strong>
-            <div class="descr">Eine Iterationsrunde ist Bestandteil des Festpreises. Nach Erst-Demonstration werden Ihre Anpassungswünsche bezüglich Ausgabeformat, Detailtiefe und Klassifikationslogik eingearbeitet (Feedback in Textform binnen 10&nbsp;Werktagen).</div>
+            <strong>1 Iterationsschleife</strong>
+            <ul class="descr">
+              <li>Einarbeitung Ihrer Anpassungswünsche nach Erst-Demonstration</li>
+              <li>Anpassungen an Ausgabeformat, Detailtiefe und Klassifikationslogik</li>
+              <li>Feedback in Textform, Sprachmemo oder telefonisch binnen 10&nbsp;Werktagen</li>
+            </ul>
           </td>
           <td class="scope">3–5 Tage</td>
         </tr>
         <tr>
           <td class="pos">1.5</td>
           <td class="label">
-            <strong>Abschluss-Demonstration und Entscheidungsvorlage</strong>
-            <div class="descr">Live-Demonstration des fertigen PoC mit Ihren Beispiel-Karthago-Daten (vor Ort oder remote, ca.&nbsp;90&nbsp;Min). Gemeinsame Bewertung der erzeugten Tagesordnungs­entwürfe anhand der definierten Akzeptanzkriterien. Schriftliche Entscheidungsvorlage: Empfehlung Go-Live ja/nein, geschätzte Zeitersparnis, Empfehlung zur Hardware-Konfiguration (Mac&nbsp;Mini / Studio / MacBook&nbsp;Pro), Förder-Einschätzung.</div>
+            <strong>Abschluss-Demo &amp; Entscheidungsvorlage</strong>
+            <ul class="descr">
+              <li>Live-Demonstration des fertigen PoC mit Ihren Beispiel-Karthago-Daten (remote, ca.&nbsp;90&nbsp;Min)</li>
+              <li>Gemeinsame Bewertung der erzeugten Tagesordnungs&shy;entwürfe anhand der definierten Akzeptanzkriterien</li>
+              <li>Schriftliche Empfehlung Go-Live ja/nein inkl. Hardware-Konfiguration (Mac&nbsp;Mini / Studio / MacBook&nbsp;Pro)</li>
+              <li>Einschätzung zu möglichen Förderungen</li>
+            </ul>
           </td>
           <td class="scope">½ Tag</td>
         </tr>
@@ -446,7 +480,7 @@
     </table>
 
     <div class="note">
-      <strong>Akzeptanzkriterien:</strong> Werden im Workshop gemeinsam objektiv festgelegt – zum Beispiel: Vollständigkeit der aus Karthago abgeleiteten Tagesordnungspunkte, korrekte Klassifikation der Vorgänge, Anteil ohne manuelle Nacharbeit übernehmbarer Tagesordnungs­entwürfe. Daran wird der PoC gemessen.
+      <strong>Akzeptanzkriterien:</strong> Werden im Workshop gemeinsam objektiv festgelegt. Zum Beispiel: Vollständigkeit der aus Karthago abgeleiteten Tagesordnungspunkte, korrekte Klassifikation der Vorgänge, Anteil ohne manuelle Nacharbeit übernehmbarer Tagesordnungs­entwürfe. Daran wird der PoC gemessen.
     </div>
 
     <div class="warning">
@@ -454,9 +488,8 @@
       <ul>
         <li>Produktive Verarbeitung Ihrer Echtdaten im laufenden Betrieb</li>
         <li>Anbindung an Ihre Produktivsysteme (Outlook, Dateiserver, Verwaltungssoftware)</li>
-        <li>Hardware-Stellung bei Ihnen vor Ort</li>
+        <li>Hardwareeinrichtung bei Ihnen vor Ort</li>
         <li>Dauerbetrieb über das Demonstrations-/Iterationsfenster hinaus</li>
-        <li>Schulung größerer Anwendergruppen</li>
       </ul>
     </div>
   </div>
@@ -468,15 +501,15 @@
     <div class="phase-head">
       <div class="phase-num">02</div>
       <div class="phase-titles">
-        <div class="phase-eyebrow">Phase 2 · optional · 4.000 € netto + Betreuung (Hardware separat)</div>
+        <div class="phase-eyebrow">Phase 2 · optional · Paket B.1 + (optional) Betreuung C.1 (Hardware separat)</div>
         <div class="phase-title">Go-Live – Produktivbetrieb bei Ihnen</div>
-        <div class="phase-duration">Beauftragung innerhalb 90 Tagen nach PoC-Abschluss → PoC zu 100 % anrechenbar</div>
+        <div class="phase-duration">Listenpreis 5.900 € − 1.900 € Anrechnung Phase 1 = 4.000 € netto Einrichtung · zzgl. 290 € netto/Monat Betreuung (optional)</div>
       </div>
     </div>
 
-    <p class="lead">Der Go-Live übersetzt den im PoC validierten Workflow in einen produktiven, dauerhaft betriebsfähigen Aufbau auf Ihrer eigenen Hardware. Die im PoC erstellte Konfiguration wird übernommen – es wird nicht erneut entwickelt.</p>
+    <p class="lead">Der Go-Live übersetzt den im PoC validierten Workflow in einen produktiven, dauerhaft betriebsfähigen Aufbau auf Ihrer eigenen Hardware. Die im PoC erstellte Konfiguration wird übernommen, es wird nicht erneut entwickelt und erfordert keine fachliche Unterstützung vom Auftraggeber mehr (höchstens technischen Support des EDV Beauftragten vor Ort).</p>
     <div class="note">
-      <strong>Hardware separat:</strong> Mac&nbsp;Mini, Mac&nbsp;Studio oder MacBook&nbsp;Pro werden von Ihnen direkt beschafft. Wir empfehlen vor der Bestellung die geeignete Konfiguration (auf Basis der Erkenntnisse aus dem PoC). Richtwert: 1.500–3.500&nbsp;€ netto je nach Modell und Speicherausbau.
+      <strong>Hardware separat:</strong> Mac&nbsp;Mini, Mac&nbsp;Studio oder MacBook&nbsp;Pro werden von Ihnen direkt beschafft. Wir empfehlen vor der Bestellung die geeignete Konfiguration (auf Basis der Erkenntnisse aus dem PoC). Richtwert: ca.&nbsp;2.500&nbsp;€ netto je nach Konfiguration. Die Hardware wird zunächst zu uns gesendet, von uns ersteingerichtet und für Sie kostenfrei zu Ihnen weiter versendet.
     </div>
 
     <table class="pos">
@@ -491,40 +524,80 @@
         <tr>
           <td class="pos">2.1</td>
           <td class="label">
-            <strong>Hardware-Empfehlung &amp; Vor-Bestellungs-Beratung</strong>
-            <div class="descr">Empfehlung der konkreten Konfiguration (Modell, RAM, Speicher) auf Basis der PoC-Erkenntnisse. Die Bestellung erfolgt durch Sie direkt beim Hersteller oder Händler Ihrer Wahl. Hardware ist <strong>nicht</strong> im Preis enthalten.</div>
+            <strong>Hardware-Empfehlung &amp; Bestellberatung</strong>
+            <ul class="descr">
+              <li>Empfehlung der konkreten Konfiguration (Modell, CPU/GPU, RAM, Speicher) auf Basis der PoC-Erkenntnisse</li>
+              <li>Bestellung durch Sie direkt beim Hersteller oder Händler Ihrer Wahl</li>
+              <li>die Hardware selbst ist <strong>nicht</strong> im Preis enthalten</li>
+            </ul>
           </td>
           <td class="scope">enthalten</td>
         </tr>
         <tr>
           <td class="pos">2.2</td>
           <td class="label">
-            <strong>Remote-Einrichtung via TeamViewer</strong>
-            <div class="descr">Ihr EDV-Beauftragter schließt die gelieferte Hardware im Serverschrank an Strom und Netzwerk an, richtet TeamViewer ein und stellt uns einmalig den Zugang bereit. Wir installieren anschließend remote: lokales LLM, n8n, Sicherheits-Setup und ggf. Fernzugriff für die laufende Betreuung. Eingerichtet als reine KI-Recheneinheit (nicht als „Büro-PC") – relevant für Sicherheits-Trennung.</div>
+            <strong>System-Ersteinrichtung &amp; Sicherheits-Setup (remote)</strong>
+            <ul class="descr">
+              <li>Ersteinrichtung des Betriebssystems inkl. Festplattenverschlüsselung und Sicherheitsmechanismen</li>
+              <li>Einrichtung einer sicheren Remote-Verbindung via Reverse VPN, TeamViewer als Backup</li>
+              <li>Einrichtung als reine KI-Recheneinheit (nicht als „Büro-PC") – relevant für Sicherheits-Trennung</li>
+              <li>Ihr EDV-Beauftragter schließt die Hardware im Serverschrank an Strom und Netzwerk an und steht uns telefonisch während des initialen Remote-Logins zur Verfügung.</li>
+            </ul>
           </td>
           <td class="scope">enthalten</td>
         </tr>
         <tr>
           <td class="pos">2.3</td>
           <td class="label">
-            <strong>Anbindung an Karthago</strong>
-            <div class="descr">Konfiguration des wiederholbaren Imports der Karthago-Vorgänge in den Workflow (Datenexport, Schnittstelle oder DB-Lesezugriff nach Abstimmung). Übertragung des im PoC erstellten Workflows in den Produktivbetrieb.</div>
+            <strong>Installation des Software-Stacks</strong>
+            <ul class="descr">
+              <li>Installation und Konfiguration des lokalen Sprachmodells (LLM)</li>
+              <li>Installation und Konfiguration der Workflow-Engine n8n</li>
+              <li>Installation und Konfiguration Reverse Proxy</li>
+              <li>Graphische Nutzeroberfläche zur Bedienung des Systems</li>
+              <li>Helfertools für den Karthago-Workflow (z.&nbsp;B. PDF-Compiler, Konverter)</li>
+            </ul>
           </td>
           <td class="scope">enthalten</td>
         </tr>
         <tr>
           <td class="pos">2.4</td>
           <td class="label">
-            <strong>Abnahme und Remote-Einweisung</strong>
-            <div class="descr">Funktionsprüfung gegen die im PoC validierten Akzeptanzkriterien. Remote-Einweisung (½&nbsp;Tag) der Bedienenden via TeamViewer / Videokonferenz. Übergabedokumentation: Konfiguration, Bedienanleitung, Notfall-Prozesse.</div>
+            <strong>Karthago-Anbindung &amp; Übernahme des PoC-Workflows</strong>
+            <ul class="descr">
+              <li>Konfiguration des wiederholbaren Imports der Karthago-Vorgänge (Datenexport, Schnittstelle oder DB-Lesezugriff nach Abstimmung)</li>
+              <li>Übertragung des im PoC erstellten Workflows in den Produktivbetrieb</li>
+              <li>Integration der externen Karthago-Schnittstelle (1&nbsp;externe Schnittstelle gem. Paket B.1)</li>
+              <li>+1&nbsp;Iterationsschleife im Produktivbetrieb (insgesamt 2 mit Phase&nbsp;1)</li>
+            </ul>
           </td>
           <td class="scope">enthalten</td>
         </tr>
         <tr>
           <td class="pos">2.5</td>
           <td class="label">
-            <strong>Laufende Betreuung</strong>
-            <div class="descr">LLM- und Sicherheits-Updates, E-Mail-Support, Wartungscheck pro Quartal, kleinere Anpassungen am bestehenden Workflow. Mindestlaufzeit gemäß AGB Teil&nbsp;C. Weitere Workflows als Add-on (ab 1.900&nbsp;€ netto/Workflow) buchbar.</div>
+            <strong>Doku, Remote-Einweisung &amp; Abnahme</strong>
+            <ul class="descr">
+              <li>Detaillierte Dokumentation mit Screen-Recording-Video als Bedienungshilfe</li>
+              <li>Kurze Remote-Einweisung der Mitarbeiter via TeamViewer / Videokonferenz</li>
+              <li>Funktionsprüfung gegen die im PoC validierten Akzeptanzkriterien</li>
+            </ul>
+          </td>
+          <td class="scope">enthalten</td>
+        </tr>
+        <tr>
+          <td class="pos">2.6</td>
+          <td class="label">
+            <strong>Laufende Betreuung · Paket C.1 „Basis" (optional)</strong>
+            <ul class="descr">
+              <li>Sicherheitsupdates der verwendeten Systemkomponenten</li>
+              <li>Updates der verwendeten Sprachmodelle</li>
+              <li>Monatlicher Wartungscheck (nutzbar bei bis zu 2&nbsp;produktiven Workflows)</li>
+              <li>1&nbsp;kleinere Optimierung/Anpassung eines Workflows pro Monat</li>
+              <li>Basis E-Mail-Support mit Reaktionszeit &lt;48&nbsp;h</li>
+              <li>Weitere Workflows als Add-on (ab 1.900&nbsp;€ netto/Workflow, Paket D.1) buchbar</li>
+              <li>Mindestvertragslaufzeit 6&nbsp;Monate, danach monatlich kündbar (AGB Teil&nbsp;C §6)</li>
+            </ul>
           </td>
           <td class="scope">290 €/Mo</td>
         </tr>
@@ -564,11 +637,11 @@
         <tr>
           <td class="phase-col">PoC · Daten</td>
           <td class="label">Anonymisierter Karthago-Datenexport</td>
-          <td>Vorgänge eines kompletten Jahres für 2–3 Beispiel-Objekte. Format nach Abstimmung: CSV, JSON oder DB-Dump. Namen, Kontaktdaten und sonstige personenbezogene Felder vorab pseudonymisiert</td>
+          <td>Vorgänge eines kompletten Jahres für 5 Beispiel-Objekte. Format nach Abstimmung: CSV, JSON oder DB-Dump. Namen, Kontaktdaten und sonstige personenbezogene Felder können bei Bedarf vorab pseudonymisiert werden</td>
         </tr>
         <tr>
           <td class="phase-col">PoC · Daten</td>
-          <td class="label">3–5 fertige Beispiel-Tagesordnungen</td>
+          <td class="label">5 fertige Beispiel-Tagesordnungen, die zu den Daten der Beispiel Objekte passen</td>
           <td>Tagesordnungen, die Sie aus den gelieferten Karthago-Vorgängen tatsächlich erstellt haben. PDF oder Word. Dient als Soll-Output für Stil, Struktur und Detailtiefe</td>
         </tr>
         <tr>
@@ -579,7 +652,7 @@
         <tr>
           <td class="phase-col">PoC · Iteration</td>
           <td class="label">Strukturiertes Feedback nach Erst-Demo</td>
-          <td>In Textform innerhalb 5–10 Werktagen</td>
+          <td>In Textform, Sprachmemo oder telefonisch innerhalb von 10 Werktagen</td>
         </tr>
         <tr>
           <td class="phase-col">Go-Live</td>
@@ -589,7 +662,7 @@
         <tr>
           <td class="phase-col">Go-Live</td>
           <td class="label">EDV-Beauftragter</td>
-          <td>Schließt die Hardware im Serverschrank an Strom und Netzwerk an, richtet TeamViewer ein und stellt uns einmalig den Zugang bereit</td>
+          <td>Schließt die Hardware im Serverschrank an Strom und Netzwerk an und steht uns telefonisch während des initialen Remote-Logins zur Verfügung.</td>
         </tr>
         <tr>
           <td class="phase-col">Go-Live</td>
@@ -600,7 +673,7 @@
     </table>
 
     <div class="note">
-      <strong>Datenschutz im PoC:</strong> Wir verarbeiten ausschließlich anonymisierte bzw. pseudonymisierte Beispieldaten. Eine produktive Verarbeitung personenbezogener Echtdaten findet im PoC nicht statt. Alle gelieferten Beispieldaten werden nach Abschluss des PoC und Ablauf einer 30-tägigen Karenzfrist nachweislich gelöscht, sofern kein Go-Live beauftragt wird.
+      <strong>Datenschutz im PoC:</strong> Wir verarbeiten ausschließlich anonymisierte bzw. pseudonymisierte Beispieldaten. Eine produktive Verarbeitung personenbezogener Echtdaten findet im PoC nicht statt. Alle gelieferten Beispieldaten werden nach Abschluss des PoC und Ablauf einer 30-tägigen Karenzfrist gelöscht, sofern kein Go-Live beauftragt wird.
     </div>
   </div>
 
@@ -609,8 +682,8 @@
   <ul class="bul">
     <li><strong>Lokales Sprachmodell:</strong> Aktuelle Open-Weight-Modelle (z.&nbsp;B. Llama 3, Mistral, Qwen), Auswahl je nach Anforderung und Hardware-Dimensionierung. Keine Lizenzkosten, kein Token-Abo.</li>
     <li><strong>Workflow-Engine:</strong> n8n (self-hosted, Open Source) für die Orchestrierung der Verarbeitungsschritte.</li>
-    <li><strong>Karthago-Anbindung:</strong> Eingangsformat nach Abstimmung – strukturierter Export (CSV/JSON), DB-Lesezugriff oder verfügbare Schnittstelle. Vorgänge werden lokal geladen, klassifiziert und aggregiert.</li>
-    <li><strong>Ausgabeformat:</strong> Tagesordnungs-Entwurf in dem von Ihnen vorgegebenen Stil (Word, PDF oder Markdown), bereit zur abschließenden manuellen Prüfung durch die zuständige Person.</li>
+    <li><strong>Karthago-Anbindung:</strong> Eingangsformat nach Abstimmung, strukturierter Export (CSV/JSON), DB-Lesezugriff oder verfügbare Schnittstelle. Vorgänge werden lokal geladen, klassifiziert und aggregiert.</li>
+    <li><strong>Ausgabeformat:</strong> Tagesordnungs-Entwurf in dem von Ihnen vorgegebenen Stil (z.B. Word, PDF), bereit zur abschließenden manuellen Prüfung durch die zuständige Person.</li>
     <li><strong>Hardware:</strong> Mac&nbsp;Mini, Mac&nbsp;Studio oder MacBook&nbsp;Pro mit Apple Silicon. Die geeignete Konfiguration wird auf Basis der PoC-Erkenntnisse empfohlen und vom Kunden direkt beschafft.</li>
     <li><strong>Sicherheit:</strong> Lokaler Betrieb hinter Ihrer Firewall. Einrichtung und ggf. Betreuung verschlüsselt über TeamViewer / VPN. Keine ausgehenden Verbindungen zu Cloud-LLM-Anbietern.</li>
   </ul>
