@@ -397,7 +397,7 @@
     <div class="adress-card">
       <div class="label">Kunde</div>
       [Unternehmensname]<br>
-      [Ansprechpartner]<br>
+      Herr Kretschmer<br>
       [Straße, Hausnummer]<br>
       [PLZ Ort]
     </div>
@@ -435,6 +435,7 @@
             <li>Prozessaufnahme: Erstellung von WEG-Tagesordnungen aus Karthago-Vorgängen</li>
             <li>Klärung der Karthago-Vorgangsstruktur, benötigter Materialien und Zugänge</li>
             <li>Abstimmung der Anonymisierung der Beispieldaten</li>
+            <li>Abstimmung von IT-Zugriffsrechten und evtl. technischen Ansprechpartnern</li>
             <li>Definition messbarer Akzeptanzkriterien</li>
           </ul>
         </td>
@@ -459,7 +460,7 @@
         <td class="label">
           <strong>Kalibrierung mit anonymisierten Karthago-Daten</strong>
           <ul class="descr">
-            <li>Verarbeitung der gelieferten Karthago-Vorgänge eines Beispieljahres für 2–3 Objekte</li>
+            <li>Verarbeitung der gelieferten Karthago-Vorgänge eines Beispieljahres für mind. 5 Objekte</li>
             <li>Prompt-Feinjustage gegen Ihre Beispiel-Tagesordnungen als Soll-Output</li>
           </ul>
         </td>
@@ -470,8 +471,9 @@
         <td class="label">
           <strong>1 Iterationsschleife</strong>
           <ul class="descr">
-            <li>Einarbeitung Ihres Feedbacks nach Erst-Demo (schriftlich, Sprachmemo oder telefonisch)</li>
-            <li>Feedback-Eingang binnen 10&nbsp;Werktagen</li>
+            <li>Einarbeitung Ihrer Anpassungswünsche nach Erst-Demonstration</li>
+            <li>Anpassungen an Ausgabeformat, Detailtiefe und Klassifikationslogik</li>
+            <li>Feedback in Textform, Sprachmemo oder telefonisch binnen 10&nbsp;Werktagen</li>
           </ul>
         </td>
         <td class="num">enthalten</td>
@@ -481,7 +483,7 @@
         <td class="label">
           <strong>Abschluss-Demo &amp; Entscheidungsvorlage</strong>
           <ul class="descr">
-            <li>Live-Demonstration des fertigen PoC (ca.&nbsp;90&nbsp;Min)</li>
+            <li>Live-Demonstration des fertigen PoC mit Ihren Beispiel-Karthago-Daten (remote, ca.&nbsp;90&nbsp;Min)</li>
             <li>Bewertung gegen die im Workshop definierten Akzeptanzkriterien</li>
             <li>Schriftliche Empfehlung für oder gegen Go-Live inkl. Hardware-Konfiguration</li>
             <li>Einschätzung zu möglichen Förderungen</li>
@@ -517,7 +519,8 @@
           <strong>Hardware-Empfehlung &amp; Bestellberatung</strong>
           <ul class="descr">
             <li>Empfehlung der konkreten Konfiguration (Modell, CPU/GPU, RAM, Speicher) auf Basis der PoC-Erkenntnisse</li>
-            <li>Bestellung erfolgt durch Sie direkt beim Hersteller oder Händler Ihrer Wahl (Hardware ist <strong>nicht</strong> im Preis enthalten)</li>
+            <li>Bestellung durch Sie direkt beim Hersteller oder Händler Ihrer Wahl</li>
+            <li>die Hardware selbst ist <strong>nicht</strong> im Preis enthalten</li>
           </ul>
         </td>
         <td class="num">enthalten</td>
@@ -525,14 +528,12 @@
       <tr>
         <td class="pos">2.2</td>
         <td class="label">
-          <strong>Remote-Einrichtung der lokalen KI-Recheneinheit</strong>
+          <strong>System-Ersteinrichtung &amp; Sicherheits-Setup (remote)</strong>
           <ul class="descr">
             <li>Ersteinrichtung des Betriebssystems inkl. Festplattenverschlüsselung und Sicherheitsmechanismen</li>
             <li>Einrichtung einer sicheren Remote-Verbindung via Reverse VPN, TeamViewer als Backup</li>
-            <li>Installation und Konfiguration des lokalen Sprachmodells (LLM)</li>
-            <li>Installation und Konfiguration der Workflow-Engine (n8n) sowie Reverse Proxy</li>
-            <li>Graphische Nutzeroberfläche zur Bedienung des Systems</li>
-            <li>Helfertools für den Karthago-Workflow (z.&nbsp;B. PDF-Compiler, Konverter)</li>
+            <li>Einrichtung als reine KI-Recheneinheit (nicht als „Büro-PC") – relevant für Sicherheits-Trennung</li>
+            <li>Ihr EDV-Beauftragter schließt die Hardware im Serverschrank an Strom und Netzwerk an und steht uns telefonisch während des initialen Remote-Logins zur Verfügung</li>
           </ul>
         </td>
         <td class="num">enthalten</td>
@@ -540,11 +541,13 @@
       <tr>
         <td class="pos">2.3</td>
         <td class="label">
-          <strong>Karthago-Anbindung &amp; Übernahme des PoC-Workflows in den Produktivbetrieb</strong>
+          <strong>Installation des Software-Stacks</strong>
           <ul class="descr">
-            <li>Übertragung des in Phase&nbsp;1 erstellten Workflows in den Produktivbetrieb</li>
-            <li>Integration der externen Karthago-Schnittstelle (1&nbsp;externe Schnittstelle gem. Paket B.1)</li>
-            <li>+1&nbsp;Iterationsschleife im Produktivbetrieb (insgesamt 2&nbsp;Iterationsschleifen mit Phase&nbsp;1)</li>
+            <li>Installation und Konfiguration des lokalen Sprachmodells (LLM)</li>
+            <li>Installation und Konfiguration der Workflow-Engine n8n</li>
+            <li>Installation und Konfiguration Reverse Proxy</li>
+            <li>Graphische Nutzeroberfläche zur Bedienung des Systems</li>
+            <li>Helfertools für den Karthago-Workflow (z.&nbsp;B. PDF-Compiler, Konverter)</li>
           </ul>
         </td>
         <td class="num">enthalten</td>
@@ -552,11 +555,24 @@
       <tr>
         <td class="pos">2.4</td>
         <td class="label">
+          <strong>Karthago-Anbindung &amp; Übernahme des PoC-Workflows</strong>
+          <ul class="descr">
+            <li>Konfiguration des wiederholbaren Imports der Karthago-Vorgänge (Datenexport, Schnittstelle oder DB-Lesezugriff nach Abstimmung)</li>
+            <li>Übertragung des im PoC erstellten Workflows in den Produktivbetrieb</li>
+            <li>Integration der externen Karthago-Schnittstelle (1&nbsp;externe Schnittstelle gem. Paket B.1)</li>
+            <li>+1&nbsp;Iterationsschleife im Produktivbetrieb (insgesamt 2&nbsp;Iterationsschleifen mit Phase&nbsp;1)</li>
+          </ul>
+        </td>
+        <td class="num">enthalten</td>
+      </tr>
+      <tr>
+        <td class="pos">2.5</td>
+        <td class="label">
           <strong>Doku, Remote-Einweisung &amp; Abnahme</strong>
           <ul class="descr">
             <li>Detaillierte Dokumentation mit Screen-Recording-Video als Bedienungshilfe</li>
             <li>Kurze Remote-Einweisung der Mitarbeiter via TeamViewer / Videokonferenz</li>
-            <li>Funktionsprüfung gegen die in Phase&nbsp;1 validierten Akzeptanzkriterien</li>
+            <li>Funktionsprüfung gegen die im PoC validierten Akzeptanzkriterien</li>
           </ul>
         </td>
         <td class="num">enthalten</td>
@@ -577,7 +593,7 @@
         <td class="num">4.000,00 €</td>
       </tr>
       <tr>
-        <td class="pos">2.5</td>
+        <td class="pos">2.6</td>
         <td class="label">
           <strong>Laufende Betreuung · Paket C.1 „Basis" (optional)</strong>
           <ul class="descr">
@@ -586,6 +602,7 @@
             <li>Monatlicher Wartungscheck (nutzbar bei bis zu 2&nbsp;produktiven Workflows)</li>
             <li>1&nbsp;kleinere Optimierung/Anpassung eines Workflows pro Monat</li>
             <li>Basis E-Mail-Support mit Reaktionszeit &lt;48&nbsp;h</li>
+            <li>Weitere Workflows als Add-on (ab 1.900&nbsp;€ netto/Workflow, Paket D.1) buchbar</li>
             <li>Mindestvertragslaufzeit 6&nbsp;Monate, danach monatlich kündbar (AGB Teil&nbsp;C §6)</li>
           </ul>
         </td>
@@ -595,7 +612,7 @@
   </table>
 
   <div class="note">
-    <strong>Hardware separat:</strong> Mac&nbsp;Mini, Mac&nbsp;Studio oder MacBook&nbsp;Pro werden von Ihnen direkt beim Hersteller bzw. einem Händler Ihrer Wahl beschafft (Richtwert ca. 2.500&nbsp;€ netto je nach Konfiguration). Wir empfehlen vor Bestellung die geeignete Konfiguration. Voraussetzung für die Einrichtung: Ihr EDV-Beauftragter schließt die Hardware im Serverschrank an Strom und Netzwerk an und steht uns telefonisch während des initialen Remote-Logins zur Verfügung.
+    <strong>Hardware separat:</strong> Mac&nbsp;Mini, Mac&nbsp;Studio oder MacBook&nbsp;Pro werden von Ihnen direkt beim Hersteller bzw. einem Händler Ihrer Wahl beschafft (Richtwert ca. 2.500&nbsp;€ netto je nach Konfiguration). Wir empfehlen vor Bestellung die geeignete Konfiguration. Die Hardware wird zunächst zu uns gesendet, von uns ersteingerichtet und anschließend für Sie kostenfrei zu Ihnen weiter versendet. Vor Ort schließt Ihr EDV-Beauftragter die Hardware im Serverschrank an Strom und Netzwerk an und steht uns telefonisch während des initialen Remote-Logins zur Verfügung.
   </div>
 
   <!-- ░░░ 4 · Was wir liefern / brauchen ░░░ -->
@@ -607,6 +624,7 @@
         <li>Sämtliche Positionen 1.1–1.5 (Phase&nbsp;1 · Paket&nbsp;A.2) als Festpreis-Leistung</li>
         <li>Aufbau auf unserer lokalen Entwicklungshardware – keine Cloud-Dienste, keine Datenübertragung an Dritte</li>
         <li>Workflow-Konfiguration als Code, reproduzierbar für Phase&nbsp;2</li>
+        <li>Schriftliche Entscheidungsvorlage als Grundlage für die Investitions&shy;entscheidung</li>
       </ul>
     </div>
     <div class="col-card">
@@ -625,7 +643,7 @@
   </div>
 
   <!-- ░░░ 5 · AGB / Anlagen ░░░ -->
-  <h2 class="sec"><span class="num">6</span>Geltung der AGB, Anlagen</h2>
+  <h2 class="sec"><span class="num">5</span>Geltung der AGB, Anlagen</h2>
   <p>Für diesen Vertrag gelten die beigefügten Allgemeinen Geschäftsbedingungen, insbesondere <strong>Teil&nbsp;A</strong> (Allgemeines), <strong>Teil&nbsp;B</strong> (Werkleistungen, inkl. Nutzungsrechte) und <strong>Teil&nbsp;D</strong> (PoC). Für einen etwaigen späteren Go-Live samt Betreuung gelten zusätzlich <strong>Teil&nbsp;C</strong> (Dauerdienstleistungen).</p>
   <table class="anlagen">
     <thead>
