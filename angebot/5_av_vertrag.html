@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Auftragsverarbeitungsvertrag · smartwandler</title>
+<style>
+  /* ──────────────────────────────────────────────────────────
+     Druck als PDF: Chrome → ⌘P → "Als PDF speichern"
+                    Ränder: "Standard"  ·  Hintergrundgrafik: AN
+     ────────────────────────────────────────────────────────── */
+  @page {
+    size: A4;
+    margin: 16mm 16mm 20mm 16mm;
+    @bottom-left {
+      content: "smartwandler.de · Auftragsverarbeitungsvertrag";
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 8pt;
+      color: #7C766C;
+    }
+    @bottom-right {
+      content: "Seite " counter(page) " / " counter(pages);
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 8pt;
+      color: #7C766C;
+    }
+  }
+
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url('../fonts/inter-variable.woff2') format('woff2');
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink:       #3A3631;
+    --ink-mid:   #4B4640;
+    --ink-soft:  #5F5952;
+    --ink-faint: #7C766C;
+    --paper:     #FAF8F5;
+    --paper-2:   #F2EFE9;
+    --line:      rgba(58,54,49,0.14);
+    --line-soft: rgba(58,54,49,0.08);
+    --gold:      #C8A96A;
+    --gold-bg:   #F7F0E3;
+  }
+
+  html { background: #EDEBE6; }
+  body {
+    font-family: 'Inter', Arial, sans-serif;
+    color: var(--ink);
+    font-size: 9.5pt;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  /* ── Sheet (A4) ── */
+  .sheet {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 28px auto;
+    background: var(--paper);
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.04),
+      0 8px 24px rgba(0,0,0,0.07);
+    padding: 18mm 18mm 22mm 18mm;
+    position: relative;
+  }
+  @media print {
+    html, body { background: #fff; }
+    .sheet {
+      width: auto;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+  }
+
+  /* ── Kopfbereich ── */
+  .doc-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12mm;
+    padding-bottom: 8mm;
+    border-bottom: 0.6pt solid var(--line);
+    margin-bottom: 8mm;
+    text-align: left;
+  }
+  .doc-head-left { flex: 1; }
+  .doc-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 8pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: 4mm;
+  }
+  .doc-eyebrow::before {
+    content: "";
+    width: 18mm;
+    height: 0.6pt;
+    background: var(--gold);
+  }
+  .doc-title {
+    font-size: 22pt;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+  }
+  .doc-sub {
+    font-size: 10.5pt;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-top: 3mm;
+    max-width: 130mm;
+  }
+  .doc-head-right {
+    text-align: right;
+    font-size: 8pt;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+  .doc-head-right .logo {
+    width: 16mm; height: 16mm;
+    margin-left: auto;
+    margin-bottom: 2.5mm;
+    display: block;
+  }
+  .doc-head-right strong {
+    font-size: 9.5pt;
+    color: var(--ink);
+  }
+
+  /* ── Parteien-Karten ── */
+  .parties {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6mm;
+    margin-bottom: 6mm;
+    text-align: left;
+  }
+  .party-card {
+    border: 0.5pt solid var(--line);
+    border-radius: 1.5mm;
+    padding: 4mm 4.5mm;
+    background: #fff;
+    font-size: 9.5pt;
+    line-height: 1.5;
+  }
+  .party-card .label {
+    font-size: 7.5pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: 2mm;
+  }
+  .party-card strong { color: var(--ink); }
+  .party-card .role {
+    font-size: 8.5pt;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-top: 1.5mm;
+  }
+
+  /* ── Teil-Trenner (für Anlage) ── */
+  h1.teil {
+    font-size: 14pt;
+    font-weight: 600;
+    color: #fff;
+    background: var(--ink);
+    padding: 3mm 5mm;
+    margin-top: 8mm;
+    margin-bottom: 5mm;
+    border-radius: 1.5mm;
+    letter-spacing: -0.01em;
+    text-align: left;
+    break-after: avoid;
+    break-before: auto;
+  }
+  h1.teil .label {
+    font-size: 7.5pt;
+    letter-spacing: 0.16em;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.5mm;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* ── Paragraf-Header ── */
+  h2.par {
+    font-size: 10.5pt;
+    font-weight: 600;
+    color: var(--ink);
+    margin-top: 5mm;
+    margin-bottom: 2mm;
+    text-align: left;
+    break-after: avoid;
+  }
+  h2.par .par-num {
+    color: var(--gold);
+    margin-right: 1mm;
+  }
+
+  p { margin-bottom: 2mm; }
+
+  ol.legal {
+    list-style: none;
+    counter-reset: legal-counter;
+    margin-left: 0;
+  }
+  ol.legal > li {
+    counter-increment: legal-counter;
+    position: relative;
+    padding-left: 9mm;
+    margin-bottom: 2mm;
+    break-inside: avoid;
+  }
+  ol.legal > li::before {
+    content: "(" counter(legal-counter) ")";
+    position: absolute;
+    left: 0;
+    width: 8mm;
+    color: var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+  }
+  ol.legal ol {
+    list-style: lower-latin;
+    margin-left: 6mm;
+    margin-top: 1.5mm;
+  }
+  ol.legal ol li {
+    margin-bottom: 1.2mm;
+  }
+
+  /* Aufzählungsliste ohne Nummerierung */
+  ul.bul {
+    list-style: none;
+    margin-left: 0;
+    margin-top: 1.5mm;
+  }
+  ul.bul li {
+    position: relative;
+    padding-left: 5mm;
+    margin-bottom: 1mm;
+  }
+  ul.bul li::before {
+    content: "•";
+    position: absolute;
+    left: 1mm;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  .note {
+    background: var(--gold-bg);
+    border-left: 2pt solid var(--gold);
+    padding: 3mm 4mm;
+    font-size: 9pt;
+    color: var(--ink-mid);
+    line-height: 1.5;
+    margin: 3mm 0 4mm;
+    border-radius: 0 1.5mm 1.5mm 0;
+    text-align: left;
+    break-inside: avoid;
+  }
+  .note strong { color: var(--ink); }
+
+  /* ── Inhaltsverzeichnis ── */
+  .toc {
+    background: var(--paper-2);
+    border-radius: 2mm;
+    padding: 5mm 6mm;
+    margin-bottom: 7mm;
+    text-align: left;
+  }
+  .toc h3 {
+    font-size: 8.5pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: 3mm;
+  }
+  .toc ul {
+    list-style: none;
+    columns: 2;
+    column-gap: 8mm;
+  }
+  .toc li {
+    font-size: 9.5pt;
+    color: var(--ink-mid);
+    padding: 0.8mm 0;
+    break-inside: avoid;
+  }
+  .toc li strong { color: var(--ink); }
+
+  /* ── TOMs-Tabelle ── */
+  table.tom {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2mm;
+    font-size: 9pt;
+  }
+  table.tom thead th {
+    text-align: left;
+    padding: 2.2mm 3mm;
+    font-size: 7.5pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink-soft);
+    border-bottom: 0.6pt solid var(--ink);
+  }
+  table.tom tbody td {
+    padding: 2.6mm 3mm;
+    vertical-align: top;
+    border-bottom: 0.4pt solid var(--line-soft);
+    line-height: 1.5;
+  }
+  table.tom tbody td.cat {
+    width: 42mm;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* ── Unterschrift ── */
+  .signature {
+    margin-top: 8mm;
+    break-inside: avoid;
+  }
+  .signature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12mm;
+    margin-top: 6mm;
+  }
+  .signature-line {
+    border-top: 0.5pt solid var(--ink-mid);
+    padding-top: 1.5mm;
+    font-size: 8.5pt;
+    color: var(--ink-soft);
+    min-height: 20mm;
+  }
+  .signature-label {
+    font-size: 8pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: 2mm;
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+<!-- ░░░ Deckkopf ░░░ -->
+<div class="doc-head">
+  <div class="doc-head-left">
+    <div class="doc-eyebrow">Anlage · Auftragsverarbeitungsvertrag</div>
+    <div class="doc-title">Vertrag zur Auftragsverarbeitung gemäß Art. 28 DSGVO</div>
+    <div class="doc-sub">Rahmenvereinbarung für die Verarbeitung personenbezogener Daten im Rahmen sämtlicher gegenwärtigen und künftigen Einrichtungs-, Wartungs- und Pflege-Leistungen des Auftragsverarbeiters an beim Auftraggeber lokal betriebenen KI-Workflow-Lösungen.</div>
+  </div>
+  <div class="doc-head-right">
+    <img src="../images/logo-small.png" alt="smartwandler" class="logo">
+    <strong>smartwandler.de</strong><br>
+    Philipp Anders<br>
+    Wilischstr. 8<br>
+    01279 Dresden<br>
+    info@smartwandler.de
+  </div>
+</div>
+
+<!-- ░░░ Parteien ░░░ -->
+<div class="parties">
+  <div class="party-card">
+    <div class="label">Auftraggeber (Verantwortlicher i.&nbsp;S.&nbsp;d. Art. 4 Nr. 7 DSGVO)</div>
+    <strong>[Unternehmensname]</strong><br>
+    [Straße, Hausnummer]<br>
+    [PLZ Ort]<br>
+    Vertreten durch: [Geschäftsführung / vertretungsberechtigte Person]<br>
+    E-Mail: [E-Mail]
+    <div class="role">– nachfolgend „Auftraggeber" –</div>
+  </div>
+  <div class="party-card">
+    <div class="label">Auftragsverarbeiter (i.&nbsp;S.&nbsp;d. Art. 4 Nr. 8 DSGVO)</div>
+    <strong>Philipp Anders – IT-Consulting</strong><br>
+    Inhaber der Marke „smartwandler"<br>
+    Wilischstr. 8, 01279 Dresden<br>
+    E-Mail: info@smartwandler.de<br>
+    Telefon: +49 152 21078262
+    <div class="role">– nachfolgend „Auftragsverarbeiter" –</div>
+  </div>
+</div>
+
+<!-- ░░░ Präambel ░░░ -->
+<div class="note">
+  <strong>Präambel:</strong> Die Parteien stehen in einer fortlaufenden Geschäftsbeziehung im Bereich der Einrichtung, Konfiguration, Wartung und Pflege lokal beim Auftraggeber betriebener KI-Workflow-Lösungen (i.&nbsp;F. „KI-Lösung"). Grundlage dieser Geschäftsbeziehung sind der jeweilige Hauptvertrag (Angebot/Auftragsbestätigung) sowie die zugehörigen Leistungsbeschreibungen und Allgemeinen Geschäftsbedingungen des Auftragsverarbeiters (i.&nbsp;F. gemeinsam „Hauptvertrag"). Dieser Vertrag konkretisiert die datenschutzrechtlichen Pflichten der Parteien gemäß Art.&nbsp;28 DSGVO und gilt als <strong>Rahmenvereinbarung für sämtliche gegenwärtigen und künftigen Verarbeitungstätigkeiten</strong> des Auftragsverarbeiters für den Auftraggeber im Rahmen dieser Geschäftsbeziehung – unabhängig davon, ob die jeweilige Tätigkeit auf einem ersten Proof of Concept, einem späteren Go-Live, einer laufenden Betreuung oder einem zusätzlich beauftragten weiteren Workflow beruht. Die konkreten Einzelheiten der jeweiligen Verarbeitung (z.&nbsp;B. angebundene Quellsysteme, Datenkategorien, Zwecke) ergeben sich aus dem zugehörigen Hauptvertrag bzw. der Leistungsbeschreibung des Einzelauftrags und werden, soweit erforderlich, durch dokumentierte Einzelweisungen des Auftraggebers konkretisiert.<br><br>Im Proof of Concept werden personenbezogene Daten in der Regel nur in anonymisierter oder pseudonymisierter Form verarbeitet. Weist der Auftraggeber im Einzelfall die Verarbeitung personenbezogener Echtdaten bereits im Proof of Concept ausdrücklich an, gelten die Bestimmungen dieses Vertrages bereits ab diesem Zeitpunkt.
+</div>
+
+<!-- ░░░ Inhaltsverzeichnis ░░░ -->
+<div class="toc">
+  <h3>Inhalt</h3>
+  <ul>
+    <li><strong>§ 1</strong> &nbsp;Gegenstand, Dauer der Verarbeitung</li>
+    <li><strong>§ 2</strong> &nbsp;Art der Daten, Kategorien betroffener Personen, Zweck</li>
+    <li><strong>§ 3</strong> &nbsp;Weisungsrecht des Auftraggebers</li>
+    <li><strong>§ 4</strong> &nbsp;Pflichten des Auftragsverarbeiters</li>
+    <li><strong>§ 5</strong> &nbsp;Technische und organisatorische Maßnahmen</li>
+    <li><strong>§ 6</strong> &nbsp;Subunternehmer (Unterauftragsverarbeiter)</li>
+    <li><strong>§ 7</strong> &nbsp;Unterstützung bei Betroffenenrechten</li>
+    <li><strong>§ 8</strong> &nbsp;Unterstützung bei DSGVO-Pflichten des Auftraggebers</li>
+    <li><strong>§ 9</strong> &nbsp;Meldung von Datenschutzverletzungen</li>
+    <li><strong>§ 10</strong> &nbsp;Löschung und Rückgabe von Daten</li>
+    <li><strong>§ 11</strong> &nbsp;Kontrollrechte und Nachweise</li>
+    <li><strong>§ 12</strong> &nbsp;Drittlandübermittlung</li>
+    <li><strong>§ 13</strong> &nbsp;Vertraulichkeit</li>
+    <li><strong>§ 14</strong> &nbsp;Haftung</li>
+    <li><strong>§ 15</strong> &nbsp;Schlussbestimmungen</li>
+    <li><strong>Anlage 1</strong> &nbsp;Technische und organisatorische Maßnahmen</li>
+  </ul>
+</div>
+
+<!-- ░░░ § 1 ░░░ -->
+<h2 class="par"><span class="par-num">§ 1</span>Gegenstand, Dauer der Verarbeitung</h2>
+<ol class="legal">
+  <li>Gegenstand des Auftrags ist die Verarbeitung personenbezogener Daten durch den Auftragsverarbeiter im Rahmen aller Tätigkeiten, die der Auftragsverarbeiter im Rahmen der Geschäftsbeziehung zur Einrichtung, Konfiguration, Wartung und Pflege beim Auftraggeber lokal betriebener KI-Workflow-Lösungen erbringt. Hierzu zählen insbesondere:
+    <ol>
+      <li>Einrichtung, Konfiguration und Inbetriebnahme der lokalen KI-Recheneinheit (Apple-Hardware) und der darauf installierten Softwarekomponenten (lokales Sprachmodell, n8n-Workflow-Engine, Reverse Proxy, Bedienoberfläche, Helfertools),</li>
+      <li>Konzeption, Aufbau und Produktivnahme einzelner Workflows nach jeweiligem Einzelauftrag, z.&nbsp;B.:
+        <ul class="bul">
+          <li>automatisierte Erstellung von Tagesordnungs-Entwürfen für WEG-Versammlungen aus Karthago-Vorgängen,</li>
+          <li>Klassifikation, Triage und/oder Vorbereitung von Antwortvorschlägen für eingehende E-Mail-Korrespondenz,</li>
+          <li>Abfrage und Aufbereitung der internen Wissensbasis (Dokumentenablagen, Handbücher, Protokolle, FAQs) für Recherchezwecke,</li>
+          <li>sonstige nach Einzelauftrag zu definierende Verwaltungs-, Korrespondenz- oder Auswertungsworkflows;</li>
+        </ul>
+      </li>
+      <li>Anbindung an die hierfür erforderlichen Quellsysteme des Auftraggebers (z.&nbsp;B. Karthago, E-Mail-Server, Dateiablagen, Branchen- und Verwaltungssoftware),</li>
+      <li>laufende Wartung, Sicherheits- und Software-Updates, Fehleranalyse und -behebung sowie kleinere Optimierungen und Anpassungen der Workflows nach Maßgabe des Hauptvertrages bzw. der jeweiligen Einzelaufträge (Betreuungspaket),</li>
+      <li>Funktionsprüfungen und Tests, soweit hierfür Zugriff auf personenbezogene Daten in den Systemen des Auftraggebers erforderlich ist.</li>
+    </ol>
+  </li>
+  <li>Der Zugriff des Auftragsverarbeiters erfolgt grundsätzlich remote über die in Anlage&nbsp;1 beschriebenen, gesicherten Fernzugriffsverbindungen (Reverse VPN, ersatzweise TeamViewer). Eine produktive Verarbeitung personenbezogener Daten auf Systemen des Auftragsverarbeiters findet grundsätzlich nicht statt; sämtliche Verarbeitungen erfolgen unmittelbar auf der beim Auftraggeber betriebenen KI-Recheneinheit bzw. den damit verbundenen Systemen des Auftraggebers. Soweit im Einzelfall – insbesondere zur Reproduktion eines Fehlers, zur Erst-Entwicklung eines Workflows mit Echtdaten oder im ausnahmsweise vom Auftraggeber angewiesenen PoC-Lauf mit Echtdaten – eine zeitlich begrenzte Verarbeitung auf der Entwicklungs-Hardware des Auftragsverarbeiters erforderlich ist, gelten die erhöhten Schutzanforderungen gemäß Anlage&nbsp;1; eine solche Verarbeitung erfolgt nur auf ausdrückliche dokumentierte Weisung des Auftraggebers und wird nach Zweckerreichung unverzüglich beendet, die Daten nachweislich gelöscht.</li>
+  <li>Die Dauer der Verarbeitung entspricht der Laufzeit der jeweiligen Beauftragung. Sie beginnt mit dem ersten Zugriff auf personenbezogene Echtdaten im Rahmen des jeweiligen Einzelauftrags und endet mit dessen Beendigung. Diese Rahmenvereinbarung bleibt wirksam, solange mindestens ein Einzelauftrag oder ein laufendes Betreuungsverhältnis zwischen den Parteien besteht; sie endet automatisch mit Beendigung des letzten Einzelauftrags, soweit die Parteien nichts anderes vereinbaren.</li>
+</ol>
+
+<!-- ░░░ § 2 ░░░ -->
+<h2 class="par"><span class="par-num">§ 2</span>Art der Daten, Kategorien betroffener Personen, Zweck</h2>
+<ol class="legal">
+  <li><strong>Arten verarbeiteter personenbezogener Daten</strong> (je nach Einzelauftrag und angebundenem Quellsystem; nicht abschließend):
+    <ol>
+      <li>Stamm- und Kontaktdaten der in den verarbeiteten Datenbeständen genannten Personen (Namen, Anschriften, Telefon, E-Mail-Adressen, Funktions- und Rollenbezeichnungen),</li>
+      <li>WEG- und Verwaltungsdaten aus Karthago: Wohnungs- bzw. Eigentumsdaten, Eigentumsanteile/Stimmrechte, Vorgangshistorie, Beschlussinhalte, Anliegen, Korrespondenz-Bezüge, finanzielle Stati (z.&nbsp;B. Hausgeldrückstände), soweit im Vorgang enthalten,</li>
+      <li>E-Mail-Daten: Inhalte und Anhänge eingehender und ausgehender E-Mail-Korrespondenz, Metadaten (Absender, Empfänger, Datum, Betreff, Anlagen),</li>
+      <li>Daten der internen Wissensbasis: Inhalte interner Dokumente, Handbücher, Protokolle, FAQs, Vorgangs- und Falldokumentationen, soweit personenbezogene Daten darin enthalten sind,</li>
+      <li>Mitarbeiterdaten des Auftraggebers, soweit als Bearbeiter, Ansprechpartner, Adressat oder Bezugsperson in den Systemen hinterlegt,</li>
+      <li>sonstige in den jeweiligen Quellsystemen enthaltene Verwaltungs-, Korrespondenz- oder Auswertungsdaten gemäß Einzelauftrag,</li>
+      <li>technische Nutzer- und Systemdaten der vom Auftragsverarbeiter betreuten KI-Recheneinheit und der darauf laufenden Komponenten (Benutzer-IDs, Zugriffs- und Fehlerprotokolle des Betriebssystems, n8n-Workflow-Engine-Logs, Reverse-Proxy-Logs, Audit-Logs). Quellsysteme des Auftraggebers (insbesondere die Karthago-Server-Umgebung) werden durch den Auftragsverarbeiter <strong>nicht</strong> protokolliert; deren Logging verantwortet der Auftraggeber selbst.</li>
+    </ol>
+  </li>
+  <li><strong>Kategorien betroffener Personen</strong> (je nach Einzelauftrag; nicht abschließend):
+    <ol>
+      <li>Wohnungseigentümer, Mieter und sonstige Beteiligte der vom Auftraggeber verwalteten Wohnungseigentümergemeinschaften,</li>
+      <li>Kunden, Geschäftspartner, Lieferanten, Dienstleister sowie sonstige Korrespondenzpartner des Auftraggebers,</li>
+      <li>Mitarbeiter und sonstige Bedienstete des Auftraggebers,</li>
+      <li>sonstige Personen, deren personenbezogene Daten in den verarbeiteten Datenbeständen (z.&nbsp;B. E-Mails, Wissensbasis-Dokumenten, Karthago-Vorgängen) genannt oder enthalten sind,</li>
+      <li>technische Nutzer und Administratoren der KI-Recheneinheit.</li>
+    </ol>
+  </li>
+  <li><strong>Zweck der Verarbeitung:</strong> Automatisierte Aufbereitung, Klassifikation, Aggregation, Recherche und/oder Vorbereitung von Antworten in Bezug auf Verwaltungsvorgänge, Korrespondenz und Wissensanfragen mittels lokal beim Auftraggeber betriebener KI-Workflows nach Maßgabe der jeweiligen Einzelaufträge sowie die hierfür erforderliche Einrichtung, Wartung und Pflege der lokalen KI-Recheneinheit. Der konkrete Verarbeitungszweck eines jeden Workflows ergibt sich aus dem jeweiligen Einzelauftrag.</li>
+  <li>Besondere Kategorien personenbezogener Daten i.&nbsp;S.&nbsp;d. Art.&nbsp;9 DSGVO sollen nicht zweckgerichtet verarbeitet werden. Da die verarbeiteten Datenbestände (insbesondere E-Mail-Korrespondenz und Wissensbasis-Dokumente) gleichwohl solche Daten enthalten können (z.&nbsp;B. Gesundheitsdaten in Korrespondenz, Gewerkschafts- oder Religionszugehörigkeit in Personal- oder Verwaltungsvorgängen), gelten die Vorgaben dieses Vertrages und der Anlage&nbsp;1 in diesen Fällen mit erhöhter Sorgfalt. Der Auftragsverarbeiter wird den Auftraggeber bei systematischer Verarbeitung solcher Daten unverzüglich informieren und ggf. gemeinsam mit dem Auftraggeber zusätzliche Schutz- oder Pseudonymisierungs&shy;maßnahmen vereinbaren.</li>
+</ol>
+
+<!-- ░░░ § 3 ░░░ -->
+<h2 class="par"><span class="par-num">§ 3</span>Weisungsrecht des Auftraggebers</h2>
+<ol class="legal">
+  <li>Der Auftragsverarbeiter verarbeitet personenbezogene Daten ausschließlich auf dokumentierte Weisung des Auftraggebers. Dies gilt auch für die Übermittlung personenbezogener Daten an ein Drittland oder eine internationale Organisation.</li>
+  <li>Die Weisungen des Auftraggebers ergeben sich zunächst aus dem Hauptvertrag und der zugehörigen Leistungsbeschreibung. Konkretisierende Einzelweisungen werden in Textform (insbesondere per E-Mail) erteilt. Mündliche Weisungen werden vom Auftraggeber unverzüglich in Textform bestätigt.</li>
+  <li>Weisungswege:
+    <ul class="bul">
+      <li>E-Mail an info@smartwandler.de</li>
+      <li>Telefonische Weisung (mit textförmlicher Nachbestätigung durch den Auftraggeber)</li>
+      <li>Vereinbarte Messenger- bzw. Ticketkanäle, sofern eingerichtet</li>
+    </ul>
+  </li>
+  <li>Der Auftragsverarbeiter informiert den Auftraggeber unverzüglich, wenn eine Weisung nach seiner Auffassung gegen die DSGVO, andere Datenschutzbestimmungen der Union oder der Mitgliedstaaten verstößt. Bis zur Klärung darf die betreffende Weisung ausgesetzt werden.</li>
+</ol>
+
+<!-- ░░░ § 4 ░░░ -->
+<h2 class="par"><span class="par-num">§ 4</span>Pflichten des Auftragsverarbeiters</h2>
+<ol class="legal">
+  <li>Der Auftragsverarbeiter verpflichtet sich, die Verarbeitung gemäß den Vorgaben dieses Vertrages, der Anlage&nbsp;1 sowie den jeweils geltenden datenschutzrechtlichen Bestimmungen, insbesondere der DSGVO und des BDSG, durchzuführen.</li>
+  <li>Insbesondere verpflichtet sich der Auftragsverarbeiter:
+    <ol>
+      <li>keine personenbezogenen Daten des Auftraggebers auf eigene Systeme zu kopieren, herunterzuladen, lokal zu speichern oder zu exportieren, soweit dies nicht für die Erbringung der vertraglichen Leistung zwingend erforderlich und mit dem Auftraggeber abgestimmt ist,</li>
+      <li>sämtliche Tätigkeiten ausschließlich über die beim Auftraggeber betriebene KI-Recheneinheit und die damit verbundenen Systeme des Auftraggebers auszuführen,</li>
+      <li>für den Zugriff ausschließlich die mit dem Auftraggeber abgestimmten, gesicherten Fernzugriffswege (siehe Anlage&nbsp;1) zu nutzen,</li>
+      <li>Zugangsdaten, kryptografische Schlüssel und Zertifikate geheim zu halten und nicht an Dritte (mit Ausnahme genehmigter Subunternehmer gem. §&nbsp;6) weiterzugeben,</li>
+      <li>seine Mitarbeiter und sonstigen mit der Verarbeitung befassten Personen schriftlich oder textförmlich auf das Datengeheimnis und auf die Pflichten dieses Vertrages zu verpflichten und die Verpflichtungen dem Auftraggeber auf Verlangen nachzuweisen,</li>
+      <li>nur solche Personen mit der Verarbeitung zu betrauen, die ausreichend geschult und auf Vertraulichkeit verpflichtet sind,</li>
+      <li>einen aktuellen Verarbeitungsverzeichnis-Eintrag gem. Art. 30 Abs. 2 DSGVO zu führen,</li>
+      <li>auf Anfrage des Auftraggebers innerhalb angemessener Frist Auskunft über die für diese Verarbeitung getroffenen technischen und organisatorischen Maßnahmen sowie über etwaige Datenschutzverletzungen zu erteilen.</li>
+    </ol>
+  </li>
+  <li>Der Auftragsverarbeiter ist nicht verpflichtet, einen Datenschutzbeauftragten zu benennen, soweit die gesetzlichen Voraussetzungen hierfür nicht vorliegen. Ein Datenschutzkoordinator (Ansprechpartner für Datenschutzfragen) ist Philipp Anders, erreichbar unter info@smartwandler.de.</li>
+</ol>
+
+<!-- ░░░ § 5 ░░░ -->
+<h2 class="par"><span class="par-num">§ 5</span>Technische und organisatorische Maßnahmen</h2>
+<ol class="legal">
+  <li>Der Auftragsverarbeiter trifft die in Anlage&nbsp;1 beschriebenen technischen und organisatorischen Maßnahmen, die ein dem Risiko der Verarbeitung angemessenes Schutzniveau im Sinne des Art. 32 DSGVO gewährleisten. Anlage&nbsp;1 ist Vertragsbestandteil.</li>
+  <li>Die Maßnahmen unterliegen dem technischen Fortschritt. Der Auftragsverarbeiter ist berechtigt, alternative oder weitergehende Maßnahmen umzusetzen, sofern das vereinbarte Schutzniveau dadurch nicht unterschritten wird. Wesentliche Änderungen werden dem Auftraggeber in Textform mitgeteilt.</li>
+  <li>Der Auftraggeber überzeugt sich vor Aufnahme der Verarbeitung von der Eignung der Maßnahmen und während der Verarbeitung regelmäßig im Rahmen der Kontrollrechte nach §&nbsp;11.</li>
+</ol>
+
+<!-- ░░░ § 6 ░░░ -->
+<h2 class="par"><span class="par-num">§ 6</span>Subunternehmer (Unterauftragsverarbeiter)</h2>
+<ol class="legal">
+  <li>Bei Vertragsschluss setzt der Auftragsverarbeiter keine Subunternehmer (Unterauftragsverarbeiter) zur Erbringung der vertragsgegenständlichen Leistungen ein.</li>
+  <li>Der Einsatz weiterer Auftragsverarbeiter bedarf der vorherigen, gesonderten schriftlichen oder textförmlichen Genehmigung des Auftraggebers. Der Auftragsverarbeiter wird beabsichtigte Änderungen in Bezug auf die Hinzuziehung oder Ersetzung weiterer Auftragsverarbeiter rechtzeitig (mindestens 30&nbsp;Tage vorab) mitteilen, sodass der Auftraggeber die Möglichkeit hat, gegen derartige Änderungen Einspruch zu erheben.</li>
+  <li>Setzt der Auftragsverarbeiter mit Genehmigung des Auftraggebers Subunternehmer ein, hat er diesen durch schriftlichen Vertrag dieselben Datenschutzpflichten aufzuerlegen, die in diesem Vertrag festgelegt sind, insbesondere die Pflicht, hinreichende Garantien für die Umsetzung geeigneter technischer und organisatorischer Maßnahmen zu bieten. Kommt der Subunternehmer seinen Datenschutzpflichten nicht nach, haftet der Auftragsverarbeiter gegenüber dem Auftraggeber für die Einhaltung der Pflichten des Subunternehmers.</li>
+  <li>Nicht als Unterauftragsverarbeitung gelten Nebenleistungen, die der Auftragsverarbeiter z.&nbsp;B. als Telekommunikations-, Post- oder Transportdienstleistungen, Wartung und Benutzerservice oder die Entsorgung von Datenträgern in Anspruch nimmt; ferner Open-Source-Komponenten ohne fortlaufende Verarbeitung personenbezogener Daten durch deren Urheber. Der Auftragsverarbeiter ist jedoch verpflichtet, auch bei diesen Nebenleistungen angemessene und gesetzeskonforme Regelungen zu treffen.</li>
+</ol>
+
+<!-- ░░░ § 7 ░░░ -->
+<h2 class="par"><span class="par-num">§ 7</span>Unterstützung bei Betroffenenrechten</h2>
+<ol class="legal">
+  <li>Der Auftragsverarbeiter unterstützt den Auftraggeber mit geeigneten technischen und organisatorischen Maßnahmen dabei, die Pflichten zur Beantwortung von Anträgen auf Wahrnehmung der Rechte betroffener Personen (Art. 12–23 DSGVO) zu erfüllen.</li>
+  <li>Wendet sich eine betroffene Person mit Forderungen zur Berichtigung, Löschung, Auskunft oder Datenübertragbarkeit unmittelbar an den Auftragsverarbeiter, leitet dieser das Anliegen unverzüglich an den Auftraggeber weiter und führt keine eigenständigen Maßnahmen aus, sofern er nicht hierzu durch den Auftraggeber angewiesen wird.</li>
+  <li>Der hierfür anfallende Aufwand wird vom Auftragsverarbeiter nach dem im Hauptvertrag bzw. den AGB vereinbarten Stundensatz vergütet, soweit es sich nicht um durch den Auftragsverarbeiter zu vertretende Umstände handelt.</li>
+</ol>
+
+<!-- ░░░ § 8 ░░░ -->
+<h2 class="par"><span class="par-num">§ 8</span>Unterstützung bei DSGVO-Pflichten des Auftraggebers</h2>
+<ol class="legal">
+  <li>Der Auftragsverarbeiter unterstützt den Auftraggeber unter Berücksichtigung der Art der Verarbeitung und der ihm zur Verfügung stehenden Informationen bei der Einhaltung der in Art. 32 bis 36 DSGVO genannten Pflichten, insbesondere bei:
+    <ol>
+      <li>der Gewährleistung der Sicherheit der Verarbeitung (Art. 32 DSGVO),</li>
+      <li>der Meldung von Datenschutzverletzungen an die Aufsichtsbehörde (Art. 33 DSGVO) sowie der Benachrichtigung betroffener Personen (Art. 34 DSGVO),</li>
+      <li>der Durchführung einer Datenschutz-Folgenabschätzung (Art. 35 DSGVO),</li>
+      <li>der vorherigen Konsultation der Aufsichtsbehörde (Art. 36 DSGVO).</li>
+    </ol>
+  </li>
+  <li>Für die Vergütung gilt §&nbsp;7 Abs.&nbsp;3 entsprechend.</li>
+</ol>
+
+<!-- ░░░ § 9 ░░░ -->
+<h2 class="par"><span class="par-num">§ 9</span>Meldung von Datenschutzverletzungen</h2>
+<ol class="legal">
+  <li>Der Auftragsverarbeiter teilt dem Auftraggeber jede ihm bekannt gewordene Verletzung des Schutzes personenbezogener Daten (Art. 4 Nr. 12 DSGVO), die im Rahmen seiner Tätigkeit für den Auftraggeber eingetreten ist, <strong>unverzüglich, spätestens jedoch innerhalb von 24&nbsp;Stunden</strong> nach Kenntniserlangung mit. Damit soll dem Auftraggeber die Einhaltung der Meldepflicht nach Art. 33 Abs.&nbsp;1 DSGVO (72&nbsp;Stunden gegenüber der Aufsichtsbehörde) ermöglicht werden.</li>
+  <li>Die Meldung erfolgt an den im Hauptvertrag bzw. den Adressdaten des Auftraggebers benannten Ansprechpartner per E-Mail mit Lesebestätigungs- oder Eingangs-Nachweis und enthält mindestens:
+    <ol>
+      <li>eine Beschreibung der Art der Verletzung, soweit möglich mit Angabe der Kategorien und Zahl der betroffenen Personen sowie der betroffenen Datensätze,</li>
+      <li>Namen und Kontaktdaten des Ansprechpartners beim Auftragsverarbeiter,</li>
+      <li>eine Beschreibung der wahrscheinlichen Folgen der Verletzung,</li>
+      <li>eine Beschreibung der vom Auftragsverarbeiter ergriffenen oder vorgeschlagenen Maßnahmen zur Behebung der Verletzung und zur Abmilderung möglicher nachteiliger Auswirkungen.</li>
+    </ol>
+  </li>
+  <li>Sind die Informationen zum Meldezeitpunkt nicht vollständig verfügbar, werden sie nach Maßgabe der Verfügbarkeit unverzüglich nachgereicht.</li>
+</ol>
+
+<!-- ░░░ § 10 ░░░ -->
+<h2 class="par"><span class="par-num">§ 10</span>Löschung und Rückgabe von Daten</h2>
+<ol class="legal">
+  <li>Nach Beendigung des Hauptvertrages bzw. der konkreten Verarbeitungstätigkeit hat der Auftragsverarbeiter, je nach Weisung des Auftraggebers, sämtliche bei ihm vorhandenen personenbezogenen Daten des Auftraggebers entweder zurückzugeben oder nachweislich zu löschen, sofern keine gesetzliche Aufbewahrungspflicht besteht.</li>
+  <li>Da der Auftragsverarbeiter nach §&nbsp;1 Abs.&nbsp;2 keine eigene Speicherung personenbezogener Daten vornimmt, beschränkt sich die Löschpflicht in der Regel auf etwaige administrative Hilfsdaten (Zugangsprotokolle, technische Logs, Konfigurations-Snapshots) sowie ggf. zur Fehlersuche temporär außerhalb des Systems des Auftraggebers gespeicherte Daten. Diese werden spätestens 30&nbsp;Tage nach Beendigung der Verarbeitungstätigkeit nachweislich und unwiderruflich gelöscht.</li>
+  <li>Die Dokumentation der Löschung wird auf Verlangen des Auftraggebers in Textform übermittelt.</li>
+</ol>
+
+<!-- ░░░ § 11 ░░░ -->
+<h2 class="par"><span class="par-num">§ 11</span>Kontrollrechte und Nachweise</h2>
+<ol class="legal">
+  <li>Der Auftraggeber ist berechtigt, die Einhaltung dieses Vertrages und die Wirksamkeit der getroffenen technischen und organisatorischen Maßnahmen vor Aufnahme der Verarbeitung sowie regelmäßig während der Vertragslaufzeit zu überprüfen.</li>
+  <li>Kontrollarten:
+    <ul class="bul">
+      <li>Regelmäßige Remote-Audits (in der Regel einmal jährlich) als Standard,</li>
+      <li>Anlassbezogene Audits, insbesondere bei Sicherheitsvorfällen, Verdachtsmomenten, systemischen Auffälligkeiten oder Aufforderung durch eine Aufsichtsbehörde,</li>
+      <li>Vor-Ort-Audits in den Geschäftsräumen des Auftragsverarbeiters, sofern Remote-Mittel nicht ausreichen; diese sind mit angemessener Frist (mindestens 14&nbsp;Tage) anzukündigen und so durchzuführen, dass der Geschäftsbetrieb des Auftragsverarbeiters nicht unverhältnismäßig beeinträchtigt wird.</li>
+    </ul>
+  </li>
+  <li>Der Auftragsverarbeiter stellt dem Auftraggeber alle für den Nachweis der Einhaltung der in Art. 28 DSGVO niedergelegten Pflichten erforderlichen Informationen zur Verfügung und ermöglicht Überprüfungen einschließlich Inspektionen oder trägt zu diesen bei.</li>
+  <li>Die durch Audits entstehenden Kosten trägt der Auftraggeber, sofern nicht ein durch den Auftragsverarbeiter zu vertretender Mangel der Verarbeitung festgestellt wird.</li>
+</ol>
+
+<!-- ░░░ § 12 ░░░ -->
+<h2 class="par"><span class="par-num">§ 12</span>Drittlandübermittlung</h2>
+<ol class="legal">
+  <li>Der Auftragsverarbeiter hat seinen Sitz in der Bundesrepublik Deutschland. Sämtliche Verarbeitungen erfolgen ausschließlich innerhalb der Europäischen Union bzw. des Europäischen Wirtschaftsraums (EWR).</li>
+  <li>Eine Übermittlung personenbezogener Daten in ein Drittland im Sinne der Art. 44&nbsp;ff. DSGVO findet nicht statt. Das eingesetzte lokale Sprachmodell wird ausschließlich auf der beim Auftraggeber betriebenen Recheneinheit ausgeführt; es bestehen keine ausgehenden Verbindungen zu Cloud-LLM-Anbietern oder vergleichbaren Diensten in Drittländern.</li>
+  <li>Eine Drittlandübermittlung wird ausschließlich auf ausdrückliche, dokumentierte Weisung des Auftraggebers und nur unter den Voraussetzungen der Art. 44&nbsp;ff. DSGVO erfolgen.</li>
+</ol>
+
+<!-- ░░░ § 13 ░░░ -->
+<h2 class="par"><span class="par-num">§ 13</span>Vertraulichkeit</h2>
+<ol class="legal">
+  <li>Der Auftragsverarbeiter verpflichtet sich, alle im Rahmen der Verarbeitung erhaltenen oder bekannt gewordenen personenbezogenen Daten sowie Geschäfts- und Betriebsgeheimnisse des Auftraggebers strikt vertraulich zu behandeln. Diese Verpflichtung besteht auch nach Beendigung des Vertrages für die Dauer von drei Jahren fort.</li>
+  <li>Der Auftragsverarbeiter gewährleistet, dass die zur Verarbeitung der personenbezogenen Daten befugten Personen sich zur Vertraulichkeit verpflichtet haben oder einer angemessenen gesetzlichen Verschwiegenheitspflicht unterliegen.</li>
+  <li>Ergänzend gilt die Vertraulichkeitsregelung des Hauptvertrages (AGB Teil&nbsp;A §&nbsp;10).</li>
+</ol>
+
+<!-- ░░░ § 14 ░░░ -->
+<h2 class="par"><span class="par-num">§ 14</span>Haftung</h2>
+<ol class="legal">
+  <li>Die Haftung der Parteien richtet sich nach Art. 82 DSGVO sowie den ergänzenden Bestimmungen des nationalen Rechts.</li>
+  <li>Im Verhältnis der Parteien untereinander gelten ergänzend die Haftungsregelungen des Hauptvertrages (AGB Teil&nbsp;A §&nbsp;5), soweit diese nicht gegen zwingende datenschutzrechtliche Vorgaben verstoßen.</li>
+</ol>
+
+<!-- ░░░ § 15 ░░░ -->
+<h2 class="par"><span class="par-num">§ 15</span>Schlussbestimmungen</h2>
+<ol class="legal">
+  <li>Änderungen und Ergänzungen dieses Vertrages bedürfen der Textform. Dies gilt auch für die Aufhebung dieses Textformerfordernisses.</li>
+  <li>Im Falle von Widersprüchen zwischen diesem Vertrag und dem Hauptvertrag gehen die Regelungen dieses Vertrages in datenschutzrechtlichen Fragen vor.</li>
+  <li>Sollten einzelne Bestimmungen dieses Vertrages unwirksam sein oder werden, wird die Wirksamkeit der übrigen Bestimmungen nicht berührt. Die Parteien verpflichten sich, an der Vereinbarung einer Regelung mitzuwirken, die dem wirtschaftlichen Zweck der unwirksamen Regelung möglichst nahekommt.</li>
+  <li>Es gilt ausschließlich das Recht der Bundesrepublik Deutschland. Gerichtsstand für alle Streitigkeiten aus diesem Vertrag ist, soweit gesetzlich zulässig, <strong>Dresden</strong>.</li>
+</ol>
+
+<!-- ░░░ Unterschriften ░░░ -->
+<div class="signature">
+  <div class="signature-label">Vertragsschluss</div>
+  <div class="signature-row">
+    <div>
+      <div class="signature-line">
+        <strong>Auftraggeber</strong><br>
+        Ort, Datum
+      </div>
+      <div style="margin-top: 4mm; border-top: 0.5pt solid var(--ink-mid); padding-top: 1.5mm; font-size: 8.5pt; color: var(--ink-soft); min-height: 18mm;">
+        Name, Funktion / Unterschrift / Stempel
+      </div>
+    </div>
+    <div>
+      <div class="signature-line">
+        <strong>Auftragsverarbeiter</strong><br>
+        Dresden, ____________
+      </div>
+      <div style="margin-top: 4mm; border-top: 0.5pt solid var(--ink-mid); padding-top: 1.5mm; font-size: 8.5pt; color: var(--ink-soft); min-height: 18mm;">
+        Dipl.-Ing. (FH) Philipp Anders<br>
+        (smartwandler · IT-Consulting)
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     ANLAGE 1 — TOMs
+     ════════════════════════════════════════════ -->
+<h1 class="teil"><span class="label">Anlage 1</span>Technische und organisatorische Maßnahmen (Art. 32 DSGVO)</h1>
+
+<p>Die nachstehenden technischen und organisatorischen Maßnahmen (TOMs) gewährleisten unter Berücksichtigung des Stands der Technik, der Implementierungskosten, der Art, des Umfangs, der Umstände und der Zwecke der Verarbeitung sowie der unterschiedlichen Eintrittswahrscheinlichkeit und Schwere des Risikos für die Rechte und Freiheiten natürlicher Personen ein dem Risiko angemessenes Schutzniveau.</p>
+
+<table class="tom">
+  <thead>
+    <tr>
+      <th>Kategorie</th>
+      <th>Maßnahmen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="cat">Vertraulichkeit – Zutrittskontrolle</td>
+      <td>Die KI-Recheneinheit steht beim Auftraggeber in einem zugangsbeschränkten Serverschrank/Technikraum. Der Auftragsverarbeiter hat keinen physischen Zugriff. Die Geschäftsräume des Auftragsverarbeiters sind durch Schlosssicherung und Alarmierung außerhalb der Arbeitszeiten geschützt.</td>
+    </tr>
+    <tr>
+      <td class="cat">Vertraulichkeit – Zugangskontrolle</td>
+      <td>Fernzugriff ausschließlich über gesicherte Verbindungen: primär Reverse-VPN (WireGuard/IPsec, asymmetrische Schlüssel), ersatzweise TeamViewer mit individuellem Konto und Zwei-Faktor-Authentisierung (MFA). Arbeitsgeräte des Auftragsverarbeiters mit FileVault-Festplattenverschlüsselung und Bildschirmsperre mit Auto-Lock. Starke Passwörter und Passwort-Manager.</td>
+    </tr>
+    <tr>
+      <td class="cat">Vertraulichkeit – Zugriffskontrolle</td>
+      <td>Rollen- und Berechtigungskonzept auf der KI-Recheneinheit: technischer Administrator (smartwandler), fachliche Bediener (Mitarbeiter Auftraggeber). Einzelne Nutzeraccounts, keine Sammelaccounts. Eingeschränkte sudo-Rechte. Bedienoberfläche der KI-Lösung ausschließlich für den definierten Workflow zugänglich.</td>
+    </tr>
+    <tr>
+      <td class="cat">Vertraulichkeit – Trennungskontrolle</td>
+      <td>Strikte Mandantentrennung: jeder Auftraggeber erhält eine eigene Recheneinheit. Werden mehrere Workflows für denselben Auftraggeber betrieben (z.&nbsp;B. WEG-Tagesordnungen, E-Mail-Triage, Wissensbasis-Abfrage), werden diese auf derselben Recheneinheit logisch getrennt (eigene n8n-Workflows, getrennte Zugriffsrechte und Audit-Logs). Trennung der Produktiv- und Entwicklungsumgebung (Entwicklung erfolgt auf separater Hardware des Auftragsverarbeiters, nach Möglichkeit mit anonymisierten/pseudonymisierten Daten; Echtdaten-Verarbeitung dort nur ausnahmsweise und auf Weisung). Reine KI-Recheneinheit – kein paralleler Office-Betrieb.</td>
+    </tr>
+    <tr>
+      <td class="cat">Integrität – Weitergabekontrolle</td>
+      <td>Keine ausgehenden Verbindungen zu Cloud-LLM-Anbietern oder Drittland-Diensten. Datenübertragung im Wartungsfall ausschließlich verschlüsselt (TLS 1.2+ bzw. WireGuard/IPsec). Keine Verwendung privater Cloud-Dienste, Notiz- oder Messenger-Tools für Auftraggeber-Daten. USB- und Wechseldatenträger nicht freigegeben.</td>
+    </tr>
+    <tr>
+      <td class="cat">Integrität – Eingabekontrolle</td>
+      <td>Audit-Logging beschränkt auf die vom Auftragsverarbeiter betreuten Systeme – die lokale KI-Recheneinheit (Betriebssystem-Anmeldungen, administrative Aktionen), die n8n-Workflow-Engine (Workflow-Ausführungen) und der Reverse Proxy (Zugriffslogs). Protokolle werden mindestens 90&nbsp;Tage vorgehalten und gegen unbefugte Änderung geschützt. Versionierung der Workflow-Konfiguration als Code (git). Die Protokollierung der Quellsysteme des Auftraggebers (insbesondere Karthago-Server, E-Mail-Server, Dateiablagen) verantwortet der Auftraggeber im Rahmen seiner eigenen IT-Sicherheit.</td>
+    </tr>
+    <tr>
+      <td class="cat">Verfügbarkeit und Belastbarkeit</td>
+      <td>Lokaler Betrieb hinter der Firewall des Auftraggebers. Apple-Silicon-Hardware mit redundantem Speicher (sofern Modell unterstützt). Sicherheits- und Software-Updates im Rahmen des Betreuungspakets. Wiederanlauf-Verfahren dokumentiert; Konfiguration als Code reproduzierbar. Backup der Konfiguration und ggf. von Workflow-Daten gemäß Vereinbarung im Hauptvertrag.</td>
+    </tr>
+    <tr>
+      <td class="cat">Wiederherstellbarkeit</td>
+      <td>Wiederherstellung der KI-Lösung bei Hardwareausfall durch Neuaufsetzen auf Ersatz-Recheneinheit mittels versionierter Konfiguration; geschätzte Wiederherstellungszeit nach Bereitstellung von Ersatzhardware: max. 2 Arbeitstage. Karthago-Vorgänge verbleiben in der Quellsystem-Datenhaltung des Auftraggebers und sind dort wiederherstellbar.</td>
+    </tr>
+    <tr>
+      <td class="cat">Auftragskontrolle</td>
+      <td>Verarbeitung ausschließlich auf dokumentierte Weisung des Auftraggebers (§&nbsp;3 dieses Vertrages). Schulung und Verpflichtung der eingesetzten Personen auf das Datengeheimnis. Aktuelles Verarbeitungsverzeichnis gem. Art. 30 Abs.&nbsp;2 DSGVO beim Auftragsverarbeiter.</td>
+    </tr>
+    <tr>
+      <td class="cat">Pseudonymisierung / Anonymisierung</td>
+      <td>Im Proof of Concept werden personenbezogene Daten in der Regel ausschließlich anonymisiert oder pseudonymisiert verarbeitet. Weist der Auftraggeber im Einzelfall die Verarbeitung von Echtdaten bereits im PoC ausdrücklich an, gelten dieselben Schutzanforderungen wie im Produktivbetrieb. Im Produktivbetrieb besteht keine Pseudonymisierungspflicht für die Workflow-Funktion selbst, da die Verarbeitung lokal beim Auftraggeber erfolgt. Bei Fehleranalysen oder Erst-Entwicklung neuer Workflows, die ausnahmsweise eine zeitlich begrenzte Verarbeitung auf der Entwicklungs-Hardware des Auftragsverarbeiters erfordern, werden die Daten – soweit dies den Analysezweck nicht vereitelt – durch den Auftragsverarbeiter vor der Übertragung weitergehend pseudonymisiert oder gekürzt. Nach Zweckerreichung werden diese Daten unverzüglich nachweislich gelöscht.</td>
+    </tr>
+    <tr>
+      <td class="cat">Verschlüsselung</td>
+      <td>Festplattenverschlüsselung (FileVault) auf KI-Recheneinheit und Arbeitsgeräten des Auftragsverarbeiters. Fernzugriffe ausschließlich verschlüsselt. Backups, soweit erstellt, verschlüsselt abgelegt.</td>
+    </tr>
+    <tr>
+      <td class="cat">Verfahren zur regelmäßigen Überprüfung</td>
+      <td>Jährliche interne Überprüfung der TOMs durch den Auftragsverarbeiter; Anpassung an Stand der Technik. Sicherheits-Updates der eingesetzten Systemkomponenten (Betriebssystem, LLM-Laufzeitumgebung, n8n, Reverse Proxy, Helfertools) im Rahmen des Betreuungspakets. Bereitschaft zur Mitwirkung an Audits des Auftraggebers gem. §&nbsp;11 dieses Vertrages.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="margin-top: 6mm; font-size: 8.5pt; color: var(--ink-faint); text-align: center;">— Ende des Auftragsverarbeitungsvertrages —</p>
+
+</div>
+
+</body>
+</html>
