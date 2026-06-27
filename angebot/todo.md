@@ -10,5 +10,3 @@
 
 * Klimaanlage gibt es eine Vorlage und die wird dann auf die jeweilige Situation angepasst 
 
-
-AGB teil c ändern, dasss 6 monate laufzeit und ein monat kündigung danach

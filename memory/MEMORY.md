@@ -1,0 +1,2 @@
+- [Angebot-Struktur](angebot-struktur.md) — schlankes Angebot + Detail-Anhang + Preisliste als Set
+- [Angebot-Tonalität](angebot-tonalitaet.md) — keine defensiven Disclaimer im Angebot, Schutz in die AGB

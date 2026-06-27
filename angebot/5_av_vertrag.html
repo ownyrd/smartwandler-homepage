@@ -563,7 +563,7 @@
 <!-- ░░░ § 9 ░░░ -->
 <h2 class="par"><span class="par-num">§ 9</span>Meldung von Datenschutzverletzungen</h2>
 <ol class="legal">
-  <li>Der Auftragsverarbeiter teilt dem Auftraggeber jede ihm bekannt gewordene Verletzung des Schutzes personenbezogener Daten (Art. 4 Nr. 12 DSGVO), die im Rahmen seiner Tätigkeit für den Auftraggeber eingetreten ist, <strong>unverzüglich, spätestens jedoch innerhalb von 24&nbsp;Stunden</strong> nach Kenntniserlangung mit. Damit soll dem Auftraggeber die Einhaltung der Meldepflicht nach Art. 33 Abs.&nbsp;1 DSGVO (72&nbsp;Stunden gegenüber der Aufsichtsbehörde) ermöglicht werden.</li>
+  <li>Der Auftragsverarbeiter teilt dem Auftraggeber jede ihm bekannt gewordene Verletzung des Schutzes personenbezogener Daten (Art. 4 Nr. 12 DSGVO), die im Rahmen seiner Tätigkeit für den Auftraggeber eingetreten ist, <strong>unverzüglich, spätestens jedoch innerhalb von 48&nbsp;Stunden</strong> nach Kenntniserlangung mit. Damit soll dem Auftraggeber die fristgerechte Einhaltung seiner Meldepflicht nach Art. 33 Abs.&nbsp;1 DSGVO (72&nbsp;Stunden gegenüber der Aufsichtsbehörde) ermöglicht werden.</li>
   <li>Die Meldung erfolgt an den im Hauptvertrag bzw. den Adressdaten des Auftraggebers benannten Ansprechpartner per E-Mail mit Lesebestätigungs- oder Eingangs-Nachweis und enthält mindestens:
     <ol>
       <li>eine Beschreibung der Art der Verletzung, soweit möglich mit Angabe der Kategorien und Zahl der betroffenen Personen sowie der betroffenen Datensätze,</li>
@@ -664,6 +664,8 @@
 
 <p>Die nachstehenden technischen und organisatorischen Maßnahmen (TOMs) gewährleisten unter Berücksichtigung des Stands der Technik, der Implementierungskosten, der Art, des Umfangs, der Umstände und der Zwecke der Verarbeitung sowie der unterschiedlichen Eintrittswahrscheinlichkeit und Schwere des Risikos für die Rechte und Freiheiten natürlicher Personen ein dem Risiko angemessenes Schutzniveau.</p>
 
+<p>Die Maßnahmen sind auf den Betrieb einer einzelnen, lokal beim Auftraggeber hinter dessen Firewall betriebenen KI-Recheneinheit (Apple-Silicon-Hardware) zugeschnitten. Sie nutzen die Sicherheitsfunktionen des Betriebssystems und der eingesetzten Software. Eine über dieses Einzelsystem hinausgehende, gesonderte Sicherheitsinfrastruktur (z.&nbsp;B. zentraler Log-Server, SIEM, Hochverfügbarkeits-Cluster) ist für den Umfang und das Risiko dieser Verarbeitung im Sinne des Art.&nbsp;32 Abs.&nbsp;1 DSGVO nicht erforderlich und wird nicht geschuldet.</p>
+
 <table class="tom">
   <thead>
     <tr>
@@ -694,11 +696,11 @@
     </tr>
     <tr>
       <td class="cat">Integrität – Eingabekontrolle</td>
-      <td>Audit-Logging beschränkt auf die vom Auftragsverarbeiter betreuten Systeme – die lokale KI-Recheneinheit (Betriebssystem-Anmeldungen, administrative Aktionen), die n8n-Workflow-Engine (Workflow-Ausführungen) und der Reverse Proxy (Zugriffslogs). Protokolle werden mindestens 90&nbsp;Tage vorgehalten und gegen unbefugte Änderung geschützt. Versionierung der Workflow-Konfiguration als Code (git). Die Protokollierung der Quellsysteme des Auftraggebers (insbesondere Karthago-Server, E-Mail-Server, Dateiablagen) verantwortet der Auftraggeber im Rahmen seiner eigenen IT-Sicherheit.</td>
+      <td>Audit-Logging beschränkt auf die vom Auftragsverarbeiter betreuten Systeme – die lokale KI-Recheneinheit (Betriebssystem-Anmeldungen, administrative Aktionen), die n8n-Workflow-Engine (Workflow-Ausführungen) und der Reverse Proxy (Zugriffslogs). Die Protokollierung erfolgt mit den Bordmitteln des lokalen Einzelsystems; eine manipulationssichere Protokollierung auf separater Log-Infrastruktur (zentraler Log-Server, SIEM o.&nbsp;Ä.) ist angesichts des Betriebs auf einer einzelnen lokalen Recheneinheit nicht geschuldet. Die Protokolle werden mindestens 90&nbsp;Tage vorgehalten und durch restriktive Zugriffsrechte (Zugriff nur durch den technischen Administrator) vor unbefugter Kenntnisnahme und Veränderung geschützt. Versionierung der Workflow-Konfiguration als Code (git). Die Protokollierung der Quellsysteme des Auftraggebers (insbesondere Karthago-Server, E-Mail-Server, Dateiablagen) verantwortet der Auftraggeber im Rahmen seiner eigenen IT-Sicherheit.</td>
     </tr>
     <tr>
       <td class="cat">Verfügbarkeit und Belastbarkeit</td>
-      <td>Lokaler Betrieb hinter der Firewall des Auftraggebers. Apple-Silicon-Hardware mit redundantem Speicher (sofern Modell unterstützt). Sicherheits- und Software-Updates im Rahmen des Betreuungspakets. Wiederanlauf-Verfahren dokumentiert; Konfiguration als Code reproduzierbar. Backup der Konfiguration und ggf. von Workflow-Daten gemäß Vereinbarung im Hauptvertrag.</td>
+      <td>Lokaler Betrieb hinter der Firewall des Auftraggebers auf einer einzelnen Apple-Silicon-Recheneinheit. Eine hochverfügbare bzw. redundante Auslegung (Cluster, RAID, vorgehaltene Ausfall-Hardware) ist bei dieser lokalen Einzelsystem-Lösung nicht geschuldet; der Schutz gegen Datenverlust erfolgt über die regelmäßige Sicherung der Konfiguration (als Code, versioniert) und – soweit im Hauptvertrag vereinbart – der Workflow-Daten. Sicherheits- und Software-Updates im Rahmen des Betreuungspakets. Wiederanlauf-Verfahren dokumentiert; Konfiguration als Code reproduzierbar.</td>
     </tr>
     <tr>
       <td class="cat">Wiederherstellbarkeit</td>
