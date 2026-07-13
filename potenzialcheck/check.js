@@ -27,7 +27,8 @@
         { value: 'handel_ecommerce',   label: 'Handel / E-Commerce' },
         { value: 'dienstleistung',     label: 'Dienstleistung / Beratung' },
         { value: 'produktion',         label: 'Produktion / Fertigung' },
-        { value: 'gesundheit_kanzlei', label: 'Gesundheit / Pflege / Kanzlei' },
+        { value: 'gesundheit_pflege', label: 'Gesundheit / Pflege' },
+        { value: 'kanzlei',            label: 'Kanzlei (Anwalt / Steuer / Notar)' },
         { value: 'sonstige',           label: 'Sonstige',
           reveal: { key: 'branche_custom', type: 'text', label: 'Welche Branche?', placeholder: 'z. B. Logistik' } }
       ]
@@ -367,7 +368,7 @@
   // NICHT der Ad-Hook.
   // ══════════════════════════════════════
   function computeRouting(answers) {
-    var sensibleBranche = answers.branche === 'gesundheit_kanzlei';
+    var sensibleBranche = answers.branche === 'gesundheit_pflege' || answers.branche === 'kanzlei';
     if (answers.zufriedenheit === 'cloud_unwohl' || sensibleBranche) {
       return {
         key: 'datensicher',

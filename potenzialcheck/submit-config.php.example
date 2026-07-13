@@ -1,0 +1,58 @@
+<?php
+// ════════════════════════════════════════════════════════════════════
+// submit-config.php — TEMPLATE
+//
+// 1. Kopiere diese Datei zu  submit-config.php
+// 2. Trage echte Werte ein (DB-Zugang + Brevo-API-Key)
+// 3. Lade submit-config.php per FTP NEBEN submit.php in /potenzialcheck/
+//    (NICHT ins Git — steht in .gitignore)
+//
+// C1: Der Brevo-API-Key steht AUSSCHLIESSLICH hier (serverseitig),
+//     niemals im Client-JS.
+// ════════════════════════════════════════════════════════════════════
+
+return [
+
+    // ── Datenbank (all-inkl / phpMyAdmin) ───────────────────────────
+    'db_host'  => 'localhost',
+    'db_name'  => 'DEINE_DATENBANK',
+    'db_user'  => 'DEIN_DB_USER',
+    'db_pass'  => 'DEIN_DB_PASSWORT',
+    'db_table' => 'leads',
+
+    // ── Brevo ───────────────────────────────────────────────────────
+    // API-Key: Brevo → Settings → SMTP & API → API Keys.
+    'brevo_api_key' => 'DEIN_BREVO_API_KEY',
+
+    // Absender. Die Domain MUSS in Brevo verifiziert sein (2.2, SPF/DKIM/DMARC),
+    // sonst landen Mails im Spam oder werden abgelehnt.
+    'sender_name'  => 'smartwandler',
+    'sender_email' => 'info@smartwandler.de',
+    'reply_to'     => 'info@smartwandler.de',
+
+    // ── Report-Mail (2.4) ───────────────────────────────────────────
+    // 0 = submit.php baut das HTML selbst (funktioniert sofort, keine
+    //     Template-Pflege in Brevo nötig).
+    // Alternativ die ID eines in Brevo erstellten Transactional-Templates
+    //     eintragen; dann werden die Werte als {{params.*}} übergeben.
+    'brevo_report_template_id' => 0,
+
+    // ── Nurture-DOI (2.6) — nur nötig für den Consent-Pfad ──────────
+    // Wenn IDs = 0, wird der Consent-Pfad übersprungen (Report-Mail geht
+    // trotzdem raus). So kannst du zuerst ohne Nurture testen.
+    'brevo_list_id'         => 0,  // Ziel-Liste (Double-Opt-In)
+    'brevo_doi_template_id' => 0,  // Brevo-Template vom Typ „Double opt-in"
+    'doi_redirect_url'      => 'https://www.smartwandler.de/potenzialcheck/bestaetigt.html',
+
+    // Antworten zusätzlich als Kontakt-Attribute an Brevo übergeben?
+    // Erst auf true, wenn die Attribute in Brevo angelegt sind (SETUP.md),
+    // sonst lehnt Brevo den kompletten DOI-Call ab.
+    'contact_attributes_enabled' => false,
+
+    // ── Sicherheit / Betrieb ────────────────────────────────────────
+    // Nur POSTs von diesen Hosts werden akzeptiert (Abuse-Schutz).
+    'allowed_hosts' => ['www.smartwandler.de', 'smartwandler.de'],
+
+    // Optionales Logfile. Leer = aus. Beispiel: __DIR__ . '/submit.log'
+    'log_file' => '',
+];

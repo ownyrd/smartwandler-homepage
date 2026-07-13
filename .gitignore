@@ -3,3 +3,5 @@ fb-capi-config.php
 fb-capi.log
 video
 *.pdf
+potenzialcheck/submit-config.php
+potenzialcheck/submit.log

@@ -116,6 +116,15 @@
 .pc-btn-ghost:hover { background: var(--paper-2); }
 .pc-btn-lg { font-size: 17px; padding: 16px 32px; }
 
+/* Ergebnisseite: die beiden Primär-Buttons (Call + Report) in Gold */
+.pc-result .pc-btn-primary {
+  background: var(--gold);
+  color: var(--ink);
+  font-weight: 600;
+}
+.pc-result .pc-btn-primary:hover { background: #b89654; }
+.pc-result .pc-btn-primary:disabled { background: var(--gold); }
+
 /* ── Fortschritt ── */
 .pc-progress { max-width: 640px; margin-bottom: 32px; }
 .pc-progress-head {
