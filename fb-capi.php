@@ -75,7 +75,8 @@ if ($eventId === '' || $eventName === '') {
 }
 
 // ── Whitelist für Event-Namen (Schutz vor Missbrauch der Endpoint-URL) ──
-$allowedEvents = ['meeting_scheduled'];
+// meeting_scheduled = termin-gebucht.html · Lead/QualifiedLead = Potenzialcheck
+$allowedEvents = ['meeting_scheduled', 'Lead', 'QualifiedLead'];
 if (!in_array($eventName, $allowedEvents, true)) {
     http_response_code(400);
     exit;

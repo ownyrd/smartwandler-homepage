@@ -1,5 +1,5 @@
-1. die gnazen templates müssen nochmal durchgeschaut werden und der flow mit und ohne häkchen aber flow an sich geht
-
-2. die automatische mail muss in den richtigen Eingang kommen und die Ergebnisse verwerten können, das muss via Brevo template auch laufen, dazu muss er aber die configs mit an brevo übergeben --> habe die felder angelegt aber das geht noch nicht
-
-3. 
+1. Es muss der detaillierte Report stark verbessert werden
+2. das direkte Ergbnis muss auch noch besser designed werden
+3. Datenschutz muss ergänzt werden um Matomo cookieless, die sache mit der datenbank speicherung, brevo etc.
+4. matomo cookieless muss nochmal genau getestet werden
+5. 

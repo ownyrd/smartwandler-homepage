@@ -298,13 +298,26 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
     deleteCookie('_fbc');
   }
 
-  // ── Matomo ──
-  function loadMatomo() {
-    if (window._paq && window._paq.matomoLoaded) {
-      console.info('[consent] Matomo bereits geladen.');
+  // ── Matomo (C3) ──
+  // Cookielose Basis läuft für ALLE, consent-frei: requireCookieConsent hält
+  // Cookies zurück, Matomo trackt aber cookielos. IP-Anonymisierung (≥2 Bytes)
+  // ist serverseitig in Matomo aktiviert. Cookie-Modus nur bei Banner-Consent.
+  function loadMatomoBaseline() {
+    if (window._paq && window._paq.matomoLoaded) return;
+    // Nutzer-Opt-out (Art. 21) hat Vorrang: dann gar kein Matomo laden.
+    if (localStorage.getItem('matomo_optout') === '1') {
+      console.info('[consent] Matomo-Opt-out aktiv — keine Messung.');
       return;
     }
     var _paq = window._paq = window._paq || [];
+    _paq.push(['requireCookieConsent']);
+    // „Do Not Track" des Browsers respektieren (stärkt die Interessenabwägung, Art. 6 I f).
+    _paq.push(['setDoNotTrack', true]);
+    // Bereits erteilter Cookie-Consent aus früherer Session: VOR trackPageView setzen,
+    // damit auch der erste Seitenaufruf im Cookie-Modus zählt.
+    if (localStorage.getItem(CONSENT_KEY_MATOMO) === 'granted') {
+      _paq.push(['setCookieConsentGiven']);
+    }
     _paq.push(['setTrackerUrl', MATOMO_URL + 'matomo.php']);
     _paq.push(['setSiteId', MATOMO_SITE_ID]);
     _paq.push(['enableLinkTracking']);
@@ -315,23 +328,16 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
     g.async = true;
     g.src = MATOMO_URL + 'matomo.js';
     g.setAttribute('data-matomo', '1');
-    g.onload  = function () { console.info('[consent] matomo.js geladen.'); };
+    g.onload  = function () { console.info('[consent] matomo.js geladen (cookielose Basis).'); };
     g.onerror = function () { console.error('[consent] matomo.js konnte nicht geladen werden (Netzwerk / Blocker / falsche MATOMO_URL?).'); };
     document.head.appendChild(g);
-    console.info('[consent] Matomo wird initialisiert (Site ID ' + MATOMO_SITE_ID + ').');
+    console.info('[consent] Matomo cookielose Basis initialisiert (Site ID ' + MATOMO_SITE_ID + ').');
   }
 
-  function removeMatomo() {
-    var script = document.querySelector('script[data-matomo]');
-    if (script) script.remove();
-    if (window._paq) { try { delete window._paq; } catch (e) {} window._paq = undefined; }
-    if (window.Matomo) { try { delete window.Matomo; } catch (e) {} window.Matomo = undefined; }
-    if (window.Piwik) { try { delete window.Piwik; } catch (e) {} window.Piwik = undefined; }
-    // Matomo-Cookies entfernen (_pk_id, _pk_ses, _pk_ref, _pk_cvar, _pk_hsr)
-    document.cookie.split(';').forEach(function (c) {
-      var name = c.split('=')[0].trim();
-      if (name.indexOf('_pk_') === 0) deleteCookie(name);
-    });
+  // Hybrid-Upgrade (3.3): Cookie-Modus scharf-/ausschalten — kein Reload nötig.
+  function setMatomoCookieConsent(granted) {
+    if (!window._paq) return;
+    window._paq.push([granted ? 'setCookieConsentGiven' : 'forgetCookieConsentGiven']);
   }
 
   // ── Consent anwenden ──
@@ -348,8 +354,9 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
     } catch (e) { console.error('[consent] meetergo loader failed:', e); }
 
     try {
-      if (matomo === 'granted') loadMatomo(); else removeMatomo();
-    } catch (e) { console.error('[consent] matomo loader failed:', e); }
+      // Matomo-Basis läuft immer (cookielos). Consent steuert nur den Cookie-Modus.
+      setMatomoCookieConsent(matomo === 'granted');
+    } catch (e) { console.error('[consent] matomo cookie consent failed:', e); }
 
     try {
       if (facebook === 'granted') loadFacebookPixel(); else removeFacebookPixel();
@@ -368,9 +375,11 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
   // True, wenn ein zuvor erteiltes Consent jetzt widerrufen wird.
   // Externe Skripte (fbevents.js, matomo.js) lassen sich zur Laufzeit nicht
   // zuverlässig deaktivieren — daher in dem Fall Seite neu laden.
+  // Matomo bewusst NICHT enthalten: der Cookie-Modus lässt sich per
+  // forgetCookieConsentGiven live abschalten (Downgrade auf cookielose Basis),
+  // ein Reload ist dafür nicht nötig.
   function consentRevoked(before, after) {
     return (before.meetergo === 'granted' && after.meetergo !== 'granted') ||
-           (before.matomo   === 'granted' && after.matomo   !== 'granted') ||
            (before.facebook === 'granted' && after.facebook !== 'granted');
   }
 
@@ -471,7 +480,11 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
     });
   }
 
-  // Beim Laden: Consent prüfen
+  // C3: Matomo cookielose Basis läuft IMMER — unabhängig vom Banner, auch
+  // vor jeder Entscheidung. Das ist die ehrliche Funnel-Wahrheit für alle.
+  try { loadMatomoBaseline(); } catch (e) { console.error('[consent] Matomo baseline failed:', e); }
+
+  // Beim Laden: Consent prüfen (steuert meetergo, Pixel und Matomo-Cookie-Modus)
   var hasConsent =
     localStorage.getItem(CONSENT_KEY_MEETERGO) !== null ||
     localStorage.getItem(CONSENT_KEY_MATOMO)   !== null ||
@@ -479,7 +492,46 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
   if (hasConsent) {
     applyConsent();
   } else {
-    // Kein Consent vorhanden — Banner zeigen
+    // Kein Consent vorhanden — Banner zeigen (Matomo-Basis läuft bereits cookielos)
     showBanner();
   }
+})();
+
+// ══════════════════════════════════════
+// MATOMO OPT-OUT — eigener, markenkonformer Schalter (Art. 21 DSGVO)
+// Nur aktiv, wenn #matomo-optout-toggle existiert (Datenschutzseite).
+// Nutzt Matomos JS-API statt des Standard-iframes → Design + Text unter
+// unserer Kontrolle. Der Opt-out-Status wird von Matomo selbst gemerkt.
+// ══════════════════════════════════════
+(function () {
+  var cb = document.getElementById('matomo-optout-toggle');
+  var status = document.getElementById('matomo-optout-status');
+  if (!cb || !status) return;
+
+  // Quelle der Wahrheit: localStorage (cookie-unabhängig, funktioniert trotz
+  // requireCookieConsent). Bei Opt-out lädt loadMatomoBaseline() Matomo gar nicht.
+  var KEY = 'matomo_optout';
+  var TXT_ON  = 'Aktiv: Ihr Besuch wird anonym und ohne Cookies gemessen. Zum Widersprechen einfach den Haken entfernen.';
+  var TXT_OFF = 'Abgemeldet: Ihr Besuch wird nicht mehr erfasst. Zum Reaktivieren den Haken wieder setzen.';
+
+  function render() {
+    var out = localStorage.getItem(KEY) === '1';
+    cb.checked = !out;
+    status.textContent = out ? TXT_OFF : TXT_ON;
+  }
+
+  cb.addEventListener('change', function () {
+    // Bewusst KEIN optUserOut/forgetUserOptOut: die versuchen ein Cookie zu setzen,
+    // was bei requireCookieConsent scheitert (Konsolenfehler). Steuerung läuft rein
+    // über localStorage — loadMatomoBaseline() lädt Matomo bei Opt-out gar nicht erst.
+    // Wirkung greift ab dem nächsten Seitenaufruf.
+    if (cb.checked) {
+      localStorage.removeItem(KEY);
+    } else {
+      localStorage.setItem(KEY, '1');
+    }
+    render();
+  });
+
+  render();
 })();

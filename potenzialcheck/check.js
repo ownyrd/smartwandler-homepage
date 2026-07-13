@@ -128,7 +128,8 @@
   var state = {
     index: 0,
     answers: {},   // { fragenId: value | [values], branche_custom, stunden_custom }
-    result: null   // { min, max, routing, heads, perEmp }
+    result: null,  // { min, max, routing, heads, perEmp }
+    stepSeen: 0    // höchste bereits getrackte Frage (verhindert Doppel-Events bei „Zurück")
   };
 
   // ── DOM ──
@@ -167,6 +168,12 @@
   function renderQuestion() {
     var q = QUESTIONS[state.index];
     var current = state.answers[q.id];
+
+    // Funnel-Event pro Frage, nur beim ersten Erreichen (nicht bei „Zurück").
+    if (state.index + 1 > state.stepSeen) {
+      state.stepSeen = state.index + 1;
+      trackFunnel('frage_' + (state.index + 1));
+    }
 
     elStep.textContent = state.index + 1;
     elFill.style.width = (state.index / QUESTIONS.length * 100) + '%';
@@ -319,6 +326,7 @@
 
   function start() {
     state.index = 0;
+    trackFunnel('check_gestartet');
     showScreen('quiz');
     renderQuestion();
   }
@@ -327,6 +335,7 @@
     state.index = 0;
     state.answers = {};
     state.result = null;
+    state.stepSeen = 0;
     elFill.style.width = '0%';
     resetGate();
     showScreen('intro');
@@ -425,9 +434,9 @@
     showScreen('result');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // Tracking-Hooks (Epic 3) — feuern nur, wenn nach Consent geladen.
-    trackFunnel('check_abgeschlossen');
-    trackLead(); // Lead + ggf. QualifiedLead (C4)
+    // Tracking-Hooks (Epic 3)
+    trackFunnel('ergebnis_gezeigt');
+    trackLead(); // Lead + ggf. QualifiedLead (C4) — nur wenn Pixel per Consent geladen
   }
 
   function renderSummary() {
@@ -542,7 +551,10 @@
   if (gateForm) gateForm.addEventListener('submit', onGateSubmit);
 
   // ══════════════════════════════════════
-  // Tracking-Hooks (Epic 3) — guarded, no-op ohne Consent/Load
+  // Tracking-Hooks (Epic 3)
+  //  · Matomo-Funnel: läuft über die cookielose Basis für ALLE (C3).
+  //  · Meta Lead/QualifiedLead: Browser-Pixel + Server-CAPI (fb-capi.php) mit
+  //    gemeinsamer event_id (Dedup), NUR bei Facebook-Consent (C4), ohne PII.
   // ══════════════════════════════════════
   function trackFunnel(step) {
     try {
@@ -552,13 +564,50 @@
   function trackLead() {
     // C4: QualifiedLead NUR bei Mitarbeiter „5–20" UND Rolle „Inhaber/GL".
     var qualified = state.answers.mitarbeiter === '5_20' && state.answers.rolle === 'inhaber_gf';
+    sendMetaEvent('Lead', false);
+    if (qualified) sendMetaEvent('QualifiedLead', true);
+    trackFunnel(qualified ? 'lead_qualified' : 'lead');
+  }
+
+  // Ein Meta-Event über Browser-Pixel UND Server-CAPI mit gemeinsamer event_id
+  // (Meta dedupliziert). Gating identisch zur restlichen Seite: nur bei erteiltem
+  // Facebook-Consent. Kein PII im Event — Match nur über fbp/fbc + serverseitig IP/UA.
+  function sendMetaEvent(name, isCustom) {
+    if (localStorage.getItem('cookie_consent_facebook') !== 'granted') return;
+    var eventId = fbUuid();
     try {
       if (typeof window.fbq === 'function') {
-        window.fbq('track', 'Lead');
-        if (qualified) window.fbq('trackCustom', 'QualifiedLead'); // KEIN PII
+        window.fbq(isCustom ? 'trackCustom' : 'track', name, {}, { eventID: eventId });
       }
     } catch (e) { /* still */ }
-    trackFunnel(qualified ? 'lead_qualified' : 'lead');
+    try {
+      fetch('../fb-capi.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event_id: eventId,
+          event_name: name,
+          event_source_url: window.location.href,
+          fbp: fbGetCookie('_fbp'),
+          fbc: fbGetCookie('_fbc')
+        }),
+        credentials: 'same-origin',
+        keepalive: true
+      }).catch(function () { /* best effort */ });
+    } catch (e) { /* still */ }
+  }
+
+  function fbGetCookie(name) {
+    var m = document.cookie.match('(^|; )' + name + '=([^;]*)');
+    return m ? decodeURIComponent(m[2]) : null;
+  }
+
+  function fbUuid() {
+    if (window.crypto && typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      var r = (Math.random() * 16) | 0, v = c === 'x' ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
   }
 
   // ══════════════════════════════════════
