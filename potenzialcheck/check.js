@@ -63,7 +63,7 @@
       type: 'multi',
       options: [
         { value: 'angebote_rechnungen', label: 'Angebote / Rechnungen schreiben' },
-        { value: 'daten_doppelt',       label: 'Daten doppelt eintippen' },
+        { value: 'daten_doppelt',       label: 'Daten in verschiedene, unabhängige Systeme doppelt eintippen' },
         { value: 'emails',              label: 'E-Mails sortieren & beantworten' },
         { value: 'dokumente',           label: 'Dokumente suchen & ablegen' },
         { value: 'koordination',        label: 'Termine / Aufträge / Einsätze koordinieren' },
@@ -375,7 +375,7 @@
         body: 'Wir richten Automatisierung wahlweise als <strong>DSGVO-konforme EU-Cloud</strong> ' +
               'oder <strong>direkt bei Ihnen vor Ort (On-Premise)</strong> ein. Was in Ihrem Fall ' +
               'besser passt, klären wir gemeinsam im Gespräch.',
-        cta: 'Datensichere Lösung besprechen  →'
+        cta: 'Kostenlos in 30min datensichere Lösung besprechen  →'
       };
     }
     if (answers.zufriedenheit === 'software_teuer') {
