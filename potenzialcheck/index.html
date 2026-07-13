@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Potenzial-Check — smartwandler.de</title>
+<meta name="description" content="In 2 Minuten sehen, wie viel Zeit und Geld in Ihrem Betrieb aktuell in Routinearbeit gebunden ist. Kostenlos, ohne Technik-Kauderwelsch.">
+<meta name="robots" content="noindex,follow">
+<link rel="preload" href="../fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="check.css">
+<!--
+  Matomo & Meta Pixel werden ausschließlich nach Cookie-Consent
+  durch ../script.js geladen (siehe loadMatomo / loadFacebookPixel).
+-->
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════════════════════════════════
+       NAV
+  ══════════════════════════════════════ -->
+  <nav>
+    <a href="../index.html" class="nav-logo" style="text-decoration:none">
+      <picture>
+        <source srcset="../images/logo-small.webp" type="image/webp">
+        <img src="../images/logo-small.png" alt="smartwandler Logo" class="nav-logo-img" width="200" height="200">
+      </picture>
+      <span class="nav-logo-wordmark">smartwandler</span>
+    </a>
+    <button class="nav-toggle" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../index.html#demo" style="font-size:15px;color:var(--ink-soft);text-decoration:none">Demo</a>
+      <a href="../index.html#zusammenarbeit" style="font-size:15px;color:var(--ink-soft);text-decoration:none">Zusammenarbeit</a>
+      <a href="../index.html#faq" style="font-size:15px;color:var(--ink-soft);text-decoration:none">FAQ</a>
+      <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="nav-cta">Kostenloses Erstgespräch</button></a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       CHECK
+  ══════════════════════════════════════ -->
+  <main class="pc" id="pc-app">
+
+    <!-- ─── INTRO ─── -->
+    <section class="pc-screen pc-intro is-active" data-screen="intro" aria-labelledby="pc-intro-h1">
+      <div class="section-eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">Potenzial-Check · ca. 2 Minuten</span>
+      </div>
+
+      <h1 class="pc-h1" id="pc-intro-h1">Wie viel Zeit steckt bei Ihnen<br>noch in Routinearbeit?</h1>
+
+      <p class="pc-lead">Nehmen Sie sich 2 min Zeit für 7 kurze Fragen. Am Ende sehen Sie sofort eine grobe
+      Einschätzung, wie viel Arbeitszeit und Geld sich in Ihrem Betrieb pro Jahr durch
+      Automatisierung einsparen lässt.</p>
+
+      <ul class="pc-intro-points">
+        <li><span class="pc-check" aria-hidden="true"></span>Kostenlos &amp; unverbindlich</li>
+        <li><span class="pc-check" aria-hidden="true"></span>erste Einschätzung direkt nach dem Check einsehen, ohne Angabe von Kontaktdaten</li>
+      </ul>
+
+      <div class="pc-intro-actions">
+        <button class="pc-btn pc-btn-primary" data-action="start">Check starten &nbsp;→</button>
+      </div>
+    </section>
+
+    <!-- ─── FRAGEN (dynamisch gerendert) ─── -->
+    <section class="pc-screen pc-quiz" data-screen="quiz" aria-live="polite">
+      <div class="pc-progress" aria-hidden="false">
+        <div class="pc-progress-head">
+          <span class="pc-progress-label">Frage <span id="pc-step">1</span> von <span id="pc-total">7</span></span>
+          <span class="pc-multi-hint" id="pc-multi-hint" hidden>Mehrfachauswahl möglich</span>
+        </div>
+        <div class="pc-progress-track">
+          <div class="pc-progress-fill" id="pc-progress-fill"></div>
+        </div>
+      </div>
+
+      <div class="pc-question" id="pc-question">
+        <!-- gerendert von check.js -->
+      </div>
+
+      <div class="pc-quiz-actions">
+        <button class="pc-btn pc-btn-ghost" data-action="back" id="pc-back" type="button">← Zurück</button>
+        <button class="pc-btn pc-btn-primary" data-action="next" id="pc-next" disabled>Weiter &nbsp;→</button>
+      </div>
+    </section>
+
+    <!-- ─── ERGEBNIS ─── -->
+    <section class="pc-screen pc-result" data-screen="result" aria-labelledby="pc-result-h2">
+
+      <!-- ── SPITZE (1.4): sofort sichtbar, OHNE Mail (C6) ── -->
+      <div class="pc-result-top">
+        <div class="section-eyebrow">
+          <div class="eyebrow-line"></div>
+          <span class="eyebrow-text">Ihr Ergebnis</span>
+        </div>
+
+        <p class="pc-result-kicker">So viel Potenzial ist bei Ihnen aktuell in Routinearbeit gebunden (grobe Schätzung):</p>
+        <div class="pc-range" id="pc-range">– €</div>
+        <p class="pc-range-note">pro Jahr, das sich durch Automatisierung Schritt für Schritt freimachen lässt.</p>
+        <p class="pc-range-basis" id="pc-range-basis"></p>
+
+        <h2 class="pc-h2 pc-routing-headline" id="pc-result-h2">Ihr Ergebnis steht.</h2>
+        <p class="pc-routing" id="pc-routing"></p>
+
+        <div class="pc-result-cta">
+          <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo">
+            <button class="pc-btn pc-btn-primary pc-btn-lg" id="pc-cta-call">Kostenloses Erstgespräch buchen &nbsp;→</button>
+          </a>
+        </div>
+        <p class="pc-fineprint">Grobe Orientierung auf Basis Ihrer Angaben, keine verbindliche Zusage. Die genaue Einschätzung machen wir gemeinsam im Gespräch.</p>
+      </div>
+
+      <!-- ── TIEFE (1.5): Mail-Gate ── -->
+      <div class="pc-gate" id="pc-gate">
+        <div class="pc-gate-head">
+          <h3 class="pc-gate-title">Den detaillierten Report kostenlos per Mail</h3>
+          <p class="pc-gate-sub">Welche Ihrer Aufgaben sich konkret automatisieren lassen, wie lange das grob dauert und welcher Lösungsweg passt — übersichtlich in Ihr Postfach.</p>
+        </div>
+        <form id="pc-gate-form" novalidate>
+          <div class="pc-fields">
+            <label class="pc-field">
+              <span class="pc-field-label">Name</span>
+              <input type="text" name="name" autocomplete="name" placeholder="Ihr Name">
+            </label>
+            <label class="pc-field">
+              <span class="pc-field-label">E-Mail-Adresse <span class="pc-req" aria-hidden="true">*</span></span>
+              <input type="email" name="email" autocomplete="email" placeholder="name@firma.de" required>
+            </label>
+          </div>
+
+          <label class="pc-consent">
+            <input type="checkbox" name="consent" value="1">
+            <span class="pc-consent-text">Ja, ich möchte zusätzlich gelegentlich praxisnahe Tipps zu Digitalisierung &amp; Automatisierung per E-Mail erhalten. Freiwillig, jederzeit mit einem Klick abbestellbar.</span>
+          </label>
+
+          <button type="submit" class="pc-btn pc-btn-primary pc-gate-submit">Report anfordern &nbsp;→</button>
+          <p class="pc-gate-error" id="pc-gate-error" role="alert" hidden></p>
+          <p class="pc-gate-legal">Pflichtfeld ist nur die E-Mail — wir brauchen sie, um Ihnen den Report zu schicken. Der Newsletter-Haken ist freiwillig und keine Voraussetzung. Details in der <a href="../datenschutz.html">Datenschutzerklärung</a>.</p>
+        </form>
+      </div>
+
+      <!-- Erfolg nach Absenden -->
+      <div class="pc-gate-success" id="pc-gate-success" hidden>
+        <span class="pc-check pc-check-lg" aria-hidden="true"></span>
+        <h3 class="pc-gate-title">Report ist unterwegs.</h3>
+        <p class="pc-gate-sub" id="pc-gate-success-msg">Schauen Sie in Ihr Postfach.</p>
+      </div>
+
+      <details class="pc-recap">
+        <summary>Ihre Angaben ansehen</summary>
+        <div class="pc-result-summary" id="pc-result-summary"><!-- Antworten-Übersicht --></div>
+      </details>
+
+      <div class="pc-result-actions">
+        <button class="pc-btn pc-btn-ghost" data-action="restart" type="button">Check neu starten</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <picture>
+          <source srcset="../images/logo-small.webp" type="image/webp">
+          <img src="../images/logo-small.png" alt="smartwandler Logo" class="footer-logo-mark" width="200" height="200" loading="lazy">
+        </picture>
+        <p style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:4px">Digitalisierung &amp; Automatisierung</p>
+        <p style="font-size:15px;color:rgba(255,255,255,0.55);line-height:1.6">Lokal. Sicher. Maßgeschneidert.</p>
+        <p style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:20px;letter-spacing:0.05em">smartwandler · ein Projekt von decentnodes.de</p>
+      </div>
+      <div>
+        <p style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Leistungen</p>
+        <a href="../index.html#leistungen" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Beratung &amp; Analyse</a>
+        <a href="../index.html#leistungen" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Workflow-Automatisierung</a>
+        <a href="../index.html#leistungen" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Lokale KI-Anwendungen</a>
+        <a href="../index.html#leistungen" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Individuelle Web-Tools</a>
+      </div>
+      <div>
+        <p style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Unternehmen</p>
+        <a href="../index.html#ueber-uns" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Über uns</a>
+        <a href="../index.html#zusammenarbeit" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Zusammenarbeit</a>
+        <a href="../index.html#faq" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none">FAQ</a>
+      </div>
+      <div>
+        <p style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Kontakt</p>
+        <a href="mailto:info@smartwandler.de" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">info@smartwandler.de</a>
+        <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Erstgespräch buchen</a>
+        <a href="https://www.linkedin.com/in/philipp-anders-16ba2814a/" target="_blank" rel="noopener noreferrer" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p style="font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:0.04em">© 2026 smartwandler.de · Alle Rechte vorbehalten</p>
+      <div class="footer-legal">
+        <a href="../impressum.html" style="font-size:11px;color:rgba(255,255,255,0.6);text-decoration:none">Impressum</a>
+        <a href="../datenschutz.html" style="font-size:11px;color:rgba(255,255,255,0.6);text-decoration:none">Datenschutz</a>
+        <button id="cookie-revoke" class="cookie-revoke-link">Cookie-Einstellungen</button>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     COOKIE CONSENT BANNER (DSGVO) — identisch zur Startseite
+══════════════════════════════════════ -->
+<div id="cookie-consent" class="cookie-banner" role="region" aria-label="Datenschutzeinstellungen" hidden>
+  <div class="cookie-card" role="document">
+    <header class="cookie-card-head">
+      <h2 class="cookie-card-title">Datenschutzeinstellungen</h2>
+      <p class="cookie-card-lead cookie-card-lead-short">
+        Wir nutzen Cookies und ähnliche Technologien. Standardmäßig ist alles deaktiviert, Sie entscheiden was erlaubt ist. Individuelle Einstellungen können Sie über das <strong>Einstellungs-Symbol</strong> unten rechts vornehmen. <a href="../datenschutz.html">Datenschutzerklärung</a> · <a href="../impressum.html">Impressum</a>.
+      </p>
+      <p class="cookie-card-lead cookie-card-lead-full">
+        Wir nutzen Cookies und ähnliche Technologien auf unserer Website. Einige davon helfen uns,
+        die Website und Ihre Erfahrung zu verbessern, andere sind für eingebundene Dienste (z. B.
+        Terminbuchung, Reichweitenanalyse oder Werbeanzeigen) erforderlich. Sie entscheiden, was Sie
+        zulassen. Per Default ist alles deaktiviert. Individuelle Einstellungen können Sie über das
+        Einstellungs-Symbol unten rechts vornehmen. Ihre Auswahl können Sie jederzeit über
+        <button type="button" class="cookie-inline-link" data-cookie-revoke>„Cookie-Einstellungen"</button>
+        im Footer ändern. Weitere Informationen finden Sie in unserer <a href="../datenschutz.html">Datenschutzerklärung</a>, sowie im <a href="../impressum.html">Impressum</a>.
+      </p>
+    </header>
+
+    <button type="button" class="cookie-mobile-toggle" aria-expanded="false" aria-controls="cookie-categories">
+      <span class="cookie-mobile-toggle-label">Details &amp; Einstellungen</span>
+      <span class="cookie-mobile-toggle-chev" aria-hidden="true"></span>
+    </button>
+
+    <div class="cookie-categories" id="cookie-categories">
+
+      <details class="cookie-cat" data-cat="essential">
+        <summary class="cookie-cat-row">
+          <span class="cookie-cat-chev" aria-hidden="true"></span>
+          <span class="cookie-cat-name">Essenziell <span class="cookie-cat-count">(0)</span></span>
+          <span class="cookie-cat-trail">
+            <span class="cookie-cat-state cookie-cat-state-info">Keine</span>
+          </span>
+        </summary>
+        <div class="cookie-cat-body">
+          <p class="cookie-cat-empty">
+            Auf dieser Website werden <strong>keine essenziellen Cookies</strong> gesetzt. Die
+            Seite funktioniert vollständig ohne Einwilligung – externe Dienste laden Sie nur
+            dann, wenn Sie sie unten aktivieren.
+          </p>
+        </div>
+      </details>
+
+      <details class="cookie-cat" data-cat="functional">
+        <summary class="cookie-cat-row">
+          <span class="cookie-cat-chev" aria-hidden="true"></span>
+          <span class="cookie-cat-name">Funktional <span class="cookie-cat-count">(1)</span></span>
+          <span class="cookie-cat-trail">
+            <label class="cookie-cat-toggle" data-cookie-stop>
+              <input type="checkbox" id="consent-meetergo">
+              <span class="cookie-toggle-slider"></span>
+              <span class="cookie-toggle-state" aria-hidden="true">Aus</span>
+            </label>
+          </span>
+        </summary>
+        <div class="cookie-cat-body">
+          <p class="cookie-cat-intro">
+            Wir arbeiten mit <strong>meetergo</strong> zusammen. Meetergo ist ein
+            <strong>DSGVO-konformer, in der EU gehosteter Kalenderservice</strong>, der es uns
+            und Ihnen deutlich einfacher macht, einen passenden Termin zu finden. Meetergo legt,
+            wie wir, großen Wert auf Datenschutz und ist eine ausdrücklich europäische
+            Alternative zu US-Anbietern.
+          </p>
+          <div class="cookie-service">
+            <dl class="cookie-service-meta">
+              <div><dt>Name</dt><dd>meetergo</dd></div>
+              <div><dt>Anbieter</dt><dd>meetergo GmbH, Hauptstrasse 44, 40789 Monheim am Rhein, Deutschland</dd></div>
+              <div><dt>Zweck</dt><dd>Einbettung eines Buchungs-Widgets zur Online-Terminvereinbarung.</dd></div>
+              <div><dt>Datenschutzerklärung</dt><dd><a href="https://meetergo.com/datenschutz" target="_blank" rel="noopener noreferrer">meetergo.com/datenschutz</a></dd></div>
+              <div><dt>Host</dt><dd>EU (Deutschland)</dd></div>
+            </dl>
+          </div>
+        </div>
+      </details>
+
+      <details class="cookie-cat" data-cat="statistics">
+        <summary class="cookie-cat-row">
+          <span class="cookie-cat-chev" aria-hidden="true"></span>
+          <span class="cookie-cat-name">Statistik &amp; Analyse <span class="cookie-cat-count">(1)</span></span>
+          <span class="cookie-cat-trail">
+            <label class="cookie-cat-toggle" data-cookie-stop>
+              <input type="checkbox" id="consent-matomo">
+              <span class="cookie-toggle-slider"></span>
+              <span class="cookie-toggle-state" aria-hidden="true">Aus</span>
+            </label>
+          </span>
+        </summary>
+        <div class="cookie-cat-body">
+          <p class="cookie-cat-intro">
+            Hier betreiben wir eine <strong>eigene Analyse-Plattform</strong>. Die Daten landen
+            auf dem <strong>gleichen Server</strong>, der ohnehin beim Aufruf der Website
+            kontaktiert wird. Informationen wie z.B. <strong>IP-Adresse und Browser</strong>
+            werden für die interne Auswertung gespeichert. Diese Daten gehen
+            <strong>nicht an andere Anbieter</strong> weiter. Sie bleiben auf unserem Server, der bei all-inkl.com gehosted ist.
+          </p>
+          <div class="cookie-service">
+            <dl class="cookie-service-meta">
+              <div><dt>Name</dt><dd>Matomo (selbst gehostet)</dd></div>
+              <div><dt>Anbieter</dt><dd>smartwandler.de · analytics.decentnodes.de</dd></div>
+              <div><dt>Zweck</dt><dd>Reichweitenanalyse zur Verbesserung der Website. Keine Weitergabe von Daten an Dritte.</dd></div>
+              <div><dt>Datenschutzerklärung</dt><dd><a href="../datenschutz.html">Unsere Datenschutzerklärung</a></dd></div>
+              <div><dt>Cookie-Namen</dt><dd>_pk_id, _pk_ses, _pk_ref, _pk_cvar, _pk_hsr</dd></div>
+              <div><dt>Cookie-Laufzeit</dt><dd>bis zu 13 Monate</dd></div>
+            </dl>
+          </div>
+        </div>
+      </details>
+
+      <details class="cookie-cat" data-cat="marketing">
+        <summary class="cookie-cat-row">
+          <span class="cookie-cat-chev" aria-hidden="true"></span>
+          <span class="cookie-cat-name">Marketing <span class="cookie-cat-count">(1)</span></span>
+          <span class="cookie-cat-trail">
+            <label class="cookie-cat-toggle" data-cookie-stop>
+              <input type="checkbox" id="consent-facebook">
+              <span class="cookie-toggle-slider"></span>
+              <span class="cookie-toggle-state" aria-hidden="true">Aus</span>
+            </label>
+          </span>
+        </summary>
+        <div class="cookie-cat-body">
+          <p class="cookie-cat-intro">
+            Wir versuchen so gut es geht, auf Datenschutz zu achten und verstehen es voll und
+            ganz, wenn Sie gar keine Daten übermitteln möchten. Gäbe es eine vergleichbare
+            deutsche Alternative, würden wir unsere Werbung lieber über einen deutschen
+            Anbieter ausspielen. Da <strong>Meta</strong> in diesem Bereich jedoch der
+            Platzhirsch schlechthin ist, kommen wir nicht drum herum auch diesen Dienst zu nutzen.
+            Wir würden uns sehr freuen, wenn Sie diese Funktion aktivieren. Damit tragen Sie dazu bei,
+            dass unsere Werbung effektiver wird und wirklich nur an Menschen ausgespielt wird, die mit hoher Wahrscheinlichkeit
+            ein Interesse an unseren Dienstleistungen haben. Sie tragen somit auch dazu bei, dass unsere Werbung
+            keinen langweilt, der mit unserem Angebot nichts anzufangen weiß.
+          </p>
+          <div class="cookie-service">
+            <dl class="cookie-service-meta">
+              <div><dt>Name</dt><dd>Facebook Pixel</dd></div>
+              <div><dt>Anbieter</dt><dd>Meta Platforms Ireland Ltd., Merrion Road, Dublin 4, D04 X2K5, Ireland</dd></div>
+              <div><dt>Zweck</dt><dd>Cookie zur Messung der Wirksamkeit unserer Werbeanzeigen (Conversion-Tracking, Retargeting).</dd></div>
+              <div><dt>Datenschutzerklärung</dt><dd><a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener noreferrer">facebook.com/privacy/policy</a></dd></div>
+              <div><dt>Cookie-Namen</dt><dd>_fbp, _fbc, fr, pixel_ration, pl, presence, sb, spin, wd, xs</dd></div>
+              <div><dt>Cookie-Laufzeit</dt><dd>Sitzung bis zu 1 Jahr, normalerweise jedoch 3 Monate</dd></div>
+            </dl>
+          </div>
+        </div>
+      </details>
+
+    </div>
+
+    <footer class="cookie-card-actions">
+      <button id="cookie-accept-all" class="cookie-btn cookie-btn-accept">Alle akzeptieren</button>
+      <button id="cookie-accept" class="cookie-btn cookie-btn-save">Auswahl speichern</button>
+      <button id="cookie-reject" class="cookie-btn cookie-btn-reject">Ablehnen</button>
+      <button type="button" class="cookie-mobile-icon-toggle" aria-label="Details &amp; Einstellungen" aria-expanded="false" aria-controls="cookie-categories">
+        <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="10.5" y2="6"/>
+          <line x1="15.5" y1="6" x2="17" y2="6"/>
+          <circle cx="13" cy="6" r="2.2"/>
+          <line x1="3" y1="14" x2="5" y2="14"/>
+          <line x1="10" y1="14" x2="17" y2="14"/>
+          <circle cx="7.5" cy="14" r="2.2"/>
+        </svg>
+      </button>
+    </footer>
+  </div>
+</div>
+
+<script src="../script.js"></script>
+<script src="check.js"></script>
+</body>
+</html>

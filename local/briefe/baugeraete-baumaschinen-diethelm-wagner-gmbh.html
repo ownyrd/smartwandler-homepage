@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Anschreiben – smartwandler · Baugeräte Wagner</title>
+<style>
+  /* ──────────────────────────────────────────
+     DIN-5008-Form-B Geschäftsbrief, 1 Seite A4
+     Druck:  Chrome → ⌘P → "Als PDF speichern"
+            Ränder: "Keine" oder "Standard"
+     Google Docs: Datei → Öffnen → Hochladen
+     ────────────────────────────────────────── */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #e9e9e9;
+    font-family: "Arial", "Helvetica", sans-serif;
+    color: #111;
+  }
+  .sheet {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    padding: 0;
+    background: #fff;
+    position: relative;
+    font-size: 10.5pt;
+    line-height: 1.4;
+  }
+  @media print {
+    body { background: #fff; }
+    .sheet { box-shadow: none; margin: 0; }
+  }
+  @media screen {
+    .sheet { box-shadow: 0 4px 24px rgba(0,0,0,0.12); margin: 24px auto; }
+  }
+
+  /* ── Absender-Kopfzeile mit Logo (rechts) ─
+     Absolut positioniert, damit das Anschriftenfeld
+     darunter exakt nach DIN 5008 sitzen kann.        */
+  .briefkopf {
+    position: absolute;
+    top: 14mm;
+    left: 25mm;
+    right: 20mm;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5mm;
+  }
+  .briefkopf-text {
+    text-align: right;
+    font-size: 9pt;
+    line-height: 1.35;
+    color: #222;
+  }
+  .briefkopf-text strong { font-size: 11pt; letter-spacing: 0.02em; }
+  .briefkopf-logo {
+    flex: 0 0 auto;
+  }
+  .briefkopf-logo img {
+    width: 20mm;
+    height: 20mm;
+    display: block;
+  }
+
+  /* ── Anschriftenfeld nach DIN 5008 Form B ──
+     Position: 45 mm von oben, 20 mm von links
+     Größe:    85 mm × 45 mm
+     Aufbau:   5 mm Rücksendeangabe + 40 mm Anschrift  */
+  .anschrift {
+    position: absolute;
+    top: 45mm;
+    left: 20mm;
+    width: 85mm;
+    height: 45mm;
+    font-size: 10pt;
+    line-height: 1.3;
+    color: #000;
+  }
+  .ruecksendeangabe {
+    font-size: 7pt;
+    text-decoration: underline;
+    color: #444;
+    margin-bottom: 5mm;
+    height: 5mm;
+  }
+  .empfaenger {
+    color: #000;
+    font-size: 10pt;
+    line-height: 1.3;
+    font-weight: 400;
+  }
+
+  /* ── Brieftext-Block (startet nach Anschriftenfeld)
+     Linker Rand 20 mm: bündig zum Anschriftenfeld
+     Top 92 mm: knapp unter dem Anschriftenfeld (90 mm) –
+     etwas enger als DIN-Empfehlung, damit alles auf
+     eine Seite passt.                                 */
+  .brief-content {
+    padding: 92mm 20mm 12mm 20mm;
+  }
+
+  /* ── Datum + Betreff ──────────────────── */
+  .datum {
+    text-align: right;
+    font-size: 10.5pt;
+  }
+  .betreff {
+    margin-top: 8mm;
+    font-weight: 700;
+    font-size: 11pt;
+    line-height: 1.3;
+  }
+
+  /* ── Fließtext ───────────────────────── */
+  .anrede { margin-top: 5mm; }
+  p { margin: 0 0 2.8mm 0; }
+  .body p { text-align: justify; hyphens: auto; }
+
+  /* ── CTA-Box mit QR-Code ─────────────── */
+  .cta {
+    margin-top: 3mm;
+    border: 0.6pt solid #C8A96A;
+    border-radius: 2mm;
+    background: #FBF7EF;
+    padding: 3mm 4.5mm;
+    display: flex;
+    align-items: center;
+    gap: 5mm;
+  }
+  .cta-qr {
+    flex: 0 0 25mm;
+    text-align: center;
+  }
+  .cta-qr img {
+    width: 25mm;
+    height: 25mm;
+    display: block;
+    border: 0.4pt solid #ddd;
+  }
+  .cta-qr-url {
+    font-size: 6.5pt;
+    color: #555;
+    margin-top: 0.8mm;
+    word-break: break-all;
+    line-height: 1.15;
+  }
+  .cta-channels { flex: 1; font-size: 10pt; line-height: 1.5; }
+  .cta-channels .row {
+    display: flex;
+    align-items: center;
+    gap: 2.5mm;
+    margin-bottom: 1.2mm;
+  }
+  .cta-channels .row:last-child { margin-bottom: 0; }
+  .cta-channels .ic {
+    width: 5mm;
+    height: 5mm;
+    flex: 0 0 5mm;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #8a6e2e;
+  }
+  .cta-channels .ic svg {
+    width: 4.2mm;
+    height: 4.2mm;
+    display: block;
+  }
+
+  /* ── Gruß + Unterschrift ─────────────── */
+  .gruss { margin-top: 4mm; }
+  .unterschrift-platz { height: 5mm; }
+  .signatur { font-weight: 600; }
+  .signatur-zusatz { font-size: 10pt; color: #444; }
+
+  .ps {
+    margin-top: 4mm;
+    font-size: 10pt;
+    border-top: 0.4pt solid #ddd;
+    padding-top: 2.5mm;
+  }
+  .ps strong { letter-spacing: 0.05em; }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <!-- ░░░ Absenderkopf: Kontakt links neben Logo, alles rechtsbündig ░░░ -->
+  <div class="briefkopf">
+    <div class="briefkopf-text">
+      <strong>www.smartwandler.de</strong><br>
+      Dipl.-Ing. (FH) Philipp Anders<br>
+      Wilischstr. 8, 01279 Dresden
+    </div>
+    <div class="briefkopf-logo">
+      <img src="../images/logo-white.png" alt="smartwandler Logo">
+    </div>
+  </div>
+
+  <!-- ░░░ Anschriftenfeld nach DIN 5008 Form B (45 mm v. oben · 20 mm v. links · 85 × 45 mm) ░░░ -->
+  <div class="anschrift">
+    <div class="ruecksendeangabe">
+      Philipp Anders · Wilischstr. 8 · 01279 Dresden
+    </div>
+    <!-- ▼▼▼ EMPFÄNGER-ADRESSE ▼▼▼ -->
+    <div class="empfaenger">
+      Baugeräte – Baumaschinen Diethelm Wagner GmbH<br>
+      Herrn Mike Wagner<br>
+      Zum Teich 3<br>
+      01723 Wilsdruff
+    </div>
+    <!-- ▲▲▲ EMPFÄNGER-ADRESSE ▲▲▲ -->
+  </div>
+
+  <!-- ░░░ Brieftext-Block (startet bei 98 mm, also nach Anschriftenfeld) ░░░ -->
+  <div class="brief-content">
+
+  <div class="datum">Dresden, 10.07.2026</div>
+
+  <!-- ░░░ Betreff ░░░ -->
+  <div class="betreff">
+    Ein digitaler Kollege fürs Büro, der die Routine übernimmt, während Ihr Team bei den Kunden bleibt
+  </div>
+
+  <!-- ░░░ Anrede ░░░ -->
+  <p class="anrede">Sehr geehrter Herr Wagner,</p>
+
+  <!-- ░░░ Body ░░░ -->
+  <div class="body">
+    <p>Sie suchen gerade Verstärkung fürs Büro. Jemanden, der Kundenanfragen bearbeitet, Termine koordiniert, Lieferscheine, Rechnungen und Protokolle erstellt und die Buchhaltung vorbereitet. In einem kleinen Team, in dem jeder jeden kennt, ist genau diese Person das Rückgrat: Während Ihre Monteure auf den Baustellen sind, hält sie im Hintergrund alles zusammen. Und genau hier wächst der Schreibtisch täglich zu.</p>
+
+    <p>Stellen Sie dieser Person einen digitalen Kollegen an die Seite, den wir bei Ihnen einrichten. Er erstellt bspw. Lieferscheine und Rechnungen aus Ihren Vorlagen, macht aus einem Audio-Mitschnitt oder kurzen Notizen fertige Protokollentwürfe, bereitet Unterlagen für Buchhaltung und Lohnabrechnung vor und sortiert das E-Mail-Postfach von Kunden und Lieferanten vor. Die Entscheidung bleibt bei Ihren Mitarbeitern, die Tipparbeit übernimmt das System.</p>
+
+    <p>Der entscheidende Unterschied zu Cloud-Diensten wie Microsoft Copilot oder ChatGPT: Unsere Software kann zu 100 % lokal auf Ihrer eigenen Hardware laufen. Kein Kunden- oder Lohndatensatz verlässt Ihr Haus, vollständig datenschutzkonform. Ihr Team lernt dafür kein neues Programm; der digitale Kollege klinkt sich direkt in Outlook, Ihre Dateiablage und die gewohnten MS-Office-Anwendungen ein.</p>
+
+    <p>Wir sitzen in Dresden und begleiten Sie persönlich vor Ort. Lassen Sie uns in 30 Minuten unverbindlich klären, welche Aufgabe Ihr digitaler Mitarbeiter als erstes übernehmen sollte. Erreichbar sind wir über folgende Wege:</p>
+  </div>
+
+  <!-- ░░░ CTA mit QR-Code ░░░ -->
+  <div class="cta">
+    <div class="cta-qr">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=0&data=https%3A%2F%2Fsmartwandler.de" alt="QR-Code zur Website">
+      <div class="cta-qr-url">smartwandler.de</div>
+    </div>
+    <div class="cta-channels">
+      <div class="row">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/>
+            <path d="M14 14h3v3h-3z"/>
+            <path d="M18 18h3v3h-3z"/>
+            <path d="M14 19h2"/>
+            <path d="M19 14h2"/>
+          </svg>
+        </span>
+        <span><strong>QR-Code scannen</strong>&nbsp;·&nbsp; Homepage ansehen &amp; Termin direkt online buchen</span>
+      </div>
+      <div class="row">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </span>
+        <span><strong>+49 152 21078262</strong> &nbsp;·&nbsp; auch per WhatsApp</span>
+      </div>
+      <div class="row">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <polyline points="2 7 12 13 22 7"/>
+          </svg>
+        </span>
+        <span><strong>info@smartwandler.de</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ░░░ Grußformel ░░░ -->
+  <p class="gruss">Mit freundlichen Grüßen</p>
+  <div class="unterschrift-platz"></div>
+  <div class="signatur">Dipl.-Ing. (FH) Philipp Anders</div>
+
+  </div><!-- /.brief-content -->
+</div>
+
+</body>
+</html>
