@@ -162,15 +162,33 @@ $mail = [
     'replyTo' => ['email' => (string) ($config['reply_to'] ?? $config['sender_email'])],
 ];
 if ($templateId > 0) {
-    // Variante: Pflege des Layouts im Brevo-Template, Werte als params.
+    // Variante: Layout + Texte im Brevo-Template (mit {% if %}-Bedingungen),
+    // submit.php liefert nur die Werte/Schalter als params.
     $mail['templateId'] = $templateId;
     $mail['params'] = [
-        'NAME'       => $name,
-        'MIN'        => number_format($ergebnisMin, 0, ',', '.'),
-        'MAX'        => number_format($ergebnisMax, 0, ',', '.'),
-        'HEADLINE'   => $routing['headline'],
-        'BODY'       => $routing['body'],
-        'ZEITFRESSER'=> arr_to_labels($zeitfresserArr, $LABELS['zeitfresser']),
+        // Basis
+        'NAME'        => $name !== '' ? $name : 'zusammen',
+        'MIN'         => number_format($ergebnisMin, 0, ',', '.'),
+        'MAX'         => number_format($ergebnisMax, 0, ',', '.'),
+        'HEADLINE'    => $routing['headline'],
+        'BODY'        => $routing['body'],
+        'MEETERGO'    => 'https://cal.meetergo.com/philipp-anders/30-min-meeting',
+        // Für {% if params.BRANCHE_KEY == "…" %}
+        'BRANCHE_KEY' => $branche,
+        'BRANCHE'     => $branche === 'sonstige' && $brancheCustom !== '' ? $brancheCustom : ($LABELS['branche'][$branche] ?? ''),
+        'MITARBEITER' => $LABELS['mitarbeiter'][$mitarbeiter] ?? '',
+        'ROLLE'       => $LABELS['rolle'][$rolle] ?? '',
+        'STUNDEN'     => $stunden === 'manuell' && $stundenCustom !== null ? ($stundenCustom . ' h/Kopf') : ($LABELS['stunden'][$stunden] ?? ''),
+        'ZUFRIEDENHEIT' => $LABELS['zufriedenheit'][$zufriedenheit] ?? '',
+        'DRINGLICHKEIT' => $LABELS['dringlichkeit'][$dringlichkeit] ?? '',
+        'ZEITFRESSER' => arr_to_labels($zeitfresserArr, $LABELS['zeitfresser']),
+        // Pro Routineaufgabe ein Schalter für {% if params.ZF_… %}
+        'ZF_ANGEBOTE'     => in_array('angebote_rechnungen', $zeitfresserArr, true),
+        'ZF_DATEN'        => in_array('daten_doppelt', $zeitfresserArr, true),
+        'ZF_EMAILS'       => in_array('emails', $zeitfresserArr, true),
+        'ZF_DOKUMENTE'    => in_array('dokumente', $zeitfresserArr, true),
+        'ZF_KOORDINATION' => in_array('koordination', $zeitfresserArr, true),
+        'ZF_BERICHTE'     => in_array('berichte', $zeitfresserArr, true),
     ];
 } else {
     // Variante: HTML wird hier gebaut (funktioniert ohne Template-Pflege).
@@ -205,15 +223,15 @@ if ($consent && $listId > 0 && $doiTplId > 0 && $redirect !== '') {
     ];
     if (!empty($config['contact_attributes_enabled'])) {
         $doi['attributes'] = [
-            'VORNAME'       => $name,
-            'BRANCHE'       => $branche === 'sonstige' && $brancheCustom !== '' ? $brancheCustom : ($LABELS['branche'][$branche] ?? ''),
-            'MITARBEITER'   => $LABELS['mitarbeiter'][$mitarbeiter] ?? '',
-            'ROLLE'         => $LABELS['rolle'][$rolle] ?? '',
-            'STUNDEN'       => $stunden === 'manuell' && $stundenCustom !== null ? ($stundenCustom . ' h/Kopf') : ($LABELS['stunden'][$stunden] ?? ''),
-            'ZUFRIEDENHEIT' => $LABELS['zufriedenheit'][$zufriedenheit] ?? '',
-            'DRINGLICHKEIT' => $LABELS['dringlichkeit'][$dringlichkeit] ?? '',
-            'POTENZIAL_MIN' => $ergebnisMin,
-            'POTENZIAL_MAX' => $ergebnisMax,
+            'VORNAME'                  => $name,
+            'BRANCHE'                  => $branche === 'sonstige' && $brancheCustom !== '' ? $brancheCustom : ($LABELS['branche'][$branche] ?? ''),
+            'ROLLE'                    => $LABELS['rolle'][$rolle] ?? '',
+            'SW_MITARBEITER'           => $LABELS['mitarbeiter'][$mitarbeiter] ?? '',
+            'SW_ROUTINESTUNDEN_PRO_MA' => $stunden === 'manuell' && $stundenCustom !== null ? ($stundenCustom . ' h/Kopf') : ($LABELS['stunden'][$stunden] ?? ''),
+            'SW_ZUFRIEDENHEIT'         => $LABELS['zufriedenheit'][$zufriedenheit] ?? '',
+            'SW_DRINGLICHKEIT'         => $LABELS['dringlichkeit'][$dringlichkeit] ?? '',
+            'SW_POTENZIAL_MIN'         => $ergebnisMin,
+            'SW_POTENZIAL_MAX'         => $ergebnisMax,
         ];
     }
     [$doiStatus, $doiResp] = brevoPost($config, 'https://api.brevo.com/v3/contacts/doubleOptinConfirmation', $doi);

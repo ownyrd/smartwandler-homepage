@@ -1,0 +1,70 @@
+<!--
+  ════════════════════════════════════════════════════════════════════
+  Potenzial-Check — Double-Opt-In-Bestätigung  ·  Brevo DOI-Template
+  ════════════════════════════════════════════════════════════════════
+  So einsetzen:
+  1. Brevo → Templates → New template (Typ „Double opt-in").
+  2. Betreff z. B.: „Bitte bestätigen Sie Ihre Anmeldung – smartwandler".
+  3. Editor → „Code your own" → diesen GESAMTEN Inhalt einfügen → speichern.
+  4. Template-ID in submit-config.php: 'brevo_doi_template_id' => <ID>.
+
+  WICHTIG: {{ doubleoptin }} ist der Brevo-Bestätigungslink — nicht umbenennen.
+  ════════════════════════════════════════════════════════════════════
+-->
+<!DOCTYPE html>
+<html lang="de">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#EDEBE6;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#EDEBE6;padding:24px 12px">
+<tr><td align="center">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#FAF8F5;border-radius:16px;overflow:hidden;font-family:Arial,Helvetica,sans-serif">
+
+  <!-- Header -->
+  <tr><td style="padding:28px 32px 8px;">
+    <div style="font-size:20px;font-weight:bold;color:#3A3631;letter-spacing:-0.02em">smartwandler</div>
+    <div style="font-size:12px;color:#7C766C;letter-spacing:0.06em;text-transform:uppercase;margin-top:2px">Newsletter-Anmeldung</div>
+  </td></tr>
+
+  <!-- Titel -->
+  <tr><td style="padding:18px 32px 0;">
+    <div style="font-size:22px;font-weight:bold;color:#3A3631;letter-spacing:-0.02em;line-height:1.25">Bitte bestätigen Sie Ihre Anmeldung</div>
+  </td></tr>
+
+  <!-- Intro -->
+  <tr><td style="padding:14px 32px 0;">
+    <p style="margin:0;font-size:15px;color:#5F5952;line-height:1.6">
+      Schön, dass Sie dabei sein möchten! Als Abonnent:in erhalten Sie von uns
+      <strong>gelegentlich praxisnahe Tipps zu Digitalisierung &amp; Automatisierung</strong> –
+      konkrete Beispiele aus dem Mittelstand, wie sich Routinearbeit spürbar reduzieren lässt.
+      Kein Spam, jederzeit mit einem Klick abbestellbar.
+    </p>
+  </td></tr>
+
+  <!-- Button -->
+  <tr><td style="padding:26px 32px 8px;">
+    <a href="{{ doubleoptin }}" target="_blank" style="display:inline-block;background:#C8A96A;color:#3A3631;font-size:16px;font-weight:bold;text-decoration:none;padding:14px 28px;border-radius:100px">Anmeldung bestätigen &rarr;</a>
+  </td></tr>
+
+  <!-- Reassurance -->
+  <tr><td style="padding:14px 32px 28px;">
+    <p style="margin:0;font-size:13px;color:#7C766C;line-height:1.6">
+      Erst nach diesem Klick nehmen wir Sie in den Verteiler auf. Wenn Sie den Link nicht
+      anklicken, passiert nichts. Falls Sie diese E-Mail nicht angefordert haben, löschen
+      Sie sie einfach – dann bleibt alles beim Alten.
+    </p>
+  </td></tr>
+
+  <!-- Footer -->
+  <tr><td style="padding:20px 32px;background:#3A3631">
+    <p style="margin:0;font-size:12px;color:rgba(255,255,255,0.7)">smartwandler &middot; ein Projekt von decentnodes.de</p>
+    <p style="margin:8px 0 0;font-size:11px;color:rgba(255,255,255,0.5)">
+      <a href="https://www.smartwandler.de/impressum.html" style="color:rgba(255,255,255,0.6)">Impressum</a> &middot;
+      <a href="https://www.smartwandler.de/datenschutz.html" style="color:rgba(255,255,255,0.6)">Datenschutz</a>
+    </p>
+  </td></tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>

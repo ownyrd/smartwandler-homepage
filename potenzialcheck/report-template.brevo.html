@@ -1,0 +1,157 @@
+<!--
+  ════════════════════════════════════════════════════════════════════
+  Potenzial-Check — Report-Mail  ·  Brevo Transactional Template
+  ════════════════════════════════════════════════════════════════════
+  So einsetzen:
+  1. Brevo → Templates → „New template" → Name „Potenzialcheck Report".
+  2. „From" = deine verifizierte Absenderadresse. Betreff z. B.:
+        Ihr Potenzial-Check: {{ params.MIN }}–{{ params.MAX }} € pro Jahr
+  3. Editor → „Code your own" (bzw. „Import / Paste your code") → diesen
+     GESAMTEN Inhalt (ab <!DOCTYPE ...) einfügen → speichern & aktivieren.
+  4. Template-ID (steht in der URL / Übersicht) in submit-config.php:
+        'brevo_report_template_id' => 42,   // deine ID
+  5. Fertig — submit.php schickt ab da über dieses Template.
+
+  Verfügbare Werte (params):
+    Text:  NAME, MIN, MAX, HEADLINE, BODY, BRANCHE, BRANCHE_KEY,
+           MITARBEITER, ROLLE, STUNDEN, ZUFRIEDENHEIT, DRINGLICHKEIT,
+           ZEITFRESSER (Komma-Liste), MEETERGO (Link)
+    Schalter (an/aus) je angeklickter Aufgabe:
+           ZF_ANGEBOTE, ZF_DATEN, ZF_EMAILS, ZF_DOKUMENTE,
+           ZF_KOORDINATION, ZF_BERICHTE
+    BRANCHE_KEY-Werte: handwerk_bau, handel_ecommerce, dienstleistung,
+           produktion, gesundheit_pflege, kanzlei, sonstige
+
+  Logik:  {% if params.ZF_ANGEBOTE %} … {% endif %}
+          {% if params.BRANCHE_KEY == "kanzlei" %} … {% endif %}
+  Texte darfst du frei in Brevo anpassen — die {% … %}-Blöcke stehen lassen.
+  ════════════════════════════════════════════════════════════════════
+-->
+<!DOCTYPE html>
+<html lang="de">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#EDEBE6;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#EDEBE6;padding:24px 12px">
+<tr><td align="center">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#FAF8F5;border-radius:16px;overflow:hidden;font-family:Arial,Helvetica,sans-serif">
+
+  <!-- Header -->
+  <tr><td style="padding:28px 32px 8px;">
+    <div style="font-size:20px;font-weight:bold;color:#3A3631;letter-spacing:-0.02em">smartwandler</div>
+    <div style="font-size:12px;color:#7C766C;letter-spacing:0.06em;text-transform:uppercase;margin-top:2px">Ihr Potenzial-Check</div>
+  </td></tr>
+
+  <!-- Anrede + €-Spanne -->
+  <tr><td style="padding:16px 32px 0;">
+    <p style="margin:0 0 6px;font-size:15px;color:#5F5952">Hallo {{ params.NAME }},</p>
+    <p style="margin:0 0 14px;font-size:15px;color:#5F5952;line-height:1.6">basierend auf Ihren Angaben ist bei Ihnen aktuell grob folgendes Potenzial in Routinearbeit gebunden:</p>
+    <div style="font-size:34px;font-weight:bold;color:#3A3631;letter-spacing:-0.03em">{{ params.MIN }}–{{ params.MAX }} &euro;</div>
+    <div style="font-size:13px;color:#7C766C;margin-top:4px">pro Jahr, das sich durch Automatisierung Schritt für Schritt freimachen lässt.</div>
+  </td></tr>
+
+  <!-- Routing-Kernaussage (reagiert schon auf Branche + Zufriedenheit) -->
+  <tr><td style="padding:22px 32px 0;">
+    <div style="font-size:18px;font-weight:bold;color:#3A3631;margin-bottom:6px">{{ params.HEADLINE }}</div>
+    <div style="font-size:15px;color:#5F5952;line-height:1.6">{{ params.BODY }}</div>
+  </td></tr>
+
+  <!-- ═══ Branchen-Abschnitt ═══ -->
+  <tr><td style="padding:26px 32px 0;">
+    <div style="font-size:13px;color:#7C766C;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px">Für Ihre Branche{% if params.BRANCHE %}: {{ params.BRANCHE }}{% endif %}</div>
+    <div style="font-size:15px;color:#3A3631;line-height:1.6">
+      {% if params.BRANCHE_KEY == "handwerk_bau" %}
+        Im Handwerk und Bau geht viel Zeit für Angebote, Aufmaße, Einsatz- und Tourenplanung sowie Baustellen-Doku drauf. Genau das lässt sich zuverlässig automatisieren – von der Angebots-Vorlage bis zur automatischen Foto-/Berichtsablage pro Auftrag.
+      {% endif %}
+      {% if params.BRANCHE_KEY == "handel_ecommerce" %}
+        Im Handel und E-Commerce sind es meist Bestellungen, Lager- und Bestandspflege, Retouren und wiederkehrende Kundenanfragen. Wenn Shop, Lager und Buchhaltung sauber verbunden sind, verschwindet ein Großteil der Tipparbeit.
+      {% endif %}
+      {% if params.BRANCHE_KEY == "dienstleistung" %}
+        In der Beratung und Dienstleistung frisst vor allem das Drumherum Zeit: Angebote, Terminfindung, Nachfassen und Doku. Das lässt sich weitgehend automatisieren, damit Sie sich auf die eigentliche Arbeit am Kunden konzentrieren.
+      {% endif %}
+      {% if params.BRANCHE_KEY == "produktion" %}
+        In Produktion und Fertigung liegen die Potenziale in Auftrags- und Maschinendaten, Rückmeldungen, Schicht-/Ressourcenplanung und Doku. Weniger Zettel und doppelte Eingaben, mehr Übersicht in Echtzeit.
+      {% endif %}
+      {% if params.BRANCHE_KEY == "gesundheit_pflege" %}
+        In Gesundheit und Pflege zählt Datenschutz besonders. Doku, Termin- und Dienstplanung sowie Abrechnung lassen sich automatisieren – bewusst datensicher, wahlweise DSGVO-konform in der EU-Cloud oder komplett bei Ihnen vor Ort (On-Premise).
+      {% endif %}
+      {% if params.BRANCHE_KEY == "kanzlei" %}
+        In der Kanzlei sind Fristenkontrolle, Aktenanlage, Mandantenkommunikation und Doku zeitintensiv – und datenschutzkritisch. Automatisierung ist hier möglich, ohne dass sensible Daten in fremde Clouds wandern (EU-Cloud oder On-Premise).
+      {% endif %}
+      {% if params.BRANCHE_KEY == "sonstige" %}
+        Unabhängig von der Branche gilt: Überall dort, wo Aufgaben nach festen Mustern wiederkehren, lässt sich Zeit zurückholen. Welche Schritte sich bei Ihnen am schnellsten lohnen, schauen wir uns gemeinsam an.
+      {% endif %}
+    </div>
+  </td></tr>
+
+  <!-- ═══ Konkret zu den angeklickten Zeitfressern ═══ -->
+  <tr><td style="padding:26px 32px 0;">
+    <div style="font-size:13px;color:#7C766C;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:10px">Konkret bei Ihren Zeitfressern</div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+
+      {% if params.ZF_ANGEBOTE %}
+      <tr><td style="padding:0 0 12px">
+        <div style="font-size:15px;font-weight:bold;color:#3A3631">Angebote &amp; Rechnungen schreiben</div>
+        <div style="font-size:14px;color:#5F5952;line-height:1.55">Aus Vorlagen automatisch erzeugen, Positionen &amp; Preise aus den Stammdaten ziehen, Versand und Zahlungs-Nachverfolgung automatisieren. Spart pro Beleg oft mehrere Minuten.</div>
+      </td></tr>
+      {% endif %}
+
+      {% if params.ZF_DATEN %}
+      <tr><td style="padding:0 0 12px">
+        <div style="font-size:15px;font-weight:bold;color:#3A3631">Daten doppelt eintippen</div>
+        <div style="font-size:14px;color:#5F5952;line-height:1.55">Ihre Systeme werden so verbunden, dass Daten nur einmal erfasst und überall automatisch synchron gehalten werden – Schluss mit Copy-&amp;-Paste zwischen Programmen.</div>
+      </td></tr>
+      {% endif %}
+
+      {% if params.ZF_EMAILS %}
+      <tr><td style="padding:0 0 12px">
+        <div style="font-size:15px;font-weight:bold;color:#3A3631">E-Mails sortieren &amp; beantworten</div>
+        <div style="font-size:14px;color:#5F5952;line-height:1.55">Eingang automatisch vorsortieren, Standardanfragen mit Textbausteinen oder KI vorbeantworten und daraus direkt Aufgaben erzeugen. Das Postfach bleibt beherrschbar.</div>
+      </td></tr>
+      {% endif %}
+
+      {% if params.ZF_DOKUMENTE %}
+      <tr><td style="padding:0 0 12px">
+        <div style="font-size:15px;font-weight:bold;color:#3A3631">Dokumente suchen &amp; ablegen</div>
+        <div style="font-size:14px;color:#5F5952;line-height:1.55">Automatische Ablage nach festen Regeln, Volltextsuche und Vorlagen. Dokumente landen sofort am richtigen Ort und sind in Sekunden wieder auffindbar.</div>
+      </td></tr>
+      {% endif %}
+
+      {% if params.ZF_KOORDINATION %}
+      <tr><td style="padding:0 0 12px">
+        <div style="font-size:15px;font-weight:bold;color:#3A3631">Termine / Aufträge / Einsätze koordinieren</div>
+        <div style="font-size:14px;color:#5F5952;line-height:1.55">Automatische Planung, Erinnerungen und Kalender-Sync statt Abstimmung per Telefon und Zettel. Weniger Leerlauf, weniger Doppelbuchungen.</div>
+      </td></tr>
+      {% endif %}
+
+      {% if params.ZF_BERICHTE %}
+      <tr><td style="padding:0 0 12px">
+        <div style="font-size:15px;font-weight:bold;color:#3A3631">Berichte / Protokolle / Doku erstellen</div>
+        <div style="font-size:14px;color:#5F5952;line-height:1.55">Berichte werden aus vorhandenen Daten automatisch zusammengestellt, statt sie manuell zusammenzutragen – einheitlich und auf Knopfdruck.</div>
+      </td></tr>
+      {% endif %}
+
+    </table>
+  </td></tr>
+
+  <!-- CTA -->
+  <tr><td style="padding:26px 32px 8px;">
+    <a href="{{ params.MEETERGO }}" style="display:inline-block;background:#C8A96A;color:#3A3631;font-size:16px;font-weight:bold;text-decoration:none;padding:14px 28px;border-radius:100px">Kostenloses Erstgespräch buchen &rarr;</a>
+  </td></tr>
+  <tr><td style="padding:8px 32px 28px;">
+    <p style="margin:0;font-size:12px;color:#7C766C;line-height:1.5">Grobe Orientierung auf Basis Ihrer Angaben, keine verbindliche Zusage. Die genaue Einschätzung machen wir gemeinsam im Gespräch.</p>
+  </td></tr>
+
+  <!-- Footer -->
+  <tr><td style="padding:20px 32px;background:#3A3631">
+    <p style="margin:0;font-size:12px;color:rgba(255,255,255,0.7)">smartwandler &middot; ein Projekt von decentnodes.de</p>
+    <p style="margin:8px 0 0;font-size:11px;color:rgba(255,255,255,0.5)">
+      <a href="https://www.smartwandler.de/impressum.html" style="color:rgba(255,255,255,0.6)">Impressum</a> &middot;
+      <a href="https://www.smartwandler.de/datenschutz.html" style="color:rgba(255,255,255,0.6)">Datenschutz</a>
+    </p>
+  </td></tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>

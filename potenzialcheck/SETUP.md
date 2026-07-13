@@ -46,14 +46,37 @@ Ohne das landen Mails im Spam oder werden abgelehnt.
 
 ## 2.4 — Report-Template
 
-Standard: `brevo_report_template_id = 0` → `submit.php` baut das Report-HTML
-selbst (Marken-Layout, €-Spanne, Zeitfresser, Routing-Text, meetergo-Button).
-**Es ist kein Template in Brevo nötig, um zu testen.**
+Zwei Betriebsarten, gesteuert über `brevo_report_template_id`:
 
-Optional später: in Brevo ein Transactional-Template bauen und dessen ID in
-`brevo_report_template_id` eintragen. Verfügbare Params: `{{params.NAME}}`,
-`{{params.MIN}}`, `{{params.MAX}}`, `{{params.HEADLINE}}`, `{{params.BODY}}`,
-`{{params.ZEITFRESSER}}`.
+**A) `= 0` (Standard):** `submit.php` baut das Report-HTML selbst. Funktioniert
+sofort, kein Template in Brevo nötig.
+
+**B) `= <ID>` (empfohlen, branchen-/aufgabenspezifisch):** EIN Brevo-Template
+mit Bedingungen, `submit.php` liefert nur die Werte.
+
+1. Brevo → **Templates → New template**, Name „Potenzialcheck Report".
+2. Absender = verifizierte Adresse. Betreff z. B.
+   `Ihr Potenzial-Check: {{ params.MIN }}–{{ params.MAX }} € pro Jahr`.
+3. Editor → **„Code your own"** → kompletten Inhalt von
+   **`report-template.brevo.html`** einfügen → speichern & **aktivieren**.
+4. Template-ID (aus URL/Übersicht) in `submit-config.php`:
+   `'brevo_report_template_id' => 42,`
+
+Verfügbare Params:
+- **Text:** `NAME`, `MIN`, `MAX`, `HEADLINE`, `BODY`, `BRANCHE`, `BRANCHE_KEY`,
+  `MITARBEITER`, `ROLLE`, `STUNDEN`, `ZUFRIEDENHEIT`, `DRINGLICHKEIT`,
+  `ZEITFRESSER` (Komma-Liste), `MEETERGO` (Link).
+- **Schalter je Aufgabe:** `ZF_ANGEBOTE`, `ZF_DATEN`, `ZF_EMAILS`, `ZF_DOKUMENTE`,
+  `ZF_KOORDINATION`, `ZF_BERICHTE`.
+
+Bedingungen im Template:
+```
+{% if params.ZF_ANGEBOTE %} …Tipp zu Angeboten… {% endif %}
+{% if params.BRANCHE_KEY == "kanzlei" %} …Kanzlei-Text… {% endif %}
+```
+Texte frei in Brevo anpassbar, die `{% … %}`-Blöcke stehen lassen. Sowohl
+Branchen- als auch Aufgaben-Texte sind in `report-template.brevo.html` schon
+ausformuliert vorbelegt.
 
 ## 2.5 — submit.php
 
@@ -72,13 +95,14 @@ IDs `0` sind, wird er übersprungen — Report-Mail geht trotzdem raus.
 
 1. Brevo → **Contacts → Lists** → Liste anlegen (z. B. „Potenzialcheck Nurture")
    → **List-ID** merken → in `brevo_list_id`.
-2. Brevo → **Campaigns → Templates → Double opt-in** Template anlegen (mit dem
+2. Brevo → **Marketing → Templates → Double opt-in** Template anlegen (mit dem
    Platzhalter-Bestätigungslink) → **Template-ID** → in `brevo_doi_template_id`.
 3. `doi_redirect_url` zeigt auf `…/potenzialcheck/bestaetigt.html` (liegt bei).
 4. Optional (Antworten als Kontakt-Attribute): in Brevo → **Contacts → Settings →
-   Contact Attributes** die Attribute anlegen: `VORNAME`, `BRANCHE`, `MITARBEITER`,
-   `ROLLE`, `STUNDEN`, `ZUFRIEDENHEIT`, `DRINGLICHKEIT` (Text) sowie
-   `POTENZIAL_MIN`, `POTENZIAL_MAX` (Zahl). Danach `contact_attributes_enabled => true`.
+   Contact Attributes** die Attribute anlegen: `VORNAME`, `BRANCHE`, `ROLLE`,
+   `SW_MITARBEITER`, `SW_ROUTINESTUNDEN_PRO_MA`, `SW_ZUFRIEDENHEIT`,
+   `SW_DRINGLICHKEIT` (Typ **Text**) sowie `SW_POTENZIAL_MIN`, `SW_POTENZIAL_MAX`
+   (Typ **Zahl**). Danach `contact_attributes_enabled => true`.
    ⚠️ Erst anlegen, dann aktivieren — sonst lehnt Brevo den DOI-Call ab.
 
 ## 2.7 — End-to-End-Test
