@@ -71,6 +71,8 @@
   color: var(--ink-mid);
 }
 .pc-check {
+  display: inline-block;
+  vertical-align: middle;
   width: 22px; height: 22px;
   flex-shrink: 0;
   border-radius: 50%;
