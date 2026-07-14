@@ -55,8 +55,8 @@ Grund, die Adresse zu geben.
 ## 4. Die 7 Check-Fragen (final)
 
 1. **Branche?** Handwerk/Bau · Handel/E-Commerce · Dienstleistung/Beratung · Produktion/Fertigung · Gesundheit/Pflege/Kanzlei · Sonstige
-2. **Mitarbeiterzahl?** 1–4 · **5–20** · 21–50 · über 50   *(5–20 = Teil des Seed-Kriteriums)*
-3. **Deine Rolle?** **Inhaber:in/Geschäftsführung** · Geschäftsleitung/Prokura · IT-/Projektverantwortlich · Mitarbeiter:in ohne Budgetentscheidung   *(Inhaber/GL = zweite Hälfte des Seed-Kriteriums)*
+2. **Mitarbeiterzahl?** **1–4** · **5–20** · 21–50 · über 50   *(1–4 oder 5–20 = Teil des Seed-Kriteriums)*
+3. **Deine Rolle?** **Inhaber:in/Geschäftsführung** · **Geschäftsleitung/Prokura** · IT-/Projektverantwortlich · Mitarbeiter:in ohne Budgetentscheidung   *(Inhaber/GF oder GL/Prokura = zweite Hälfte des Seed-Kriteriums)*
 4. **Wo verliert dein Team am meisten Zeit mit wiederkehrender Arbeit?** *(Mehrfachauswahl)* Angebote/Rechnungen schreiben · Daten doppelt eintippen · E-Mails sortieren & beantworten · Dokumente suchen & ablegen · Termine/Aufträge/Einsätze koordinieren · Berichte/Protokolle/Doku erstellen
 5. **Wie viele Stunden/Woche verschlingen solche Routineaufgaben grob?** Unter 5 · 5–10 · 10–20 · über 20 · weiß ich nicht genau
 6. **Wie zufrieden bist du mit der heutigen Lösung?** Läuft, aber Software zu teuer/passt nicht · Läuft, aber Daten in Clouds, bei denen ich kein gutes Gefühl habe · Nein, vieles läuft manuell · Bin unsicher, was geht
@@ -85,7 +85,7 @@ Stundenmittel je Bucket: <5 → 3 · 5–10 → 7,5 · 10–20 → 15 · >20 →
 - **C1 — Brevo-API-Key nur serverseitig** (in `submit.php`), NIEMALS im Client-JS.
 - **C2 — Consent-Trennung:** Report-Mail = transaktional (immer erlaubt). Nurture = Marketing (nur mit separater, **nicht vorangekreuzter, freiwilliger** Checkbox + Double-Opt-In). Checkbox ist **kein Pflichtfeld** (Kopplungsverbot Art. 7 Abs. 4 DSGVO — erzwungene Einwilligung ist ungültig).
 - **C3 — Matomo cookieless als Basis:** `disableCookies()` + IP-Anonymisierung (≥2 Bytes). Läuft consent-frei bei ALLEN → das ist die *ehrliche* Funnel-Wahrheit. Optionaler Hybrid-Upgrade auf Cookie-Modus (`setConsentGiven()`) nur bei Banner-Zustimmung.
-- **C4 — Meta-Pixel nur für Meta:** `Lead` bei jedem Check-Abschluss; Custom-Event **`QualifiedLead` NUR wenn Frage 2 = „5–20" UND Frage 3 = „Inhaber/GL"** (= sauberer Lookalike-Seed). **Kein PII** in Event-Parametern. Pixel feuert nur bei akzeptiertem Cookie.
+- **C4 — Meta-Pixel nur für Meta:** `Lead` bei jedem Check-Abschluss; Custom-Event **`QualifiedLead` NUR wenn Frage 2 = „1–4" ODER „5–20" UND Frage 3 = „Inhaber/GF" ODER „Geschäftsleitung/Prokura"** (= Lookalike-Seed: Entscheider kleiner Betriebe). **Kein PII** in Event-Parametern. Pixel feuert nur bei akzeptiertem Cookie.
 - **C5 — MySQL ist eigene Wahrheit + Seed-Filter.** Behalten, auch wenn Brevo speichert (getrennte Rechtsgrundlage, siehe Recht).
 - **C6 — Sofort-Ergebnis nicht hinter die Mail verstecken.** Spitze immer sichtbar, damit der Call-Button den heißesten Moment erwischt.
 - **C7 — Alltagssprache im Check & in der Ad.** Köder = Schmerzpunkt („3 h/Woche Angebote schreiben"), nicht Technik.
@@ -133,29 +133,29 @@ Legende: `[*]` kritischer Pfad · `[R]` rechtlich.
 **Kritischer Pfad:** Epic 1 (Check) + Epic 2 (Backend) müssen stehen, bevor Ads (Epic 5) Sinn ergeben.
 
 ### Epic 1 — Check-Frontend `[*]`
-- [ ] 1.1 Check-Seite HTML/JS (7 Fragen, Fortschritt, mobil, schnell)
-- [ ] 1.2 €-Rechnung client-side (Abschnitt 5), Ausgabe als Spanne
-- [ ] 1.3 Ergebnis-Routing On-Premise/EU-Cloud/Festpreis (Abschnitt 5)
-- [ ] 1.4 Ergebnisseite: Spitze sofort sichtbar + meetergo-Call-Button
-- [ ] 1.5 Mail-Gate: E-Mail + Name + freiwillige, nicht vorangekreuzte Checkbox `[R]`
+- [x] 1.1 Check-Seite HTML/JS (7 Fragen, Fortschritt, mobil, schnell)
+- [x] 1.2 €-Rechnung client-side (Abschnitt 5), Ausgabe als Spanne
+- [x] 1.3 Ergebnis-Routing On-Premise/EU-Cloud/Festpreis (Abschnitt 5)
+- [x] 1.4 Ergebnisseite: Spitze sofort sichtbar + meetergo-Call-Button
+- [x] 1.5 Mail-Gate: E-Mail + Name + freiwillige, nicht vorangekreuzte Checkbox `[R]`
 
 ### Epic 2 — Backend `[*]`
-- [ ] 2.1 MySQL-Tabelle (Abschnitt 8)
-- [ ] 2.2 Brevo: Domain verifizieren (SPF/DKIM/DMARC) `[R]`
-- [ ] 2.3 Brevo-API-Key serverseitig `[*]` (C1)
-- [ ] 2.4 Brevo Transactional-Template (Report/„Tiefe")
-- [ ] 2.5 submit.php: Insert + Transactional + (bei consent) Contacts→DOI `[*]`
-- [ ] 2.6 Brevo DOI-Liste + Bestätigung `[R]`
-- [ ] 2.7 End-to-End-Test
+- [x] 2.1 MySQL-Tabelle (Abschnitt 8)
+- [x] 2.2 Brevo: Domain verifizieren (SPF/DKIM/DMARC) `[R]`
+- [x] 2.3 Brevo-API-Key serverseitig `[*]` (C1)
+- [x] 2.4 Brevo Transactional-Template (Report/„Tiefe")
+- [x] 2.5 submit.php: Insert + Transactional + (bei consent) Contacts→DOI `[*]`
+- [x] 2.6 Brevo DOI-Liste + Bestätigung `[R]`
+- [x] 2.7 End-to-End-Test
 
 ### Epic 3 — Tracking
-- [ ] 3.1 Matomo cookieless + IP-Anonymisierung `[R]` (C3)
-- [ ] 3.2 Matomo Funnel-Events pro Schritt
-- [ ] 3.3 Matomo Hybrid-Upgrade bei Consent `[R]`
-- [ ] 3.4 Meta-Pixel einbauen `[*]`
-- [ ] 3.5 Events Lead + QualifiedLead (bedingt, C4) `[*]`
-- [ ] 3.6 Cookie-Banner: Matomo-Cookie + Pixel abwählbar `[R]`
-- [ ] 3.7 Test im Meta Events Manager
+- [x] 3.1 Matomo cookieless + IP-Anonymisierung `[R]` (C3)
+- [x] 3.2 Matomo Funnel-Events pro Schritt
+- [x] 3.3 Matomo Hybrid-Upgrade bei Consent `[R]`
+- [x] 3.4 Meta-Pixel einbauen `[*]`
+- [x] 3.5 Events Lead + QualifiedLead (bedingt, C4) `[*]`
+- [x] 3.6 Cookie-Banner: Matomo-Cookie + Pixel abwählbar `[R]`
+- [x] 3.7 Test im Meta Events Manager
 
 ### Epic 4 — Nurture
 - [ ] 4.1 4–5 Nurture-Mails (Praxisfall / DSGVO On-Prem+EU-Cloud / Kosten-Einwand / Einladung)

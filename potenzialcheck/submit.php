@@ -35,7 +35,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     respond(405, ['ok' => false, 'error' => 'method']);
 }
 
-// ── Origin / Referer prüfen (Abuse-Schutz, wie fb-capi.php) ──
+// ── Origin / Referer prüfen (Abuse-Schutz, wie s-event.php) ──
 $allowedHosts = isset($config['allowed_hosts']) && is_array($config['allowed_hosts'])
     ? $config['allowed_hosts']
     : ['www.smartwandler.de', 'smartwandler.de'];

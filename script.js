@@ -254,6 +254,11 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
       document.head.appendChild(t);
     }
     try {
+      // autoConfig AUS: unterbindet Metas automatische Ereigniserkennung
+      // (SubscribedButtonClick, Microdata-Scraping) — sonst würden Button-
+      // Beschriftungen/Formularinhalte, also die Check-Antworten, ungefragt
+      // an Meta gesendet. Muss VOR init gesetzt werden. (C4: kein PII an Meta)
+      fbq('set', 'autoConfig', false, FB_PIXEL_ID);
       fbq('init', FB_PIXEL_ID);
       fbq('track', 'PageView');
       console.info('[consent] Facebook Pixel initialisiert (ID ' + FB_PIXEL_ID + ').');

@@ -42,3 +42,6 @@ unterschreiben
 
 ## Instagram Enrichtung
 * damit der Ads Account richtig funtkioniert muss man bei INstagram auf Settings gehen --> dann Account Center --> Ad Preferences und dann kostenlose Werbung auswählen
+
+
+Automatic website matching und Track events automatically without code in Event Manager --> Datensatz --> Settings muss AUS sein

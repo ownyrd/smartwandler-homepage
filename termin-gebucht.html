@@ -11,7 +11,7 @@
   Matomo & Meta Pixel werden ausschließlich nach Cookie-Consent
   durch script.js geladen (siehe loadMatomo / loadFacebookPixel).
   Der "meeting_scheduled"-Event wird zusätzlich serverseitig
-  über fb-capi.php an die Meta Conversions API gesendet.
+  über s-event.php an die Meta Conversions API gesendet.
 -->
 <style>
 .thanks-hero {
@@ -439,7 +439,7 @@
       fbc: getCookie('_fbc')
     };
     try {
-      fetch('fb-capi.php', {
+      fetch('s-event.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

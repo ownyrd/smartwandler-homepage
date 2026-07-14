@@ -17,7 +17,7 @@ zip -r "$OUTPUT" \
     "$WORKING_DIR"/*.html \
     "$WORKING_DIR"/*.css \
     "$WORKING_DIR"/*.js \
-    "$WORKING_DIR"/fb-capi.php \
+    "$WORKING_DIR"/s-event.php \
     "$WORKING_DIR/.htaccess" \
     "$WORKING_DIR/potenzialcheck/index.html" \
     "$WORKING_DIR/potenzialcheck/bestaetigt.html" \

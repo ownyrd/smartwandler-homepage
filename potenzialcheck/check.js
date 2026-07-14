@@ -553,7 +553,7 @@
   // ══════════════════════════════════════
   // Tracking-Hooks (Epic 3)
   //  · Matomo-Funnel: läuft über die cookielose Basis für ALLE (C3).
-  //  · Meta Lead/QualifiedLead: Browser-Pixel + Server-CAPI (fb-capi.php) mit
+  //  · Meta Lead/QualifiedLead: Browser-Pixel + Server-CAPI (s-event.php) mit
   //    gemeinsamer event_id (Dedup), NUR bei Facebook-Consent (C4), ohne PII.
   // ══════════════════════════════════════
   function trackFunnel(step) {
@@ -562,8 +562,11 @@
     } catch (e) { /* still */ }
   }
   function trackLead() {
-    // C4: QualifiedLead NUR bei Mitarbeiter „5–20" UND Rolle „Inhaber/GL".
-    var qualified = state.answers.mitarbeiter === '5_20' && state.answers.rolle === 'inhaber_gf';
+    // C4: QualifiedLead nur bei Entscheidern kleiner Betriebe.
+    // Mitarbeiter „1–4" ODER „5–20"  UND  Rolle „Inhaber/GF" ODER „Geschäftsleitung/Prokura".
+    var maOk = state.answers.mitarbeiter === '1_4' || state.answers.mitarbeiter === '5_20';
+    var rolleOk = state.answers.rolle === 'inhaber_gf' || state.answers.rolle === 'geschaeftsleitung';
+    var qualified = maOk && rolleOk;
     sendMetaEvent('Lead', false);
     if (qualified) sendMetaEvent('QualifiedLead', true);
     trackFunnel(qualified ? 'lead_qualified' : 'lead');
@@ -581,7 +584,7 @@
       }
     } catch (e) { /* still */ }
     try {
-      fetch('../fb-capi.php', {
+      fetch('../s-event.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
