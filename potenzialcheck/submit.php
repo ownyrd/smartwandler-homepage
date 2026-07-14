@@ -173,6 +173,11 @@ if ($templateId > 0) {
         'HEADLINE'    => $routing['headline'],
         'BODY'        => $routing['body'],
         'MEETERGO'    => 'https://cal.meetergo.com/philipp-anders/30-min-meeting',
+        // Datensicherheits-Block nur bei sensibler Branche / Cloud-Bedenken (gleiches Routing wie HEADLINE/BODY)
+        'SHOW_DSGVO'  => $routing['mode'] === 'dsgvo',
+        // Demo-Video (ein Beweis-Element). Über submit-config.php überschreibbar; leer = Video-Block aus.
+        'VIDEO_URL'    => (string) ($config['video_url']    ?? 'https://www.smartwandler.de/video/smartwandler-demo-720p.mp4'),
+        'VIDEO_POSTER' => (string) ($config['video_poster'] ?? 'https://www.smartwandler.de/video/smartwandler-demo-poster.jpg'),
         // Für {% if params.BRANCHE_KEY == "…" %}
         'BRANCHE_KEY' => $branche,
         'BRANCHE'     => $branche === 'sonstige' && $brancheCustom !== '' ? $brancheCustom : ($LABELS['branche'][$branche] ?? ''),
@@ -192,7 +197,7 @@ if ($templateId > 0) {
     ];
 } else {
     // Variante: HTML wird hier gebaut (funktioniert ohne Template-Pflege).
-    $mail['subject']     = sprintf('Ihr Potenzial-Check: %s–%s € pro Jahr',
+    $mail['subject']     = sprintf('Ihr Potenzial-Check: %s bis %s € pro Jahr',
         number_format($ergebnisMin, 0, ',', '.'), number_format($ergebnisMax, 0, ',', '.'));
     $mail['htmlContent'] = buildReportHtml([
         'name' => $name, 'min' => $ergebnisMin, 'max' => $ergebnisMax,
@@ -297,19 +302,22 @@ function computeRouting(string $branche, string $zufriedenheit): array {
     $sensibel = ($branche === 'gesundheit_pflege' || $branche === 'kanzlei');
     if ($zufriedenheit === 'cloud_unwohl' || $sensibel) {
         return [
+            'mode' => 'dsgvo',
             'headline' => 'Ihre Daten müssen dafür nicht in eine fremde Cloud.',
             'body' => 'Wir richten Automatisierung wahlweise als DSGVO-konforme EU-Cloud oder direkt bei Ihnen vor Ort (On-Premise) ein. Was in Ihrem Fall besser passt, klären wir gemeinsam im Gespräch.',
         ];
     }
     if ($zufriedenheit === 'software_teuer') {
         return [
+            'mode' => 'festpreis',
             'headline' => 'Ohne teure Abos, die nicht richtig zu Ihnen passen.',
-            'body' => 'Statt laufender Lizenzkosten setzen wir auf eine maßgeschneiderte Lösung zum Festpreis – Sie zahlen einmal für etwas, das genau zu Ihren Abläufen passt.',
+            'body' => 'Statt laufender Lizenzkosten setzen wir auf eine maßgeschneiderte Lösung zum Festpreis. Sie zahlen einmal für etwas, das genau zu Ihren Abläufen passt.',
         ];
     }
     return [
+        'mode' => 'standard',
         'headline' => 'So holen Sie dieses Potenzial Schritt für Schritt zurück.',
-        'body' => 'Im kostenlosen Erstgespräch schauen wir uns Ihre größten Zeitfresser an und zeigen, welche sich am schnellsten automatisieren lassen – lokal, sicher und maßgeschneidert.',
+        'body' => 'Im kostenlosen Erstgespräch schauen wir uns Ihre größten Zeitfresser an und zeigen, welche sich am schnellsten automatisieren lassen, lokal, sicher und maßgeschneidert.',
     ];
 }
 
@@ -370,7 +378,7 @@ function buildReportHtml(array $d): string {
       . '<tr><td style="padding:16px 32px 0;">'
       . '<p style="margin:0 0 6px;font-size:15px;color:#5F5952">Hallo ' . $name . ',</p>'
       . '<p style="margin:0 0 14px;font-size:15px;color:#5F5952;line-height:1.6">basierend auf Ihren Angaben ist bei Ihnen aktuell grob folgendes Potenzial in Routinearbeit gebunden:</p>'
-      . '<div style="font-size:34px;font-weight:bold;color:#3A3631;letter-spacing:-0.03em">' . $min . '–' . $max . ' &euro;</div>'
+      . '<div style="font-size:34px;font-weight:bold;color:#3A3631;letter-spacing:-0.03em">' . $min . ' bis ' . $max . ' &euro;</div>'
       . '<div style="font-size:13px;color:#7C766C;margin-top:4px">pro Jahr, das sich durch Automatisierung Schritt für Schritt freimachen lässt.</div>'
       . '</td></tr>'
       // Routing

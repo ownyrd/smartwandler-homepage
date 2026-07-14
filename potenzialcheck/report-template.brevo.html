@@ -5,20 +5,28 @@
   So einsetzen:
   1. Brevo → Templates → „New template" → Name „Potenzialcheck Report".
   2. „From" = deine verifizierte Absenderadresse. Betreff z. B.:
-        Ihr Potenzial-Check: {{ params.MIN }}–{{ params.MAX }} € pro Jahr
+        Ihr Potenzial: {{ params.MIN }} bis {{ params.MAX }} €, und wie ein Betrieb wie Ihrer das schon macht
   3. Editor → „Code your own" (bzw. „Import / Paste your code") → diesen
      GESAMTEN Inhalt (ab <!DOCTYPE ...) einfügen → speichern & aktivieren.
   4. Template-ID (steht in der URL / Übersicht) in submit-config.php:
         'brevo_report_template_id' => 42,   // deine ID
   5. Fertig — submit.php schickt ab da über dieses Template.
 
+  Aufbau (siehe Report-Mail-Konzept.md): Header · €-Spanne · Einordnung ·
+  ★Praxisfall (branchenspezifisch) · Für Ihre Branche · Ihre Zeitfresser
+  (mit Beispiel + Aufwand) · ★So läuft ein Projekt ab · ★Datensicherheit
+  (nur bei Bedarf) · ★Demo-Video (ein Link) · EINE CTA · ★Wer ist Philipp.
+  Durchgängig Sie-Anrede.
+
   Verfügbare Werte (params):
     Text:  NAME, MIN, MAX, HEADLINE, BODY, BRANCHE, BRANCHE_KEY,
            MITARBEITER, ROLLE, STUNDEN, ZUFRIEDENHEIT, DRINGLICHKEIT,
-           ZEITFRESSER (Komma-Liste), MEETERGO (Link)
-    Schalter (an/aus) je angeklickter Aufgabe:
+           ZEITFRESSER (Komma-Liste), MEETERGO (Link),
+           VIDEO_URL, VIDEO_POSTER (Demo-Video; leer = Block aus)
+    Schalter (an/aus):
+           SHOW_DSGVO  (Datensicherheits-Block, bei sensibler Branche/Cloud-Bedenken)
            ZF_ANGEBOTE, ZF_DATEN, ZF_EMAILS, ZF_DOKUMENTE,
-           ZF_KOORDINATION, ZF_BERICHTE
+           ZF_KOORDINATION, ZF_BERICHTE  (je angeklickter Aufgabe)
     BRANCHE_KEY-Werte: handwerk_bau, handel_ecommerce, dienstleistung,
            produktion, gesundheit_pflege, kanzlei, sonstige
 
@@ -35,8 +43,9 @@
 <tr><td align="center">
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#FAF8F5;border-radius:16px;overflow:hidden;font-family:Arial,Helvetica,sans-serif">
 
-  <!-- Header -->
+  <!-- Header (Logo gehostet, nicht base64; data:-URIs blockieren Gmail/Outlook) -->
   <tr><td style="padding:28px 32px 8px;">
+    <img src="https://www.smartwandler.de/images/logo-small.png" alt="smartwandler" width="44" height="44" style="display:block;border:0;margin:0 0 10px" />
     <div style="font-size:20px;font-weight:bold;color:#3A3631;letter-spacing:-0.02em">smartwandler</div>
     <div style="font-size:12px;color:#7C766C;letter-spacing:0.06em;text-transform:uppercase;margin-top:2px">Ihr Potenzial-Check</div>
   </td></tr>
@@ -45,22 +54,54 @@
   <tr><td style="padding:16px 32px 0;">
     <p style="margin:0 0 6px;font-size:15px;color:#5F5952">Hallo {{ params.NAME }},</p>
     <p style="margin:0 0 14px;font-size:15px;color:#5F5952;line-height:1.6">basierend auf Ihren Angaben ist bei Ihnen aktuell grob folgendes Potenzial in Routinearbeit gebunden:</p>
-    <div style="font-size:34px;font-weight:bold;color:#3A3631;letter-spacing:-0.03em">{{ params.MIN }}–{{ params.MAX }} &euro;</div>
+    <div style="font-size:34px;font-weight:bold;color:#3A3631;letter-spacing:-0.03em">{{ params.MIN }} bis {{ params.MAX }} &euro;</div>
     <div style="font-size:13px;color:#7C766C;margin-top:4px">pro Jahr, das sich durch Automatisierung Schritt für Schritt freimachen lässt.</div>
   </td></tr>
 
-  <!-- Routing-Kernaussage (reagiert schon auf Branche + Zufriedenheit) -->
+  <!-- Einordnung / Routing-Kernaussage (reagiert auf Branche + Zufriedenheit) -->
   <tr><td style="padding:22px 32px 0;">
     <div style="font-size:18px;font-weight:bold;color:#3A3631;margin-bottom:6px">{{ params.HEADLINE }}</div>
     <div style="font-size:15px;color:#5F5952;line-height:1.6">{{ params.BODY }}</div>
   </td></tr>
 
-  <!-- ═══ Branchen-Abschnitt ═══ -->
+  <!-- ═══ ★ PRAXISFALL: Was ein Betrieb wie Ihrer schon automatisiert hat ═══ -->
+  <tr><td style="padding:28px 32px 0;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F2EEE7;border-radius:12px">
+      <tr><td style="padding:20px 22px">
+        <div style="font-size:13px;color:#7C766C;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px">Aus der Praxis</div>
+        <div style="font-size:15px;color:#3A3631;line-height:1.6">
+          {% if params.BRANCHE_KEY == "handwerk_bau" %}
+            <strong>Ein Elektrobetrieb mit 8 Mitarbeitern aus der Region.</strong> Vorher hat der Chef abends Angebote aus alten Word-Dateien zusammenkopiert und Baustellenfotos von Hand in Ordner sortiert. Heute erzeugt das System Angebote aus Vorlagen mit Preisen aus den Stammdaten, und jedes Foto landet automatisch beim richtigen Auftrag. Ergebnis: rund <strong>5 bis 7 Stunden pro Woche</strong> zurück, und Angebote gehen am selben Tag raus statt erst am Wochenende.
+          {% endif %}
+          {% if params.BRANCHE_KEY == "handel_ecommerce" %}
+            <strong>Ein Online-Händler mit 12 Mitarbeitern.</strong> Bestellungen wurden aus dem Shop von Hand ins Warenwirtschaftssystem und in die Buchhaltung übertragen, dreimal dieselben Daten. Jetzt sind Shop, Lager und Buchhaltung verbunden: Eine Bestellung fließt automatisch durch, Bestände stimmen in Echtzeit. Ergebnis: rund <strong>6 bis 8 Stunden Tipparbeit pro Woche</strong> weg, deutlich weniger Fehler bei Retouren.
+          {% endif %}
+          {% if params.BRANCHE_KEY == "dienstleistung" %}
+            <strong>Eine Beratung mit 6 Mitarbeitern.</strong> Das Drumherum fraß die Zeit: Angebote schreiben, Termine hin- und herschieben, hinterhertelefonieren. Heute schlägt das System Termine selbst vor, fasst automatisch nach und legt die Doku pro Mandat richtig ab. Ergebnis: rund <strong>4 bis 6 Stunden pro Woche</strong> zurück am eigentlichen Kundengeschäft statt an Verwaltung.
+          {% endif %}
+          {% if params.BRANCHE_KEY == "produktion" %}
+            <strong>Ein Fertigungsbetrieb mit 15 Mitarbeitern.</strong> Auftrags- und Maschinendaten wurden auf Zetteln erfasst und abends abgetippt. Jetzt werden Rückmeldungen direkt digital erfasst, die Schichtplanung läuft halbautomatisch, Berichte entstehen auf Knopfdruck. Ergebnis: rund <strong>6 bis 9 Stunden pro Woche</strong> weniger Papierkram, und der Chef sieht den Auftragsstand in Echtzeit.
+          {% endif %}
+          {% if params.BRANCHE_KEY == "gesundheit_pflege" %}
+            <strong>Ein Pflegedienst mit 14 Mitarbeitern.</strong> Doku, Dienstplan und Abrechnung liefen auf Papier und in drei getrennten Programmen. Heute läuft das zusammen, <strong>datensicher, komplett in der EU-Cloud</strong>. Ergebnis: rund <strong>5 bis 8 Stunden pro Woche</strong> weniger Verwaltung, und die Doku ist bei einer Prüfung sofort vollständig auffindbar.
+          {% endif %}
+          {% if params.BRANCHE_KEY == "kanzlei" %}
+            <strong>Eine Kanzlei mit 7 Mitarbeitern.</strong> Fristen wurden von Hand in den Kalender übertragen, Akten mehrfach angelegt. Jetzt entstehen Aktenanlage und Fristenkontrolle automatisch aus dem Posteingang, <strong>ohne dass Mandantendaten in fremde Clouds wandern</strong> (EU-Cloud oder bei Ihnen vor Ort). Ergebnis: rund <strong>5 bis 7 Stunden pro Woche</strong> zurück und deutlich weniger Fristen-Stress.
+          {% endif %}
+          {% if params.BRANCHE_KEY == "sonstige" %}
+            <strong>Ein Betrieb mit 10 Mitarbeitern aus der Region.</strong> Überall dort, wo Aufgaben nach festem Muster wiederkehrten, etwa E-Mails sortieren, Daten übertragen oder Berichte zusammenstellen, haben wir Schritt für Schritt automatisiert. Ergebnis: rund <strong>5 Stunden pro Woche</strong> zurück, ohne dass das Team seine gewohnte Arbeitsweise umkrempeln musste.
+          {% endif %}
+        </div>
+      </td></tr>
+    </table>
+  </td></tr>
+
+  <!-- ═══ Branchen-Abschnitt (was in Ihrer Branche generell möglich ist) ═══ -->
   <tr><td style="padding:26px 32px 0;">
     <div style="font-size:13px;color:#7C766C;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px">Für Ihre Branche{% if params.BRANCHE %}: {{ params.BRANCHE }}{% endif %}</div>
     <div style="font-size:15px;color:#3A3631;line-height:1.6">
       {% if params.BRANCHE_KEY == "handwerk_bau" %}
-        Im Handwerk und Bau geht viel Zeit für Angebote, Aufmaße, Einsatz- und Tourenplanung sowie Baustellen-Doku drauf. Genau das lässt sich zuverlässig automatisieren – von der Angebots-Vorlage bis zur automatischen Foto-/Berichtsablage pro Auftrag.
+        Im Handwerk und Bau geht viel Zeit für Angebote, Aufmaße, Einsatz- und Tourenplanung sowie Baustellen-Doku drauf. Genau das lässt sich zuverlässig automatisieren, von der Angebots-Vorlage bis zur automatischen Foto-/Berichtsablage pro Auftrag.
       {% endif %}
       {% if params.BRANCHE_KEY == "handel_ecommerce" %}
         Im Handel und E-Commerce sind es meist Bestellungen, Lager- und Bestandspflege, Retouren und wiederkehrende Kundenanfragen. Wenn Shop, Lager und Buchhaltung sauber verbunden sind, verschwindet ein Großteil der Tipparbeit.
@@ -72,10 +113,10 @@
         In Produktion und Fertigung liegen die Potenziale in Auftrags- und Maschinendaten, Rückmeldungen, Schicht-/Ressourcenplanung und Doku. Weniger Zettel und doppelte Eingaben, mehr Übersicht in Echtzeit.
       {% endif %}
       {% if params.BRANCHE_KEY == "gesundheit_pflege" %}
-        In Gesundheit und Pflege zählt Datenschutz besonders. Doku, Termin- und Dienstplanung sowie Abrechnung lassen sich automatisieren – bewusst datensicher, wahlweise DSGVO-konform in der EU-Cloud oder komplett bei Ihnen vor Ort (On-Premise).
+        In Gesundheit und Pflege zählt Datenschutz besonders. Doku, Termin- und Dienstplanung sowie Abrechnung lassen sich automatisieren, bewusst datensicher, wahlweise DSGVO-konform in der EU-Cloud oder komplett bei Ihnen vor Ort (On-Premise).
       {% endif %}
       {% if params.BRANCHE_KEY == "kanzlei" %}
-        In der Kanzlei sind Fristenkontrolle, Aktenanlage, Mandantenkommunikation und Doku zeitintensiv – und datenschutzkritisch. Automatisierung ist hier möglich, ohne dass sensible Daten in fremde Clouds wandern (EU-Cloud oder On-Premise).
+        In der Kanzlei sind Fristenkontrolle, Aktenanlage, Mandantenkommunikation und Doku zeitintensiv und datenschutzkritisch. Automatisierung ist hier möglich, ohne dass sensible Daten in fremde Clouds wandern (EU-Cloud oder On-Premise).
       {% endif %}
       {% if params.BRANCHE_KEY == "sonstige" %}
         Unabhängig von der Branche gilt: Überall dort, wo Aufgaben nach festen Mustern wiederkehren, lässt sich Zeit zurückholen. Welche Schritte sich bei Ihnen am schnellsten lohnen, schauen wir uns gemeinsam an.
@@ -83,62 +124,129 @@
     </div>
   </td></tr>
 
-  <!-- ═══ Konkret zu den angeklickten Zeitfressern ═══ -->
+  <!-- ═══ ★ Konkret zu den angeklickten Zeitfressern (mit Beispiel + Aufwand) ═══ -->
   <tr><td style="padding:26px 32px 0;">
     <div style="font-size:13px;color:#7C766C;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:10px">Konkret bei Ihren Zeitfressern</div>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
 
       {% if params.ZF_ANGEBOTE %}
-      <tr><td style="padding:0 0 12px">
+      <tr><td style="padding:0 0 14px">
         <div style="font-size:15px;font-weight:bold;color:#3A3631">Angebote &amp; Rechnungen schreiben</div>
-        <div style="font-size:14px;color:#5F5952;line-height:1.55">Aus Vorlagen automatisch erzeugen, Positionen &amp; Preise aus den Stammdaten ziehen, Versand und Zahlungs-Nachverfolgung automatisieren. Spart pro Beleg oft mehrere Minuten.</div>
+        <div style="font-size:14px;color:#5F5952;line-height:1.55">Aus Vorlagen automatisch erzeugen, Positionen &amp; Preise aus den Stammdaten ziehen, Versand und Zahlungs-Nachverfolgung automatisieren.</div>
+        <div style="font-size:13px;color:#7C766C;line-height:1.5;margin-top:3px"><em>Typischer Einstieg: eine smarte Angebotsvorlage, meist in wenigen Tagen startklar, spart pro Beleg mehrere Minuten.</em></div>
       </td></tr>
       {% endif %}
 
       {% if params.ZF_DATEN %}
-      <tr><td style="padding:0 0 12px">
+      <tr><td style="padding:0 0 14px">
         <div style="font-size:15px;font-weight:bold;color:#3A3631">Daten doppelt eintippen</div>
-        <div style="font-size:14px;color:#5F5952;line-height:1.55">Ihre Systeme werden so verbunden, dass Daten nur einmal erfasst und überall automatisch synchron gehalten werden – Schluss mit Copy-&amp;-Paste zwischen Programmen.</div>
+        <div style="font-size:14px;color:#5F5952;line-height:1.55">Ihre Systeme werden so verbunden, dass Daten nur einmal erfasst und überall automatisch synchron gehalten werden. Schluss mit Copy-&amp;-Paste zwischen Programmen.</div>
+        <div style="font-size:13px;color:#7C766C;line-height:1.5;margin-top:3px"><em>Typischer Einstieg: die zwei Systeme verbinden, zwischen denen Sie am meisten hin- und herkopieren.</em></div>
       </td></tr>
       {% endif %}
 
       {% if params.ZF_EMAILS %}
-      <tr><td style="padding:0 0 12px">
+      <tr><td style="padding:0 0 14px">
         <div style="font-size:15px;font-weight:bold;color:#3A3631">E-Mails sortieren &amp; beantworten</div>
         <div style="font-size:14px;color:#5F5952;line-height:1.55">Eingang automatisch vorsortieren, Standardanfragen mit Textbausteinen oder KI vorbeantworten und daraus direkt Aufgaben erzeugen. Das Postfach bleibt beherrschbar.</div>
+        <div style="font-size:13px;color:#7C766C;line-height:1.5;margin-top:3px"><em>Typischer Einstieg: die drei, vier immer gleichen Anfragen automatisch vorbeantworten lassen.</em></div>
       </td></tr>
       {% endif %}
 
       {% if params.ZF_DOKUMENTE %}
-      <tr><td style="padding:0 0 12px">
+      <tr><td style="padding:0 0 14px">
         <div style="font-size:15px;font-weight:bold;color:#3A3631">Dokumente suchen &amp; ablegen</div>
         <div style="font-size:14px;color:#5F5952;line-height:1.55">Automatische Ablage nach festen Regeln, Volltextsuche und Vorlagen. Dokumente landen sofort am richtigen Ort und sind in Sekunden wieder auffindbar.</div>
+        <div style="font-size:13px;color:#7C766C;line-height:1.5;margin-top:3px"><em>Typischer Einstieg: eine automatische Ablage-Regel für die Dokumentart, die Sie am häufigsten suchen.</em></div>
       </td></tr>
       {% endif %}
 
       {% if params.ZF_KOORDINATION %}
-      <tr><td style="padding:0 0 12px">
+      <tr><td style="padding:0 0 14px">
         <div style="font-size:15px;font-weight:bold;color:#3A3631">Termine / Aufträge / Einsätze koordinieren</div>
         <div style="font-size:14px;color:#5F5952;line-height:1.55">Automatische Planung, Erinnerungen und Kalender-Sync statt Abstimmung per Telefon und Zettel. Weniger Leerlauf, weniger Doppelbuchungen.</div>
+        <div style="font-size:13px;color:#7C766C;line-height:1.5;margin-top:3px"><em>Typischer Einstieg: automatische Erinnerungen und ein zentraler Kalender für das ganze Team.</em></div>
       </td></tr>
       {% endif %}
 
       {% if params.ZF_BERICHTE %}
-      <tr><td style="padding:0 0 12px">
+      <tr><td style="padding:0 0 14px">
         <div style="font-size:15px;font-weight:bold;color:#3A3631">Berichte / Protokolle / Doku erstellen</div>
-        <div style="font-size:14px;color:#5F5952;line-height:1.55">Berichte werden aus vorhandenen Daten automatisch zusammengestellt, statt sie manuell zusammenzutragen – einheitlich und auf Knopfdruck.</div>
+        <div style="font-size:14px;color:#5F5952;line-height:1.55">Berichte werden aus vorhandenen Daten automatisch zusammengestellt, statt sie manuell zusammenzutragen, einheitlich und auf Knopfdruck.</div>
+        <div style="font-size:13px;color:#7C766C;line-height:1.5;margin-top:3px"><em>Typischer Einstieg: der eine Bericht, den Sie regelmäßig von Hand zusammenklauben, künftig auf Knopfdruck.</em></div>
       </td></tr>
       {% endif %}
 
     </table>
   </td></tr>
 
-  <!-- CTA -->
-  <tr><td style="padding:26px 32px 8px;">
+  <!-- ═══ ★ So läuft so ein Projekt ab (nimmt die „Monster-Projekt"-Angst) ═══ -->
+  <tr><td style="padding:28px 32px 0;">
+    <div style="font-size:13px;color:#7C766C;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:10px">So läuft so ein Projekt ab</div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+      <tr><td style="padding:0 0 10px;vertical-align:top">
+        <span style="display:inline-block;color:#C8A96A;font-weight:bold;font-size:15px">1.&nbsp;</span>
+        <span style="font-size:14px;color:#5F5952;line-height:1.55"><strong style="color:#3A3631">Erstgespräch (30 Min, kostenlos).</strong> Wir schauen uns Ihre Top-Zeitfresser an und Sie bekommen konkrete Ansatzpunkte, auch wenn Sie danach nichts mit uns machen.</span>
+      </td></tr>
+      <tr><td style="padding:0 0 10px;vertical-align:top">
+        <span style="display:inline-block;color:#C8A96A;font-weight:bold;font-size:15px">2.&nbsp;</span>
+        <span style="font-size:14px;color:#5F5952;line-height:1.55"><strong style="color:#3A3631">Kleiner Start.</strong> Wir fangen mit <em>einem</em> Prozess an, der sofort spürbar entlastet, kein Monate-Projekt und kein Umbau des ganzen Betriebs.</span>
+      </td></tr>
+      <tr><td style="padding:0 0 2px;vertical-align:top">
+        <span style="display:inline-block;color:#C8A96A;font-weight:bold;font-size:15px">3.&nbsp;</span>
+        <span style="font-size:14px;color:#5F5952;line-height:1.55"><strong style="color:#3A3631">Schritt für Schritt erweitern.</strong> Was funktioniert, bauen wir aus. Festpreis, kein Abo-Zwang, Sie behalten die Kontrolle.</span>
+      </td></tr>
+    </table>
+  </td></tr>
+
+  <!-- ═══ ★ Datensicherheit (nur bei sensibler Branche / Cloud-Bedenken) ═══ -->
+  {% if params.SHOW_DSGVO %}
+  <tr><td style="padding:24px 32px 0;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F2EEE7;border-radius:12px">
+      <tr><td style="padding:16px 20px">
+        <div style="font-size:15px;font-weight:bold;color:#3A3631;margin-bottom:4px">Ihre Daten bleiben, wo Sie sie haben wollen.</div>
+        <div style="font-size:14px;color:#5F5952;line-height:1.55">Wir arbeiten wahlweise DSGVO-konform in der EU-Cloud oder komplett bei Ihnen vor Ort (On-Premise). Nichts wandert ungefragt in US-Clouds. Was für Ihren Betrieb passt, klären wir im Gespräch.</div>
+      </td></tr>
+    </table>
+  </td></tr>
+  {% endif %}
+
+  <!-- ═══ ★ Demo-Video: EIN Beweis-Element (Poster verlinkt aufs Video) ═══
+       Bulletproof: explizite width+height + dunkler Hintergrund + gestylter
+       alt-Text. Falls der Client Remote-Bilder sperrt, zeigt er dann eine
+       klickbare dunkle Kachel mit „▶ smartwandler Demo ansehen" statt eines
+       kaputten Bild-Icons. Die Textzeile darunter ist echtes HTML → immer da. -->
+  {% if params.VIDEO_URL %}
+  <tr><td style="padding:26px 32px 0;">
+    <div style="font-size:13px;color:#7C766C;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:10px">In 90 Sekunden gesehen</div>
+    <a href="{{ params.VIDEO_URL }}" style="display:block;text-decoration:none">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-radius:12px;overflow:hidden">
+        <tr><td style="background:#3A3631" align="center">
+          <img src="{{ params.VIDEO_POSTER }}" alt="&#9654;  smartwandler Demo ansehen (90 Sek.)" width="536" height="301" style="display:block;width:100%;max-width:536px;height:auto;border:0;background:#3A3631;color:#EDEBE6;font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:bold;text-align:center;line-height:301px" />
+        </td></tr>
+        <tr><td style="padding:10px 4px 0">
+          <span style="font-size:14px;color:#3A3631;font-weight:bold">&#9654;&nbsp; Wie so eine Automatisierung im Alltag aussieht</span>
+        </td></tr>
+      </table>
+    </a>
+  </td></tr>
+  {% endif %}
+
+  <!-- ═══ EINE CTA ═══ -->
+  <tr><td style="padding:28px 32px 8px;">
     <a href="{{ params.MEETERGO }}" style="display:inline-block;background:#C8A96A;color:#3A3631;font-size:16px;font-weight:bold;text-decoration:none;padding:14px 28px;border-radius:100px">Kostenloses Erstgespräch buchen &rarr;</a>
   </td></tr>
-  <tr><td style="padding:8px 32px 28px;">
+  <tr><td style="padding:8px 32px 0;">
     <p style="margin:0;font-size:12px;color:#7C766C;line-height:1.5">Grobe Orientierung auf Basis Ihrer Angaben, keine verbindliche Zusage. Die genaue Einschätzung machen wir gemeinsam im Gespräch.</p>
+  </td></tr>
+
+  <!-- ═══ ★ Wer ist Philipp (Autorität am Ende) ═══ -->
+  <tr><td style="padding:24px 32px 28px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #E4DFD6">
+      <tr><td style="padding:18px 0 0">
+        <div style="font-size:14px;color:#5F5952;line-height:1.6"><strong style="color:#3A3631">Ihr Ansprechpartner:</strong> Philipp, 15+ Jahre Enterprise-IT (u.&nbsp;a. Mercedes, VW), heute mit smartwandler auf KMU in der Region spezialisiert. Kein Verkaufsdruck, kein Technik-Kauderwelsch: Wir übersetzen, was bei Ihnen konkret Zeit spart.</div>
+      </td></tr>
+    </table>
   </td></tr>
 
   <!-- Footer -->

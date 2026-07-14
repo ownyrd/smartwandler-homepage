@@ -37,6 +37,15 @@ return [
     //     eintragen; dann werden die Werte als {{params.*}} übergeben.
     'brevo_report_template_id' => 0,
 
+    // ── Demo-Video im Report (optional) ─────────────────────────────
+    // EIN Beweis-Element im Report: Poster-Bild verlinkt aufs Video.
+    // Leer lassen ('') = Video-Block wird im Report ausgeblendet.
+    // Defaults zeigen auf /video/ auf smartwandler.de — hier nur ändern,
+    // wenn Video/Poster woanders liegen oder du auf eine Landingpage
+    // mit eingebettetem Video statt direkt auf die MP4-Datei linken willst.
+    'video_url'    => 'https://www.smartwandler.de/video/smartwandler-demo-720p.mp4',
+    'video_poster' => 'https://www.smartwandler.de/video/smartwandler-demo-poster.jpg',
+
     // ── Nurture-DOI (2.6) — nur nötig für den Consent-Pfad ──────────
     // Wenn IDs = 0, wird der Consent-Pfad übersprungen (Report-Mail geht
     // trotzdem raus). So kannst du zuerst ohne Nurture testen.
