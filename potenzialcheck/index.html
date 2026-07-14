@@ -99,27 +99,37 @@
           <span class="eyebrow-text">Ihr Ergebnis</span>
         </div>
 
-        <p class="pc-result-kicker">So viel Potenzial ist bei Ihnen aktuell in Routinearbeit gebunden (grobe Schätzung):</p>
+        <!-- ① Die Zahl — größtes Element der Seite -->
+        <h2 class="pc-result-kicker-h" id="pc-result-h2">So viel Potenzial ist bei Ihnen aktuell in Routinearbeit gebunden — grobe Schätzung:</h2>
         <div class="pc-range" id="pc-range">– €</div>
-        <p class="pc-range-note">pro Jahr, das sich durch Automatisierung Schritt für Schritt freimachen lässt.</p>
+        <p class="pc-range-note">pro Jahr, gebunden in wiederkehrender Routinearbeit.</p>
         <p class="pc-range-basis" id="pc-range-basis"></p>
 
-        <h2 class="pc-h2 pc-routing-headline" id="pc-result-h2">Ihr Ergebnis steht.</h2>
-        <p class="pc-routing" id="pc-routing"></p>
+        <!-- ② Einordnung — personalisiert nach dem Top-Zeitfresser (Frage 4) -->
+        <p class="pc-einordnung" id="pc-einordnung"></p>
 
-        <div class="pc-result-cta">
-          <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo">
-            <button class="pc-btn pc-btn-primary pc-btn-lg" id="pc-cta-call">Kostenloses Erstgespräch buchen &nbsp;→</button>
-          </a>
+        <!-- ③ Primär-CTA — dominant, größter Button der Seite -->
+        <div class="pc-cta-card">
+          <div class="pc-result-cta">
+            <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo">
+              <button class="pc-btn pc-btn-primary pc-btn-xl" id="pc-cta-call">Kostenloses Erstgespräch buchen &nbsp;→</button>
+            </a>
+          </div>
+          <!-- routing-personalisierte Subline (Frage 1 + 6) -->
+          <p class="pc-cta-subline" id="pc-cta-subline"></p>
+          <!-- ④ Micro-Trust -->
+          <p class="pc-microtrust">Kostenlos · unverbindlich · kein Verkaufsdruck. Direkt mit Philipp — 15+ Jahre Enterprise-IT, u.&nbsp;a. Mercedes und VW.</p>
         </div>
+
         <p class="pc-fineprint">Grobe Orientierung auf Basis Ihrer Angaben, keine verbindliche Zusage. Die genaue Einschätzung machen wir gemeinsam im Gespräch.</p>
       </div>
 
-      <!-- ── TIEFE (1.5): Mail-Gate ── -->
+      <!-- ⑤ TIEFE (1.5): Mail-Gate — bewusst sekundär, deutlich abgesetzt -->
+      <div class="pc-secondary-divider" aria-hidden="true"></div>
       <div class="pc-gate" id="pc-gate">
         <div class="pc-gate-head">
-          <h3 class="pc-gate-title">Den detaillierten Report kostenlos per Mail</h3>
-          <p class="pc-gate-sub">Welche Ihrer Aufgaben sich konkret automatisieren lassen, wie lange das grob dauert und welcher Lösungsweg passt. Übersichtlich in Ihr Postfach.</p>
+          <h3 class="pc-gate-title">Noch nicht bereit für ein Gespräch?</h3>
+          <p class="pc-gate-sub">Wir schicken Ihnen die detaillierte Auswertung per Mail — mit den konkreten Aufgaben, die sich bei Ihnen automatisieren lassen.</p>
         </div>
         <form id="pc-gate-form" novalidate>
           <div class="pc-fields">
@@ -135,10 +145,10 @@
 
           <label class="pc-consent">
             <input type="checkbox" name="consent" value="1">
-            <span class="pc-consent-text">Ja, ich möchte zusätzlich gelegentlich praxisnahe Tipps zu Digitalisierung &amp; Automatisierung per E-Mail erhalten. Freiwillig, jederzeit mit einem Klick abbestellbar.</span>
+            <span class="pc-consent-text">Ja, schicken Sie mir zusätzlich monatlich einen konkreten Automatisierungs-Tipp für Betriebe wie meinen. Freiwillig, jederzeit mit einem Klick abbestellbar.</span>
           </label>
 
-          <button type="submit" class="pc-btn pc-btn-primary pc-gate-submit">Report anfordern &nbsp;→</button>
+          <button type="submit" class="pc-btn pc-btn-outline pc-gate-submit">Report per Mail senden</button>
           <p class="pc-gate-error" id="pc-gate-error" role="alert" hidden></p>
           <p class="pc-gate-legal">Pflichtfeld ist nur die E-Mail, wir brauchen sie, um Ihnen den Report zu schicken. Der Newsletter-Haken ist freiwillig und keine Voraussetzung. Details in der <a href="../datenschutz.html">Datenschutzerklärung</a>.</p>
         </form>

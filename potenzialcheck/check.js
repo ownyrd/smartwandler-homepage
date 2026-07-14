@@ -381,29 +381,62 @@
     if (answers.zufriedenheit === 'cloud_unwohl' || sensibleBranche) {
       return {
         key: 'datensicher',
-        headline: 'Ihre Daten müssen dafür nicht in eine fremde Cloud.',
-        body: 'Wir richten Automatisierung wahlweise als <strong>DSGVO-konforme EU-Cloud</strong> ' +
-              'oder <strong>direkt bei Ihnen vor Ort (On-Premise)</strong> ein. Was in Ihrem Fall ' +
-              'besser passt, klären wir gemeinsam im Gespräch.',
-        cta: 'Kostenlos in 30min datensichere Lösung besprechen  →'
+        subline: '30 Minuten, kostenlos. Und ja — Ihre Daten bleiben, wo Sie sie haben ' +
+                 'wollen: DSGVO-konform in der EU-Cloud oder komplett bei Ihnen vor Ort.',
+        cta: 'Datensichere Lösung besprechen  →'
       };
     }
     if (answers.zufriedenheit === 'software_teuer') {
       return {
         key: 'festpreis',
-        headline: 'Ohne teure Abos, die nicht richtig zu Ihnen passen.',
-        body: 'Statt laufender Lizenzkosten setzen wir auf eine <strong>maßgeschneiderte Lösung zum ' +
-              'Festpreis</strong> – Sie zahlen einmal für etwas, das genau zu Ihren Abläufen passt.',
+        subline: '30 Minuten, kostenlos. Kein Abo, keine laufenden Lizenzkosten — ' +
+                 'wir arbeiten mit Festpreis.',
         cta: 'Festpreis-Lösung besprechen  →'
       };
     }
     return {
       key: 'standard',
-      headline: 'So holen Sie dieses Potenzial Schritt für Schritt zurück.',
-      body: 'Im kostenlosen Erstgespräch schauen wir uns Ihre größten Zeitfresser an und zeigen, ' +
-            'welche sich am schnellsten automatisieren lassen – lokal, sicher und maßgeschneidert.',
+      subline: '30 Minuten, kostenlos: Wir schauen uns Ihre Top-Zeitfresser an und ' +
+               'Sie bekommen konkrete Ansatzpunkte.',
       cta: 'Kostenloses Erstgespräch buchen  →'
     };
+  }
+
+  // ── Einordnung (②): personalisiert nach dem Top-Zeitfresser (Frage 4) ──
+  var ZEITFRESSER_PHRASE = {
+    angebote_rechnungen: 'beim Schreiben von Angeboten und Rechnungen',
+    daten_doppelt:       'beim doppelten Eintippen von Daten in verschiedene Systeme',
+    emails:              'beim Sortieren und Beantworten von E-Mails',
+    dokumente:           'beim Suchen und Ablegen von Dokumenten',
+    koordination:        'bei der Koordination von Terminen, Aufträgen und Einsätzen',
+    berichte:            'beim Erstellen von Berichten, Protokollen und Dokumentation'
+  };
+
+  function topZeitfresser(answers) {
+    var sel = answers.zeitfresser;
+    if (!sel || !sel.length) return null;
+    // „Top" = erster in der Fragen-Reihenfolge, den der Nutzer gewählt hat.
+    var q = optionSet('zeitfresser');
+    for (var i = 0; q && i < q.options.length; i++) {
+      if (sel.indexOf(q.options[i].value) !== -1) return q.options[i].value;
+    }
+    return sel[0];
+  }
+
+  function computeEinordnung(answers) {
+    var phrase = ZEITFRESSER_PHRASE[topZeitfresser(answers)];
+    if (phrase) {
+      return 'Auf Basis Ihrer Angaben verliert Ihr Team vor allem ' + phrase +
+             ' spürbar Zeit. Ein großer Teil davon lässt sich automatisieren — ' +
+             'ohne dass Sie Ihre Arbeitsweise umkrempeln müssen.';
+    }
+    return 'Auf Basis Ihrer Angaben ist bei Ihnen einiges an Zeit in wiederkehrender ' +
+           'Routinearbeit gebunden. Ein großer Teil davon lässt sich automatisieren — ' +
+           'ohne dass Sie Ihre Arbeitsweise umkrempeln müssen.';
+  }
+
+  function optionSet(id) {
+    return QUESTIONS.filter(function (x) { return x.id === id; })[0] || null;
   }
 
   // ══════════════════════════════════════
@@ -424,10 +457,12 @@
     document.getElementById('pc-range-basis').textContent =
       'Hochgerechnet auf ~' + range.heads + ' Mitarbeitende × ~' + formatNum(range.perEmp) +
       ' h/Woche pro Kopf · davon rund ' + Math.round(AUTOMATABLE * 100) + ' % automatisierbar.';
-    document.getElementById('pc-result-h2').innerHTML = escapeHtml(routing.headline);
-    document.getElementById('pc-routing').innerHTML = routing.body;
+    var einordnung = document.getElementById('pc-einordnung');
+    if (einordnung) einordnung.textContent = computeEinordnung(state.answers);
     var ctaBtn = document.getElementById('pc-cta-call');
     if (ctaBtn) ctaBtn.textContent = routing.cta;
+    var ctaSub = document.getElementById('pc-cta-subline');
+    if (ctaSub) ctaSub.textContent = routing.subline;
 
     renderSummary();
     resetGate();
