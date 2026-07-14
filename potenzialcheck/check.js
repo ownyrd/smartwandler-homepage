@@ -39,9 +39,9 @@
       hint: null,
       type: 'single',
       options: [
-        { value: '1_4',      label: '1–4' },
-        { value: '5_20',     label: '5–20' },
-        { value: '21_50',    label: '21–50' },
+        { value: '1_4',      label: '1 bis 4' },
+        { value: '5_20',     label: '5 bis 20' },
+        { value: '21_50',    label: '21 bis 50' },
         { value: 'ueber_50', label: 'über 50' }
       ]
     },
@@ -78,8 +78,8 @@
       type: 'single',
       options: [
         { value: 'unter_5',     label: 'Unter 5 Stunden' },
-        { value: '5_10',        label: '5–10 Stunden' },
-        { value: '10_20',       label: '10–20 Stunden' },
+        { value: '5_10',        label: '5 bis 10 Stunden' },
+        { value: '10_20',       label: '10 bis 20 Stunden' },
         { value: 'ueber_20',    label: 'Über 20 Stunden' },
         { value: 'weiss_nicht', label: 'Weiß ich nicht genau' },
         { value: 'manuell',     label: 'Ich gebe es genau an',
@@ -381,7 +381,7 @@
     if (answers.zufriedenheit === 'cloud_unwohl' || sensibleBranche) {
       return {
         key: 'datensicher',
-        subline: '30 Minuten, kostenlos. Und ja — Ihre Daten bleiben, wo Sie sie haben ' +
+        subline: '30 Minuten, kostenlos. Und ja, Ihre Daten bleiben, wo Sie sie haben ' +
                  'wollen: DSGVO-konform in der EU-Cloud oder komplett bei Ihnen vor Ort.',
         cta: 'Datensichere Lösung besprechen  →'
       };
@@ -389,8 +389,8 @@
     if (answers.zufriedenheit === 'software_teuer') {
       return {
         key: 'festpreis',
-        subline: '30 Minuten, kostenlos. Kein Abo, keine laufenden Lizenzkosten — ' +
-                 'wir arbeiten mit Festpreis.',
+        subline: '30 Minuten, kostenlos. Kein Abo, keine laufenden Lizenzkosten. ' +
+                 'Wir arbeiten mit Festpreis.',
         cta: 'Festpreis-Lösung besprechen  →'
       };
     }
@@ -427,11 +427,11 @@
     var phrase = ZEITFRESSER_PHRASE[topZeitfresser(answers)];
     if (phrase) {
       return 'Auf Basis Ihrer Angaben verliert Ihr Team vor allem ' + phrase +
-             ' spürbar Zeit. Ein großer Teil davon lässt sich automatisieren — ' +
+             ' spürbar Zeit. Ein großer Teil davon lässt sich automatisieren, ' +
              'ohne dass Sie Ihre Arbeitsweise umkrempeln müssen.';
     }
     return 'Auf Basis Ihrer Angaben ist bei Ihnen einiges an Zeit in wiederkehrender ' +
-           'Routinearbeit gebunden. Ein großer Teil davon lässt sich automatisieren — ' +
+           'Routinearbeit gebunden. Ein großer Teil davon lässt sich automatisieren, ' +
            'ohne dass Sie Ihre Arbeitsweise umkrempeln müssen.';
   }
 
@@ -453,7 +453,7 @@
     };
 
     document.getElementById('pc-range').textContent =
-      formatEUR(range.min) + '–' + formatEUR(range.max) + ' €';
+      formatEUR(range.min) + ' bis ' + formatEUR(range.max) + ' €';
     document.getElementById('pc-range-basis').textContent =
       'Hochgerechnet auf ~' + range.heads + ' Mitarbeitende × ~' + formatNum(range.perEmp) +
       ' h/Woche pro Kopf · davon rund ' + Math.round(AUTOMATABLE * 100) + ' % automatisierbar.';
@@ -485,7 +485,7 @@
     box.innerHTML = QUESTIONS.map(function (q) {
       return '<div class="pc-summary-row"><span class="pc-summary-q">' +
              escapeHtml(short[q.id] || q.id) + '</span><span class="pc-summary-a">' +
-             escapeHtml(summaryValue(q) || '—') + '</span></div>';
+             escapeHtml(summaryValue(q) || '…') + '</span></div>';
     }).join('');
   }
 
@@ -571,7 +571,7 @@
         gateWrap.hidden = true;
         gateSuccess.hidden = false;
         document.getElementById('pc-gate-success-msg').textContent = consent
-          ? 'Bitte bestätigen Sie noch kurz die E-Mail, die wir Ihnen geschickt haben – dann ist alles startklar.'
+          ? 'Bitte bestätigen Sie noch kurz die E-Mail, die wir Ihnen geschickt haben, dann ist alles startklar.'
           : 'Schauen Sie in Ihr Postfach: Ihr Report ist unterwegs.';
         trackFunnel('report_angefordert');
       })

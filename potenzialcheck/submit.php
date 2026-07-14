@@ -328,7 +328,7 @@ function labelMap(): array {
             'dienstleistung' => 'Dienstleistung / Beratung', 'produktion' => 'Produktion / Fertigung',
             'gesundheit_pflege' => 'Gesundheit / Pflege', 'kanzlei' => 'Kanzlei', 'sonstige' => 'Sonstige',
         ],
-        'mitarbeiter' => ['1_4' => '1–4', '5_20' => '5–20', '21_50' => '21–50', 'ueber_50' => 'über 50'],
+        'mitarbeiter' => ['1_4' => '1 bis 4', '5_20' => '5 bis 20', '21_50' => '21 bis 50', 'ueber_50' => 'über 50'],
         'rolle' => [
             'inhaber_gf' => 'Inhaber:in / Geschäftsführung', 'geschaeftsleitung' => 'Geschäftsleitung / Prokura',
             'it_projekt' => 'IT- / Projektverantwortlich', 'mitarbeiter' => 'Mitarbeiter:in',
@@ -338,7 +338,7 @@ function labelMap(): array {
             'emails' => 'E-Mails sortieren & beantworten', 'dokumente' => 'Dokumente suchen & ablegen',
             'koordination' => 'Termine / Aufträge / Einsätze koordinieren', 'berichte' => 'Berichte / Protokolle / Doku erstellen',
         ],
-        'stunden' => ['unter_5' => 'Unter 5 Stunden', '5_10' => '5–10 Stunden', '10_20' => '10–20 Stunden', 'ueber_20' => 'Über 20 Stunden', 'weiss_nicht' => 'Weiß nicht genau', 'manuell' => 'Eigene Angabe'],
+        'stunden' => ['unter_5' => 'Unter 5 Stunden', '5_10' => '5 bis 10 Stunden', '10_20' => '10 bis 20 Stunden', 'ueber_20' => 'Über 20 Stunden', 'weiss_nicht' => 'Weiß nicht genau', 'manuell' => 'Eigene Angabe'],
         'zufriedenheit' => ['software_teuer' => 'Software zu teuer / passt nicht', 'cloud_unwohl' => 'Kein gutes Gefühl bei Cloud-Daten', 'manuell' => 'Vieles läuft manuell', 'unsicher' => 'Unsicher, was geht'],
         'dringlichkeit' => ['asap' => 'So schnell wie möglich', 'monate' => 'In den nächsten Monaten', 'informieren' => 'Erstmal informieren'],
     ];
