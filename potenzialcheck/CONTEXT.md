@@ -56,7 +56,7 @@ Grund, die Adresse zu geben.
 
 1. **Branche?** Handwerk/Bau · Handel/E-Commerce · Dienstleistung/Beratung · Produktion/Fertigung · Gesundheit/Pflege/Kanzlei · Sonstige
 2. **Mitarbeiterzahl?** **1–4** · **5–20** · 21–50 · über 50   *(1–4 oder 5–20 = Teil des Seed-Kriteriums)*
-3. **Deine Rolle?** **Inhaber:in/Geschäftsführung** · **Geschäftsleitung/Prokura** · IT-/Projektverantwortlich · Mitarbeiter:in ohne Budgetentscheidung   *(Inhaber/GF oder GL/Prokura = zweite Hälfte des Seed-Kriteriums)*
+3. **Deine Rolle?** **Inhaber:in/Geschäftsführung** · **Geschäftsleitung/Prokura** · IT-/Projektverantwortlich · Mitarbeiter:in  *(Inhaber/GF oder GL/Prokura = zweite Hälfte des Seed-Kriteriums)*
 4. **Wo verliert dein Team am meisten Zeit mit wiederkehrender Arbeit?** *(Mehrfachauswahl)* Angebote/Rechnungen schreiben · Daten doppelt eintippen · E-Mails sortieren & beantworten · Dokumente suchen & ablegen · Termine/Aufträge/Einsätze koordinieren · Berichte/Protokolle/Doku erstellen
 5. **Wie viele Stunden/Woche verschlingen solche Routineaufgaben grob?** Unter 5 · 5–10 · 10–20 · über 20 · weiß ich nicht genau
 6. **Wie zufrieden bist du mit der heutigen Lösung?** Läuft, aber Software zu teuer/passt nicht · Läuft, aber Daten in Clouds, bei denen ich kein gutes Gefühl habe · Nein, vieles läuft manuell · Bin unsicher, was geht

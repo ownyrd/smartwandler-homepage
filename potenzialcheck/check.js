@@ -54,7 +54,7 @@
         { value: 'inhaber_gf',        label: 'Inhaber:in / Geschäftsführung' },
         { value: 'geschaeftsleitung', label: 'Geschäftsleitung / Prokura' },
         { value: 'it_projekt',        label: 'IT- / Projektverantwortlich' },
-        { value: 'mitarbeiter',       label: 'Mitarbeiter:in ohne Budgetentscheidung' }
+        { value: 'mitarbeiter',       label: 'Mitarbeiter:in' }
       ]
     },
     {
@@ -372,34 +372,22 @@
   }
 
   // ══════════════════════════════════════
-  // Routing (1.3) — Ergebnis-Text + Call-Button aus Frage 1 + 6.
-  // On-Premise / EU-Cloud / DSGVO ist der Differenzierer IM ERGEBNIS,
-  // NICHT der Ad-Hook.
+  // Routing (1.3) — Ergebnis-CTA.
+  // Button + Subline sind bewusst für ALLE Branchen GLEICH (klarere, bessere
+  // Buchung). Die branchen-/zufriedenheitsabhängige Differenzierung passiert
+  // im Report-Mail (submit.php computeRouting) und im Gespräch selbst.
+  // Der `key` wird nur noch fürs Tracking (state.result.routing) bestimmt.
   // ══════════════════════════════════════
+  var RESULT_CTA = 'Zeigen Sie mir, wie das bei uns geht  →';
+  var RESULT_SUBLINE = 'Kostenloses Analysegespräch: 30 Minuten. Wir schauen uns Ihre ' +
+                       'Situation an, und Sie gehen mit 2 bis 3 konkreten Ansatzpunkten raus.';
+
   function computeRouting(answers) {
     var sensibleBranche = answers.branche === 'gesundheit_pflege' || answers.branche === 'kanzlei';
-    if (answers.zufriedenheit === 'cloud_unwohl' || sensibleBranche) {
-      return {
-        key: 'datensicher',
-        subline: '30 Minuten, kostenlos. Und ja, Ihre Daten bleiben, wo Sie sie haben ' +
-                 'wollen: DSGVO-konform in der EU-Cloud oder komplett bei Ihnen vor Ort.',
-        cta: 'Datensichere Lösung besprechen  →'
-      };
-    }
-    if (answers.zufriedenheit === 'software_teuer') {
-      return {
-        key: 'festpreis',
-        subline: '30 Minuten, kostenlos. Kein Abo, keine laufenden Lizenzkosten. ' +
-                 'Wir arbeiten mit Festpreis.',
-        cta: 'Festpreis-Lösung besprechen  →'
-      };
-    }
-    return {
-      key: 'standard',
-      subline: '30 Minuten, kostenlos: Wir schauen uns Ihre Top-Zeitfresser an und ' +
-               'Sie bekommen konkrete Ansatzpunkte.',
-      cta: 'Kostenloses Erstgespräch buchen  →'
-    };
+    var key = 'standard';
+    if (answers.zufriedenheit === 'cloud_unwohl' || sensibleBranche) key = 'datensicher';
+    else if (answers.zufriedenheit === 'software_teuer') key = 'festpreis';
+    return { key: key, subline: RESULT_SUBLINE, cta: RESULT_CTA };
   }
 
   // ── Einordnung (②): personalisiert nach dem Top-Zeitfresser (Frage 4) ──
@@ -456,7 +444,7 @@
       formatEUR(range.min) + ' bis ' + formatEUR(range.max) + ' €';
     document.getElementById('pc-range-basis').textContent =
       'Hochgerechnet auf ~' + range.heads + ' Mitarbeitende × ~' + formatNum(range.perEmp) +
-      ' h/Woche pro Kopf · davon rund ' + Math.round(AUTOMATABLE * 100) + ' % automatisierbar.';
+      ' h/Woche pro Kopf · davon rund ' + Math.round(AUTOMATABLE * 100) + ' % automatisierbar';
     var einordnung = document.getElementById('pc-einordnung');
     if (einordnung) einordnung.textContent = computeEinordnung(state.answers);
     var ctaBtn = document.getElementById('pc-cta-call');
