@@ -47,21 +47,21 @@
   <tr><td style="padding:28px 32px 8px;">
     <img src="https://www.smartwandler.de/images/logo-small.png" alt="smartwandler" width="44" height="44" style="display:block;border:0;margin:0 0 10px" />
     <div style="font-size:20px;font-weight:bold;color:#3A3631;letter-spacing:-0.02em">smartwandler</div>
-    <div style="font-size:12px;color:#7C766C;letter-spacing:0.06em;text-transform:uppercase;margin-top:2px">Ihr Potenzial-Check</div>
+    <div style="font-size:13px;color:#7C766C;letter-spacing:0.06em;text-transform:uppercase;margin-top:2px">Ihr Potenzial-Check</div>
   </td></tr>
 
   <!-- Anrede + €-Spanne -->
   <tr><td style="padding:16px 32px 0;">
-    <p style="margin:0 0 6px;font-size:15px;color:#5F5952">Hallo {{ params.NAME }},</p>
-    <p style="margin:0 0 14px;font-size:15px;color:#5F5952;line-height:1.6">basierend auf Ihren Angaben ist bei Ihnen aktuell grob folgendes Potenzial in Routinearbeit gebunden:</p>
+    <p style="margin:0 0 6px;font-size:17px;color:#5F5952">Hallo {{ params.NAME }},</p>
+    <p style="margin:0 0 14px;font-size:17px;color:#5F5952;line-height:1.6">basierend auf Ihren Angaben ist bei Ihnen aktuell grob folgendes Potenzial in Routinearbeit gebunden:</p>
     <div style="font-size:34px;font-weight:bold;color:#3A3631;letter-spacing:-0.03em">{{ params.MIN }} bis {{ params.MAX }} &euro;</div>
-    <div style="font-size:13px;color:#7C766C;margin-top:4px">pro Jahr, das sich durch Automatisierung Schritt für Schritt freimachen lässt.</div>
+    <div style="font-size:17px;color:#7C766C;margin-top:4px">pro Jahr, das sich durch Automatisierung Schritt für Schritt freimachen lässt.</div>
   </td></tr>
 
   <!-- Einordnung / Routing-Kernaussage (reagiert auf Branche + Zufriedenheit) -->
   <tr><td style="padding:22px 32px 0;">
-    <div style="font-size:18px;font-weight:bold;color:#3A3631;margin-bottom:6px">{{ params.HEADLINE }}</div>
-    <div style="font-size:15px;color:#5F5952;line-height:1.6">{{ params.BODY }}</div>
+    <div style="font-size:17px;font-weight:bold;color:#3A3631;margin-bottom:6px">{{ params.HEADLINE }}</div>
+    <div style="font-size:17px;color:#5F5952;line-height:1.6">{{ params.BODY }}</div>
   </td></tr>
 
   <!-- ═══ ★ PRAXISFALL: Was ein Betrieb wie Ihrer schon automatisiert hat ═══ -->
@@ -69,7 +69,7 @@
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F2EEE7;border-radius:12px">
       <tr><td style="padding:20px 22px">
         <div style="font-size:13px;color:#7C766C;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px">Aus der Praxis</div>
-        <div style="font-size:15px;color:#3A3631;line-height:1.6">
+        <div style="font-size:17px;color:#3A3631;line-height:1.6">
           {% if params.BRANCHE_KEY == "handwerk_bau" %}
             <strong>Ein Elektrobetrieb mit 8 Mitarbeitern aus der Region.</strong> Vorher hat der Chef abends Angebote aus alten Word-Dateien zusammenkopiert und Baustellenfotos von Hand in Ordner sortiert. Heute erzeugt das System Angebote aus Vorlagen mit Preisen aus den Stammdaten, und jedes Foto landet automatisch beim richtigen Auftrag. Ergebnis: rund <strong>5 bis 7 Stunden pro Woche</strong> zurück, und Angebote gehen am selben Tag raus statt erst am Wochenende.
           {% endif %}
@@ -99,7 +99,7 @@
   <!-- ═══ Branchen-Abschnitt (was in Ihrer Branche generell möglich ist) ═══ -->
   <tr><td style="padding:26px 32px 0;">
     <div style="font-size:13px;color:#7C766C;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px">Für Ihre Branche{% if params.BRANCHE %}: {{ params.BRANCHE }}{% endif %}</div>
-    <div style="font-size:15px;color:#3A3631;line-height:1.6">
+    <div style="font-size:17px;color:#3A3631;line-height:1.6">
       {% if params.BRANCHE_KEY == "handwerk_bau" %}
         Im Handwerk und Bau geht viel Zeit für Angebote, Aufmaße, Einsatz- und Tourenplanung sowie Baustellen-Doku drauf. Genau das lässt sich zuverlässig automatisieren, von der Angebots-Vorlage bis zur automatischen Foto-/Berichtsablage pro Auftrag.
       {% endif %}
@@ -131,48 +131,48 @@
 
       {% if params.ZF_ANGEBOTE %}
       <tr><td style="padding:0 0 14px">
-        <div style="font-size:15px;font-weight:bold;color:#3A3631">Angebote &amp; Rechnungen schreiben</div>
-        <div style="font-size:14px;color:#5F5952;line-height:1.55">Aus Vorlagen automatisch erzeugen, Positionen &amp; Preise aus den Stammdaten ziehen, Versand und Zahlungs-Nachverfolgung automatisieren.</div>
+        <div style="font-size:17px;font-weight:bold;color:#3A3631">Angebote &amp; Rechnungen schreiben</div>
+        <div style="font-size:17px;color:#5F5952;line-height:1.55">Aus Vorlagen automatisch erzeugen, Positionen &amp; Preise aus den Stammdaten ziehen, Versand und Zahlungs-Nachverfolgung automatisieren.</div>
         <div style="font-size:13px;color:#7C766C;line-height:1.5;margin-top:3px"><em>Typischer Einstieg: eine smarte Angebotsvorlage, meist in wenigen Tagen startklar, spart pro Beleg mehrere Minuten.</em></div>
       </td></tr>
       {% endif %}
 
       {% if params.ZF_DATEN %}
       <tr><td style="padding:0 0 14px">
-        <div style="font-size:15px;font-weight:bold;color:#3A3631">Daten doppelt eintippen</div>
-        <div style="font-size:14px;color:#5F5952;line-height:1.55">Ihre Systeme werden so verbunden, dass Daten nur einmal erfasst und überall automatisch synchron gehalten werden. Schluss mit Copy-&amp;-Paste zwischen Programmen.</div>
+        <div style="font-size:17px;font-weight:bold;color:#3A3631">Daten doppelt eintippen</div>
+        <div style="font-size:17px;color:#5F5952;line-height:1.55">Ihre Systeme werden so verbunden, dass Daten nur einmal erfasst und überall automatisch synchron gehalten werden. Schluss mit Copy-&amp;-Paste zwischen Programmen.</div>
         <div style="font-size:13px;color:#7C766C;line-height:1.5;margin-top:3px"><em>Typischer Einstieg: die zwei Systeme verbinden, zwischen denen Sie am meisten hin- und herkopieren.</em></div>
       </td></tr>
       {% endif %}
 
       {% if params.ZF_EMAILS %}
       <tr><td style="padding:0 0 14px">
-        <div style="font-size:15px;font-weight:bold;color:#3A3631">E-Mails sortieren &amp; beantworten</div>
-        <div style="font-size:14px;color:#5F5952;line-height:1.55">Eingang automatisch vorsortieren, Standardanfragen mit Textbausteinen oder KI vorbeantworten und daraus direkt Aufgaben erzeugen. Das Postfach bleibt beherrschbar.</div>
+        <div style="font-size:17px;font-weight:bold;color:#3A3631">E-Mails sortieren &amp; beantworten</div>
+        <div style="font-size:17px;color:#5F5952;line-height:1.55">Eingang automatisch vorsortieren, Standardanfragen mit Textbausteinen oder KI vorbeantworten und daraus direkt Aufgaben erzeugen. Das Postfach bleibt beherrschbar.</div>
         <div style="font-size:13px;color:#7C766C;line-height:1.5;margin-top:3px"><em>Typischer Einstieg: die drei, vier immer gleichen Anfragen automatisch vorbeantworten lassen.</em></div>
       </td></tr>
       {% endif %}
 
       {% if params.ZF_DOKUMENTE %}
       <tr><td style="padding:0 0 14px">
-        <div style="font-size:15px;font-weight:bold;color:#3A3631">Dokumente suchen &amp; ablegen</div>
-        <div style="font-size:14px;color:#5F5952;line-height:1.55">Automatische Ablage nach festen Regeln, Volltextsuche und Vorlagen. Dokumente landen sofort am richtigen Ort und sind in Sekunden wieder auffindbar.</div>
+        <div style="font-size:17px;font-weight:bold;color:#3A3631">Dokumente suchen &amp; ablegen</div>
+        <div style="font-size:17px;color:#5F5952;line-height:1.55">Automatische Ablage nach festen Regeln, Volltextsuche und Vorlagen. Dokumente landen sofort am richtigen Ort und sind in Sekunden wieder auffindbar.</div>
         <div style="font-size:13px;color:#7C766C;line-height:1.5;margin-top:3px"><em>Typischer Einstieg: eine automatische Ablage-Regel für die Dokumentart, die Sie am häufigsten suchen.</em></div>
       </td></tr>
       {% endif %}
 
       {% if params.ZF_KOORDINATION %}
       <tr><td style="padding:0 0 14px">
-        <div style="font-size:15px;font-weight:bold;color:#3A3631">Termine / Aufträge / Einsätze koordinieren</div>
-        <div style="font-size:14px;color:#5F5952;line-height:1.55">Automatische Planung, Erinnerungen und Kalender-Sync statt Abstimmung per Telefon und Zettel. Weniger Leerlauf, weniger Doppelbuchungen.</div>
+        <div style="font-size:17px;font-weight:bold;color:#3A3631">Termine / Aufträge / Einsätze koordinieren</div>
+        <div style="font-size:17px;color:#5F5952;line-height:1.55">Automatische Planung, Erinnerungen und Kalender-Sync statt Abstimmung per Telefon und Zettel. Weniger Leerlauf, weniger Doppelbuchungen.</div>
         <div style="font-size:13px;color:#7C766C;line-height:1.5;margin-top:3px"><em>Typischer Einstieg: automatische Erinnerungen und ein zentraler Kalender für das ganze Team.</em></div>
       </td></tr>
       {% endif %}
 
       {% if params.ZF_BERICHTE %}
       <tr><td style="padding:0 0 14px">
-        <div style="font-size:15px;font-weight:bold;color:#3A3631">Berichte / Protokolle / Doku erstellen</div>
-        <div style="font-size:14px;color:#5F5952;line-height:1.55">Berichte werden aus vorhandenen Daten automatisch zusammengestellt, statt sie manuell zusammenzutragen, einheitlich und auf Knopfdruck.</div>
+        <div style="font-size:17px;font-weight:bold;color:#3A3631">Berichte / Protokolle / Doku erstellen</div>
+        <div style="font-size:17px;color:#5F5952;line-height:1.55">Berichte werden aus vorhandenen Daten automatisch zusammengestellt, statt sie manuell zusammenzutragen, einheitlich und auf Knopfdruck.</div>
         <div style="font-size:13px;color:#7C766C;line-height:1.5;margin-top:3px"><em>Typischer Einstieg: der eine Bericht, den Sie regelmäßig von Hand zusammenklauben, künftig auf Knopfdruck.</em></div>
       </td></tr>
       {% endif %}
@@ -185,16 +185,16 @@
     <div style="font-size:13px;color:#7C766C;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:10px">So läuft so ein Projekt ab</div>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
       <tr><td style="padding:0 0 10px;vertical-align:top">
-        <span style="display:inline-block;color:#C8A96A;font-weight:bold;font-size:15px">1.&nbsp;</span>
-        <span style="font-size:14px;color:#5F5952;line-height:1.55"><strong style="color:#3A3631">Erstgespräch (30 Min, kostenlos).</strong> Wir schauen uns Ihre Top-Zeitfresser an und Sie bekommen konkrete Ansatzpunkte.</span>
+        <span style="display:inline-block;color:#C8A96A;font-weight:bold;font-size:17px">1.&nbsp;</span>
+        <span style="font-size:17px;color:#5F5952;line-height:1.55"><strong style="color:#3A3631">Erstgespräch (30 Min, kostenlos).</strong> Wir schauen uns Ihre Top-Zeitfresser an und Sie bekommen konkrete Ansatzpunkte.</span>
       </td></tr>
       <tr><td style="padding:0 0 10px;vertical-align:top">
-        <span style="display:inline-block;color:#C8A96A;font-weight:bold;font-size:15px">2.&nbsp;</span>
-        <span style="font-size:14px;color:#5F5952;line-height:1.55"><strong style="color:#3A3631">Kleiner Start.</strong> Wir fangen mit <em>einem</em> Prozess an, der sofort spürbar entlastet, kein Monate-Projekt und kein Umbau des ganzen Betriebs.</span>
+        <span style="display:inline-block;color:#C8A96A;font-weight:bold;font-size:17px">2.&nbsp;</span>
+        <span style="font-size:17px;color:#5F5952;line-height:1.55"><strong style="color:#3A3631">Kleiner Start.</strong> Wir fangen mit <em>einem</em> Prozess an, der sofort spürbar entlastet, kein Monate-Projekt und kein Umbau des ganzen Betriebs.</span>
       </td></tr>
       <tr><td style="padding:0 0 2px;vertical-align:top">
-        <span style="display:inline-block;color:#C8A96A;font-weight:bold;font-size:15px">3.&nbsp;</span>
-        <span style="font-size:14px;color:#5F5952;line-height:1.55"><strong style="color:#3A3631">Schritt für Schritt erweitern.</strong> Was funktioniert, bauen wir aus. Das System läuft in den meisten Fällen direkt bei Ihnen vor Ort, sodass Sie jederzeit die Kontrolle behalten.</span>
+        <span style="display:inline-block;color:#C8A96A;font-weight:bold;font-size:17px">3.&nbsp;</span>
+        <span style="font-size:17px;color:#5F5952;line-height:1.55"><strong style="color:#3A3631">Schritt für Schritt erweitern.</strong> Was funktioniert, bauen wir aus. Das System läuft in den meisten Fällen direkt bei Ihnen vor Ort, sodass Sie jederzeit die Kontrolle behalten.</span>
       </td></tr>
     </table>
   </td></tr>
@@ -204,8 +204,8 @@
   <tr><td style="padding:24px 32px 0;">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F2EEE7;border-radius:12px">
       <tr><td style="padding:16px 20px">
-        <div style="font-size:15px;font-weight:bold;color:#3A3631;margin-bottom:4px">Ihre Daten bleiben, wo Sie sie haben wollen.</div>
-        <div style="font-size:14px;color:#5F5952;line-height:1.55">Wir arbeiten wahlweise DSGVO-konform in der EU-Cloud oder komplett bei Ihnen vor Ort (On-Premise). Nichts wandert ungefragt in US-Clouds. Was für Ihren Betrieb passt, klären wir im Gespräch.</div>
+        <div style="font-size:17px;font-weight:bold;color:#3A3631;margin-bottom:4px">Ihre Daten bleiben, wo Sie sie haben wollen.</div>
+        <div style="font-size:17px;color:#5F5952;line-height:1.55">Wir arbeiten wahlweise DSGVO-konform in der EU-Cloud oder komplett bei Ihnen vor Ort (On-Premise). Nichts wandert ungefragt in US-Clouds. Was für Ihren Betrieb passt, klären wir im Gespräch.</div>
       </td></tr>
     </table>
   </td></tr>
@@ -225,7 +225,7 @@
           <img src="{{ params.VIDEO_POSTER }}" alt="&#9654;  smartwandler Demo ansehen (90 Sek.)" width="536" height="301" style="display:block;width:100%;max-width:536px;height:auto;border:0;background:#3A3631;color:#EDEBE6;font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:bold;text-align:center;line-height:301px" />
         </td></tr>
         <tr><td style="padding:10px 4px 0">
-          <span style="font-size:14px;color:#3A3631;font-weight:bold">&#9654;&nbsp; Wie so eine Automatisierung im Alltag aussieht</span>
+          <span style="font-size:17px;color:#3A3631;font-weight:bold">&#9654;&nbsp; Wie so eine Automatisierung im Alltag aussieht</span>
         </td></tr>
       </table>
     </a>
@@ -237,25 +237,25 @@
     <a href="{{ params.MEETERGO }}" style="display:inline-block;background:#C8A96A;color:#3A3631;font-size:16px;font-weight:bold;text-decoration:none;padding:14px 28px;border-radius:100px">Zeigen Sie mir, wie das bei uns geht &rarr;</a>
   </td></tr>
   <tr><td style="padding:10px 32px 0;">
-    <p style="margin:0;font-size:13px;color:#5F5952;line-height:1.5">Kostenloses Analysegespräch, 30 Minuten direkt mit Philipp.</p>
+    <p style="margin:0;font-size:17px;color:#5F5952;line-height:1.5">Kostenloses Analysegespräch, 30 Minuten direkt mit Philipp.</p>
   </td></tr>
   <tr><td style="padding:6px 32px 0;">
-    <p style="margin:0;font-size:12px;color:#7C766C;line-height:1.5">Grobe Orientierung auf Basis Ihrer Angaben, keine verbindliche Zusage. Die genaue Einschätzung machen wir gemeinsam im Gespräch.</p>
+    <p style="margin:0;font-size:13px;color:#7C766C;line-height:1.5">Grobe Orientierung auf Basis Ihrer Angaben, keine verbindliche Zusage. Die genaue Einschätzung machen wir gemeinsam im Gespräch.</p>
   </td></tr>
 
   <!-- ═══ ★ Wer ist Philipp (Autorität am Ende) ═══ -->
   <tr><td style="padding:24px 32px 28px;">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #E4DFD6">
       <tr><td style="padding:18px 0 0">
-        <div style="font-size:14px;color:#5F5952;line-height:1.6"><strong style="color:#3A3631">Ihr Ansprechpartner:</strong> Philipp, 10+ Jahre Enterprise-IT-Erfahrung, u.&nbsp;a. bei Mercedes und VW.</div>
+        <div style="font-size:17px;color:#5F5952;line-height:1.6"><strong style="color:#3A3631">Ihr Ansprechpartner:</strong> Philipp, 10+ Jahre Enterprise-IT-Erfahrung, u.&nbsp;a. bei Mercedes und VW.</div>
       </td></tr>
     </table>
   </td></tr>
 
   <!-- Footer -->
   <tr><td style="padding:20px 32px;background:#3A3631">
-    <p style="margin:0;font-size:12px;color:rgba(255,255,255,0.7)">&copy; smartwandler</p>
-    <p style="margin:8px 0 0;font-size:11px;color:rgba(255,255,255,0.5)">
+    <p style="margin:0;font-size:13px;color:rgba(255,255,255,0.7)">&copy; smartwandler</p>
+    <p style="margin:8px 0 0;font-size:13px;color:rgba(255,255,255,0.5)">
       <a href="https://www.smartwandler.de/impressum.html" style="color:rgba(255,255,255,0.6)">Impressum</a> &middot;
       <a href="https://www.smartwandler.de/datenschutz.html" style="color:rgba(255,255,255,0.6)">Datenschutz</a>
     </p>
