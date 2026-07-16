@@ -148,3 +148,44 @@ IDs `0` sind, wird er übersprungen — Report-Mail geht trotzdem raus.
 - **Report kommt nicht:** Absender in 2.2 nicht verifiziert, oder falscher API-Key → `submit.log` / Brevo → Transactional → Logs prüfen.
 - **DOI-Call 400 „attribute does not exist":** Attribute in Brevo fehlen → `contact_attributes_enabled` auf `false` oder Attribute anlegen (2.6.4).
 - **403 vom Endpoint:** Aufruf kam nicht von `smartwandler.de` → `allowed_hosts` in der Config prüfen.
+- **Bilder in der Mail fehlen:** Logo/Poster noch nicht deployed (siehe 2.4) —
+  oder der Mail-Client blockt Remote-Content (normal; „Inhalte laden" klicken).
+- ⚠️ **Datenschutz:** `log_file` nur zum Testen setzen (loggt E-Mail-Adressen)
+  und danach wieder entfernen — App-Logs sind nicht in der DSE beschrieben.
+
+## 2.8 — Lösch-Cron (DSGVO-Löschkonzept)
+
+Die Datenschutzerklärung verspricht Löschung nicht-konvertierter Leads
+**spätestens nach 24 Monaten**. `cleanup-leads.php` setzt das um
+(Default: Newsletter-bestätigte Leads mit `confirmed_at` bleiben erhalten).
+
+1. In `submit-config.php` eintragen: `'cleanup_token' => '<64 Zufallszeichen>'`
+   (erzeugen mit `openssl rand -hex 32`). Ohne Token verweigert das Skript alles.
+2. all-inkl **KAS → Tools → Cronjobs** → neuen Cronjob anlegen, z. B. monatlich:
+   `https://www.smartwandler.de/potenzialcheck/cleanup-leads.php?token=<WERT>`
+3. Testen: Aufruf mit falschem Token → `403`. Mit richtigem Token →
+   `{"ok":true,"deleted":N}`.
+4. **Zusätzlich als Kalender-Task (quartalsweise, manuell in Brevo):**
+   unbestätigte DOI-Kontakte (~30 Tage alt) löschen und Alt-Daten abgemeldeter
+   Kontakte bereinigen. Details: `datenschutz-audit.md` Punkt 3.
+
+## 2.9 — Deploy-Checkliste Website (Änderungen vom 14.–16.07.2026)
+
+Beim nächsten FTP-Upload müssen zusätzlich zu `/potenzialcheck/` diese
+geänderten Dateien im **Root** mit hoch:
+
+- `datenschutz.html` — korrigierte Brevo-Passage, meetergo-Rechtsgrundlage,
+  neuer Local-Storage-Abschnitt
+- `script.js` — Banner öffnet sich bei `index.html#cookie-einstellungen`
+  (Widerrufs-Zugang für Seiten ohne Banner)
+- `angebote.html` — „Cookie-Einstellungen"-Link im Footer
+- `video/smartwandler-demo-720p.mp4` + `…-poster.jpg` — für den Video-Block
+  im Report (Ordner `/video/` komplett)
+
+Nach dem Deploy:
+- [ ] Cookie-/Consent-Testprotokoll KOMPLETT durchgehen (`datenschutz-audit.md`,
+      Abschnitt „Launch-/Post-Deploy-Testprotokoll", Tests 1–10: Matomo,
+      Pixel/CAPI, meetergo, Ablehnen, Widerruf) — inkl. www/non-www-Redirect
+- [ ] `…/potenzialcheck/bestaetigt.html` aufrufen: Link „Cookie-Einstellungen"
+      öffnet das Banner auf der Startseite
+- [ ] Brevo-Testversand des Reports an eigene Adresse (Logo + Poster laden?)

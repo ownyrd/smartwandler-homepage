@@ -172,10 +172,15 @@ unabhängig vom Newsletter-Status; der Brevo-Kontakt bleibt davon unberührt.
       Pixel-Event) — konform mit CONTEXT.md
 
 ═══════════════════════════════════════════════════════════════════════════════
-LAUNCH-TESTPROTOKOLL: MATOMO (cookielos, Opt-out, Cookie-Modus)
+LAUNCH-/POST-DEPLOY-TESTPROTOKOLL: COOKIES & CONSENT (komplett)
 ═══════════════════════════════════════════════════════════════════════════════
 
-Selbst im Browser testen, sobald live (~5 Minuten, DevTools). Zur Einordnung:
+Nach JEDEM Deploy durchgehen, der script.js, den Banner oder Tracking berührt
+(~10 Minuten, DevTools). Immer im frischen privaten Fenster starten.
+
+── Teil A: Matomo (Tests 1-5) ──────────────────────────────────────────────────
+
+Zur Einordnung:
 Der Opt-out-Check sitzt VOR jeder Initialisierung (`script.js:313`) — bei
 `matomo_optout = 1` entsteht kein `window._paq`, kein matomo.js-Download, kein
 Ping; auch Funnel-Events (check.js) und Cookie-Modus laufen dann ins Leere.
@@ -218,6 +223,43 @@ Ping; auch Funnel-Events (check.js) und Cookie-Modus laufen dann ins Leere.
   Opt-out bereits gezählt; Wirkung greift ab dem nächsten Seitenload
   (Opt-out wirkt für die Zukunft — rechtlich okay, im Code kommentiert).
 - Opt-out gilt pro Browser/Gerät (localStorage) — normal und unvermeidbar.
+
+── Teil B: Meta-Pixel + Conversions API (Tests 6-7) ────────────────────────────
+
+**Test 6 — Pixel lädt NUR nach Einwilligung:**
+- [ ] Frisches privates Fenster → Network-Filter: `facebook` →
+      VOR jeder Banner-Entscheidung und nach „Ablehnen": KEIN Request an
+      connect.facebook.net, KEINE Cookies `_fbp`/`_fbc`
+- [ ] Banner → „Marketing" aktivieren → `fbevents.js` lädt, PageView feuert,
+      `_fbp`-Cookie erscheint (Application → Cookies)
+- [ ] Widerruf über Cookie-Einstellungen → Seite lädt neu, `_fbp`/`_fbc`
+      sind GELÖSCHT, keine facebook-Requests mehr
+
+**Test 7 — Conversions API nur mit Consent:**
+- [ ] OHNE Marketing-Consent: Potenzial-Check komplett durchklicken →
+      Network: KEIN Request an `s-event.php`
+- [ ] MIT Marketing-Consent: Check abschließen → `s-event.php`-Request
+      erscheint (Status 204); dito auf termin-gebucht.html
+- [ ] Meta Events Manager: Events kommen als Browser + Server an und werden
+      dedupliziert (gleiche event_id)
+
+── Teil C: meetergo + Banner-Verhalten (Tests 8-10) ────────────────────────────
+
+**Test 8 — meetergo lädt NUR nach Einwilligung:**
+- [ ] Network-Filter: `amazonaws` → vor Entscheidung / nach „Ablehnen":
+      KEIN Request auf `browser-v4.js` (S3), KEIN Sidebar-Button sichtbar
+- [ ] „Funktional" aktivieren → SDK lädt, Sidebar-Button erscheint
+- [ ] Widerruf → nach Reload kein SDK, kein Button
+
+**Test 9 — „Ablehnen"-Button:**
+- [ ] „Ablehnen" klicken → localStorage zeigt alle drei
+      `cookie_consent_*` = denied → Reload → nur Matomo-Basis-Ping
+      (cookielos), sonst KEINE externen Requests
+
+**Test 10 — Widerrufs-Zugang von Seiten ohne Banner:**
+- [ ] `angebote.html` → Footer „Cookie-Einstellungen" → landet auf
+      index.html und das Banner ÖFFNET sich (Hash #cookie-einstellungen)
+- [ ] `potenzialcheck/bestaetigt.html` → gleicher Test über den Link unten
 
 ═══════════════════════════════════════════════════════════════════════════════
 EMPFOHLENE REIHENFOLGE
