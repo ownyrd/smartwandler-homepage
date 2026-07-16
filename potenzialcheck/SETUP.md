@@ -12,6 +12,12 @@ Runbook zum Hochladen auf all-inkl und Testen. Reihenfolge einhalten.
 | `submit-config.php.example` | Config-Vorlage | ✅ |
 | **`submit-config.php`** | **echte Zugangsdaten** | ❌ (`.gitignore`) |
 | `bestaetigt.html` | DOI-Redirect-Ziel (2.6) | ✅ |
+| `report-template.brevo.html` | Report-Mail-Vorlage für Brevo (2.4) | ✅ |
+| `doi-template.brevo.html` | DOI-Bestätigungs-Vorlage für Brevo (2.6) | ✅ |
+| `cleanup-leads.php` | Lösch-Cron, DSGVO-Löschkonzept (2.8) | ✅ |
+| `datenschutz-audit.md` | DSGVO-Audit + Launch-Testprotokoll | ✅ |
+| `Report-Mail-Konzept.md` | Konzept hinter der Report-Mail | ✅ |
+| `meta-ads-creatives.md`, `meta-ads-image-prompts.md`, `meta-creatives/` | Meta-Ads-Material (Epic 5) — **nicht** Teil des Website-Deploys | ✅ |
 
 ---
 
@@ -41,6 +47,11 @@ Ohne das landen Mails im Spam oder werden abgelehnt.
    - **DB**: `db_host` (all-inkl meist `localhost`), `db_name`, `db_user`, `db_pass`.
    - **Brevo**: `brevo_api_key` (Brevo → Settings → SMTP & API → **API Keys**).
    - `sender_email` = deine in 2.2 verifizierte Adresse.
+   - **Demo-Video im Report** (optional): `video_url` / `video_poster` — Default
+     zeigt auf `…/video/smartwandler-demo-720p.mp4` bzw. `…-poster.jpg`.
+     Leer (`''`) = Video-Block wird in der Report-Mail ausgeblendet.
+   - **Lösch-Cron**: `cleanup_token` = langer Zufallswert
+     (z. B. `openssl rand -hex 32`), siehe 2.8. Leer = Cron-Endpoint deaktiviert.
 3. `submit-config.php` per FTP in `/potenzialcheck/` legen — **nie** ins Git.
    Der API-Key steht nur hier, niemals im Client-JS.
 
@@ -56,18 +67,31 @@ mit Bedingungen, `submit.php` liefert nur die Werte.
 
 1. Brevo → **Templates → New template**, Name „Potenzialcheck Report".
 2. Absender = verifizierte Adresse. Betreff z. B.
-   `Ihr Potenzial-Check: {{ params.MIN }}–{{ params.MAX }} € pro Jahr`.
+   `Ihr Potenzial: {{ params.MIN }} bis {{ params.MAX }} €, und wie ein Betrieb wie Ihrer das schon macht`.
 3. Editor → **„Code your own"** → kompletten Inhalt von
    **`report-template.brevo.html`** einfügen → speichern & **aktivieren**.
 4. Template-ID (aus URL/Übersicht) in `submit-config.php`:
    `'brevo_report_template_id' => 42,`
 
+Aufbau der Report-Mail (siehe `Report-Mail-Konzept.md`): Header mit Logo ·
+€-Spanne · Einordnung · **Praxisfall je Branche** · Branchen-Abschnitt ·
+Zeitfresser (mit Einstiegs-Beispiel + Aufwand) · „So läuft so ein Projekt ab" ·
+Datensicherheits-Block (nur bei Bedarf) · Demo-Video (ein Poster-Link) ·
+eine CTA · „Ihr Ansprechpartner". Durchgängig Sie-Form, keine Gedankenstriche.
+
+⚠️ Damit Logo + Video-Poster in der Mail laden, müssen
+`images/logo-small.png` sowie `video/smartwandler-demo-poster.jpg` und
+`…-720p.mp4` auf `www.smartwandler.de` deployed sein.
+
 Verfügbare Params:
 - **Text:** `NAME`, `MIN`, `MAX`, `HEADLINE`, `BODY`, `BRANCHE`, `BRANCHE_KEY`,
   `MITARBEITER`, `ROLLE`, `STUNDEN`, `ZUFRIEDENHEIT`, `DRINGLICHKEIT`,
-  `ZEITFRESSER` (Komma-Liste), `MEETERGO` (Link).
+  `ZEITFRESSER` (Komma-Liste), `MEETERGO` (Link),
+  `VIDEO_URL`, `VIDEO_POSTER` (leer = Video-Block aus).
 - **Schalter je Aufgabe:** `ZF_ANGEBOTE`, `ZF_DATEN`, `ZF_EMAILS`, `ZF_DOKUMENTE`,
   `ZF_KOORDINATION`, `ZF_BERICHTE`.
+- **Schalter Routing:** `SHOW_DSGVO` (Datensicherheits-Block; true bei Branche
+  Gesundheit/Kanzlei oder Zufriedenheit „Cloud-Bedenken").
 
 Bedingungen im Template:
 ```
@@ -95,8 +119,11 @@ IDs `0` sind, wird er übersprungen — Report-Mail geht trotzdem raus.
 
 1. Brevo → **Contacts → Lists** → Liste anlegen (z. B. „Potenzialcheck Nurture")
    → **List-ID** merken → in `brevo_list_id`.
-2. Brevo → **Marketing → Templates → Double opt-in** Template anlegen (mit dem
-   Platzhalter-Bestätigungslink) → **Template-ID** → in `brevo_doi_template_id`.
+2. Brevo → **Marketing → Templates → Double opt-in** Template anlegen →
+   Inhalt aus **`doi-template.brevo.html`** einfügen (enthält Logo, die zwei
+   Vorteils-Bullets „monatlicher Automatisierungs-Fall + kostenloser
+   Anwendungsfall-Call" und den `{{ doubleoptin }}`-Bestätigungslink — Namen
+   nicht ändern) → **Template-ID** → in `brevo_doi_template_id`.
 3. `doi_redirect_url` zeigt auf `…/potenzialcheck/bestaetigt.html` (liegt bei).
 4. Optional (Antworten als Kontakt-Attribute): in Brevo → **Contacts → Settings →
    Contact Attributes** die Attribute anlegen: `VORNAME`, `BRANCHE`, `ROLLE`,
