@@ -3,12 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Creative 4 · Rechnet sich das?</title>
+<title>Creative 4 · Animiert (Gauge-Nadel)</title>
 <!--
-  Meta Static Creative 4 · smartwandler Potenzial-Check (Dark-Variante)
-  Fläche: exakt 1080 x 1350 px (4:5). Text editierbar.
-  Export PNG: DevTools → Element #creative → „Node-Screenshot".
-  Export PDF: Drucken → Als PDF speichern. Für 1:1: .creative height:1080px.
+  Meta Animated Creative 4 · smartwandler Potenzial-Check (Dark-Variante)
+  Fläche: exakt 1080 x 1350 px (4:5). Loop-Dauer: 3s (nahtlos).
+  Die Gauge-Nadel schwingt aus der ?-/Neutral-Zone nach rechts oben in die
+  Gold-Zone und schlägt am €-Ende an; im Anschlag-Moment wird das €-Zeichen
+  kurz größer und blinkt. Danach schwingt die Nadel zurück (sprungfreier Loop).
+  Render zu MP4/GIF: convert-to-mp4.sh (FILES=creative-4-animated.html).
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,8 +39,37 @@
 
   /* Motiv: Rechnet-sich-Anzeige (Gauge) */
   .motif{ display:flex; flex-direction:column; align-items:flex-start; gap:14px; }
-  .gauge{ width:480px; height:300px; display:block; }
+  .gauge{ width:480px; height:300px; display:block; overflow:visible; }
   .motif .cap{ font-size:30px; color:var(--light-soft); font-style:italic; padding-left:6px; }
+
+  /* ── Nadel schwingt ins Gold & schlägt am €-Ende an ───────────────
+     Nadel ist senkrecht nach oben gezeichnet und wird um die Achse
+     (200,200) gedreht. Winkel im Uhrzeigersinn: 0°=oben, +rechts, -links.
+     Start −55° (?-Seite) → ~58° (Gold, €). Overshoot = Anschlag-Bounce.
+     0% == 100% → nahtloser 3s-Loop. */
+  .needle{ transform-box: view-box; transform-origin: 200px 200px; animation:needleSweep 3s infinite; will-change:transform; }
+  @keyframes needleSweep{
+    0%  { transform:rotate(-55deg); animation-timing-function:cubic-bezier(.35,0,.25,1); }
+    33% { transform:rotate(66deg); animation-timing-function:cubic-bezier(.3,0,.4,1); } /* Overshoot */
+    40% { transform:rotate(58deg); animation-timing-function:linear; }                  /* Anschlag */
+    68% { transform:rotate(58deg); animation-timing-function:cubic-bezier(.5,0,.3,1); } /* Halten */
+    100%{ transform:rotate(-55deg); }                                                   /* zurück */
+  }
+
+  /* ── €-Zeichen: im Anschlag-Moment groß + blinken ─────────────────
+     Skaliert um die eigene Mitte; Opacity-Flackern = Blinken.
+     Vor Ankunft (0–33%) und ab 58% wieder normal → nahtlos. */
+  .euro{ transform-box: fill-box; transform-origin: center; animation:euroPop 3s infinite; will-change:transform,opacity; }
+  @keyframes euroPop{
+    0%,33% { transform:scale(1);    opacity:1;   }
+    36%    { transform:scale(1.65); opacity:1;   }
+    40%    { transform:scale(1.4);  opacity:0.2; }
+    44%    { transform:scale(1.6);  opacity:1;   }
+    48%    { transform:scale(1.35); opacity:0.25;}
+    52%    { transform:scale(1.55); opacity:1;   }
+    58%    { transform:scale(1);    opacity:1;   }
+    100%   { transform:scale(1);    opacity:1;   }
+  }
 
   .footer{ display:flex; justify-content:flex-end; align-items:center; gap:15px; }
   /* Logo näher an den Text (gap), leicht nach unten und rechts (translate) */
@@ -63,19 +94,19 @@
     </div>
 
     <div class="motif">
-      <svg class="gauge" viewBox="0 0 400 250" fill="none" aria-label="Rechnet-sich-Anzeige, Nadel zeigt ins Plus">
+      <svg class="gauge" viewBox="0 0 400 250" fill="none" aria-label="Rechnet-sich-Anzeige, Nadel schwingt ins Plus, € blinkt">
         <!-- Track -->
         <path d="M 40 200 A 160 160 0 0 1 360 200" stroke="#FAF8F5" stroke-opacity="0.16" stroke-width="26" stroke-linecap="round"/>
         <!-- Gold-Zone (rechtes Drittel = „lohnt sich") -->
         <path d="M 292 69 A 160 160 0 0 1 360 200" stroke="#C8A96A" stroke-width="26" stroke-linecap="round"/>
-        <!-- Nadel zeigt in die Gold-Zone -->
-        <line x1="200" y1="200" x2="314" y2="111" stroke="#FAF8F5" stroke-width="9" stroke-linecap="round"/>
+        <!-- Nadel (senkrecht gezeichnet, per Rotation geschwenkt) -->
+        <line class="needle" x1="200" y1="200" x2="200" y2="55" stroke="#FAF8F5" stroke-width="9" stroke-linecap="round"/>
         <!-- Achse -->
         <circle cx="200" cy="200" r="16" fill="#FAF8F5"/>
         <circle cx="200" cy="200" r="6" fill="#302D28"/>
         <!-- Endlabels: von „?" zu „€" -->
         <text x="36" y="240" font-size="32" fill="#A79F94" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">?</text>
-        <text x="366" y="242" font-size="36" fill="#C8A96A" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700">&euro;</text>
+        <text class="euro" x="366" y="242" font-size="36" fill="#C8A96A" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700">&euro;</text>
       </svg>
     </div>
 

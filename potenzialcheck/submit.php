@@ -311,13 +311,13 @@ function computeRouting(string $branche, string $zufriedenheit): array {
         return [
             'mode' => 'festpreis',
             'headline' => 'Ohne teure Abos, die nicht richtig zu Ihnen passen.',
-            'body' => 'Statt laufender Lizenzkosten setzen wir auf eine maßgeschneiderte Lösung zum Festpreis. Sie zahlen einmal für etwas, das genau zu Ihren Abläufen passt.',
+            'body' => 'Statt laufender Lizenzkosten setzen wir auf eine maßgeschneiderte Lösung zum Festpreis (Wartungspakete optional). Sie zahlen einmal für etwas, das genau zu Ihren Abläufen passt.',
         ];
     }
     return [
         'mode' => 'standard',
         'headline' => 'So holen Sie dieses Potenzial Schritt für Schritt zurück.',
-        'body' => 'Im kostenlosen Erstgespräch schauen wir uns Ihre größten Zeitfresser an und zeigen, welche sich am schnellsten automatisieren lassen, lokal, sicher und maßgeschneidert.',
+        'body' => 'Im kostenlosen Erstgespräch schauen wir uns Ihre größten Zeitfresser an und zeigen, welche sich am schnellsten automatisieren lassen. Für Sie lokal, sicher und maßgeschneidert.',
     ];
 }
 

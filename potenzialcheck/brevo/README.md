@@ -1,0 +1,1 @@
+Um zu testen, ob neue Mails Spammy sind kann man auf https://mail-tester.com/ gehen, dort eine Mail Adresse generieren lassen und dann aus dem Potenzialcheck bspw. direkt dort hinsenden lassen. Dann sieht man den Score.

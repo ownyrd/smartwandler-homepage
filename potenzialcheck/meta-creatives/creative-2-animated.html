@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creative 2 · Animiert (Feierabend-Uhr)</title>
+<!--
+  Meta Animated Creative 2 · smartwandler Potenzial-Check (Dark-Variante)
+  Fläche: exakt 1080 x 1350 px (4:5). Loop-Dauer: 3s (nahtlos).
+  Die Zeiger der Uhr drehen sich wie bei einem Zeitraffer und bleiben
+  auf 21:07 stehen ("Tagsüber Chef, abends Sachbearbeiter").
+  Nahtlos: Zeiger starten & enden auf 21:07 (exakte Voll-Umdrehungen).
+  Render zu MP4/GIF: convert-to-mp4.sh (FILES=creative-2-animated.html).
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --paper:#FAF8F5; --ink-dark:#3A3631; --gold:#C8A96A; --light:#FAF8F5; --light-soft:#C9C3BA; --label:#A79F94; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html,body{ background:#22201d; }
+  body{ display:flex; justify-content:center; align-items:flex-start; padding:40px; font-family:'Inter',system-ui,-apple-system,sans-serif; }
+
+  .creative{
+    width:1080px; height:1350px; flex:none;
+    background:
+      radial-gradient(56% 40% at 74% 58%, rgba(200,169,106,0.16), rgba(200,169,106,0) 70%),
+      linear-gradient(158deg, #443F39 0%, #3A3631 55%, #302D28 100%);
+    color:var(--light);
+    padding:96px 90px 84px;
+    display:flex; flex-direction:column; justify-content:space-between; overflow:hidden;
+  }
+
+  .kicker{ display:flex; align-items:center; gap:18px; margin-bottom:44px; }
+  .kicker .line{ width:46px; height:3px; background:var(--gold); border-radius:2px; flex:none; }
+  .kicker .txt{ font-size:25px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--label); }
+  .headline{ font-size:92px; line-height:1.08; font-weight:600; letter-spacing:-0.03em; color:var(--light); max-width:920px; }
+
+  /* Motiv: Uhr 21:07 (Zeiger drehen sich) + Angebots-Stapel */
+  .motif{ display:flex; align-items:center; gap:64px; }
+  .clock{ width:300px; height:300px; flex:none; }
+  .papers{ position:relative; width:220px; height:280px; flex:none; }
+  .sheet{ position:absolute; width:180px; height:238px; border:3px solid var(--light-soft); border-radius:12px; background:rgba(250,248,245,0.03); }
+  .sheet.s3{ left:40px; top:0; opacity:0.4; }
+  .sheet.s2{ left:20px; top:20px; opacity:0.65; }
+  .sheet.s1{ left:0; top:42px; opacity:1; padding:22px 20px; }
+  .sheet.s1 .doc-title{ display:block; font-size:24px; font-weight:600; color:var(--light); margin-bottom:18px; }
+  .sheet.s1 .doc-line{ display:block; height:6px; border-radius:3px; background:var(--light-soft); margin-bottom:14px; }
+  .sheet.s1 .doc-line.w80{ width:80%; } .sheet.s1 .doc-line.w60{ width:60%; } .sheet.s1 .doc-line.w70{ width:70%; }
+
+  /* ── Drehende Zeiger ─────────────────────────────────────────────
+     Beide Zeiger zeigen im Ruhepunkt nach oben (12 Uhr) und werden
+     per rotate() auf ihre Zielstellung gedreht. Start- und Endwinkel
+     unterscheiden sich um exakte Voll-Umdrehungen (Minute 3×360°,
+     Stunde 2×360°), damit der 3s-Loop sprungfrei ist.
+     21:07  →  Minute = 7·6° = 42°,  Stunde = 9·30° + 7·0,5° = 273,5° */
+  .hand{ transform-box: view-box; transform-origin: 100px 100px; }
+  .minute-hand{ animation:minuteSpin 3s infinite; }
+  .hour-hand{ animation:hourSpin 3s infinite; }
+
+  @keyframes hourSpin{
+    0%  { transform:rotate(273.5deg); animation-timing-function:cubic-bezier(.15,.85,.25,1); }
+    48% { transform:rotate(993.5deg); }   /* 273,5 + 720 (2 Umdrehungen) */
+    100%{ transform:rotate(993.5deg); }
+  }
+  @keyframes minuteSpin{
+    0%  { transform:rotate(42deg); animation-timing-function:cubic-bezier(.15,.85,.25,1); }
+    62% { transform:rotate(1122deg); }    /* 42 + 1080 (3 Umdrehungen) */
+    100%{ transform:rotate(1122deg); }
+  }
+
+  .footer{ display:flex; justify-content:flex-end; align-items:center; gap:15px; }
+  /* Logo näher an den Text (gap), leicht nach unten und rechts (translate) */
+  .footer .logo{ width:82px; height:82px; display:block; flex:none; transform:translate(6px,5px); }
+  .footer .brand{ text-align:left; }
+  .footer .mark{ font-size:32px; font-weight:700; letter-spacing:-0.02em; color:var(--light); }
+  .footer .sub{ font-size:21px; color:var(--label); margin-top:4px; }
+
+  @media print{ html,body{ background:#fff; } body{ padding:0; } }
+</style>
+</head>
+<body>
+  <div class="creative" id="creative">
+
+    <div class="head">
+      <div class="kicker">
+        <span class="line"></span>
+        <span class="txt">Chefsache im sächsischen Mittelstand</span>
+      </div>
+      <h1 class="headline">Tagsüber Chef,<br>abends Sachbearbeiter.</h1>
+    </div>
+
+    <div class="motif">
+      <svg class="clock" viewBox="0 0 200 200" fill="none" aria-label="Uhr, Zeiger drehen auf 21:07">
+        <circle cx="100" cy="100" r="90" stroke="#FAF8F5" stroke-width="4"/>
+        <line x1="100" y1="16" x2="100" y2="34" stroke="#FAF8F5" stroke-width="4" stroke-linecap="round"/>
+        <line x1="100" y1="166" x2="100" y2="184" stroke="#FAF8F5" stroke-width="4" stroke-linecap="round"/>
+        <line x1="16" y1="100" x2="34" y2="100" stroke="#FAF8F5" stroke-width="4" stroke-linecap="round"/>
+        <line x1="166" y1="100" x2="184" y2="100" stroke="#FAF8F5" stroke-width="4" stroke-linecap="round"/>
+        <!-- Stundenzeiger (kurz, gold) -->
+        <line class="hand hour-hand" x1="100" y1="100" x2="100" y2="54" stroke="#C8A96A" stroke-width="9" stroke-linecap="round"/>
+        <!-- Minutenzeiger (lang, hell) -->
+        <line class="hand minute-hand" x1="100" y1="100" x2="100" y2="40" stroke="#FAF8F5" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="100" cy="100" r="8" fill="#C8A96A"/>
+      </svg>
+      <div class="papers">
+        <div class="sheet s3"></div>
+        <div class="sheet s2"></div>
+        <div class="sheet s1">
+          <span class="doc-title">Angebot</span>
+          <span class="doc-line w80"></span>
+          <span class="doc-line w60"></span>
+          <span class="doc-line w70"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <img class="logo" src="logo-white-complete.png" alt="smartwandler Logo" width="82" height="82">
+      <div class="brand">
+        <div class="mark">smartwandler</div>
+        <div class="sub">Kostenloser Potenzial-Check &middot; 2 Minuten</div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

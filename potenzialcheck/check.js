@@ -89,14 +89,14 @@
     },
     {
       id: 'zufriedenheit',
-      title: 'Wie zufrieden sind Sie mit Ihrer heutigen Lösung?',
+      title: 'Wie zufrieden sind Sie mit Ihrer derzeitigen Lösung?',
       hint: null,
       type: 'single',
       options: [
         { value: 'software_teuer', label: 'Läuft, aber die Software ist zu teuer / passt nicht' },
         { value: 'cloud_unwohl',   label: 'Läuft, aber die Daten liegen in Clouds, bei denen ich kein gutes Gefühl habe' },
         { value: 'manuell',        label: 'Nicht zufrieden, vieles läuft noch manuell' },
-        { value: 'unsicher',       label: 'Bin unsicher, was überhaupt geht' }
+        { value: 'unsicher',       label: 'Bin unsicher, was überhaupt geht' } 
       ]
     },
     {

@@ -117,6 +117,8 @@
   border-color: var(--line);
 }
 .pc-btn-ghost:hover { background: var(--paper-2); }
+.pc-btn-gold { background: var(--gold); color: var(--ink); font-weight: 600; }
+.pc-btn-gold:hover { background: #b89654; }
 .pc-btn-lg { font-size: 17px; padding: 16px 32px; }
 /* Dominanter Primär-CTA auf der Ergebnisseite (③) */
 .pc-btn-xl { font-size: 18px; padding: 18px 40px; width: 100%; font-weight: 600; }
@@ -470,6 +472,21 @@
   margin-bottom: 16px;
 }
 .pc-check-lg::after { left: 13px; top: 8px; width: 9px; height: 16px; border-width: 0 3px 3px 0; }
+
+/* Dezenter Hinweis-Kasten (Spam-Ordner-Tipp, Gesprächs-Nudge o. Ä.) */
+.pc-note {
+  margin-top: 18px;
+  padding: 12px 16px;
+  text-align: left;
+  background: var(--gold-bg);
+  border: 1px solid rgba(200,169,106,0.35);
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.pc-note strong { color: var(--ink); font-weight: 600; }
+.pc-note a { color: var(--ink); text-decoration: underline; }
 
 /* ── Angaben-Recap ── */
 .pc-recap {

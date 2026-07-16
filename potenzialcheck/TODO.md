@@ -1,2 +1,3 @@
-* bestätigt seite verbessern, dass man Lust hat doch einen Call zu buchen
-* Schauen, warum der Report in Spam Ordner kommt
+## Nice to have
+
+Ein Elektrobetrieb mit 8 Mitarbeitern aus der Region.</strong> Vorher hat der Chef abends Angebote aus alten Word-Dateien zusammenkopiert und Baustellenfotos von Hand in Ordner sortiert. Heute erzeugt das System Angebote aus Vorlagen mit Preisen aus den Stammdaten, und jedes Foto landet automatisch beim richtigen Auftrag. Ergebnis: rund <strong>5 bis 7 Stunden pro Woche</strong> werden eingespart und Angebote gehen am selben Tag raus statt erst am Wochenende. --> Absatz zwichen dem was war und was heute ist machen

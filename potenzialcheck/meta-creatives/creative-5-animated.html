@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creative 5 · Animiert (Buzzwords durchstreichen)</title>
+<!--
+  Meta Animated Creative 5 · smartwandler Potenzial-Check
+  Fläche: exakt 1080 x 1350 px (4:5). Loop-Dauer: 7,5s (nahtlos).
+  Ablauf: die drei Buzzwords werden nacheinander golden durchgestrichen und
+  dimmen ab → die Schlusszeile blendet ein und pulsiert ruhig weiter.
+  Danach Reset (Striche ziehen sich zurück) → sauberer Loop.
+  Render zu MP4/GIF: ../meta-creatives/convert-to-mp4.sh (LOOP = 5s → DURATION 5/10/15).
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --paper:#FAF8F5; --ink:#3A3631; --ink-soft:#5F5952; --ink-faint:#7C766C; --gold:#C8A96A; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html,body{ background:#e7e4df; }
+  body{ display:flex; justify-content:center; align-items:flex-start; padding:40px; font-family:'Inter',system-ui,-apple-system,sans-serif; }
+
+  .creative{
+    width:1080px; height:1350px; flex:none;
+    /* mehrschichtiger, organischer Warm-Verlauf */
+    background:
+      radial-gradient(48% 42% at 78% 60%, rgba(200,169,106,0.32), rgba(200,169,106,0) 66%),
+      radial-gradient(46% 40% at 10% 6%, rgba(255,251,242,0.60), rgba(255,251,242,0) 60%),
+      radial-gradient(52% 48% at 92% 96%, rgba(206,172,112,0.30), rgba(206,172,112,0) 62%),
+      radial-gradient(58% 52% at 16% 88%, rgba(228,208,176,0.50), rgba(228,208,176,0) 64%),
+      linear-gradient(152deg, #F7EAD2 0%, #EEDFC3 50%, #E4CFA6 100%);
+    color:var(--ink);
+    padding:96px 90px 84px;
+    display:flex; flex-direction:column; justify-content:space-between; overflow:hidden;
+  }
+
+  .kicker{ display:flex; align-items:center; gap:18px; margin-bottom:44px; }
+  .kicker .line{ width:46px; height:3px; background:var(--gold); border-radius:2px; flex:none; }
+  .kicker .txt{ font-size:25px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-faint); }
+  .headline{ font-size:66px; line-height:1.12; font-weight:600; letter-spacing:-0.025em; color:var(--ink); max-width:900px; }
+
+  /* ── Motiv: durchgestrichene Buzzwords + klare Zeile ── */
+  .buzz{ display:flex; flex-direction:column; gap:20px; align-items:flex-start; }
+
+  .word{ position:relative; display:inline-block; font-size:50px; font-weight:500; color:var(--ink-faint); }
+  .word .wt{ display:inline-block; }                 /* Text (dimmt ab) */
+  .word::after{                                       /* goldene Streich-Linie */
+    content:""; position:absolute; left:0; top:50%;
+    width:100%; height:5px; background:var(--gold); border-radius:3px;
+    transform:translateY(-50%) scaleX(0); transform-origin:left center;
+  }
+  .word.w1::after{ animation:strike1 7.5s infinite; }
+  .word.w2::after{ animation:strike2 7.5s infinite; }
+  .word.w3::after{ animation:strike3 7.5s infinite; }
+  .word.w1 .wt{ animation:dim1 7.5s infinite; }
+  .word.w2 .wt{ animation:dim2 7.5s infinite; }
+  .word.w3 .wt{ animation:dim3 7.5s infinite; }
+
+  .clear{
+    font-size:58px; font-weight:600; color:var(--ink); letter-spacing:-0.02em; margin-top:14px;
+    transform-origin:left center; opacity:0;
+    animation:finalLine 7.5s ease-in-out infinite;
+  }
+
+  /* ── Keyframes (alle 5s, damit currentTime-Rendering gleichmäßig greift) ── */
+  @keyframes strike1{
+    0%{ transform:translateY(-50%) scaleX(0); animation-timing-function:cubic-bezier(.2,.7,.2,1); }
+    6.7%{ transform:translateY(-50%) scaleX(1); } 94.7%{ transform:translateY(-50%) scaleX(1); }
+    100%{ transform:translateY(-50%) scaleX(0); }
+  }
+  @keyframes strike2{
+    0%{ transform:translateY(-50%) scaleX(0); }
+    5.3%{ transform:translateY(-50%) scaleX(0); animation-timing-function:cubic-bezier(.2,.7,.2,1); }
+    12%{ transform:translateY(-50%) scaleX(1); } 94.7%{ transform:translateY(-50%) scaleX(1); }
+    100%{ transform:translateY(-50%) scaleX(0); }
+  }
+  @keyframes strike3{
+    0%{ transform:translateY(-50%) scaleX(0); }
+    10.7%{ transform:translateY(-50%) scaleX(0); animation-timing-function:cubic-bezier(.2,.7,.2,1); }
+    17.3%{ transform:translateY(-50%) scaleX(1); } 94.7%{ transform:translateY(-50%) scaleX(1); }
+    100%{ transform:translateY(-50%) scaleX(0); }
+  }
+  @keyframes dim1{ 0%{opacity:1} 6.7%{opacity:1} 10%{opacity:.4} 94.7%{opacity:.4} 100%{opacity:1} }
+  @keyframes dim2{ 0%{opacity:1} 12%{opacity:1} 15.3%{opacity:.4} 94.7%{opacity:.4} 100%{opacity:1} }
+  @keyframes dim3{ 0%{opacity:1} 17.3%{opacity:1} 20.7%{opacity:.4} 94.7%{opacity:.4} 100%{opacity:1} }
+
+  @keyframes finalLine{
+    0%    { opacity:0; transform:translateY(16px) scale(1); }
+    18.7% { opacity:0; transform:translateY(16px) scale(1); }
+    25.3% { opacity:1; transform:translateY(0) scale(1); }   /* nach den Strichen da → lange sichtbar */
+    36%   { transform:translateY(0) scale(1.04); }           /* ruhiger Puls 1 */
+    46.7% { transform:translateY(0) scale(1); }
+    57.3% { transform:translateY(0) scale(1.04); }           /* ruhiger Puls 2 */
+    68%   { transform:translateY(0) scale(1); }
+    78.7% { transform:translateY(0) scale(1.04); }           /* ruhiger Puls 3 */
+    89.3% { transform:translateY(0) scale(1); }
+    92%   { opacity:1; transform:translateY(0) scale(1); }
+    97.3% { opacity:0; transform:translateY(8px) scale(1); }
+    100%  { opacity:0; transform:translateY(16px) scale(1); }
+  }
+
+  .footer{ display:flex; justify-content:flex-end; align-items:center; gap:15px; }
+  .footer .logo{ width:82px; height:82px; display:block; flex:none; transform:translate(6px,4px); }
+  .footer .brand{ text-align:left; }
+  .footer .mark{ font-size:32px; font-weight:700; letter-spacing:-0.02em; color:var(--ink); }
+  .footer .sub{ font-size:21px; color:var(--ink-faint); margin-top:4px; }
+
+  @media print{ html,body{ background:#fff; } body{ padding:0; } }
+</style>
+</head>
+<body>
+  <div class="creative" id="creative">
+
+    <div class="head">
+      <div class="kicker">
+        <span class="line"></span>
+        <span class="txt">Für Chefs im Raum Dresden, die keine IT-Nerds sind</span>
+      </div>
+      <h1 class="headline">Sie müssen Digitalisierung nicht verstehen. Nur wissen, was sie Ihnen bringt.</h1>
+    </div>
+
+    <div class="buzz">
+      <span class="word w1"><span class="wt">API-Integration</span></span>
+      <span class="word w2"><span class="wt">Cloud-Migration</span></span>
+      <span class="word w3"><span class="wt">Workflow-Engine</span></span>
+      <span class="clear">Was bringt mir das in Euro?</span>
+    </div>
+
+    <div class="footer">
+      <picture>
+        <source srcset="logo-small.webp" type="image/webp">
+        <img class="logo" src="logo-small.png" alt="smartwandler Logo" width="74" height="74">
+      </picture>
+      <div class="brand">
+        <div class="mark">smartwandler</div>
+        <div class="sub">Kostenloser Potenzial-Check &middot; 2 Minuten</div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

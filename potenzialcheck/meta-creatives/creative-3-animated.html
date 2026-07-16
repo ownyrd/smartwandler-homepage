@@ -3,12 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Creative 3 · Die eine Zahl, die fehlt</title>
+<title>Creative 3 · Animiert (pulsierende Zeile)</title>
 <!--
-  Meta Static Creative 3 · smartwandler Potenzial-Check (Dark-Variante)
-  Fläche: exakt 1080 x 1350 px (4:5). Text editierbar.
-  Export PNG: DevTools → Element #creative → „Node-Screenshot".
-  Export PDF: Drucken → Als PDF speichern. Für 1:1: .creative height:1080px.
+  Meta Animated Creative 3 · smartwandler Potenzial-Check (Dark-Variante)
+  Fläche: exakt 1080 x 1350 px (4:5). Loop-Dauer: 3s (nahtlos).
+  Die letzte Zeile ("? Gebundenes Kapital durch Routinearbeit") pulsiert
+  sanft größer und wieder zurück – nie kleiner als die fixe Ausgangsgröße
+  (scale 1.0 → 1.08 → 1.0, ease-in-out, sprungfreier Loop).
+  Render zu MP4/GIF: convert-to-mp4.sh (FILES=creative-3-animated.html).
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +37,7 @@
   .headline{ font-size:74px; line-height:1.1; font-weight:600; letter-spacing:-0.025em; color:var(--light); max-width:900px; }
 
   /* Motiv: Kennzahlen-Karte */
-  .card{ background:rgba(250,248,245,0.05); border:1px solid rgba(250,248,245,0.12); border-radius:24px; padding:44px 48px; }
+  .card{ background:rgba(250,248,245,0.05); border:1px solid rgba(250,248,245,0.12); border-radius:24px; padding:44px 48px; overflow:hidden; }
   .row{ display:flex; align-items:center; gap:26px; padding:16px 0; }
   .row + .row{ border-top:1px solid rgba(250,248,245,0.10); }
   .row .mark{ width:52px; flex:none; text-align:center; }
@@ -43,6 +45,17 @@
   .row .lbl{ font-size:38px; color:var(--light-soft); }
   .row.q .qmark{ font-size:64px; color:var(--gold); font-weight:700; line-height:1; }
   .row.q .lbl{ font-size:38px; color:var(--light); font-weight:600; }
+
+  /* ── Pulsierende Frage-Zeile ─────────────────────────────────────
+     Skaliert sanft von 1.0 (fixe Ausgangsgröße) bis 1.08 und zurück.
+     transform-origin links → wächst nach rechts, „?" bleibt verankert.
+     0%/100% = scale(1) → nahtloser 3s-Loop, nie kleiner als Original. */
+  .row.q{ transform-origin:left center; animation:pulse 3s ease-in-out infinite; will-change:transform; }
+  @keyframes pulse{
+    0%  { transform:scale(1); }
+    50% { transform:scale(1.08); }
+    100%{ transform:scale(1); }
+  }
 
   .footer{ display:flex; justify-content:flex-end; align-items:center; gap:15px; }
   /* Logo näher an den Text (gap), leicht nach unten und rechts (translate) */

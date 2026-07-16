@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creative 1 · Animiert (Slot-Machine)</title>
+<!--
+  Meta Animated Creative 1 · smartwandler Potenzial-Check
+  Fläche: exakt 1080 x 1350 px (4:5). Loop-Dauer: 3s (nahtlos).
+  Die Ziffern-Platzhalter sind goldene Walzen mit rotierenden „?"
+  (Automat), die nacheinander von links nach rechts „stehenbleiben".
+  Render zu MP4/GIF: siehe render-animated.mjs im selben Ordner.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --paper:#FAF8F5; --ink:#3A3631; --ink-soft:#5F5952; --ink-faint:#7C766C; --gold:#C8A96A; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html,body{ background:#e7e4df; }
+  body{ display:flex; justify-content:center; align-items:flex-start; padding:40px; font-family:'Inter',system-ui,-apple-system,sans-serif; }
+
+  .creative{
+    width:1080px; height:1350px; flex:none;
+    /* mehrschichtiger, organischer Warm-Verlauf: mehrere Gold-Glows aus
+       verschiedenen Ecken statt einer einzigen Diagonale */
+    background:
+      radial-gradient(48% 42% at 78% 60%, rgba(200,169,106,0.32), rgba(200,169,106,0) 66%),
+      radial-gradient(46% 40% at 10% 6%, rgba(255,251,242,0.60), rgba(255,251,242,0) 60%),
+      radial-gradient(52% 48% at 92% 96%, rgba(206,172,112,0.30), rgba(206,172,112,0) 62%),
+      radial-gradient(58% 52% at 16% 88%, rgba(228,208,176,0.50), rgba(228,208,176,0) 64%),
+      linear-gradient(152deg, #F7EAD2 0%, #EEDFC3 50%, #E4CFA6 100%);
+    color:var(--ink);
+    padding:96px 90px 84px;
+    display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; position:relative;
+  }
+
+  .kicker{ display:flex; align-items:center; gap:18px; margin-bottom:44px; }
+  .kicker .line{ width:46px; height:3px; background:var(--gold); border-radius:2px; flex:none; }
+  .kicker .txt{ font-size:25px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-faint); }
+  .headline{ font-size:76px; line-height:1.1; font-weight:600; letter-spacing:-0.025em; color:var(--ink); max-width:900px; }
+
+  /* ── Motiv: Slot-Machine-Walzen statt statischer Balken ── */
+  .amount-wrap{ margin:0; }
+  .amount{ display:flex; align-items:center; gap:2px; font-size:150px; font-weight:600; letter-spacing:-0.02em; color:var(--ink); line-height:1; }
+
+  .reel{
+    display:inline-block; width:82px; height:112px; margin:0 7px;
+    background:var(--gold); border-radius:12px; overflow:hidden;
+    position:relative; vertical-align:middle;
+    box-shadow: inset 0 8px 14px rgba(58,54,49,0.22), inset 0 -8px 14px rgba(58,54,49,0.22);
+  }
+  .reel:first-child{ margin-left:0; }
+  .reel-strip{
+    display:flex; flex-direction:column; align-items:center;
+    will-change:transform;
+  }
+  .reel-strip span{
+    display:block; height:112px; line-height:112px;
+    font-size:86px; font-weight:700; color:var(--ink);
+  }
+
+  /* je Walze eigene Dreh-Distanz + Landepunkt (links stoppt zuerst) */
+  .reel:nth-child(1) .reel-strip{ --dist:-2016px; animation:reel1 3s infinite; } /* 18 Zellen */
+  .reel:nth-child(2) .reel-strip{ --dist:-2464px; animation:reel2 3s infinite; } /* 22 */
+  .reel:nth-child(4) .reel-strip{ --dist:-1792px; animation:reel3 3s infinite; } /* 16 */
+  .reel:nth-child(5) .reel-strip{ --dist:-2240px; animation:reel4 3s infinite; } /* 20 */
+  .reel:nth-child(6) .reel-strip{ --dist:-2688px; animation:reel5 3s infinite; } /* 24 */
+
+  @keyframes reel1{
+    0%  { transform:translateY(0); animation-timing-function:cubic-bezier(.15,.85,.25,1); }
+    35% { transform:translateY(var(--dist)); }
+    100%{ transform:translateY(var(--dist)); }
+  }
+  @keyframes reel2{
+    0%  { transform:translateY(0); animation-timing-function:cubic-bezier(.15,.85,.25,1); }
+    45% { transform:translateY(var(--dist)); }
+    100%{ transform:translateY(var(--dist)); }
+  }
+  @keyframes reel3{
+    0%  { transform:translateY(0); animation-timing-function:cubic-bezier(.15,.85,.25,1); }
+    54% { transform:translateY(var(--dist)); }
+    100%{ transform:translateY(var(--dist)); }
+  }
+  @keyframes reel4{
+    0%  { transform:translateY(0); animation-timing-function:cubic-bezier(.15,.85,.25,1); }
+    62% { transform:translateY(var(--dist)); }
+    100%{ transform:translateY(var(--dist)); }
+  }
+  @keyframes reel5{
+    0%  { transform:translateY(0); animation-timing-function:cubic-bezier(.15,.85,.25,1); }
+    70% { transform:translateY(var(--dist)); }
+    100%{ transform:translateY(var(--dist)); }
+  }
+
+  /* leichter Glanz über jeder Walze */
+  .reel::after{
+    content:""; position:absolute; inset:0; border-radius:12px; pointer-events:none;
+    background:linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 34%, rgba(255,255,255,0) 66%, rgba(255,255,255,0.18) 100%);
+  }
+
+  .amount .dot{ margin:0 6px 0 2px; }
+  .amount .euro{ margin-left:26px; }
+  .amount-note{ font-size:30px; color:var(--ink-soft); margin-top:22px; letter-spacing:0.01em; }
+
+  .footer{ display:flex; justify-content:flex-end; align-items:center; gap:15px; }
+  .footer .logo{ width:82px; height:82px; display:block; flex:none; transform:translate(6px,4px); }
+  .footer .brand{ text-align:left; }
+  .footer .mark{ font-size:32px; font-weight:700; letter-spacing:-0.02em; color:var(--ink); }
+  .footer .sub{ font-size:21px; color:var(--ink-faint); margin-top:4px; }
+
+  @media print{ html,body{ background:#fff; } body{ padding:0; } }
+</style>
+</head>
+<body>
+  <div class="creative" id="creative">
+
+    <div class="head">
+      <div class="kicker">
+        <span class="line"></span>
+        <span class="txt">Für Geschäftsführer im Raum Dresden (bis 20 Mitarbeiter)</span>
+      </div>
+      <h1 class="headline">Ihr Betrieb verliert gerade Geld durch Routinearbeit. <span class="q">Die Frage ist nur: wie viel?</span></h1>
+    </div>
+
+    <div class="amount-wrap">
+      <div class="amount" aria-label="verdeckte Euro-Zahl, Fragezeichen drehen wie im Automaten">
+        <span class="reel"><span class="reel-strip">
+          <span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span>
+        </span></span>
+        <span class="reel"><span class="reel-strip">
+          <span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span>
+        </span></span>
+        <span class="dot">.</span>
+        <span class="reel"><span class="reel-strip">
+          <span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span>
+        </span></span>
+        <span class="reel"><span class="reel-strip">
+          <span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span>
+        </span></span>
+        <span class="reel"><span class="reel-strip">
+          <span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span><span>?</span>
+        </span></span>
+        <span class="euro">&euro;</span>
+      </div>
+      <div class="amount-note">pro Jahr</div>
+    </div>
+
+    <div class="footer">
+      <picture>
+        <source srcset="logo-small.webp" type="image/webp">
+        <img class="logo" src="logo-small.png" alt="smartwandler Logo" width="74" height="74">
+      </picture>
+      <div class="brand">
+        <div class="mark">smartwandler</div>
+        <div class="sub">Kostenloser Potenzial-Check &middot; 2 Minuten</div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

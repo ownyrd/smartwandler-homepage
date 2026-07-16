@@ -29,10 +29,14 @@
   /* ── Die Creative-Fläche: exakt 1080 x 1350 (4:5) ── */
   .creative{
     width:1080px; height:1350px; flex:none;
-    /* warmer Verlauf statt flachem Weiß + dezenter Gold-Glow hinter der Zahl */
+    /* mehrschichtiger, organischer Warm-Verlauf: mehrere Gold-Glows aus
+       verschiedenen Ecken statt einer einzigen Diagonale */
     background:
-      radial-gradient(58% 42% at 76% 60%, rgba(200,169,106,0.16), rgba(200,169,106,0) 70%),
-      linear-gradient(158deg, #FAF8F5 0%, #F4EEE4 52%, #ECE4D6 100%);
+      radial-gradient(48% 42% at 78% 60%, rgba(200,169,106,0.32), rgba(200,169,106,0) 66%),
+      radial-gradient(46% 40% at 10% 6%, rgba(255,251,242,0.60), rgba(255,251,242,0) 60%),
+      radial-gradient(52% 48% at 92% 96%, rgba(206,172,112,0.30), rgba(206,172,112,0) 62%),
+      radial-gradient(58% 52% at 16% 88%, rgba(228,208,176,0.50), rgba(228,208,176,0) 64%),
+      linear-gradient(152deg, #F7EAD2 0%, #EEDFC3 50%, #E4CFA6 100%);
     color:var(--ink);
     padding:96px 90px 84px;
     display:flex; flex-direction:column; justify-content:space-between;
