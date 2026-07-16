@@ -500,6 +500,14 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
     // Kein Consent vorhanden — Banner zeigen (Matomo-Basis läuft bereits cookielos)
     showBanner();
   }
+
+  // Direktaufruf der Einstellungen per Link (index.html#cookie-einstellungen),
+  // z. B. von Unterseiten ohne eigenes Banner-Markup (angebote.html,
+  // potenzialcheck/bestaetigt.html). Art. 7 Abs. 3 DSGVO: Widerruf muss so
+  // einfach sein wie die Erteilung.
+  if (location.hash === '#cookie-einstellungen') {
+    showBanner();
+  }
 })();
 
 // ══════════════════════════════════════

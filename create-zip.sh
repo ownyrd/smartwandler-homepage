@@ -24,6 +24,7 @@ zip -r "$OUTPUT" \
     "$WORKING_DIR/potenzialcheck/check.css" \
     "$WORKING_DIR/potenzialcheck/check.js" \
     "$WORKING_DIR/potenzialcheck/submit.php" \
+    "$WORKING_DIR/potenzialcheck/cleanup-leads.php" \
     "$WORKING_DIR/video/smartwandler-demo-720p.mp4" \
     "$WORKING_DIR/video/smartwandler-demo-poster.jpg"
 

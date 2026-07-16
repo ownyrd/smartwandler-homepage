@@ -964,6 +964,7 @@
       <div class="footer-legal">
         <a href="impressum.html" style="font-size:11px;color:rgba(255,255,255,0.6);text-decoration:none">Impressum</a>
         <a href="datenschutz.html" style="font-size:11px;color:rgba(255,255,255,0.6);text-decoration:none">Datenschutz</a>
+        <a href="index.html#cookie-einstellungen" style="font-size:11px;color:rgba(255,255,255,0.6);text-decoration:none">Cookie-Einstellungen</a>
       </div>
     </div>
   </footer>
