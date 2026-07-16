@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creative 4 · Rechnet sich das?</title>
+<!--
+  Meta Static Creative 4 · smartwandler Potenzial-Check
+  Fläche: exakt 1080 x 1350 px (4:5). Text editierbar.
+  Export PNG: DevTools → Element #creative → „Node-Screenshot".
+  Export PDF: Drucken → Als PDF speichern. Für 1:1: .creative height:1080px.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --paper:#FAF8F5; --ink:#3A3631; --ink-soft:#5F5952; --ink-faint:#7C766C; --gold:#C8A96A; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html,body{ background:#e7e4df; }
+  body{ display:flex; justify-content:center; align-items:flex-start; padding:40px; font-family:'Inter',system-ui,-apple-system,sans-serif; }
+
+  .creative{
+    width:1080px; height:1350px; flex:none;
+    background:
+      radial-gradient(56% 40% at 70% 60%, rgba(200,169,106,0.16), rgba(200,169,106,0) 70%),
+      linear-gradient(158deg, #FAF8F5 0%, #F4EEE4 52%, #ECE4D6 100%);
+    color:var(--ink);
+    padding:96px 90px 84px;
+    display:flex; flex-direction:column; justify-content:space-between; overflow:hidden;
+  }
+
+  .kicker{ display:flex; align-items:center; gap:18px; margin-bottom:44px; }
+  .kicker .line{ width:46px; height:3px; background:var(--gold); border-radius:2px; flex:none; }
+  .kicker .txt{ font-size:25px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-faint); }
+  .headline{ font-size:62px; line-height:1.12; font-weight:600; letter-spacing:-0.025em; color:var(--ink); max-width:900px; }
+
+  /* Motiv: Rechnet-sich-Anzeige (Gauge) */
+  .motif{ display:flex; flex-direction:column; align-items:flex-start; gap:14px; }
+  .gauge{ width:480px; height:300px; display:block; }
+  .motif .cap{ font-size:30px; color:var(--ink-soft); font-style:italic; padding-left:6px; }
+
+  .footer{ display:flex; justify-content:flex-end; align-items:center; gap:15px; }
+  /* Logo näher an den Text (gap), leicht nach unten und rechts (translate) */
+  .footer .logo{ width:82px; height:82px; display:block; flex:none; transform:translate(6px,4px); }
+  .footer .brand{ text-align:left; }
+  .footer .mark{ font-size:32px; font-weight:700; letter-spacing:-0.02em; color:var(--ink); }
+  .footer .sub{ font-size:21px; color:var(--ink-faint); margin-top:4px; }
+
+  @media print{ html,body{ background:#fff; } body{ padding:0; } }
+</style>
+</head>
+<body>
+  <div class="creative" id="creative">
+
+    <div class="head">
+      <div class="kicker">
+        <span class="line"></span>
+        <span class="txt">Für Geschäftsführer im Raum Dresden (bis 20 Mitarbeiter)</span>
+      </div>
+      <h1 class="headline">Lohnt sich Automatisierung in Ihrem Betrieb? 2 Minuten, eine Zahl, kein Bauchgefühl.</h1>
+    </div>
+
+    <div class="motif">
+      <svg class="gauge" viewBox="0 0 400 250" fill="none" aria-label="Rechnet-sich-Anzeige, Nadel zeigt ins Plus">
+        <!-- Track -->
+        <path d="M 40 200 A 160 160 0 0 1 360 200" stroke="#E3DBCB" stroke-width="26" stroke-linecap="round"/>
+        <!-- Gold-Zone (rechtes Drittel = „lohnt sich") -->
+        <path d="M 292 69 A 160 160 0 0 1 360 200" stroke="#C8A96A" stroke-width="26" stroke-linecap="round"/>
+        <!-- Nadel zeigt in die Gold-Zone -->
+        <line x1="200" y1="200" x2="314" y2="111" stroke="#3A3631" stroke-width="9" stroke-linecap="round"/>
+        <!-- Achse -->
+        <circle cx="200" cy="200" r="16" fill="#3A3631"/>
+        <circle cx="200" cy="200" r="6" fill="#FAF8F5"/>
+        <!-- Endlabels: von „?" zu „€" -->
+        <text x="36" y="240" font-size="32" fill="#7C766C" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">?</text>
+        <text x="366" y="242" font-size="36" fill="#C8A96A" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700">&euro;</text>
+      </svg>
+    </div>
+
+    <div class="footer">
+      <picture>
+        <source srcset="logo-small.webp" type="image/webp">
+        <img class="logo" src="logo-small.png" alt="smartwandler Logo" width="74" height="74">
+      </picture>
+      <div class="brand">
+        <div class="mark">smartwandler</div>
+        <div class="sub">Kostenloser Potenzial-Check &middot; 2 Minuten</div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

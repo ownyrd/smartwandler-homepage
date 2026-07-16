@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creative 5 · Verstehen müssen Sie es nicht</title>
+<!--
+  Meta Static Creative 5 · smartwandler Potenzial-Check
+  Fläche: exakt 1080 x 1350 px (4:5). Text editierbar.
+  Export PNG: DevTools → Element #creative → „Node-Screenshot".
+  Export PDF: Drucken → Als PDF speichern. Für 1:1: .creative height:1080px.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --paper:#FAF8F5; --ink:#3A3631; --ink-soft:#5F5952; --ink-faint:#7C766C; --gold:#C8A96A; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html,body{ background:#e7e4df; }
+  body{ display:flex; justify-content:center; align-items:flex-start; padding:40px; font-family:'Inter',system-ui,-apple-system,sans-serif; }
+
+  .creative{
+    width:1080px; height:1350px; flex:none;
+    background:
+      radial-gradient(58% 42% at 74% 58%, rgba(200,169,106,0.16), rgba(200,169,106,0) 70%),
+      linear-gradient(158deg, #FAF8F5 0%, #F4EEE4 52%, #ECE4D6 100%);
+    color:var(--ink);
+    padding:96px 90px 84px;
+    display:flex; flex-direction:column; justify-content:space-between; overflow:hidden;
+  }
+
+  .kicker{ display:flex; align-items:center; gap:18px; margin-bottom:44px; }
+  .kicker .line{ width:46px; height:3px; background:var(--gold); border-radius:2px; flex:none; }
+  .kicker .txt{ font-size:25px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-faint); }
+  .headline{ font-size:66px; line-height:1.12; font-weight:600; letter-spacing:-0.025em; color:var(--ink); max-width:900px; }
+
+  /* Motiv: durchgestrichene Buzzwords + klare Zeile */
+  .buzz{ display:flex; flex-direction:column; gap:20px; align-items:flex-start; }
+  .buzz .word{
+    font-size:50px; font-weight:500; color:var(--ink-faint);
+    text-decoration:line-through; text-decoration-color:var(--gold); text-decoration-thickness:5px;
+  }
+  .buzz .clear{ font-size:58px; font-weight:600; color:var(--ink); letter-spacing:-0.02em; margin-top:14px; }
+
+  .footer{ display:flex; justify-content:flex-end; align-items:center; gap:15px; }
+  /* Logo näher an den Text (gap), leicht nach unten und rechts (translate) */
+  .footer .logo{ width:82px; height:82px; display:block; flex:none; transform:translate(6px,4px); }
+  .footer .brand{ text-align:left; }
+  .footer .mark{ font-size:32px; font-weight:700; letter-spacing:-0.02em; color:var(--ink); }
+  .footer .sub{ font-size:21px; color:var(--ink-faint); margin-top:4px; }
+
+  @media print{ html,body{ background:#fff; } body{ padding:0; } }
+</style>
+</head>
+<body>
+  <div class="creative" id="creative">
+
+    <div class="head">
+      <div class="kicker">
+        <span class="line"></span>
+        <span class="txt">Für Chefs im Raum Dresden, die keine IT-Nerds sind</span>
+      </div>
+      <h1 class="headline">Sie müssen Digitalisierung nicht verstehen. Nur wissen, was sie Ihnen bringt.</h1>
+    </div>
+
+    <div class="buzz">
+      <span class="word">API-Integration</span>
+      <span class="word">Cloud-Migration</span>
+      <span class="word">Workflow-Engine</span>
+      <span class="clear">Was bringt mir das in Euro?</span>
+    </div>
+
+    <div class="footer">
+      <picture>
+        <source srcset="logo-small.webp" type="image/webp">
+        <img class="logo" src="logo-small.png" alt="smartwandler Logo" width="74" height="74">
+      </picture>
+      <div class="brand">
+        <div class="mark">smartwandler</div>
+        <div class="sub">Kostenloser Potenzial-Check &middot; 2 Minuten</div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
