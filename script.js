@@ -326,6 +326,10 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
     _paq.push(['setTrackerUrl', MATOMO_URL + 'matomo.php']);
     _paq.push(['setSiteId', MATOMO_SITE_ID]);
     _paq.push(['enableLinkTracking']);
+    // Heartbeat: misst echte Verweildauer auch bei Einzelseiten-Besuchen (der
+    // Potenzialcheck ist eine SPA — ohne Heartbeat zeigt jeder Besuch 0 Sek.).
+    // Funktioniert cookielos: hängt nur Ping-Requests an denselben Besuch an.
+    _paq.push(['enableHeartBeatTimer', 15]);
     _paq.push(['trackPageView']);
     _paq.matomoLoaded = true;
 

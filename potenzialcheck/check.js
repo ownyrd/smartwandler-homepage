@@ -173,6 +173,10 @@
     if (state.index + 1 > state.stepSeen) {
       state.stepSeen = state.index + 1;
       trackFunnel('frage_' + (state.index + 1));
+      // Meta-Optimierungs-Signal: „Frage 2 erreicht" = echtes Engagement
+      // (Frage 1 beantwortet + weiter geklickt). Filtert Misklicks raus, gibt
+      // aber genug Volumen für die Lernphase. Custom Event, nur bei FB-Consent.
+      if (state.index === 1) sendMetaEvent('CheckStep2', true);
     }
 
     elStep.textContent = state.index + 1;
@@ -327,6 +331,9 @@
   function start() {
     state.index = 0;
     trackFunnel('check_gestartet');
+    // Meta-Signal „Check gestartet" (Klick auf Start-Button). Frühestes/größtes
+    // Volumen, aber inkl. Neugier-/Fehlklicks. Custom Event, nur bei FB-Consent.
+    sendMetaEvent('CheckStarted', true);
     showScreen('quiz');
     renderQuestion();
   }
