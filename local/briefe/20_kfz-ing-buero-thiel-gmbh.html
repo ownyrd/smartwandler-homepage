@@ -125,22 +125,22 @@
 
   /* ── CTA-Box mit QR-Code ─────────────── */
   .cta {
-    margin-top: 3mm;
+    margin-top: 0;
     border: 0.6pt solid #C8A96A;
     border-radius: 2mm;
     background: #FBF7EF;
-    padding: 3mm 4.5mm;
+    padding: 3mm 3.5mm;
     display: flex;
     align-items: center;
-    gap: 5mm;
+    gap: 4mm;
   }
   .cta-qr {
-    flex: 0 0 25mm;
+    flex: 0 0 23mm;
     text-align: center;
   }
   .cta-qr img {
-    width: 25mm;
-    height: 25mm;
+    width: 23mm;
+    height: 23mm;
     display: block;
     border: 0.4pt solid #ddd;
   }
@@ -151,7 +151,7 @@
     word-break: break-all;
     line-height: 1.15;
   }
-  .cta-channels { flex: 1; font-size: 10pt; line-height: 1.5; }
+  .cta-channels { flex: 1; font-size: 8.7pt; line-height: 1.4; }
   .cta-channels .row {
     display: flex;
     align-items: center;
@@ -174,8 +174,19 @@
     display: block;
   }
 
+  /* ── Abschluss: Gruß/Unterschrift links · CTA rechts ── */
+  .abschluss {
+    margin-top: 5mm;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 6mm;
+  }
+  .abschluss-links { flex: 1 1 auto; }
+  .abschluss-rechts { flex: 0 0 95mm; }
+
   /* ── Gruß + Unterschrift ─────────────── */
-  .gruss { margin-top: 4mm; }
+  .gruss { margin-top: 0; }
   .unterschrift-platz { height: 10mm; }
   .signatur { font-weight: 600; }
   .signatur-zusatz { font-size: 10pt; color: #444; }
@@ -212,10 +223,10 @@
     </div>
     <!-- ▼▼▼ EMPFÄNGER-ADRESSE HIER EINTRAGEN ▼▼▼ -->
     <div class="empfaenger">
-      BAUGRUND DRESDEN Ingenieurgesellschaft mbH<br>
-      Prof. Dr.-Ing. habil. Peter-Andreas von Wolffersdorff<br>
-      Kleiststraße 10a<br>
-      01129 Dresden
+      Kfz-Ing.-Büro Thiel GmbH<br>
+      Herrn Dipl.-Ing. Alexander Thiel<br>
+      Wiener Straße 10<br>
+      01069 Dresden
     </div>
     <!-- ▲▲▲ EMPFÄNGER-ADRESSE HIER EINTRAGEN ▲▲▲ -->
   </div>
@@ -223,72 +234,81 @@
   <!-- ░░░ Brieftext-Block (startet bei 98 mm, also nach Anschriftenfeld) ░░░ -->
   <div class="brief-content">
 
-  <div class="datum">Dresden, 19.06.2026</div>
+  <div class="datum">Dresden, 21.07.2026</div>
 
   <!-- ░░░ Betreff ░░░ -->
   <div class="betreff">
-    Der erste eigenständige, volldigitale Mitarbeiter für Ihr Ingenieurbüro
+    Mehr Kapazität für Ihr Team durch digitale Assistenten
   </div>
 
   <!-- ░░░ Anrede ░░░ -->
-  <p class="anrede">Sehr geehrte(r) Frau/Herr …..,</p>
+  <p class="anrede">Sehr geehrter Herr Thiel,</p>
 
   <!-- ░░░ Body ░░░ -->
   <div class="body">
-    <p>Ihre wertvollste Ressource sind Ihre Ingenieure. Doch nach jeder Baubesprechung tippen sie Protokolle, sortieren die E-Mail-Flut von Architekten und Fachplanern oder tragen Stundennachweise aus drei Systemen für die Rechnung zusammen. Bei spürbarem Fachkräftemangel wird jede Stunde Administration zur teuren Fehlallokation.</p>
+    <p>Nach jeder Fahrzeugbesichtigung Fotos, Messwerte und Kalkulationen zu einem Schadengutachten zusammenfügen, Wertgutachten ausformulieren oder die Korrespondenz mit Versicherungen und Auftraggebern sortieren: Solche Routineaufgaben kosten Ihr Team jeden Tag wertvolle Zeit.</p>
 
-    <p>Lassen Sie ab jetzt Routineaufgaben von einem von uns installierten digitalen Mitarbeiter erledigen. Er erstellt bspw. Protokollentwürfe aus Audio-Mitschnitten, Erstentwürfe für Prüfberichte und Gutachten, Rechnungsvorlagen aus Ihren Stundenzetteln und übernimmt die Triage des Projekt-Postfachs. Die fachliche Verantwortung bleibt vollständig bei Ihrem Team, die Tipparbeit übernimmt das System.</p>
+    <p>Neue Fachkräfte zu gewinnen, ist langwierig und teuer. Bestehende Fachkräfte von Routineaufgaben zu entlasten, schafft schneller neue Kapazitäten. Wir entwickeln und installieren digitale Assistenten, die genau solche Aufgaben für Ihr Team übernehmen. Sie erstellen beispielsweise Protokollentwürfe aus Audio-Mitschnitten, bereiten Prüfberichte und Gutachten vor, erzeugen Rechnungsvorlagen aus Stundenzetteln oder sortieren und priorisieren Ihr Projekt-Postfach. Die fachliche Verantwortung bleibt vollständig bei Ihrem Team, die zeitaufwendigen manuellen Aufgaben übernimmt der digitale Assistent.</p>
 
-    <p>Der entscheidende Unterschied zu Cloud-Anbietern wie Microsoft Co-Pilot und ChatGPT: Unsere Software läuft zu 100 % lokal auf Ihrer Hardware. Kein Byte verlässt Ihr Haus, absolut datenschutzkonform und prädestiniert für sensible Projekte im Gutachter-, Industrie- oder KRITIS-Sektor. Ihr Team lernt kein neues Programm; der digitale Mitarbeiter klinkt sich direkt in Outlook, Ihre Dateiablage und CAD-Software ein.</p>
+    <p>Der Unterschied zu Lösungen wie ChatGPT oder Microsoft Copilot: Wir liefern keine allgemeine KI-Anwendung, sondern einen digitalen Assistenten, der auf Ihre konkreten Arbeitsabläufe zugeschnitten und direkt in Ihre bestehende IT-Umgebung integriert wird. Auf Wunsch läuft die Software vollständig lokal auf Ihrer Hardware oder auf Servern in der EU. Das ist ein wichtiger Aspekt für sensible Projekte und Unternehmen mit hohen Anforderungen an Datenschutz und Vertraulichkeit, etwa im Gutachterwesen, in der Industrie oder im KRITIS-Umfeld. Und Ihr Team muss kein neues Programm lernen: Der digitale Assistent arbeitet mit Ihren bestehenden Tools und Arbeitsabläufen.</p>
 
-    <p>Wir sitzen im Raum Dresden und begleiten Sie persönlich vor Ort. Lassen Sie uns in 30 Minuten unverbindlich klären, welche Aufgabe wir bei Ihnen konkret automatisieren können. Wir sind über folgende Wege für Sie erreichbar:</p>
+    <p>Wir sitzen im Raum Dresden und begleiten unsere Kunden persönlich vor Ort. Lassen Sie uns in 30 Minuten gemeinsam prüfen, welche konkrete Routineaufgabe sich bei Ihnen automatisieren lässt. Natürlich unverbindlich und für Sie kostenfrei. Gemeinsam finden wir heraus, wo sich in Ihrem Arbeitsalltag schnell und sinnvoll neue Kapazitäten gewinnen lassen. Wir freuen uns auf Ihre Nachricht oder Ihren Anruf.</p>
   </div>
 
-  <!-- ░░░ CTA mit QR-Code ░░░ -->
-  <div class="cta">
-    <div class="cta-qr">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=0&data=https%3A%2F%2Fsmartwandler.de%2Fingenieurbueros" alt="QR-Code zur Landing-Page">
-      <div class="cta-qr-url">smartwandler.de/<br>ingenieurbueros</div>
-    </div>
-    <div class="cta-channels">
-      <div class="row">
-        <span class="ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="7" height="7" rx="1"/>
-            <rect x="14" y="3" width="7" height="7" rx="1"/>
-            <rect x="3" y="14" width="7" height="7" rx="1"/>
-            <path d="M14 14h3v3h-3z"/>
-            <path d="M18 18h3v3h-3z"/>
-            <path d="M14 19h2"/>
-            <path d="M19 14h2"/>
-          </svg>
-        </span>
-        <span><strong>QR-Code scannen</strong>&nbsp;·&nbsp; Demovideo ansehen &amp; Termin direkt online buchen</span>
-      </div>
-      <div class="row">
-        <span class="ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/>
-          </svg>
-        </span>
-        <span><strong>+49 152 21078262</strong> &nbsp;·&nbsp; auch per WhatsApp</span>
-      </div>
-      <div class="row">
-        <span class="ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="4" width="20" height="16" rx="2"/>
-            <polyline points="2 7 12 13 22 7"/>
-          </svg>
-        </span>
-        <span><strong>info@smartwandler.de</strong></span>
-      </div>
-    </div>
-  </div>
+  <!-- ░░░ Abschluss: Grußformel links · CTA rechts ░░░ -->
+  <div class="abschluss">
 
-  <!-- ░░░ Grußformel ░░░ -->
-  <p class="gruss">Mit freundlichen Grüßen</p>
-  <div class="unterschrift-platz"></div>
-  <div class="signatur">Dipl.-Ing. (FH) Philipp Anders</div>
+    <!-- Grußformel + Unterschrift -->
+    <div class="abschluss-links">
+      <p class="gruss">Mit freundlichen Grüßen</p>
+      <div class="unterschrift-platz"></div>
+      <div class="signatur">Dipl.-Ing. (FH) Philipp Anders</div>
+    </div>
+
+    <!-- CTA mit QR-Code -->
+    <div class="abschluss-rechts">
+      <div class="cta">
+        <div class="cta-qr">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=0&data=https%3A%2F%2Fsmartwandler.de%2Fingenieurbueros" alt="QR-Code zur Landing-Page">
+          <div class="cta-qr-url">smartwandler.de/<br>ingenieurbueros</div>
+        </div>
+        <div class="cta-channels">
+          <div class="row">
+            <span class="ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <path d="M14 14h3v3h-3z"/>
+                <path d="M18 18h3v3h-3z"/>
+                <path d="M14 19h2"/>
+                <path d="M19 14h2"/>
+              </svg>
+            </span>
+            <span><strong>QR-Code scannen</strong><br>Demovideo ansehen &amp; Termin direkt online buchen</span>
+          </div>
+          <div class="row">
+            <span class="ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </span>
+            <span><strong>+49 152 21078262</strong><br>auch per WhatsApp</span>
+          </div>
+          <div class="row">
+            <span class="ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <polyline points="2 7 12 13 22 7"/>
+              </svg>
+            </span>
+            <span><strong>info@smartwandler.de</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.abschluss -->
 
   </div><!-- /.brief-content -->
 </div>
