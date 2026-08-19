@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>smartwandler.de — Digitalisierung & Automatisierung vor Ort</title>
 <link rel="preload" href="fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="images/hero-main-image.webp" type="image/webp" fetchpriority="high">
 <link rel="stylesheet" href="styles.css">
 <!--
   Matomo & Meta Pixel werden ausschließlich nach Cookie-Consent
@@ -83,11 +82,45 @@
 
     <!-- Hero right -->
     <div class="hero-visual">
-      <div class="hero-main-img">
-        <picture>
-          <source srcset="images/hero-main-image.webp" type="image/webp">
-          <img src="images/hero-main-image.png" alt="Lokale Automatisierung & On-Premise KI" width="900" height="603" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;display:block">
-        </picture>
+      <div class="hero-main-img viz">
+        <figure class="viz-stage viz--hero" role="img" aria-label="Beispiel eines automatisiert vorbereiteten Vorgangs: eine eingehende Kundenanfrage wird lokal erkannt, auf Positionen und Liefertermin geprüft, dem Vertrieb zugeordnet und als Angebotsentwurf zur Freigabe vorgelegt — vollständig auf eigener Infrastruktur.">
+          <div class="viz-bar">
+            <span>Anfrage <b>#2481</b> · Eingang 08:14</span>
+          </div>
+
+          <div class="viz-intake">
+            <p class="viz-from">Von: einkauf@musterbau.de · Anhang: Leistungsverzeichnis.pdf</p>
+            <p class="viz-quote">„Können Sie uns dafür kurzfristig ein Angebot machen?“</p>
+          </div>
+
+          <div class="viz-rows">
+            <div class="viz-vrow">
+              <span class="viz-k">Erkannt</span>
+              <span class="viz-v"><i class="viz-tick"></i><span>Angebotsanfrage · Bestandskunde</span></span>
+            </div>
+            <div class="viz-vrow">
+              <span class="viz-k">Geprüft</span>
+              <span class="viz-v"><i class="viz-tick"></i><span>Positionen, Mengen, Liefertermin</span></span>
+            </div>
+            <div class="viz-vrow">
+              <span class="viz-k">Zugeordnet</span>
+              <span class="viz-v"><i class="viz-tick"></i><span>Vertrieb · Preisliste B</span></span>
+            </div>
+            <div class="viz-vrow">
+              <span class="viz-k">Entwurf</span>
+              <span class="viz-v"><i class="viz-tick"></i><span>Angebot + Terminvorschlag</span></span>
+            </div>
+            <div class="viz-vrow viz-vrow--open">
+              <span class="viz-k">Offen</span>
+              <span class="viz-v"><i class="viz-tick"></i><span>Freigabe durch Ihr Team</span></span>
+            </div>
+          </div>
+
+          <figcaption class="viz-foot">
+            <span>Verarbeitet auf Ihrem Server —<br>kein Byte an externe Dienste.</span>
+            <span class="viz-stamp">Lokal<small>On-Premise</small></span>
+          </figcaption>
+        </figure>
       </div>
       <div class="hero-float-card">
         <div class="float-card-label">Zeitersparnis / Woche</div>
@@ -119,11 +152,27 @@
         <div class="bcard-eyebrow">Problem 01 — Manuelle Workflows</div>
         <p style="font-size:17px;font-weight:500;color:var(--ink);margin-bottom:8px">Wiederkehrende Aufgaben fressen Ihre Arbeitszeit</p>
         <p style="font-size:15px;color:var(--ink-soft);line-height:1.5">E-Mails sortieren, Daten übertragen, Berichte erstellen - Ihr Team verbringt Stunden mit Aufgaben, die automatisiert ablaufen könnten.</p>
-        <div class="bcard-illus" style="height:100px;border-radius:var(--r-md);overflow:hidden">
-          <picture>
-            <source srcset="images/manuelle-prozesse.webp" type="image/webp">
-            <img src="images/manuelle-prozesse.png" alt="Illustration: Manuelle Prozesse" width="1400" height="196" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
-          </picture>
+        <div class="bcard-illus viz" style="height:100px;border-radius:var(--r-md);overflow:hidden">
+          <div class="viz-stage viz--routine" role="img" aria-label="Aufstellung wiederkehrender Routineaufgaben und der Zeit, die sie pro Woche binden: E-Mails sichten und zuordnen 3,5 Stunden, Daten zwischen Systemen übertragen 4,2 Stunden, Berichte und Auswertungen erstellen 2,1 Stunden.">
+            <div class="viz-tallyrow">
+              <span>E-Mails sichten &amp; zuordnen</span>
+              <span class="viz-freq">14× täglich</span>
+              <span class="viz-meter"><i style="width:72%"></i></span>
+              <span class="viz-cost">3,5 h/Wo</span>
+            </div>
+            <div class="viz-tallyrow">
+              <span>Daten zwischen Systemen übertragen</span>
+              <span class="viz-freq">9× täglich</span>
+              <span class="viz-meter"><i style="width:86%"></i></span>
+              <span class="viz-cost">4,2 h/Wo</span>
+            </div>
+            <div class="viz-tallyrow">
+              <span>Berichte &amp; Auswertungen erstellen</span>
+              <span class="viz-freq">6× wöchentl.</span>
+              <span class="viz-meter"><i style="width:44%"></i></span>
+              <span class="viz-cost">2,1 h/Wo</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -209,11 +258,49 @@
         </div>
         <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="tab-btn">Erstgespräch buchen <span>→</span></button></a>
       </div>
-      <div class="tab-visual">
-        <picture>
-          <source srcset="images/pen-consulting-process.webp" type="image/webp">
-          <img src="images/pen-consulting-process.png" alt="Beratung & Analyse" class="tab-visual-zoom" width="578" height="432" loading="lazy">
-        </picture>
+      <div class="tab-visual viz">
+        <figure class="viz-stage viz--analyse" role="img" aria-label="Aufbau einer Potenzialanalyse in vier Schritten: Ist-Aufnahme der Prozesse und Systeme, Engpassanalyse, technologieneutrale Empfehlung und eine nach Aufwand und Nutzen priorisierte Roadmap.">
+          <div class="viz-bar">
+            <span>Potenzialanalyse <b>· Bericht</b></span>
+            <span>4 Schritte</span>
+          </div>
+
+          <div class="viz-steps">
+            <div class="viz-step">
+              <span class="viz-num">01</span>
+              <span class="viz-step-t">Ist-Aufnahme
+                <small class="viz-step-s">Prozesse, Systeme, Datenflüsse</small>
+              </span>
+              <span class="viz-chip viz-chip--ok">erhoben</span>
+            </div>
+            <div class="viz-step">
+              <span class="viz-num">02</span>
+              <span class="viz-step-t">Engpassanalyse
+                <small class="viz-step-s">Wo Zeit und Qualität verloren gehen</small>
+              </span>
+              <span class="viz-chip viz-chip--warn">6 Befunde</span>
+            </div>
+            <div class="viz-step">
+              <span class="viz-num">03</span>
+              <span class="viz-step-t">Technologie-Empfehlung
+                <small class="viz-step-s">Automatisierung, KI — oder keins von beidem</small>
+              </span>
+              <span class="viz-chip">neutral</span>
+            </div>
+            <div class="viz-step">
+              <span class="viz-num">04</span>
+              <span class="viz-step-t">Roadmap
+                <small class="viz-step-s">Priorisiert nach Aufwand und Nutzen</small>
+              </span>
+              <span class="viz-chip viz-chip--gold">3 Phasen</span>
+            </div>
+          </div>
+
+          <figcaption class="viz-foot">
+            <span>Empfehlung ohne Vendor-Bias —<br>auch dann, wenn nichts zu tun ist.</span>
+            <span class="viz-stamp">Neutral<small>Technologieoffen</small></span>
+          </figcaption>
+        </figure>
       </div>
     </div>
     
@@ -242,11 +329,41 @@
         </div>
         <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="tab-btn">Erstgespräch buchen <span>→</span></button></a>
       </div>
-      <div class="tab-visual">
-        <picture>
-          <source srcset="images/screenshot_prozess.webp" type="image/webp">
-          <img src="images/screenshot_prozess.png" alt="Lösung-Screenshot / Mockup" width="578" height="432" loading="lazy">
-        </picture>
+      <div class="tab-visual viz">
+        <figure class="viz-stage viz--pipeline" role="img" aria-label="Automatisierter Workflow für den Rechnungseingang: E-Mail-Eingang, Klassifizierung, Datenextraktion, Freigabe durch das Team und Übergabe an das ERP — alle Schritte laufen auf eigener Infrastruktur.">
+          <div class="viz-bar">
+            <span>Workflow <b>· Rechnungseingang</b></span>
+            <span class="viz-live">aktiv</span>
+          </div>
+
+          <div class="viz-pipe">
+            <div class="viz-node viz-node--done">
+              <div class="viz-node-t">Eingang</div>
+              <div class="viz-node-s">E-Mail mit Anhang trifft ein</div>
+            </div>
+            <div class="viz-node viz-node--done">
+              <div class="viz-node-t">Klassifizierung</div>
+              <div class="viz-node-s">Dokumenttyp und Absender erkannt</div>
+            </div>
+            <div class="viz-node viz-node--done">
+              <div class="viz-node-t">Extraktion</div>
+              <div class="viz-node-s">Betrag, USt und Bestellbezug ausgelesen</div>
+            </div>
+            <div class="viz-node viz-node--now">
+              <div class="viz-node-t">Freigabe</div>
+              <div class="viz-node-s">Ein Klick von Ihrem Team</div>
+            </div>
+            <div class="viz-node">
+              <div class="viz-node-t">Übergabe</div>
+              <div class="viz-node-s">Buchung im ERP, Ablage im DMS</div>
+            </div>
+          </div>
+
+          <figcaption class="viz-foot">
+            <span>Läuft auf Ihrer Infrastruktur —<br>keine externen Aufrufe.</span>
+            <span class="viz-stamp">DSGVO<small>On-Premise</small></span>
+          </figcaption>
+        </figure>
       </div>
     </div>
 
@@ -275,11 +392,38 @@
         </div>
         <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="tab-btn">Erstgespräch buchen <span>→</span></button></a>
       </div>
-      <div class="tab-visual">
-        <picture>
-          <source srcset="images/lokale-ki-anwendungen.webp" type="image/webp">
-          <img src="images/lokale-ki-anwendungen.png" alt="Lokale KI auf eigener Hardware" width="578" height="432" loading="lazy">
-        </picture>
+      <div class="tab-visual viz">
+        <figure class="viz-stage viz--onprem" role="img" aria-label="Datenfluss lokaler KI: Sprachmodell, Dokumenten-KI und Wissensdatenbank laufen auf Server-Hardware innerhalb Ihres Netzwerks. Anfrage und Antwort bleiben im Haus, es besteht keine Verbindung zu externen Clouds.">
+          <div class="viz-bar">
+            <span>Datenfluss <b>· Lokale KI</b></span>
+            <span class="viz-live">Modell läuft</span>
+          </div>
+
+          <div class="viz-net">
+            <span class="viz-net-label">Ihr Netzwerk</span>
+            <div class="viz-net-inner">
+              <div class="viz-rack" aria-hidden="true">
+                <span></span>
+                <span class="is-live"></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div>
+                <div class="viz-modelrow"><i></i>Sprachmodell</div>
+                <div class="viz-modelrow"><i></i>Dokumenten-KI</div>
+                <div class="viz-modelrow"><i></i>Wissensdatenbank</div>
+                <div class="viz-loop">Anfrage → Antwort · bleibt im Haus</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="viz-blocked"><i></i>Externe Cloud — keine Verbindung</div>
+
+          <figcaption class="viz-foot">
+            <span>Auf Ihren Servern oder auf Hardware,<br>die wir bei Ihnen einrichten.</span>
+            <span class="viz-stamp">Souverän<small>Ihre Daten</small></span>
+          </figcaption>
+        </figure>
       </div>
     </div>
 
@@ -308,11 +452,43 @@
         </div>
         <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="tab-btn">Erstgespräch buchen <span>→</span></button></a>
       </div>
-      <div class="tab-visual">
-        <picture>
-          <source srcset="images/custom-tools.webp" type="image/webp">
-          <img src="images/custom-tools.png" alt="Individuelle Web-Tools" width="578" height="432" loading="lazy">
-        </picture>
+      <div class="tab-visual viz">
+        <figure class="viz-stage viz--app" role="img" aria-label="Wireframe einer maßgeschneiderten Web-Anwendung: Auftragsübersicht mit Kennzahlen, Auslastungsdiagramm und Auftragstabelle.">
+          <div class="viz-win">
+            <div class="viz-win-bar">
+              <span class="viz-dots"><i></i><i></i><i></i></span>
+              <span>Auftragsübersicht</span>
+            </div>
+            <div class="viz-win-body">
+              <div class="viz-side" aria-hidden="true">
+                <i class="is-on"></i><i></i><i></i><i></i><i></i>
+              </div>
+              <div class="viz-main">
+                <div class="viz-kpis">
+                  <div class="viz-kpi"><b>128</b><small>Aufträge</small></div>
+                  <div class="viz-kpi viz-kpi--gold"><b>14</b><small>offen</small></div>
+                  <div class="viz-kpi viz-kpi--ok"><b>96 %</b><small>Termintreue</small></div>
+                </div>
+                <div class="viz-chart" aria-hidden="true">
+                  <i style="height:38%"></i>
+                  <i style="height:55%"></i>
+                  <i class="is-ok" style="height:44%"></i>
+                  <i class="is-ok" style="height:70%"></i>
+                  <i class="is-ok" style="height:62%"></i>
+                  <i class="is-peak" style="height:100%"></i>
+                  <i class="is-ok" style="height:78%"></i>
+                  <i style="height:52%"></i>
+                </div>
+                <div class="viz-table" aria-hidden="true">
+                  <div class="viz-trow viz-trow--head"><i></i><i></i><i></i></div>
+                  <div class="viz-trow"><i></i><i></i><i></i></div>
+                  <div class="viz-trow"><i></i><i></i><i></i></div>
+                  <div class="viz-trow"><i></i><i></i><i></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </figure>
       </div>
     </div>
   </section>
