@@ -291,8 +291,8 @@ nav {
 }
 .hero-float-card {
   position: absolute;
-  bottom: -20px;
-  left: -24px;
+  bottom: -40px;
+  left: -28px;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -980,7 +980,7 @@ footer {
   .hero-h1 { font-size: 36px; }
 
   .hero-visual { order: -1; }
-  .hero-main-img { height: auto; aspect-ratio: 16 / 10; }
+  .hero-main-img { height: auto; aspect-ratio: auto; }
   .hero-float-card { display: none; }
   .hero-float-badge { right: 8px; top: 12px; font-size: 11px; padding: 6px 12px; }
 
@@ -1002,7 +1002,7 @@ footer {
     grid-template-columns: 1fr;
     gap: 32px;
   }
-  .tab-visual { aspect-ratio: 16 / 10; }
+  .tab-visual { aspect-ratio: auto; }
 
   .process-steps { grid-template-columns: 1fr; }
   .process-step { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 28px 24px; }
@@ -1076,7 +1076,7 @@ footer {
   }
   .hero-h1 { font-size: 28px; line-height: 1.15; }
   .hero-badge-text { font-size: 11px; }
-  .hero-main-img { height: auto; aspect-ratio: 16 / 10; }
+  .hero-main-img { height: auto; aspect-ratio: auto; }
   .hero-ctas { flex-direction: column; }
   .hero-cta-primary,
   .hero-cta-secondary { width: 100%; justify-content: center; text-align: center; }
@@ -1088,7 +1088,7 @@ footer {
 
   .section-h2 { font-size: 26px; }
 
-  .tab-visual { aspect-ratio: 16 / 10; }
+  .tab-visual { aspect-ratio: auto; }
 
   .process-step { padding: 24px 18px; }
 
@@ -1586,3 +1586,625 @@ footer {
 .mg-sidebar {
   background: #fff !important;
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   VIZ — code-gebaute Signature-Visuals
+   Ersetzen die vormaligen Rasterillustrationen (Hero, Problem-Banner,
+   Leistungs-Tabs). Editorialer Stil: Papierflächen, Haarlinien,
+   Monospace-Labels, ein einziger Goldakzent.
+   ══════════════════════════════════════════════════════════════════ */
+
+.viz { container-type: inline-size; }
+
+.viz-stage {
+  --v-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --v-ok:       #5E7A55;   /* Salbei — erledigt, sicher */
+  --v-ok-bg:    #EDF2E8;
+  --v-warn:     #B0603A;   /* Terrakotta — Aufwand, blockiert */
+  --v-warn-bg:  #F8EDE6;
+  --v-gold-ink: #96702A;   /* kraeftigeres Gold fuer Text */
+  font-size: clamp(11px, 2.6cqw, 13.5px);
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.35;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+/* ── gemeinsame Bausteine ── */
+.viz-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  padding: 0.8em 1.35em;
+  border-bottom: 1px solid rgba(58, 54, 49, 0.16);
+  background: linear-gradient(180deg, #F1EADC 0%, #EDE6D8 100%);
+  font-family: var(--v-mono);
+  font-size: 0.76em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  flex-shrink: 0;
+}
+.viz-bar b { color: var(--v-gold-ink); font-weight: 600; }
+
+.viz-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  color: var(--ink-soft);
+}
+.viz-live { color: var(--v-ok); font-weight: 600; }
+.viz-live::before {
+  content: '';
+  width: 0.5em; height: 0.5em;
+  border-radius: 50%;
+  background: var(--v-ok);
+  box-shadow: 0 0 0 0.22em rgba(94, 122, 85, 0.2);
+  flex-shrink: 0;
+}
+
+.viz-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2em;
+  padding: 1em 1.35em;
+  border-top: 1px solid var(--line);
+  background: #fff;
+  font-size: 0.76em;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  flex-shrink: 0;
+}
+
+.viz-stamp {
+  flex-shrink: 0;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15em;
+  padding: 0.5em 1em;
+  border: 1.5px solid #C39A4E;
+  border-radius: var(--r-sm);
+  background: linear-gradient(180deg, #F6E9CE 0%, #EFDDB8 100%);
+  font-family: var(--v-mono);
+  font-size: 0.85em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #7E5C1C;
+  transform: rotate(-1.5deg);
+}
+.viz-stamp small {
+  font-size: 0.72em;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  opacity: 0.72;
+}
+
+.viz-tick {
+  width: 1.05em; height: 1.05em;
+  border-radius: 50%;
+  background: var(--v-ok);
+  flex-shrink: 0;
+  position: relative;
+}
+.viz-tick::after {
+  content: '';
+  position: absolute;
+  left: 50%; top: 48%;
+  width: 0.34em; height: 0.2em;
+  border-left: 1.5px solid #fff;
+  border-bottom: 1.5px solid #fff;
+  transform: translate(-55%, -60%) rotate(-45deg);
+}
+
+/* ── 1) HERO: Vorgang, lokal verarbeitet ─────────────────────────── */
+.viz--hero .viz-intake {
+  padding: 1.1em 1.35em;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+  border-left: 3px solid var(--v-ok);
+  flex-shrink: 0;
+}
+.viz-from {
+  font-family: var(--v-mono);
+  font-size: 0.74em;
+  color: var(--ink-faint);
+  margin-bottom: 0.55em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.viz-quote {
+  font-size: 1.02em;
+  font-style: italic;
+  color: var(--ink);
+  margin: 0;
+}
+
+.viz-rows { padding: 0.35em 1.35em; }
+.viz-vrow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9em;
+  padding: 0.5em 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.viz-vrow:last-child { border-bottom: none; }
+.viz-k {
+  flex: 0 0 8.2em;
+  font-family: var(--v-mono);
+  font-size: 0.72em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.viz-v {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: 0.9em;
+  color: var(--ink-mid);
+  min-width: 0;
+}
+.viz-v span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.viz-vrow--open {
+  margin: 0.25em -0.7em 0;
+  padding: 0.6em 0.7em;
+  border-radius: var(--r-sm);
+  background: var(--gold-bg);
+  border-bottom: none;
+}
+.viz-vrow--open .viz-k { color: var(--v-gold-ink); }
+.viz-vrow--open .viz-v { color: var(--v-gold-ink); font-weight: 600; }
+.viz-vrow--open .viz-tick { background: #C39A4E; }
+
+/* Fußzeile im Hero nach rechts rücken — die überlagernde
+   .hero-float-card belegt die linke untere Ecke. */
+.viz--hero .viz-foot {
+  justify-content: flex-end;
+  text-align: right;
+  padding-left: 42%;
+}
+
+/* ── 2) PROBLEM-BANNER: Routine-Aufstellung ──────────────────────── */
+.viz--routine {
+  font-size: clamp(9px, 1.9cqw, 11px);
+  justify-content: center;
+  padding: 0.9em 1.2em;
+  background: linear-gradient(135deg, #FBF6F1 0%, #F6EBE3 100%);
+}
+.viz-tallyrow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 6.4em 5.4em 4.4em;
+  align-items: center;
+  gap: 0.9em;
+  padding: 0.42em 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.viz-tallyrow:last-child { border-bottom: none; }
+.viz-tallyrow > span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink-mid);
+}
+.viz-freq {
+  font-family: var(--v-mono);
+  font-size: 0.88em;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+  text-align: right;
+}
+.viz-meter {
+  height: 0.5em;
+  border-radius: 100px;
+  background: #E2D8CF;
+  overflow: hidden;
+}
+.viz-meter i {
+  display: block;
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(90deg, #C98A5E 0%, var(--v-warn) 100%);
+}
+.viz-cost {
+  font-family: var(--v-mono);
+  font-size: 0.88em;
+  font-weight: 700;
+  color: var(--v-warn);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ── 3) BERATUNG: Analysebericht ─────────────────────────────────── */
+.viz--analyse .viz-steps {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.5em 1.35em;
+}
+.viz-step {
+  display: grid;
+  grid-template-columns: 2.4em minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 0.9em;
+  padding: 0.85em 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.viz-step:last-child { border-bottom: none; }
+.viz-num {
+  font-family: var(--v-mono);
+  font-size: 0.78em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--v-gold-ink);
+}
+.viz-step-t {
+  font-size: 0.92em;
+  font-weight: 500;
+  color: var(--ink);
+}
+.viz-step-s {
+  display: block;
+  font-size: 0.86em;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin-top: 0.15em;
+}
+.viz-chip {
+  flex-shrink: 0;
+  padding: 0.3em 0.75em;
+  border-radius: 100px;
+  background: var(--paper-3);
+  border: 1px solid transparent;
+  font-family: var(--v-mono);
+  font-size: 0.68em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.viz-chip--gold {
+  background: linear-gradient(180deg, #F6E9CE 0%, #EFDDB8 100%);
+  border: 1px solid #C39A4E;
+  color: #7E5C1C;
+  font-weight: 600;
+}
+.viz-chip--ok {
+  background: var(--v-ok-bg);
+  border: 1px solid rgba(94, 122, 85, 0.45);
+  color: var(--v-ok);
+  font-weight: 600;
+}
+.viz-chip--warn {
+  background: var(--v-warn-bg);
+  border: 1px solid rgba(176, 96, 58, 0.4);
+  color: var(--v-warn);
+  font-weight: 600;
+}
+
+/* ── 4) WORKFLOWS: Pipeline ──────────────────────────────────────── */
+.viz--pipeline .viz-pipe {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.9em 1.35em 0.9em 3.1em;
+}
+.viz--pipeline .viz-pipe::before {
+  content: '';
+  position: absolute;
+  left: 1.85em;
+  top: 2.2em;
+  bottom: 2.2em;
+  width: 1px;
+  background: linear-gradient(180deg, var(--v-ok) 0%, var(--v-ok) 55%, rgba(58, 54, 49, 0.25) 55%);
+}
+.viz-node { position: relative; padding: 0.72em 0; }
+.viz-node::before {
+  content: '';
+  position: absolute;
+  left: -1.62em;
+  top: 1.28em;
+  width: 0.62em; height: 0.62em;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1.5px solid var(--ink-faint);
+  box-sizing: border-box;
+}
+.viz-node--done::before { background: var(--v-ok); border-color: var(--v-ok); }
+.viz-node--now::before {
+  background: #C39A4E;
+  border-color: #C39A4E;
+  box-shadow: 0 0 0 0.36em rgba(195, 154, 78, 0.28);
+}
+.viz-node--now {
+  margin: 0.2em -0.7em 0.2em -0.9em;
+  padding: 0.6em 0.7em 0.6em 0.9em;
+  border-radius: var(--r-sm);
+  background: var(--gold-bg);
+}
+.viz-node-t {
+  font-size: 0.92em;
+  font-weight: 500;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+}
+.viz-node-s {
+  font-size: 0.82em;
+  color: var(--ink-soft);
+  margin-top: 0.1em;
+}
+.viz-node--now .viz-node-t { color: var(--v-gold-ink); font-weight: 600; }
+.viz-node--done .viz-node-t { color: var(--ink); }
+
+/* ── 5) LOKALE KI: Datenfluss im eigenen Netz ────────────────────── */
+.viz--onprem .viz-net {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1.5em 1.35em 0.9em;
+  padding: 1.4em 1.2em 1.2em;
+  border: 1.5px dashed rgba(94, 122, 85, 0.55);
+  border-radius: var(--r-md);
+  background: linear-gradient(180deg, #FBFCF9 0%, #F3F6EF 100%);
+}
+.viz-net-label {
+  position: absolute;
+  top: -0.72em;
+  left: 1em;
+  padding: 0 0.6em;
+  background: var(--paper);
+  font-family: var(--v-mono);
+  font-size: 0.7em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--v-ok);
+}
+.viz-net-inner {
+  display: grid;
+  grid-template-columns: 5.4em minmax(0, 1fr);
+  gap: 1.3em;
+  align-items: center;
+}
+.viz-rack {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5em;
+  padding: 0.8em 0.6em;
+  border-radius: var(--r-sm);
+  background: var(--ink);
+}
+.viz-rack span {
+  display: block;
+  height: 1.05em;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.14);
+  position: relative;
+}
+.viz-rack span::after {
+  content: '';
+  position: absolute;
+  right: 0.4em;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0.3em; height: 0.3em;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.32);
+}
+.viz-rack span.is-live { background: rgba(195, 154, 78, 0.45); }
+.viz-rack span.is-live::after {
+  background: #E0B65F;
+  box-shadow: 0 0 0.6em rgba(224, 182, 95, 1);
+}
+.viz-rack span:nth-child(1)::after,
+.viz-rack span:nth-child(3)::after { background: rgba(94, 122, 85, 0.9); }
+.viz-modelrow {
+  display: flex;
+  align-items: center;
+  gap: 0.65em;
+  font-size: 0.88em;
+  color: var(--ink-mid);
+  padding: 0.28em 0;
+}
+.viz-modelrow i {
+  width: 0.5em; height: 0.5em;
+  border-radius: 50%;
+  background: var(--v-ok);
+  flex-shrink: 0;
+}
+.viz-loop {
+  margin-top: 0.7em;
+  padding: 0.55em 0.85em;
+  border-radius: var(--r-sm);
+  background: var(--v-ok-bg);
+  border: 1px solid rgba(94, 122, 85, 0.28);
+  font-family: var(--v-mono);
+  font-size: 0.74em;
+  letter-spacing: 0.04em;
+  color: var(--v-ok);
+  font-weight: 600;
+}
+.viz-blocked {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin: 0 1.35em 1.1em;
+  padding: 0.5em 0.8em;
+  border-radius: var(--r-sm);
+  background: var(--v-warn-bg);
+  font-size: 0.8em;
+  font-weight: 500;
+  color: var(--v-warn);
+}
+.viz-blocked i {
+  position: relative;
+  width: 1.05em; height: 1.05em;
+  border: 1.5px solid var(--v-warn);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.viz-blocked i::before,
+.viz-blocked i::after {
+  content: '';
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 0.52em; height: 1.5px;
+  background: var(--v-warn);
+}
+.viz-blocked i::before { transform: translate(-50%, -50%) rotate(45deg); }
+.viz-blocked i::after  { transform: translate(-50%, -50%) rotate(-45deg); }
+
+/* ── 6) WEB-TOOLS: Anwendungs-Wireframe ──────────────────────────── */
+.viz--app { padding: 1.5em; background: var(--paper-2); justify-content: center; }
+.viz-win {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 0.9em 2.4em rgba(58, 54, 49, 0.09);
+}
+.viz-win-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.9em;
+  padding: 0.62em 0.9em;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper-2);
+  font-family: var(--v-mono);
+  font-size: 0.7em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.viz-dots { display: flex; gap: 0.35em; flex-shrink: 0; }
+.viz-dots i {
+  width: 0.46em; height: 0.46em;
+  border-radius: 50%;
+  background: var(--paper-3);
+}
+.viz-win-body {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 6.2em minmax(0, 1fr);
+}
+.viz-side {
+  padding: 0.9em 0.8em;
+  border-right: 1px solid var(--line);
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.viz-side i {
+  display: block;
+  height: 0.5em;
+  border-radius: 100px;
+  background: var(--paper-3);
+}
+.viz-side i.is-on { background: var(--v-gold-ink); width: 78%; }
+.viz-side i:nth-child(2) { width: 62%; }
+.viz-side i:nth-child(3) { width: 84%; }
+.viz-side i:nth-child(4) { width: 54%; }
+.viz-side i:nth-child(5) { width: 70%; }
+.viz-main {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1em;
+}
+.viz-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.55em; }
+.viz-kpi {
+  padding: 0.6em 0.7em;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--paper);
+}
+.viz-kpi b {
+  display: block;
+  font-size: 1.15em;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  line-height: 1;
+}
+.viz-kpi small {
+  display: block;
+  margin-top: 0.4em;
+  font-family: var(--v-mono);
+  font-size: 0.62em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.viz-kpi--gold {
+  background: linear-gradient(180deg, #F9EFD7 0%, #F3E4C2 100%);
+  border-color: #C39A4E;
+}
+.viz-kpi--gold b { color: var(--v-gold-ink); }
+.viz-kpi--ok {
+  background: var(--v-ok-bg);
+  border-color: rgba(94, 122, 85, 0.45);
+}
+.viz-kpi--ok b { color: var(--v-ok); }
+.viz-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.55em;
+  flex: 1;
+  min-height: 4.4em;
+  padding-top: 0.2em;
+  border-bottom: 1px solid var(--line);
+}
+.viz-chart i {
+  flex: 1;
+  max-width: 1.5em;
+  border-radius: 2px 2px 0 0;
+  background: linear-gradient(180deg, #C7BFB3 0%, #B8AFA1 100%);
+}
+.viz-chart i.is-ok { background: linear-gradient(180deg, #7E9873 0%, var(--v-ok) 100%); }
+.viz-chart i.is-peak { background: linear-gradient(180deg, #E0B65F 0%, #C39A4E 100%); }
+.viz-table { display: flex; flex-direction: column; gap: 0.45em; }
+.viz-trow {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 0.7fr;
+  gap: 0.6em;
+  align-items: center;
+}
+.viz-trow i {
+  height: 0.4em;
+  border-radius: 100px;
+  background: var(--paper-3);
+}
+.viz-trow i { background: #DCD5CB; }
+.viz-trow i:first-child { background: rgba(58, 54, 49, 0.3); }
+.viz-trow--head i { background: var(--ink-faint); opacity: 0.45; }
