@@ -285,21 +285,33 @@ nav {
 }
 .hero-main-img {
   width: 100%;
-  height: 380px;
+  aspect-ratio: 3 / 2;
+  min-height: 280px;
   border-radius: 16px;
   overflow: hidden;
 }
-.hero-float-card {
-  position: absolute;
-  bottom: -40px;
-  left: -28px;
+/* Kennzahl-Karte: sitzt unter dem Mockup statt darüber, damit sie
+   nichts verdeckt — das Mockup traegt selbst Information. */
+.hero-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 14px;
-  padding: 16px 20px;
-  width: 200px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  padding: 14px 18px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
 }
+.hero-stat-card .float-card-label { margin-bottom: 0; flex-shrink: 0; }
+.hero-stat-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--paper-3);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.hero-stat-bar > i { display: block; height: 100%; background: var(--gold); border-radius: 100px; }
 .float-card-label {
   font-size: 11px;
   color: var(--ink-soft);
@@ -466,6 +478,9 @@ section.dark {
 .tab-visual {
   width: 100%;
   aspect-ratio: 4 / 3;
+  /* Boden fuer den Bereich zwischen 861px Viewport und dem Mobile-Breakpoint,
+     in dem die Schriftskalierung des Mockups bereits am Minimum sitzt. */
+  min-height: 330px;
   border-radius: var(--r-lg);
   background: #FAF8F5;
   overflow: hidden;
@@ -600,7 +615,7 @@ section.dark {
 }
 .compare-head {
   display: grid;
-  grid-template-columns: 2fr 1fr 1.2fr;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr;
   background: var(--paper-2);
   border-bottom: 1px solid var(--line);
 }
@@ -620,7 +635,7 @@ section.dark {
 }
 .compare-row {
   display: grid;
-  grid-template-columns: 2fr 1fr 1.2fr;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr;
   border-bottom: 1px solid var(--line-soft);
   align-items: center;
 }
@@ -980,9 +995,9 @@ footer {
   .hero-h1 { font-size: 36px; }
 
   .hero-visual { order: -1; }
-  .hero-main-img { height: auto; aspect-ratio: auto; }
-  .hero-float-card { display: none; }
-  .hero-float-badge { right: 8px; top: 12px; font-size: 11px; padding: 6px 12px; }
+  .hero-main-img { height: auto; aspect-ratio: auto; min-height: 0; }
+  .hero-stat-card { flex-wrap: wrap; gap: 10px 14px; padding: 14px 16px; }
+  .hero-stat-bar { order: 3; flex-basis: 100%; }
 
   .hero-trust { flex-direction: column; align-items: flex-start; gap: 12px; }
   .trust-logos { gap: 16px; }
@@ -1002,7 +1017,7 @@ footer {
     grid-template-columns: 1fr;
     gap: 32px;
   }
-  .tab-visual { aspect-ratio: auto; }
+  .tab-visual { aspect-ratio: auto; min-height: 0; }
 
   .process-steps { grid-template-columns: 1fr; }
   .process-step { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 28px 24px; }
@@ -1019,8 +1034,8 @@ footer {
   .compare-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .compare-head,
   .compare-row {
-    grid-template-columns: 1.8fr 1fr 1.2fr;
-    min-width: 400px;
+    grid-template-columns: 1.8fr 1fr 1fr 1.2fr;
+    min-width: 520px;
   }
   .compare-col-head,
   .compare-cell { padding: 12px 14px; font-size: 12px; }
@@ -1769,8 +1784,8 @@ footer {
 .viz-vrow--open .viz-v { color: var(--v-gold-ink); font-weight: 600; }
 .viz-vrow--open .viz-tick { background: #C39A4E; }
 
-/* Fußzeile im Hero nach rechts rücken — die überlagernde
-   .hero-float-card belegt die linke untere Ecke. */
+/* Aktuell ungenutzt: .viz--hero wird seit der Umstellung des Heros
+   auf das Analysebericht-Mockup nirgends mehr im Markup verwendet. */
 .viz--hero .viz-foot {
   justify-content: flex-end;
   text-align: right;
@@ -1803,6 +1818,10 @@ footer {
   font-family: var(--v-mono);
   font-size: 0.88em;
   white-space: nowrap;
+  /* Guard: zu langer Text darf nicht in die Meter-Spalte laufen. */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
   letter-spacing: 0.04em;
   color: var(--ink-faint);
   text-align: right;

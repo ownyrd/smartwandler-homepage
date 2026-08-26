@@ -33,7 +33,15 @@ function activateTab(targetId) {
     if (isTarget) found = true;
   });
   document.querySelectorAll('.tab-pane').forEach(function (p) {
-    p.classList.toggle('active', p.getAttribute('data-pane') === targetId);
+    var isTarget = p.getAttribute('data-pane') === targetId;
+    p.classList.toggle('active', isTarget);
+    // Visuals inaktiver Panes stehen auf display:none, deshalb feuert der
+    // Reveal-Observer für sie nie. Beim Aktivieren direkt einblenden.
+    if (isTarget) {
+      p.querySelectorAll('.reveal').forEach(function (el) {
+        el.classList.add('in-view');
+      });
+    }
   });
   return found;
 }
