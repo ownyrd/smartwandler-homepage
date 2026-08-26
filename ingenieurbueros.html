@@ -3,328 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digitaler Mitarbeiter für Ingenieurbüros: lokal, DSGVO-konform | smartwandler.de</title>
-<meta name="description" content="Sparen Sie wertvolle Ingenieurszeit. Ihr digitaler Mitarbeiter übernimmt Prüfberichte, Protokolle und Rechnungsentwürfe – 100 % lokal auf Ihrer Hardware. Ohne Cloud-Zwang.">
+<title>Lokale KI für Ingenieur- und Planungsbüros | smartwandler.de</title>
+<meta name="description" content="Was in der Baubesprechung festgelegt wurde, steht in keinem Plan. Wir bauen eine KI, die Ihre Projektunterlagen durchsucht: im eigenen Haus, mit Datum, Quelle und Planstand bei jeder Aussage.">
 <link rel="preload" href="fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="images/lokale-ki-anwendungen.webp" type="image/webp" fetchpriority="high">
 <link rel="stylesheet" href="styles.css">
 <!--
   Matomo & Meta Pixel werden ausschließlich nach Cookie-Consent
   durch script.js geladen (siehe loadMatomo / loadFacebookPixel).
 -->
-<style>
-/* === Landing-Page-spezifische CTA-Verstärkungen === */
-
-/* Inline CTA: die zentrale Frage */
-.lp-inline-cta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 96px 24px;
-  background: transparent;
-}
-.lp-inline-cta-eyebrow {
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-bottom: 14px;
-}
-.lp-inline-cta-question {
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 34px;
-  font-weight: 600;
-  color: var(--ink);
-  letter-spacing: -0.03em;
-  line-height: 1.18;
-  max-width: 780px;
-  margin: 14px 0 20px;
-}
-.lp-inline-cta-text {
-  font-size: 17px;
-  font-weight: 400;
-  color: var(--ink-soft);
-  max-width: 580px;
-  margin: 0 0 28px;
-  line-height: 1.55;
-}
-
-/* Pain-Points-Grid (Was Sie loswerden) */
-.pain-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 44px;
-}
-.pain-card {
-  background: var(--paper-1, #fff);
-  border: 1px solid var(--paper-3, #e8e0c8);
-  border-radius: var(--r-lg, 16px);
-  padding: 28px 26px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.pain-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.06);
-}
-.pain-card-eyebrow {
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-.pain-card-title {
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--ink);
-  line-height: 1.3;
-  margin: 0;
-}
-.pain-card-body {
-  font-size: 15px;
-  color: var(--ink-soft);
-  line-height: 1.55;
-  margin: 0;
-}
-.pain-card-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: var(--gold-bg, #F7F0E3);
-  border: 1px solid rgba(200, 169, 106, 0.3);
-  color: var(--gold, #C8A96A);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-bottom: 6px;
-}
-.pain-card-icon svg {
-  width: 22px;
-  height: 22px;
-  display: block;
-}
-
-/* Mobile-only Nav-CTA (immer sichtbar, neben Burger) */
-.nav-cta-mobile-link { display: none; }
-
-/* Sticky Mobile CTA */
-.lp-sticky-cta-link {
-  display: none;
-  position: fixed;
-  left: 14px;
-  right: 14px;
-  bottom: 14px;
-  z-index: 90;
-  text-decoration: none;
-}
-.lp-sticky-cta {
-  display: block;
-  width: 100%;
-  background: var(--gold);
-  color: var(--ink);
-  border: none;
-  padding: 16px 22px;
-  border-radius: 100px;
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-  letter-spacing: -0.01em;
-}
-
-/* === Demo-Sektion mit Video === */
-.lp-demo {
-  background: var(--paper-2, #f5efe0);
-  padding: 80px 24px;
-}
-.lp-demo-inner {
-  max-width: 980px;
-  margin: 0 auto;
-}
-.lp-demo h2 {
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 38px;
-  font-weight: 600;
-  color: var(--ink);
-  letter-spacing: -0.035em;
-  line-height: 1.1;
-  margin: 12px 0 16px;
-}
-.lp-demo-lead {
-  font-size: 17px;
-  color: var(--ink-soft);
-  line-height: 1.6;
-  max-width: 720px;
-  margin: 0 0 32px;
-}
-.lp-demo-video {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: var(--ink);
-  border-radius: var(--r-lg, 16px);
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
-}
-.lp-demo-video video,
-.lp-demo-video iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-.lp-demo-placeholder {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2a24 100%);
-  color: rgba(255,255,255,0.85);
-  text-align: center;
-  padding: 24px;
-}
-.lp-demo-placeholder-icon {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: var(--gold);
-  color: var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  margin-bottom: 18px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-}
-.lp-demo-placeholder-label {
-  font-size: 13px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
-  margin-bottom: 8px;
-}
-.lp-demo-placeholder-text {
-  font-size: 16px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.85);
-  max-width: 460px;
-  line-height: 1.5;
-}
-
-/* === Hero-Demo-Preview (klickbar, statt Autoplay) === */
-.lp-hero-demo-preview {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: var(--r-lg, 16px);
-  overflow: hidden;
-  cursor: pointer;
-  display: block;
-  text-decoration: none;
-}
-.lp-hero-demo-preview img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.lp-hero-demo-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.35) 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s ease;
-}
-.lp-hero-demo-preview:hover .lp-hero-demo-overlay {
-  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.45) 100%);
-}
-.lp-hero-demo-play {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: var(--gold);
-  color: var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-  padding-left: 4px;
-}
-.lp-hero-demo-caption {
-  position: absolute;
-  left: 16px;
-  bottom: 14px;
-  font-size: 12px;
-  color: rgba(255,255,255,0.9);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-/* Cookie-Banner über Sticky-CTA */
-.cookie-banner { z-index: 1000; }
-
-@media (max-width: 900px) {
-  .lp-demo h2 { font-size: 30px; }
-}
-@media (max-width: 900px) {
-  .pain-grid { grid-template-columns: repeat(2, 1fr); }
-  .lp-inline-cta-question { font-size: 26px; }
-}
-@media (max-width: 700px) {
-  .nav-cta-mobile-link {
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-    margin-left: auto;
-    margin-right: 12px;
-  }
-  .nav-cta-mobile {
-    background: var(--gold);
-    color: var(--ink);
-    border: none;
-    padding: 9px 16px;
-    border-radius: 100px;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    white-space: nowrap;
-    letter-spacing: -0.01em;
-  }
-  .lp-sticky-cta-link { display: block; }
-  body { padding-bottom: 80px; }
-  .lp-inline-cta { padding: 64px 18px; }
-  .lp-inline-cta-question { font-size: 22px; }
-  .lp-inline-cta-text { font-size: 16px; }
-  .lp-demo { padding: 56px 18px; }
-  .lp-demo h2 { font-size: 26px; }
-  .lp-demo-lead { font-size: 16px; }
-  .pain-grid { grid-template-columns: 1fr; gap: 14px; }
-  .pain-card { padding: 22px 20px; }
-}
-</style>
 </head>
 <body>
 <div class="page">
 
   <!-- ══════════════════════════════════════
-       NAV (minimal für Landing Page)
+       NAV
   ══════════════════════════════════════ -->
   <nav>
     <a href="index.html" class="nav-logo" style="text-decoration:none">
@@ -334,11 +26,12 @@
       </picture>
       <span class="nav-logo-wordmark">smartwandler</span>
     </a>
-    <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo nav-cta-mobile-link" aria-label="Termin buchen"><button class="nav-cta-mobile">Termin →</button></a>
     <button class="nav-toggle" aria-label="Menü">
       <span></span><span></span><span></span>
     </button>
     <div class="nav-links">
+      <a href="#fall" style="font-size:15px;color:var(--ink-soft);text-decoration:none">Praxisfall</a>
+      <a href="#demo" style="font-size:15px;color:var(--ink-soft);text-decoration:none">Demo</a>
       <a href="#faq" style="font-size:15px;color:var(--ink-soft);text-decoration:none">FAQ</a>
       <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="nav-cta">Kostenloses Erstgespräch</button></a>
     </div>
@@ -351,370 +44,299 @@
     <div>
       <div class="hero-badge">
         <div class="hero-badge-dot"></div>
-        <span class="hero-badge-text">Für Ingenieur- und Planungsbüros · Lokal · DSGVO-konform</span>
+        <span class="hero-badge-text">Für Ingenieur-, Planungs- und Sachverständigenbüros</span>
       </div>
 
-      <h1 class="hero-h1">Ihr digitaler Mitarbeiter für Ingenieurbüros</h1>
+      <h1 class="hero-h1">Zweimal geplant.<br>Einmal bezahlt.</h1>
 
-      <p style="font-size:18px;line-height:1.6;color:var(--ink-soft);margin-bottom:32px;max-width:580px">Nach der Baubesprechung abends noch Protokolle tippen und To-Do-Listen pflegen? Stundennachweise mühsam für die Rechnung zusammentragen? Gutachten manuell erstellen? Sparen Sie wertvolle Ingenieurszeit. Ihr digitaler Mitarbeiter übernimmt genau diese Routineaufgaben, <strong>lokal bei Ihnen im Haus</strong>. Ihre Projektdaten verlassen das Büro nicht.</p>
+      <p style="font-size:18px;line-height:1.6;color:var(--ink-soft);margin-bottom:32px;max-width:520px">Die Festlegung stand im Protokoll der Baubesprechung. Nur findet sie niemand, wenn der Plan raus muss. Wir bauen Ihnen eine KI, die Ihre Projektunterlagen durchsucht und antwortet, bevor gezeichnet wird: im eigenen Haus, mit Datum, Quelle und Planstand bei jeder Aussage.</p>
 
       <div class="hero-ctas">
-        <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="hero-cta-primary">Kostenloses Erstgespräch buchen →</button></a>
-      </div>
-
-      <!-- <div class="hero-trust">
-        <div class="trust-label">Gründer: Philipp Anders, Dipl.-Ing. (FH)</div>
-        <div class="trust-logos" style="font-size:14px;color:var(--ink-soft);font-weight:500;letter-spacing:0.01em">
-          der selbst einige Zeit in Ingenieurbüros gearbeitet hat.
-        </div>
-      </div> -->
-    </div>
-
-    <!-- Hero right -->
-    <div class="hero-visual">
-      <div class="hero-main-img">
-        <a href="#demo" class="lp-hero-demo-preview" aria-label="Live-Demo ansehen: lokal erstelltes Baubesprechungs-Protokoll">
-          <picture>
-            <source srcset="images/lokale-ki-anwendungen.webp" type="image/webp">
-            <img src="images/lokale-ki-anwendungen.png" alt="Vorschau: aus Baubesprechungs-Audio wird ein fertiges Protokoll" width="578" height="432" fetchpriority="high">
-          </picture>
-          <div class="lp-hero-demo-overlay">
-            <div class="lp-hero-demo-play" aria-hidden="true">▶</div>
-          </div>
-          <span class="lp-hero-demo-caption">Live-Demo · 4 Min</span>
+        <a href="#demo" style="text-decoration:none"><button class="hero-cta-primary">▶ Demo ansehen</button></a>
+        <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo" style="text-decoration:none">
+          <button class="hero-cta-secondary">
+            <span>Kostenloses Erstgespräch</span>
+            <span style="font-size:18px;opacity:0.5">→</span>
+          </button>
         </a>
       </div>
-      <div class="hero-float-card">
-        <div class="float-card-label">Im Haus</div>
-        <div style="font-family:'Inter', system-ui, sans-serif;font-size:28px;font-weight:600;line-height:1;color:var(--ink);letter-spacing:-0.035em;margin-bottom:10px">100&thinsp;%</div>
-        <div style="height:6px;background:var(--paper-3);border-radius:100px;overflow:hidden">
-          <div style="width:100%;height:100%;background:var(--gold);border-radius:100px"></div>
+
+      <div class="hero-trust">
+        <div class="trust-label">Erfahrung aus Projekten bei</div>
+        <div class="trust-logos" style="font-size:14px;color:var(--ink-soft);font-weight:500;letter-spacing:0.01em">
+          Mercedes-Benz · Volkswagen · Sopra Steria · Deloitte
         </div>
-        <div style="font-size:11px;color:var(--ink-soft);margin-top:8px;letter-spacing:0.02em">Projektdaten bleiben vor Ort</div>
       </div>
-      <div class="hero-float-badge">Protokoll · Prüfbericht · Rechnung</div>
+    </div>
+
+    <!-- Hero rechts: Mockup „Planauskunft" -->
+    <div class="hero-visual">
+      <div class="hero-main-img viz">
+        <figure class="viz-stage viz--hero" role="img" aria-label="Mockup einer Planauskunft: Die Projektleitung fragt, ob die Wandstärke aus Plan A-204 noch gilt. Das System nennt den aktuellen Planstand Index D, weist auf den Widerspruch hin und benennt als maßgeblich eine Festlegung aus dem Protokoll der Baubesprechung vom 8. November 2023.">
+          <div class="viz-bar">
+            <span>Planauskunft <b>· BV-2023-041</b></span>
+            <span class="viz-live">im Haus</span>
+          </div>
+
+          <div class="viz-intake">
+            <div class="viz-from">Projektleitung · Ausführungsplanung Achse C</div>
+            <p class="viz-quote">„Gilt die Wandstärke aus Plan A-204 noch?“</p>
+          </div>
+
+          <div class="viz-rows">
+            <div class="viz-vrow">
+              <span class="viz-k">Planstand</span>
+              <span class="viz-v"><span class="viz-tick"></span><span>A-204, Index D vom 14.03.2024</span></span>
+            </div>
+            <div class="viz-vrow">
+              <span class="viz-k">Widerspruch</span>
+              <span class="viz-v"><span>Index D bildet die Änderung nicht ab</span></span>
+            </div>
+            <div class="viz-vrow viz-vrow--open">
+              <span class="viz-k">Maßgeblich</span>
+              <span class="viz-v"><span class="viz-tick"></span><span>Protokoll BB-27, TOP 4</span></span>
+            </div>
+            <div class="viz-vrow">
+              <span class="viz-k">Beleg</span>
+              <span class="viz-v"><span>Baubesprechung 08.11.2023</span></span>
+            </div>
+          </div>
+
+          <figcaption class="viz-foot">
+            <span>Festlegung aus der Besprechung,<br>nie in den Planstand eingearbeitet.</span>
+            <span class="viz-stamp">Beleg<small>mit Datum</small></span>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="hero-stat-card">
+        <div class="float-card-label">Geklärt vor dem Zeichnen</div>
+        <div class="hero-stat-bar"><i style="width:60%"></i></div>
+        <div style="font-size:13px;color:var(--ink-soft);letter-spacing:0.01em;flex-shrink:0">ein Planlauf, <strong style="color:var(--ink);font-weight:500">kein Nachtrag</strong></div>
+      </div>
     </div>
   </div>
 
   <!-- ══════════════════════════════════════
-       DEMO (volles Video) — direkt nach dem Hero
-  ══════════════════════════════════════ -->
-  <section class="lp-demo" id="demo">
-    <div class="lp-demo-inner">
-      <div class="section-eyebrow">
-        <div class="eyebrow-line"></div>
-        <span class="eyebrow-text">Live-Demo</span>
-      </div>
-      <h2>Baubesprechungs-Protokoll<br>lokal erstellen</h2>
-      <p class="lp-demo-lead">Aufnahme im Audioformat hinein, Protokoll inklusive Teilnehmer, Todos und Zusammenfassung heraus. Die Verarbeitung erfolgt absolut sicher direkt auf einem Gerät in Ihrem Büro, als ob ein Mitarbeiter neben Ihnen sitzen würde.</p>
-
-      <div class="lp-demo-video">
-        <video controls preload="metadata" poster="video/smartwandler-demo-poster.jpg" playsinline>
-          <source src="video/smartwandler-demo-720p.mp4" type="video/mp4">
-          Ihr Browser unterstützt das Video-Format nicht.
-        </video>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════
-       3) WAS SIE LOSWERDEN – Pain Points
+       PROBLEM (Bento)
   ══════════════════════════════════════ -->
   <section class="alt">
     <div class="section-eyebrow">
       <div class="eyebrow-line"></div>
-      <span class="eyebrow-text">Was Sie loswerden</span>
+      <span class="eyebrow-text">Das Problem</span>
     </div>
-    <h2 class="section-h2">Was sind die lästigsten Aufgaben<br>in Ihrem Ingenieurbüro?</h2>
-    <p style="font-size:17px;color:var(--ink-soft);margin-top:12px;max-width:660px">Lassen Sie ab jetzt Ihren digitalen Mitarbeiter die Routineaufgaben erledigen, damit Ihre Ingenieure wieder planen statt tippen.</p>
+    <h2 class="section-h2">Sie haben die Unterlagen.<br>Sie kommen nur nicht dran.</h2>
+    <p style="font-size:17px;color:var(--ink-soft);margin-top:12px;max-width:580px">Jede Entscheidung ist irgendwo festgehalten, im Protokoll, in der Mail, im Nachtrag. Nach dem Ablegen sucht sie niemand mehr, weil die Suche länger dauert als das Nachfragen.</p>
 
-    <div class="pain-grid">
+    <div class="bento">
 
-      <!-- Pain 01 -->
-      <article class="pain-card">
-        <div class="pain-card-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="9" y="2" width="6" height="12" rx="3"/>
-            <path d="M5 11a7 7 0 0 0 14 0"/>
-            <line x1="12" y1="18" x2="12" y2="22"/>
-            <line x1="8" y1="22" x2="16" y2="22"/>
-          </svg>
-        </div>
-        <div class="pain-card-eyebrow">Pain 01 · Baubesprechungen</div>
-        <h3 class="pain-card-title">Baubesprechungen, aus denen am Ende keiner die To-Dos sauber festhält</h3>
-        <p class="pain-card-body">Aus der Aufnahme entsteht ein strukturiertes Protokoll: Anwesende, Themen, Entscheidungen und Aufgaben mit Verantwortlichem und Termin. Liegt nach der Sitzung im Projektordner. Keine handschriftlichen Zettel mehr.</p>
-      </article>
-
-      <!-- Pain 02 -->
-      <article class="pain-card">
-        <div class="pain-card-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <path d="M9 13l2 2 4-4"/>
-          </svg>
-        </div>
-        <div class="pain-card-eyebrow">Pain 02 · Prüfberichte</div>
-        <h3 class="pain-card-title">Prüfberichte und Protokolle, die ewig dauern</h3>
-        <p class="pain-card-body">Tagelang Notizen abtippen, Fotos einfügen, formatieren. Der digitale Mitarbeiter baut den Erstentwurf aus Ihren Vor-Ort-Notizen und Bildern, nach Ihrer Vorlage. Sie prüfen, ergänzen, geben frei.</p>
-      </article>
-
-      <!-- Pain 03 -->
-      <article class="pain-card">
-        <div class="pain-card-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"/>
-            <polyline points="12 7 12 12 16 14"/>
-          </svg>
-        </div>
-        <div class="pain-card-eyebrow">Pain 03 · Abrechnung</div>
-        <h3 class="pain-card-title">Stundennachweise aus drei Tools in eine Rechnung übertragen</h3>
-        <p class="pain-card-body">Excel, Zeiterfassung, Outlook-Kalender, Notizzettel und dann mühsam in die Rechnung. Der digitale Mitarbeiter sammelt, ordnet, prüft und legt den Rechnungsentwurf vor. Sie unterschreiben.</p>
-      </article>
-
-      <!-- Pain 04 -->
-      <article class="pain-card">
-        <div class="pain-card-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="5" width="18" height="14" rx="2"/>
-            <polyline points="3 7 12 13 21 7"/>
-          </svg>
-        </div>
-        <div class="pain-card-eyebrow">Pain 04 · Koordination</div>
-        <h3 class="pain-card-title">E-Mail-Flut durch die Baustellen-Koordination</h3>
-        <p class="pain-card-body">E-Mails von Architekten, Fachplanern, Bauleitern, Bauherren überfluten den Posteingang? Der digitale Mitarbeiter fasst Threads zusammen, zieht To-Dos heraus und formuliert Antworten in Ihrem Ton zum Freigeben in Ihrem Entwürfeordner.</p>
-      </article>
-
-      <!-- Pain 05 -->
-      <article class="pain-card">
-        <div class="pain-card-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2 2 7l10 5 10-5-10-5z"/>
-            <path d="M2 12l10 5 10-5"/>
-            <path d="M2 17l10 5 10-5"/>
-          </svg>
-        </div>
-        <div class="pain-card-eyebrow">Pain 05 · Projektdaten</div>
-        <h3 class="pain-card-title">Pläne, Freigaben, Änderungen: Daten parallel in mehreren Systemen pflegen</h3>
-        <p class="pain-card-body">Welche Revision gilt jetzt? Wurde Plan X freigegeben? Der digitale Mitarbeiter benennt und sortiert eingehende Pläne automatisch und beantwortet „Wo steht das aktuell?" in Sekunden.</p>
-      </article>
-
-      <!-- Pain 06 -->
-      <article class="pain-card">
-        <div class="pain-card-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/>
-            <rect x="9.5" y="10.5" width="5" height="4.5" rx="0.6"/>
-            <path d="M10.5 10.5V9a1.5 1.5 0 0 1 3 0v1.5"/>
-          </svg>
-        </div>
-        <div class="pain-card-eyebrow">Pain 06 · Vertraulich</div>
-        <h3 class="pain-card-title">Gutachten schreiben, die nirgendwo hochgeladen werden dürfen</h3>
-        <p class="pain-card-body">Sensible Inhalte, geheimhaltungspflichtige Projekte? Dann sind ChatGPT &amp; Co. tabu. Der digitale Mitarbeiter läuft auf Ihrer Hardware. Sie nutzen künstliche Intelligenz ohne Cloud-Zwang und Abhängigkeiten.</p>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════
-       4) WER STECKT HINTER SMARTWANDLER
-  ══════════════════════════════════════ -->
-  <section>
-    <div class="section-eyebrow">
-      <div class="eyebrow-line"></div>
-      <span class="eyebrow-text">Wer steckt dahinter</span>
-    </div>
-    <h2 class="section-h2">Wer steckt hinter<br>smartwandler?</h2>
-
-    <div style="display:flex;gap:48px;margin-top:32px;align-items:flex-start;flex-wrap:wrap">
-      <div style="flex:0 0 280px;max-width:100%">
-        <picture>
-          <source srcset="images/founder.webp" type="image/webp">
-          <img src="images/founder.jpg" alt="Philipp Anders, Gründer von smartwandler" width="1120" height="746" loading="lazy" style="width:100%;height:auto;border-radius:var(--r-lg);display:block">
-        </picture>
-      </div>
-      <div style="flex:1;min-width:280px">
-        <p style="font-size:17px;line-height:1.7;color:var(--ink-mid);margin-bottom:16px">Ich bin <strong>Ingenieur für Automatisierungstechnik</strong> und habe einige Zeit in Ingenieurbüros gearbeitet. Prüfberichte, Baubesprechungen, Gutachten, Stundennachweise, die E-Mail-Flut mit Architekten und Fachplanern, das alles kenne ich aus meiner eigenen Projektarbeit sehr gut.</p>
-        <p style="font-size:17px;line-height:1.7;color:var(--ink-mid);margin-bottom:16px">Dazu kommt <strong>über ein Jahrzehnt Erfahrung</strong> im technischen Aufbau und Betrieb komplexer IT-Systeme u.&nbsp;a. bei Mercedes-Benz, Volkswagen und in Hochsicherheitsumgebungen des öffentlichen Sektors.</p>
-        <p style="font-size:17px;line-height:1.7;color:var(--ink-mid)">Diese Kombination ist der Punkt: Ich verstehe, <em>was</em> in Ihrem Büro wirklich Zeit kostet und kann damit eine effiziente Automatisierung umsetzen, die Ihnen viel Zeit spart. Lokal, sicher und ohne dass Sie oder Ihr Team zu IT-Experten werden müssen.</p>
-
-        <div style="display:flex;gap:24px;margin-top:28px;flex-wrap:wrap;align-items:center">
+      <div class="bcard b-a">
+        <div class="bcard-eyebrow">Realität 01 · Falscher Planstand</div>
+        <p style="font-size:17px;font-weight:500;color:var(--ink);margin-bottom:8px">Geplant nach einem Stand, der so nicht mehr gilt</p>
+        <p style="font-size:15px;color:var(--ink-soft);line-height:1.5">Der Plan im Ordner ist der aktuelle, das stimmt. Nur ist die Festlegung aus der Besprechung nie eingearbeitet worden. Wer das nicht weiß, plant sie weg, und der Widerspruch fällt erst auf der Baustelle auf.</p>
+        <div class="bcard-illus" style="height:100px;border-radius:var(--r-md);overflow:hidden">
           <picture>
-            <source srcset="images/badge-aws.webp" type="image/webp">
-            <img src="images/badge-aws.png" alt="AWS Solutions Architect Associate" width="192" height="192" loading="lazy" style="height:48px;width:auto">
-          </picture>
-          <picture>
-            <source srcset="images/badge_ckad.webp" type="image/webp">
-            <img src="images/badge_ckad.png" alt="Certified Kubernetes Application Developer" width="192" height="192" loading="lazy" style="height:48px;width:auto">
-          </picture>
-          <picture>
-            <source srcset="images/badge_tf.webp" type="image/webp">
-            <img src="images/badge_tf.png" alt="Terraform Certified Associate" width="192" height="192" loading="lazy" style="height:48px;width:auto">
+            <source srcset="images/manuelle-prozesse.webp" type="image/webp">
+            <img src="images/manuelle-prozesse.png" alt="Illustration: Unterlagen ohne Zugriff" width="1400" height="196" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
           </picture>
         </div>
       </div>
+
+      <div class="bcard b-b">
+        <div class="bcard-eyebrow">Realität 02 · Protokolle</div>
+        <p style="font-size:17px;font-weight:500;color:var(--ink);margin-bottom:8px">Was entschieden wurde, steht in keinem Plan</p>
+        <p style="font-size:15px;color:var(--ink-soft);line-height:1.5">Baubesprechung, Ortstermin, Telefonat mit dem Fachplaner. Festgehalten ist es, verteilt auch. Danach liegt es im Projektordner und wird nie wieder geöffnet.</p>
+        <div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap">
+          <span style="font-size:12px;padding:5px 12px;border-radius:100px;background:var(--paper-3);color:var(--ink-soft)">Index</span>
+          <span style="font-size:12px;padding:5px 12px;border-radius:100px;background:var(--paper-3);color:var(--ink-soft)">Nachtrag</span>
+          <span style="font-size:12px;padding:5px 12px;border-radius:100px;background:var(--paper-3);color:var(--ink-soft)">Freigabe</span>
+        </div>
+      </div>
+
+      <div class="bcard b-c">
+        <div class="bcard-eyebrow">Realität 03 · Verstreute Ablage</div>
+        <p style="font-size:17px;font-weight:500;color:var(--ink);margin-bottom:8px">Drei Orte, eine Antwort</p>
+        <p style="font-size:15px;color:var(--ink-soft);line-height:1.5">Der Plankopf sagt das eine, die Mail das andere, das Protokoll das Dritte. Wer die Auskunft geben soll, muss alle drei kennen und wissen, welches davon gilt.</p>
+      </div>
+
+      <div class="bcard b-d" style="background:var(--ink);border-color:transparent;display:flex;flex-direction:column;justify-content:center">
+        <div style="font-size:52px;font-family:'Inter', system-ui, sans-serif;font-weight:600;color:#fff;letter-spacing:-0.04em;line-height:1">
+          Index D
+        </div>
+        <div style="margin-top:12px">
+          <p style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.5">war der Stand, nach dem geplant wurde. Maßgeblich war eine Festlegung, die es nie in den Plan geschafft hat.</p>
+        </div>
+      </div>
+
+      <div class="bcard b-e">
+        <div class="bcard-eyebrow">Realität 04 · Vertraulichkeit</div>
+        <p style="font-size:17px;font-weight:500;color:var(--ink);margin-bottom:8px">Manche Projekte dürfen nirgends hochgeladen werden</p>
+        <p style="font-size:15px;color:var(--ink-soft);line-height:1.5">Gutachten, KRITIS-Projekte, geheimhaltungspflichtige Unterlagen. Damit scheidet die schnelle Cloud-Lösung von vornherein aus, und das Suchen bleibt Handarbeit.</p>
+      </div>
+
     </div>
   </section>
 
   <!-- ══════════════════════════════════════
-       5) WARUM LOKAL + Vergleichstabelle
+       PRAXISFALL (dark)
   ══════════════════════════════════════ -->
-  <section class="alt">
+  <section class="dark" id="fall">
     <div class="section-eyebrow">
       <div class="eyebrow-line"></div>
-      <span class="eyebrow-text">Warum lokal</span>
+      <span class="eyebrow-text">Ein typischer Fall</span>
     </div>
-    <h2 class="section-h2">Ihre Projektdaten<br>bleiben im Haus</h2>
-    <p style="font-size:17px;color:var(--ink-soft);margin-top:12px;max-width:640px">Sensible Baupläne, Gutachten oder Kundendaten in eine US-Cloud hochzuladen, ist für viele Projekte (besonders im Industrie- oder KRITIS-Sektor) strikt untersagt. Deshalb installieren wir Ihren digitalen Mitarbeiter auf kompakter Hardware direkt in Ihrem Büro. Keine fremden Server, keine monatlichen US-Cloud-Gebühren, kein Vendor-Lock-in. Absolute Datenhoheit.</p>
-
-    <div class="compare-wrap" style="margin-top:40px">
-      <div class="compare-head">
-        <div class="compare-col-head">Kriterium</div>
-        <div class="compare-col-head center">Standard SaaS</div>
-        <div class="compare-col-head highlight center">smartwandler ✓</div>
-      </div>
-      <div class="compare-row">
-        <div class="compare-cell"><span style="font-size:15px;color:var(--ink-mid)">DSGVO-konform lokal</span></div>
-        <div class="compare-cell center"><span class="ic-no">✕</span></div>
-        <div class="compare-cell center highlight-col"><span class="ic-yes">✓</span></div>
-      </div>
-      <div class="compare-row">
-        <div class="compare-cell"><span style="font-size:15px;color:var(--ink-mid)">Keine Cloud-Abhängigkeit</span></div>
-        <div class="compare-cell center"><span class="ic-no">✕</span></div>
-        <div class="compare-cell center highlight-col"><span class="ic-yes">✓</span></div>
-      </div>
-      <div class="compare-row">
-        <div class="compare-cell"><span style="font-size:15px;color:var(--ink-mid)">Festpreis statt Abo</span></div>
-        <div class="compare-cell center"><span class="ic-mid">~</span></div>
-        <div class="compare-cell center highlight-col"><span class="ic-yes">✓</span></div>
-      </div>
-      <div class="compare-row">
-        <div class="compare-cell"><span style="font-size:15px;color:var(--ink-mid)">In wenigen Wochen einsatzbereit</span></div>
-        <div class="compare-cell center"><span class="ic-yes">✓</span></div>
-        <div class="compare-cell center highlight-col"><span class="ic-yes">✓</span></div>
-      </div>
-      <div class="compare-row">
-        <div class="compare-cell"><span style="font-size:15px;color:var(--ink-mid)">Maßgeschneidert für Ihre konkreten Prozesse</span></div>
-        <div class="compare-cell center"><span class="ic-no">✕</span></div>
-        <div class="compare-cell center highlight-col"><span class="ic-yes">✓</span></div>
-      </div>
-    </div>
-    <p style="font-size:11px;color:var(--ink-faint);margin-top:12px;letter-spacing:0.05em">
-      Vergleich: Standard SaaS vs. smartwandler On-Premise-Lösungen
-    </p>
-  </section>
-
-  <!-- ══════════════════════════════════════
-       INLINE CTA — die zentrale Frage
-  ══════════════════════════════════════ -->
-  <section class="lp-inline-cta">
-    <div class="section-eyebrow" style="justify-content:center">
-      <div class="eyebrow-line"></div>
-      <span class="eyebrow-text">Welchen Skill soll Ihr digitaler Mitarbeiter als Erstes lernen?</span>
-      <div class="eyebrow-line"></div>
-    </div>
-    <h2 class="lp-inline-cta-question">Was ist die lästigste Büroaufgabe in Ihrem Unternehmen, die wir für Sie automatisieren sollten?</h2>
-    <p class="lp-inline-cta-text">Schreiben Sie sie auf einen Zettel. Im Erstgespräch sagen wir Ihnen ehrlich, ob und wie sich die Aufgabe automatisieren lässt.</p>
-    <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="hero-cta-primary">Kostenloses Erstgespräch buchen →</button></a>
-  </section>
-
-  <!-- ══════════════════════════════════════
-       6) SO LÄUFT ES AB — Integration in Bestehendes
-  ══════════════════════════════════════ -->
-  <section class="dark">
-    <div class="section-eyebrow">
-      <div class="eyebrow-line"></div>
-      <span class="eyebrow-text">So läuft es ab</span>
-    </div>
-    <h2 class="section-h2" style="color:#fff">Integration statt<br>Systemwechsel</h2>
-    <p style="font-size:17px;color:rgba(255,255,255,0.7);margin-top:12px;max-width:680px">Keine wochenlangen Schulungen. Keine neuen Tools, die Ihr Team erlernen muss. Wir integrieren den digitalen Mitarbeiter direkt in Ihre bestehenden Programme, sodass sich für Sie und Ihre Mitarbeiter kaum etwas ändert, außer, dass die Arbeit spürbar schneller erledigt ist.</p>
+    <h2 class="section-h2" style="color:#fff">Der Plan war aktuell.<br>Die Festlegung älter.</h2>
+    <p style="font-size:17px;color:rgba(255,255,255,0.7);margin-top:12px;max-width:620px">In der Baubesprechung wird eine Ausführung festgelegt und ins Protokoll geschrieben. Das Protokoll geht an alle, wird abgelegt, und der Planstand zieht nicht nach. Monate später plant jemand nach dem Plan, weil der Plan die offizielle Quelle ist.</p>
 
     <div class="process-steps">
       <div class="process-step">
         <div class="step-num-badge">1</div>
-        <div class="step-label-dark">Lästigste Aufgabe identifizieren</div>
-        <p style="font-size:17px;font-weight:500;color:#fff;margin-bottom:12px">Was raubt am meisten Zeit?</p>
-        <p style="font-size:15px;color:rgba(255,255,255,0.72);line-height:1.6">Wir analysieren gemeinsam, welche Routineaufgabe in Ihrem Büro den größten Flaschenhals bildet und ob Automatisierung hier den besten Hebel bietet. Sachlich, präzise und direkt.</p>
+        <div class="step-label-dark">November 2023 · Besprechung</div>
+        <p style="font-size:17px;font-weight:500;color:#fff;margin-bottom:12px">Die Festlegung wird getroffen</p>
+        <p style="font-size:15px;color:rgba(255,255,255,0.72);line-height:1.6">Unter TOP 4 wird die Ausführung geändert und im Protokoll festgehalten. Alle Beteiligten bekommen es, niemand widerspricht. Für den Planstand ist zu diesem Zeitpunkt kein Index vorgesehen.</p>
         <div class="step-connector">→</div>
       </div>
       <div class="process-step">
         <div class="step-num-badge">2</div>
-        <div class="step-label-dark">In Ihre vorhandenen Prozesse integrieren</div>
-        <p style="font-size:17px;font-weight:500;color:#fff;margin-bottom:12px">Bestehende Programme bleiben</p>
-        <p style="font-size:15px;color:rgba(255,255,255,0.72);line-height:1.6">Outlook, Dateiablage, Zeiterfassung, Projekt- und CAD-Software, was Sie bereits nutzen, bleibt. Der digitale Mitarbeiter klinkt sich genau dort ein, wo er Arbeit abnehmen kann. Niemand muss ein neues System lernen oder Ordner-Strukturen wechseln.</p>
+        <div class="step-label-dark">März 2024 · Ausführungsplanung</div>
+        <p style="font-size:17px;font-weight:500;color:#fff;margin-bottom:12px">Geplant wird nach dem Plan</p>
+        <p style="font-size:15px;color:rgba(255,255,255,0.72);line-height:1.6">Der Kollege nimmt Index D, den aktuellen Stand, und zeichnet korrekt danach. Das Protokoll von damals kennt er nicht, es steht auch in keinem Plankopf. Der Widerspruch fällt auf der Baustelle auf.</p>
         <div class="step-connector">→</div>
       </div>
       <div class="process-step">
         <div class="step-num-badge">3</div>
-        <div class="step-label-dark">Schrittweise skalieren</div>
-        <p style="font-size:17px;font-weight:500;color:#fff;margin-bottom:12px">Nächste Aufgabe, gleicher Mitarbeiter</p>
-        <p style="font-size:15px;color:rgba(255,255,255,0.72);line-height:1.6">Funktioniert der erste Prozess reibungslos, lernt das System die nächste Aufgabe. Alles zum planbaren Festpreis plus monatlicher Betreuung für Updates und Support. Kein undurchsichtiges Abo-Wirrwarr.</p>
+        <div class="step-label-dark">Heute · vor dem Zeichnen</div>
+        <p style="font-size:17px;font-weight:500;color:#fff;margin-bottom:12px">Die Frage ist vorher geklärt</p>
+        <p style="font-size:15px;color:rgba(255,255,255,0.72);line-height:1.6">Er fragt in einem Satz, ob die Ausführung noch gilt. Das System durchsucht die Unterlagen dieses Bauvorhabens, nennt den Planstand, den Widerspruch und das Protokoll mit Datum und TOP.</p>
       </div>
     </div>
   </section>
 
   <!-- ══════════════════════════════════════
-       7) FAQ
+       DEMO (Video)
+  ══════════════════════════════════════ -->
+  <section id="demo">
+    <div class="section-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Demo</span>
+    </div>
+    <h2 class="section-h2">Von der Frage zur<br>belegten Antwort</h2>
+    <p style="font-size:17px;color:var(--ink-soft);margin-top:12px;max-width:680px">Die Aufzeichnung zeigt den Fall eines Anlagenbauers, weil sich der Ablauf daran am klarsten sehen lässt: Der Nutzer wählt das Projekt, beschreibt sein Problem in einem Satz und bekommt eine Antwort mit Datum und Quelle. Bei Ihnen heißen die Unterlagen Pläne, Protokolle und Prüfberichte statt Serviceberichte. Das System dahinter ist dasselbe, und alles läuft auf Hardware im eigenen Haus.</p>
+
+    <div style="position:relative;width:100%;max-width:1080px;aspect-ratio:16/9;margin:32px auto 0;background:var(--ink);border-radius:var(--r-lg,16px);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.18)">
+      <video controls preload="metadata" poster="video/maschinenbau-demo-poster.jpg" playsinline style="position:absolute;inset:0;width:100%;height:100%;display:block">
+        <source src="video/maschinenbau-demo-720p.mp4" type="video/mp4">
+        Ihr Browser unterstützt das Video-Format nicht.
+      </video>
+    </div>
+
+    <p style="font-size:14px;color:var(--ink-faint);margin-top:16px;text-align:center">Die gezeigten Projekte und Unterlagen stammen aus einem realitätsnahen Demo-Bestand, es sind keine echten Kundendaten.</p>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       WIE ES FUNKTIONIERT
+  ══════════════════════════════════════ -->
+  <section class="alt">
+    <div class="section-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Wie es funktioniert</span>
+    </div>
+    <h2 class="section-h2">Ihre Projektablage bleibt,<br>wie sie ist</h2>
+    <p style="font-size:17px;color:var(--ink-soft);margin-top:12px;max-width:600px">Kein Migrationsprojekt, kein Systemwechsel, keine Umgewöhnung. Das System liest die Verzeichnisse, die Ihr Büro ohnehin pflegt, und hält dabei drei Ebenen auseinander.</p>
+
+    <div class="bento">
+      <div class="bcard b-c">
+        <div class="bcard-eyebrow">Ebene 01 · gilt überall</div>
+        <p style="font-size:17px;font-weight:500;color:var(--ink);margin-bottom:8px">Bürostandards</p>
+        <p style="font-size:15px;color:var(--ink-soft);line-height:1.5">Vorlagen, Prüfroutinen, Freigabe- und Zitierregeln. Gilt in jedem Projekt.</p>
+      </div>
+      <div class="bcard b-d">
+        <div class="bcard-eyebrow">Ebene 02 · Fachgrundlagen</div>
+        <p style="font-size:17px;font-weight:500;color:var(--ink);margin-bottom:8px">Regelwerk</p>
+        <p style="font-size:15px;color:var(--ink-soft);line-height:1.5">Normen, Standarddetails, wiederkehrende Nachweise. Einmal gepflegt und in jedem Bauvorhaben verfügbar, ohne Kopien.</p>
+      </div>
+      <div class="bcard b-e">
+        <div class="bcard-eyebrow">Ebene 03 · Abweichungen</div>
+        <p style="font-size:17px;font-weight:500;color:var(--ink);margin-bottom:8px">Bauvorhaben</p>
+        <p style="font-size:15px;color:var(--ink-soft);line-height:1.5">Pläne mit Index, Besprechungsprotokolle, Nachträge, Prüfberichte, Schriftverkehr. Hier steht, was vom Regelfall abweicht.</p>
+      </div>
+    </div>
+
+    <div class="tab-check-list" style="max-width:820px;margin-top:36px">
+      <div class="tab-check-row">
+        <div class="tab-check-icon"></div>
+        <span style="font-size:16px;color:var(--ink-mid)">Netzlaufwerk, Dateiserver oder SharePoint als Quelle, gescannte Altbestände über Texterkennung</span>
+      </div>
+      <div class="tab-check-row">
+        <div class="tab-check-icon"></div>
+        <span style="font-size:16px;color:var(--ink-mid)">Rechte je Rolle: Ein Mitarbeiter sieht nur die Bauvorhaben, für die er freigegeben ist</span>
+      </div>
+      <div class="tab-check-row">
+        <div class="tab-check-icon"></div>
+        <span style="font-size:16px;color:var(--ink-mid)">Keine Aussage ohne Beleg: Dokument, Datum und, wo es darauf ankommt, der Planstand</span>
+      </div>
+      <div class="tab-check-row">
+        <div class="tab-check-icon"></div>
+        <span style="font-size:16px;color:var(--ink-mid)">Alles im eigenen Haus, ohne Verbindung nach außen. Ihre Projektdaten verlassen das Büro nicht</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FAQ
   ══════════════════════════════════════ -->
   <section id="faq">
     <div class="section-eyebrow">
       <div class="eyebrow-line"></div>
       <span class="eyebrow-text">Häufige Fragen</span>
     </div>
-    <h2 class="section-h2">Was Sie vorab wissen sollten</h2>
-    <p style="font-size:17px;color:var(--ink-soft);margin-top:8px">Damit Sie perfekt auf unser Erstgespräch vorbereitet sind.</p>
+    <h2 class="section-h2">Antworten auf Ihre Fragen</h2>
 
     <div class="faq-list">
       <details class="faq-item" open>
-        <summary>Was kann der digitale Mitarbeiter und was nicht?<div class="faq-icon">+</div></summary>
-        <div class="faq-answer">Er ist hochgradig effizient bei wiederkehrender Schreibtischarbeit: Baubesprechungs-Protokolle aus Audio extrahieren, Prüfberichts-Entwürfe aus Notizen, Rechnungs-Vorbereitungen und Dokumentenverwaltung. Er ist <em>kein</em> Ersatz für Ihr ingenieurtechnisches Fachurteil und liefert keine normverbindlichen Aussagen. Er bereitet den Entwurf vor, Sie prüfen und geben frei. Diese saubere fachliche Trennung ist gewollt.</div>
+        <summary>Müssen wir unsere Projektablage vorher aufräumen?<div class="faq-icon">+</div></summary>
+        <div class="faq-answer">Nein. Das System liest die Struktur, die Sie haben, und ordnet jedes Dokument über seinen Pfad dem Bauvorhaben zu. Hilfreich ist lediglich Konsistenz: ein Ordner je Projekt, Protokolle an einer Stelle, Pläne an einer anderen. Wo das schon so ist, und das ist bei den meisten so, genügt das.</div>
       </details>
 
       <details class="faq-item">
-        <summary>Muss mein Team neue Programme lernen?<div class="faq-icon">+</div></summary>
-        <div class="faq-answer">Nein. Wir docken den digitalen Mitarbeiter an Ihre bestehenden Tools an: Outlook, Dateiserver, Zeiterfassung oder Projektsoftware. Ihre Mitarbeiter arbeiten exakt wie gewohnt weiter, während der digitale Assistent im Hintergrund zuarbeitet. Das garantiert maximale Entlastung bei null Einarbeitungszeit.</div>
+        <summary>Unsere Altbestände sind eingescannte PDFs und Pläne. Geht das?<div class="faq-icon">+</div></summary>
+        <div class="faq-answer">Gescannte Dokumente laufen durch eine Texterkennung, das funktioniert bei sauber eingescannten Protokollen und Berichten zuverlässig. Bei Plänen ist es ehrlicherweise begrenzt: Ein Plankopf und beschriftete Bemaßungen sind lesbar, die Geometrie selbst versteht das System nicht. Im Erstgespräch sehen wir uns ein paar Ihrer echten Dateien an, damit Sie das wissen, bevor Sie Geld ausgeben.</div>
       </details>
 
       <details class="faq-item">
-        <summary>Ersetzt das meine bestehenden Mitarbeiter?<div class="faq-icon">+</div></summary>
-        <div class="faq-answer">Nein. Er befreit Ihr Team von der administrativen Last, damit Ihre Ingenieure wieder das tun können, wofür sie ausgebildet wurden: Planen und konstruieren. Gerade in Zeiten des massiven Fachkräftemangels ist das die effektivste Maßnahme, die Produktivität sofort zu steigern.</div>
+        <summary>Kommen unsere Pläne und Gutachten in eine Cloud?<div class="faq-icon">+</div></summary>
+        <div class="faq-answer">Nein. Server und Sprachmodell laufen bei Ihnen im Haus, die Unterlagen bleiben auf Ihrem Netzlaufwerk liegen. Es wird nichts umkopiert und nichts gespiegelt, nach außen besteht keine Verbindung. Damit ist der Einsatz auch bei geheimhaltungspflichtigen Projekten möglich, bei denen ChatGPT und vergleichbare Dienste ausscheiden.</div>
       </details>
 
       <details class="faq-item">
-        <summary>Welche Hardware wird benötigt?<div class="faq-icon">+</div></summary>
-        <div class="faq-answer">Für nahezu alle administrativen Aufgaben reicht ein kompakter Rechner vor Ort mit einer guten GPU und ausreichend Arbeitsspeicher. Entweder integrieren wir das System auf Ihrer vorhandenen Hardware oder wir richten ein passendes Gerät für Sie ein. Die technischen Details besprechen wir im Vorfeld pragmatisch.</div>
+        <summary>Woher weiß ich, dass die Antwort stimmt?<div class="faq-icon">+</div></summary>
+        <div class="faq-answer">Weil jede Aussage ihre Quelle mitbringt: Datei, Datum und bei Plänen den Index. Sie können jeden Punkt in dem Dokument nachlesen, aus dem er stammt. Und wo in den Unterlagen nichts steht, sagt das System das, statt sich etwas auszudenken.</div>
       </details>
 
       <details class="faq-item">
-        <summary>Wie sieht die Kostenstruktur aus?<div class="faq-icon">+</div></summary>
-        <div class="faq-answer">Transparent und budgetierbar: Sie zahlen einen einmaligen Festpreis für die Analyse und Einrichtung sowie eine überschaubare monatliche Pauschale für Betreuung, Updates und Systempflege. Keine versteckten Cloud-Lizenzen, keine überraschenden US-Server-Gebühren.</div>
+        <summary>Bleibt die fachliche Verantwortung bei mir?<div class="faq-icon">+</div></summary>
+        <div class="faq-answer">Uneingeschränkt. Das System sucht und fasst zusammen, es trifft keine ingenieurtechnische Aussage und gibt nichts normverbindlich frei. Es sagt Ihnen, wo etwas steht und seit wann, und liefert Entwürfe. Geprüft und freigegeben wird von Ihnen. Bei Unterlagen, die vor Gericht Bestand haben müssen, ist das aus unserer Sicht die einzig vertretbare Bauweise.</div>
       </details>
 
       <details class="faq-item">
-        <summary>Sind meine Daten wirklich sicher (DSGVO / Geheimhaltung)?<div class="faq-icon">+</div></summary>
-        <div class="faq-answer">Ja, zu 100 %. Das System läuft physisch in Ihrem Haus und funktioniert im Zweifel sogar bei gezogenem Netzwerkkabel. Ihre Projektdaten verlassen niemals das Büro. Das ermöglicht Ihnen den Einsatz von KI selbst bei <strong>hochsensiblen Gutachten, KRITIS-Projekten oder geheimhaltungspflichtigen Inhalten</strong>.</div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Bin ich nach Integration von smartwandler abhängig?<div class="faq-icon">+</div></summary>
-        <div class="faq-answer">Nein. Die fertig konfigurierte Software läuft lokal auf Ihrer eigenen Hardware. Die monatliche Betreuung ist ein sinnvolles Service-Angebot für den langfristigen Betrieb, bindet Sie aber nicht in einen restriktiven "Vendor-Lock-in" wie bei großen Cloud-Anbietern.</div>
+        <summary>Was kostet das und wie lange dauert es?<div class="faq-icon">+</div></summary>
+        <div class="faq-answer">Eine erste produktive Installation mit einer Handvoll Bauvorhaben ist üblicherweise in wenigen Wochen nutzbar. Der Aufwand hängt vor allem an Ihrer Hardware und an der Zahl der angebundenen Quellen. Umfang und Preis bekommen Sie schriftlich, bevor Sie sich entscheiden. Eine belastbare Hausnummer für Ihren Fall gibt es nach dem Erstgespräch.</div>
       </details>
     </div>
   </section>
 
   <!-- ══════════════════════════════════════
-       8) ABSCHLUSS-CTA
+       CTA FINAL
   ══════════════════════════════════════ -->
   <div class="cta-final">
     <div class="section-eyebrow cta-eyebrow" style="justify-content:center">
       <div class="eyebrow-line" style="background:rgba(255,255,255,0.35)"></div>
-      <span class="eyebrow-text" style="color:rgba(255,255,255,0.65)">Jetzt kostenloses Erstgespräch buchen</span>
+      <span class="eyebrow-text" style="color:rgba(255,255,255,0.65)">Nächster Schritt</span>
       <div class="eyebrow-line" style="background:rgba(255,255,255,0.35)"></div>
     </div>
-    <h2 style="font-family:'Inter', system-ui, sans-serif;font-size:44px;font-weight:600;color:#fff;letter-spacing:-0.035em;line-height:1.08;margin-bottom:12px;position:relative;z-index:1">Welche Büroaufgabe<br>wollen Sie loswerden?</h2>
-    <p style="font-size:17px;color:rgba(255,255,255,0.72);margin-bottom:40px;position:relative;z-index:1;max-width:620px;margin-left:auto;margin-right:auto">Kein Verkaufsgespräch. Sie nennen die lästigste Aufgabe und wir sagen Ihnen ehrlich, ob und wie sich diese automatisieren lässt.</p>
+    <h2 style="font-family:'Inter', system-ui, sans-serif;font-size:44px;font-weight:600;color:#fff;letter-spacing:-0.035em;line-height:1.08;margin-bottom:12px;position:relative;z-index:1">Bevor der nächste Plan nach<br>dem falschen Stand entsteht</h2>
+    <p style="font-size:17px;color:rgba(255,255,255,0.72);margin-bottom:40px;position:relative;z-index:1">Bringen Sie ein typisches Projekt mit. Dann sagen wir Ihnen ehrlich, ob Ihre Ablage dafür taugt.</p>
     <div class="cta-btns">
-      <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="cta-btn-primary">Kostenloses Erstgespräch buchen →</button></a>
+      <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="cta-btn-primary">▶ Kostenloses 30-Min-Erstgespräch</button></a>
     </div>
     <div class="cta-deco">
       <div class="cta-deco-stat">
@@ -729,12 +351,12 @@
       <div class="cta-deco-div"></div>
       <div class="cta-deco-stat">
         <div style="font-family:'Inter', system-ui, sans-serif;font-size:24px;font-weight:600;line-height:1;color:#fff;letter-spacing:-0.035em;margin-bottom:6px">100 %</div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">lokal bei Ihnen</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">im eigenen Haus</div>
       </div>
       <div class="cta-deco-div"></div>
       <div class="cta-deco-stat">
-        <div style="font-family:'Inter', system-ui, sans-serif;font-size:24px;font-weight:600;line-height:1;color:#fff;letter-spacing:-0.035em;margin-bottom:6px"><24 h</div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">Antwortzeit</div>
+        <div style="font-family:'Inter', system-ui, sans-serif;font-size:24px;font-weight:600;line-height:1;color:#fff;letter-spacing:-0.035em;margin-bottom:6px">10+ Jahre</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:0.04em">aus Großprojekten</div>
       </div>
     </div>
   </div>
@@ -749,22 +371,22 @@
           <source srcset="images/logo-small.webp" type="image/webp">
           <img src="images/logo-small.png" alt="smartwandler Logo" class="footer-logo-mark" width="200" height="200" loading="lazy">
         </picture>
-        <p style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:4px">Digitalisierung & Automatisierung</p>
-        <p style="font-size:15px;color:rgba(255,255,255,0.55);line-height:1.6">Lokal. Sicher. Maßgeschneidert.</p>
+        <p style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:4px">Beratung &amp; Umsetzung für Büros mit vielen Dokumenten</p>
+        <p style="font-size:15px;color:rgba(255,255,255,0.55);line-height:1.6">Neutral. Vertraulich. Ohne Bindung.</p>
         <p style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:20px;letter-spacing:0.05em">smartwandler · ein Projekt von decentnodes.de</p>
       </div>
       <div>
         <p style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Leistungen</p>
         <a href="index.html#leistungen" data-tab-link="beratung" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Beratung &amp; Analyse</a>
         <a href="index.html#leistungen" data-tab-link="workflows" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Workflow-Automatisierung</a>
-        <a href="index.html#leistungen" data-tab-link="ki" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Lokale KI-Anwendungen</a>
+        <a href="lokale-ki.html" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Lokale KI-Anwendungen</a>
         <a href="index.html#leistungen" data-tab-link="webtools" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Individuelle Web-Tools</a>
       </div>
       <div>
         <p style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Unternehmen</p>
         <a href="index.html#ueber-uns" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Über uns</a>
         <a href="index.html#zusammenarbeit" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Zusammenarbeit</a>
-        <a href="index.html#faq" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none">FAQ</a>
+        <a href="#faq" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none">FAQ</a>
       </div>
       <div>
         <p style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Kontakt</p>
@@ -782,9 +404,7 @@
       </div>
     </div>
   </footer>
-
 </div>
-
 <!-- ══════════════════════════════════════
      COOKIE CONSENT BANNER (DSGVO)
 ══════════════════════════════════════ -->
@@ -960,11 +580,6 @@
     </footer>
   </div>
 </div>
-
-<!-- ══════════════════════════════════════
-     STICKY MOBILE CTA (immer sichtbar auf Mobile)
-══════════════════════════════════════ -->
-<a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo lp-sticky-cta-link" aria-label="Kostenloses Erstgespräch buchen"><button class="lp-sticky-cta">Kostenloses Erstgespräch buchen →</button></a>
 
 <script src="script.js"></script>
 </body>
