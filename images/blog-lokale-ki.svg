@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" width="1200" height="520">
-  <title>Unternehmensdaten bleiben im eigenen Haus</title>
+  <title>Unternehmensdaten bleiben im eigenen Unternehmen</title>
   <desc>Links ein Gebäude, in dem Unterlagen, Wissensbasis und Sprachmodell miteinander verbunden sind und die Daten in einem geschlossenen Kreis zirkulieren. Rechts eine ausgegraute Cloud eines Anbieters im Drittland, die Verbindung dorthin ist unterbrochen.</desc>
 
   <defs>
@@ -14,7 +14,7 @@
 
       /* Media Queries beziehen sich hier auf die Anzeigegröße der Grafik,
          nicht auf das Browserfenster. Unterhalb von ~560px würden die
-         Detailbeschriftungen auf Briefmarkengröße schrumpfen — deshalb
+         Detailbeschriftungen auf Briefmarkengröße schrumpfen, deshalb
          treten dann zwei große Labels an ihre Stelle. Die vollständige
          Erklärung steht ohnehin in der Bildunterschrift. */
       @media (max-width: 560px) {
@@ -22,51 +22,64 @@
         .compact { display: block; }
       }
     </style>
+    <linearGradient id="safe" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F4F8F4"/>
+      <stop offset="1" stop-color="#FBFAF7"/>
+    </linearGradient>
     <marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
-      <path d="M0 0 L9 4.5 L0 9 z" fill="#C8A96A"/>
+      <path d="M0 0 L9 4.5 L0 9 z" fill="#B08E43"/>
     </marker>
   </defs>
 
   <rect width="1200" height="520" fill="#F2EFE9"/>
 
-  <!-- ══ Linke Seite: das eigene Haus ══ -->
+  <!-- ══ Linke Seite: das eigene Unternehmen ══ -->
   <g>
-    <path d="M70 176 L360 60 L650 176" fill="none" stroke="#3A3631" stroke-width="3"
+    <path d="M70 176 L360 60 L650 176" fill="none" stroke="#2D7A4F" stroke-width="3.5"
           stroke-linejoin="round" stroke-linecap="round"/>
-    <rect x="70" y="176" width="580" height="284" rx="14" fill="#FAF8F5" stroke="#3A3631" stroke-width="3"/>
+    <rect x="70" y="176" width="580" height="284" rx="14" fill="url(#safe)" stroke="#2D7A4F" stroke-width="3.5"/>
 
-    <text x="102" y="222" class="t cap detail" fill="#7C766C">IHR HAUS</text>
+    <!-- Statusmarke -->
+    <g class="detail">
+      <rect x="102" y="204" width="224" height="30" rx="15" fill="#E6F0E8" stroke="#2D7A4F" stroke-opacity=".3"/>
+      <circle cx="120" cy="219" r="6" fill="#2D7A4F"/>
+      <path d="M117 219 l2.2 2.4 l4.2 -4.8" fill="none" stroke="#fff" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="136" y="224" class="t cap" fill="#2D7A4F">IHR UNTERNEHMEN</text>
+    </g>
 
     <!-- Unterlagen -->
-    <rect x="102" y="248" width="164" height="60" rx="9" fill="#fff" stroke="#3A3631" stroke-opacity=".16"/>
-    <rect x="118" y="266" width="92" height="7" rx="3.5" fill="#3A3631" fill-opacity=".5"/>
-    <rect x="118" y="282" width="126" height="6" rx="3" fill="#3A3631" fill-opacity=".2"/>
-    <text x="118" y="336" class="t sub detail" fill="#5F5952">Unterlagen</text>
+    <rect x="102" y="256" width="164" height="62" rx="9" fill="#fff" stroke="#C8A96A" stroke-opacity=".55" stroke-width="1.5"/>
+    <rect x="102" y="256" width="5" height="62" rx="2.5" fill="#C8A96A"/>
+    <rect x="122" y="275" width="92" height="7" rx="3.5" fill="#B08E43" fill-opacity=".75"/>
+    <rect x="122" y="291" width="126" height="6" rx="3" fill="#C8A96A" fill-opacity=".4"/>
+    <text x="122" y="344" class="t sub detail" fill="#5F5952">Unterlagen</text>
 
     <!-- Wissensbasis -->
-    <rect x="290" y="248" width="142" height="60" rx="9" fill="#fff" stroke="#3A3631" stroke-opacity=".16"/>
-    <ellipse cx="361" cy="268" rx="34" ry="8" fill="none" stroke="#3A3631" stroke-opacity=".45" stroke-width="2"/>
-    <path d="M327 268v18c0 4.4 15.2 8 34 8s34-3.6 34-8v-18" fill="none" stroke="#3A3631"
-          stroke-opacity=".45" stroke-width="2"/>
-    <text x="306" y="336" class="t sub detail" fill="#5F5952">Wissensbasis</text>
+    <rect x="290" y="256" width="142" height="62" rx="9" fill="#fff" stroke="#3E7F87" stroke-opacity=".5" stroke-width="1.5"/>
+    <rect x="290" y="256" width="5" height="62" rx="2.5" fill="#3E7F87"/>
+    <ellipse cx="365" cy="277" rx="32" ry="8" fill="#E7F1F2" stroke="#3E7F87" stroke-width="2"/>
+    <path d="M333 277v17c0 4.4 14.3 8 32 8s32-3.6 32-8v-17" fill="none" stroke="#3E7F87" stroke-width="2"/>
+    <text x="306" y="344" class="t sub detail" fill="#5F5952">Wissensbasis</text>
 
     <!-- Modell auf eigener Hardware -->
-    <rect x="456" y="248" width="142" height="60" rx="9" fill="#fff" stroke="#3A3631" stroke-opacity=".16"/>
-    <rect x="486" y="262" width="82" height="10" rx="5" fill="#3A3631" fill-opacity=".18"/>
-    <rect x="486" y="278" width="82" height="10" rx="5" fill="#3A3631" fill-opacity=".18"/>
-    <circle cx="497" cy="267" r="3.5" fill="#2D7A4F"/>
-    <circle cx="497" cy="283" r="3.5" fill="#2D7A4F"/>
-    <text x="470" y="336" class="t sub detail" fill="#5F5952">Modell</text>
+    <rect x="456" y="256" width="142" height="62" rx="9" fill="#fff" stroke="#2D7A4F" stroke-opacity=".45" stroke-width="1.5"/>
+    <rect x="456" y="256" width="5" height="62" rx="2.5" fill="#2D7A4F"/>
+    <rect x="492" y="270" width="82" height="11" rx="5.5" fill="#2D7A4F" fill-opacity=".16"/>
+    <rect x="492" y="287" width="82" height="11" rx="5.5" fill="#2D7A4F" fill-opacity=".16"/>
+    <circle cx="503" cy="275.5" r="3.8" fill="#2D7A4F"/>
+    <circle cx="503" cy="292.5" r="3.8" fill="#2D7A4F"/>
+    <text x="470" y="344" class="t sub detail" fill="#5F5952">Modell</text>
 
     <!-- geschlossener Kreislauf -->
-    <path d="M150 372 H556" fill="none" stroke="#C8A96A" stroke-width="2.5" marker-end="url(#ar)"/>
-    <path d="M150 372 q-34 0 -34 26 t34 26 H556 q34 0 34 -26 t-34 -26" fill="none"
-          stroke="#C8A96A" stroke-width="2.5" stroke-opacity=".45"/>
-    <text x="230" y="418" class="t sub detail" fill="#7C766C">Anfrage und Antwort bleiben im Haus</text>
+    <path d="M150 380 q-34 0 -34 26 t34 26 H556 q34 0 34 -26 t-34 -26"
+          fill="#F7F0E3" stroke="#C8A96A" stroke-width="2.5" stroke-opacity=".7"/>
+    <path d="M150 380 H556" fill="none" stroke="#B08E43" stroke-width="2.5" marker-end="url(#ar)"/>
+    <text x="353" y="411.7" text-anchor="middle" class="t sub detail" fill="#8A7442">Anfrage und Antwort bleiben im Unternehmen</text>
 
     <!-- Kompaktfassung -->
-    <text x="360" y="410" class="t compact" font-size="52" font-weight="500"
-          text-anchor="middle" fill="#3A3631">Im Haus</text>
+    <text x="360" y="418" class="t compact" font-size="50" font-weight="500"
+          text-anchor="middle" fill="#2D7A4F">Im Unternehmen</text>
   </g>
 
   <!-- ══ Grenze ══ -->
@@ -74,23 +87,23 @@
         stroke-width="2" stroke-dasharray="7 9"/>
 
   <!-- ══ Rechte Seite: Drittland ══ -->
-  <g opacity=".72">
+  <g>
     <path d="M812 232 a46 46 0 0 1 88 -18 a38 38 0 0 1 66 22 a40 40 0 0 1 -8 78 H830
              a44 44 0 0 1 -18 -82 z"
-          fill="#E8E3DC" stroke="#7C766C" stroke-width="2.5" stroke-dasharray="8 7"/>
-    <text x="812" y="368" class="t lbl detail" fill="#5F5952">Anbieter im Drittland</text>
-    <text x="812" y="396" class="t sub detail" fill="#7C766C">Zugriff nach fremdem Recht</text>
+          fill="#EDE7E6" stroke="#C0392B" stroke-opacity=".4" stroke-width="2.5" stroke-dasharray="8 7"/>
+    <text x="812" y="368" class="t lbl detail" fill="#8A5A55">Anbieter im Drittland</text>
+    <text x="812" y="396" class="t sub detail" fill="#A08682">Zugriff nach fremdem Recht</text>
 
     <!-- Kompaktfassung -->
-    <text x="893" y="410" class="t compact" font-size="52" font-weight="500"
-          text-anchor="middle" fill="#5F5952">Extern</text>
+    <text x="893" y="418" class="t compact" font-size="50" font-weight="500"
+          text-anchor="middle" fill="#8A5A55">Extern</text>
   </g>
 
   <!-- unterbrochene Verbindung -->
-  <path d="M650 300 H770" fill="none" stroke="#C0392B" stroke-opacity=".55" stroke-width="2.5"
+  <path d="M650 308 H770" fill="none" stroke="#C0392B" stroke-opacity=".6" stroke-width="2.5"
         stroke-dasharray="9 8"/>
-  <g transform="translate(710 300)">
-    <circle r="19" fill="#FAF8F5" stroke="#C0392B" stroke-opacity=".55" stroke-width="2"/>
-    <path d="M-7 -7 L7 7 M7 -7 L-7 7" stroke="#C0392B" stroke-width="2.6" stroke-linecap="round"/>
+  <g transform="translate(710 308)">
+    <circle r="20" fill="#FBEDEB" stroke="#C0392B" stroke-opacity=".65" stroke-width="2"/>
+    <path d="M-7 -7 L7 7 M7 -7 L-7 7" stroke="#C0392B" stroke-width="2.8" stroke-linecap="round"/>
   </g>
 </svg>
