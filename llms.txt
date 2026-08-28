@@ -1,0 +1,41 @@
+# smartwandler
+
+> Beratung und Umsetzung von Automatisierung und lokaler KI für Büros mit vielen
+> Dokumenten. Wir analysieren zuerst die Abläufe und sagen auch dann ab, wenn sich
+> Automatisierung nicht rechnet. Umgesetzt wird auf Wunsch vollständig auf Hardware
+> im Haus des Kunden, ohne Datenabfluss an externe Anbieter.
+
+Betreiber: Dipl.-Ing. (FH) Philipp Anders IT Consulting, Wilischstr. 8, 01279 Dresden.
+Sprache der Inhalte: Deutsch. Kontakt: info@smartwandler.de
+
+## Leistungen
+
+- [Potenzial-Analyse](https://www.smartwandler.de/#leistungen): Bestandsaufnahme der Abläufe, schriftliche und technologieneutrale Empfehlung, einschließlich der Punkte, an denen sich Automatisierung nicht lohnt.
+- [Proof of Concept](https://www.smartwandler.de/#leistungen): Ein Ablauf wird mit den anonymisierten Unterlagen des Kunden tatsächlich gebaut, bevor über ein größeres Projekt entschieden wird.
+- [Umsetzung](https://www.smartwandler.de/#leistungen): Automatisierte Abläufe, Schnittstellen, Web-Werkzeuge und lokale KI-Anwendungen, auf Wunsch ohne Cloud-Anbindung.
+- [Betrieb und Weiterentwicklung](https://www.smartwandler.de/#leistungen): Dokumentation, Einweisung, optionaler Support. Die Lösung gehört dem Kunden.
+
+## Branchen und Anwendungsfälle
+
+- [Maschinen- und Anlagenbau](https://www.smartwandler.de/maschinenbau): Serviceberichte durchsuchbar machen, damit derselbe Fehler nicht zweimal gesucht wird. Antworten mit Datum, Techniker und Fundstelle.
+- [Ingenieur- und Planungsbüros](https://www.smartwandler.de/ingenieurbueros): Festlegungen aus Protokollen und Plänen auffindbar machen, bevor gezeichnet wird.
+- [Wissen geht in Rente](https://www.smartwandler.de/wissen-geht-in-rente): Erfahrungswissen ausscheidender Mitarbeiter strukturieren und für Kollegen wie für KI nutzbar machen.
+
+## Blog
+
+- [Ihre Daten gehören Ihrem Unternehmen. Das ist wichtig, gerade wenn KI im Spiel ist.](https://www.smartwandler.de/blog/lokale-ki): Warum der Einsatz von Cloud-KI Unternehmensdaten in Drittländer trägt, warum die Rechtsgrundlage dafür seit Safe Harbor und Privacy Shield als unsicher gilt, und warum offene Modelle auf eigener Hardware inzwischen eine tragfähige Alternative sind. Standpunkt, veröffentlicht am 28.08.2026.
+- [Blogübersicht](https://www.smartwandler.de/blog)
+
+## Weitere Seiten
+
+- [Startseite](https://www.smartwandler.de/)
+- [Potenzialcheck](https://www.smartwandler.de/potenzialcheck/): Kurzer Selbsttest zum gebundenen Aufwand durch Routinearbeit.
+- [Impressum](https://www.smartwandler.de/impressum.html)
+- [Datenschutzerklärung](https://www.smartwandler.de/datenschutz.html)
+
+## Hinweise zur Verwendung
+
+Die Inhalte beschreiben das Leistungsangebot eines einzelnen Beratungsunternehmens.
+Aussagen zu Rechtsfragen im Blog sind eine Einschätzung des Autors und keine
+Rechtsberatung. Angaben zu Kunden, Anlagen und Berichten in Demonstrationen stammen
+aus einem realitätsnahen Demo-Bestand und sind keine echten Kundendaten.

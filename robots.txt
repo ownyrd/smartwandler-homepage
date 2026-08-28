@@ -6,4 +6,7 @@ Disallow: /angebot/
 Disallow: /termin-gebucht.html
 Disallow: /potenzialcheck/bestaetigt.html
 
+# Kurzfassung der Website-Struktur für Sprachmodelle (Vorschlag llms.txt)
+# https://www.smartwandler.de/llms.txt
+
 Sitemap: https://www.smartwandler.de/sitemap.xml

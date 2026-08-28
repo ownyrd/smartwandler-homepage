@@ -26,6 +26,7 @@ zip -r "$OUTPUT" \
     "$WORKING_DIR/.htaccess" \
     "$WORKING_DIR/sitemap.xml" \
     "$WORKING_DIR/robots.txt" \
+    "$WORKING_DIR/llms.txt" \
     "$WORKING_DIR/potenzialcheck/index.html" \
     "$WORKING_DIR/potenzialcheck/bestaetigt.html" \
     "$WORKING_DIR/potenzialcheck/check.css" \
