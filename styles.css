@@ -2738,13 +2738,36 @@ footer {
   margin-bottom: 8px !important;
 }
 .post-cta-text { margin-bottom: 20px !important; }
+/* ── Autorenhinweis am Beitragsende ──
+   Bewusst zurückhaltend: dünne Trennlinie statt Karte, kleine Schrift.
+   Wer den Text geschrieben hat, ist eine Randnotiz, keine Aussage. */
 .post-author {
-  margin-top: 40px;
-  padding-top: 24px;
+  margin-top: 44px;
+  padding-top: 22px;
   border-top: 1px solid var(--line);
-  font-size: 14px !important;
+}
+.post-author-label {
+  font-size: 9px !important;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--ink-faint) !important;
+  margin-bottom: 12px !important;
+}
+.post-author-name {
+  font-size: 13px !important;
+  font-weight: 600;
+  color: var(--ink-mid) !important;
+  margin-bottom: 3px !important;
+}
+.post-author-role { font-weight: 400; color: var(--ink-faint); }
+.post-author-text {
+  font-size: 13px !important;
   line-height: 1.6 !important;
+  color: var(--ink-faint) !important;
+  margin-bottom: 0 !important;
+  max-width: 62ch;
+}
+
 }
 
 @media (max-width: 860px) {
