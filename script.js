@@ -108,6 +108,7 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
     '.bcard',
     '.tab-visual',
     '.lead-in',
+    '.branch-card',
     '.process-step',
     '.carousel',
     '.compare-wrap',

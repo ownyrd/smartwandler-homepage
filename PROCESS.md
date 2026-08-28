@@ -1,3 +1,51 @@
+# Lokale Vorschau
+
+```
+python3 serve.py
+```
+
+Danach im Browser <http://localhost:8000> öffnen. Anderer Port: `python3 serve.py 8080`.
+Beenden mit Strg+C.
+
+**Auto-Reload:** Sobald eine HTML-, CSS- oder JS-Datei gespeichert wird, lädt der
+Browser die Seite von selbst neu — Speichern genügt, kein manuelles F5. Das nötige
+Skript wird nur beim Ausliefern in die Antwort eingefügt; die Dateien auf der Platte
+bleiben unverändert und im Zip fürs FTP landet davon nichts.
+
+**Nicht** `python3 -m http.server` benutzen. Der kennt die Rewrite-Regeln der `.htaccess`
+nicht und liefert für die sauberen URLs 404 — die Branchen-Karten auf der Startseite
+verlinken auf `/maschinenbau`, `/ingenieurbueros` und `/wissen-geht-in-rente`, nicht auf
+die `.html`-Dateien. `serve.py` bildet dieselben Regeln nach, damit die lokale Vorschau
+sich genauso verhält wie der Live-Server:
+
+* `/maschinenbau` → liefert `maschinenbau.html` aus, URL bleibt sauber
+* `/maschinenbau.html` → 301 auf `/maschinenbau`
+* `/lokale-ki`, `/meeting-transkription`, `/voicemail` → 301 auf `/` (Seiten eingestellt)
+
+Wenn eine neue Landingpage mit sauberer URL dazukommt, muss sie an **zwei** Stellen
+eingetragen werden: in der `.htaccess` (für den Server) und im Dict `CLEAN_URLS`
+in `serve.py` (für die Vorschau).
+
+`serve.py` ist ein reines Entwicklungswerkzeug und wird von `create-zip.sh` nicht
+mit aufs FTP genommen.
+
+
+# Deployment
+
+```
+bash create-zip.sh
+```
+
+Erzeugt `smartwandler.zip` mit allem, was auf den Webroot gehört. Separat und manuell
+aufs FTP müssen die beiden Config-Dateien mit den Keys:
+`fb-capi-config.php` und `potenzialcheck/submit-config.php`.
+
+Nach Änderungen an Seiten oder Sitemap: `sitemap.xml` in der Google Search Console
+neu einreichen.
+
+
+# Meta / Ads Setup
+
 1. meta business account anlegen
 2. instagram und facebook page connecten
 3. ads account erstellen

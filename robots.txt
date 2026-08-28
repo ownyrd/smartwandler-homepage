@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Interne Ablagen und Bestätigungsseiten gehören nicht in den Index
+Disallow: /angebot/
+Disallow: /termin-gebucht.html
+Disallow: /potenzialcheck/bestaetigt.html
+
+Sitemap: https://www.smartwandler.de/sitemap.xml
