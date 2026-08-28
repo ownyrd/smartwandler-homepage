@@ -58,7 +58,7 @@ RewriteRule ^voicemail(\.html)?/?$ / [R=301,L]
   # HTML kurz cachen, damit Inhaltsänderungen schnell durchschlagen
   ExpiresByType text/html "access plus 1 hour"
 
-  # Statische Assets ein Jahr cachen (immutable, da bei Updates Dateinamen ggf. geändert werden)
+  # Statische Assets ein Jahr cachen (immutable — Cache-Busting siehe unten)
   ExpiresByType text/css "access plus 1 year"
   ExpiresByType application/javascript "access plus 1 year"
   ExpiresByType image/png "access plus 1 year"
@@ -73,7 +73,12 @@ RewriteRule ^voicemail(\.html)?/?$ / [R=301,L]
 </IfModule>
 
 <IfModule mod_headers.c>
-  # Statische Dateien: 1 Jahr + immutable
+  # Statische Dateien: 1 Jahr + immutable.
+  # ACHTUNG: "immutable" heisst, Browser revalidieren NIE — auch nicht beim Reload.
+  # Nach jeder Aenderung an styles.css oder script.js MUSS deshalb der ?v=-Parameter
+  # in allen HTML-Dateien hochgezaehlt werden, sonst sehen wiederkehrende Besucher
+  # dauerhaft die alte Datei:
+  #   grep -rl 'styles.css?v=' --include='*.html' . | xargs perl -pi -e 's/\?v=\d{8}/?v=JJJJMMTT/g'
   <FilesMatch "\.(css|js|png|jpe?g|webp|avif|svg|ico|woff2?|ttf|eot)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
