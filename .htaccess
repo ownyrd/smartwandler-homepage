@@ -10,6 +10,12 @@ RewriteRule ^(.*)$ https://www.smartwandler.de/$1 [R=301,L]
 RewriteCond %{THE_REQUEST} \s/+ingenieurbueros\.html[\s?] [NC]
 RewriteRule ^ /ingenieurbueros [R=301,L]
 
+RewriteCond %{THE_REQUEST} \s/+blog\.html[\s?] [NC]
+RewriteRule ^ /blog [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+blog-lokale-ki\.html[\s?] [NC]
+RewriteRule ^ /blog/lokale-ki [R=301,L]
+
 RewriteCond %{THE_REQUEST} \s/+maschinenbau\.html[\s?] [NC]
 RewriteRule ^ /maschinenbau [R=301,L]
 
@@ -17,6 +23,8 @@ RewriteCond %{THE_REQUEST} \s/+wissen-geht-in-rente\.html[\s?] [NC]
 RewriteRule ^ /wissen-geht-in-rente [R=301,L]
 
 # 2) Intern /<slug> → /<slug>.html ausliefern (URL bleibt sauber)
+RewriteRule ^blog/?$ blog.html [L]
+RewriteRule ^blog/lokale-ki/?$ blog-lokale-ki.html [L]
 RewriteRule ^ingenieurbueros/?$ ingenieurbueros.html [L]
 RewriteRule ^maschinenbau/?$ maschinenbau.html [L]
 RewriteRule ^wissen-geht-in-rente/?$ wissen-geht-in-rente.html [L]

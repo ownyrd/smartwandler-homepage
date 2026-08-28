@@ -562,3 +562,71 @@ document.querySelectorAll('[data-tab-link]').forEach(function (link) {
 
   render();
 })();
+
+// ── Blog-Suche ──
+// Filtert die Beitragsliste live. Durchsucht Titel, Teaser und die Schlagworte
+// aus data-tags. Ohne JavaScript bleiben schlicht alle Beiträge sichtbar.
+(function () {
+  var input = document.getElementById('blog-q');
+  var list = document.getElementById('blog-list');
+  if (!input || !list) return;
+
+  var items = Array.prototype.slice.call(list.querySelectorAll('.blog-item'));
+  var countEl = document.getElementById('blog-count');
+  var emptyEl = document.getElementById('blog-empty');
+  var clearBtn = document.getElementById('blog-clear');
+  var resetBtn = document.getElementById('blog-reset');
+  var total = items.length;
+
+  // Suchtext je Beitrag einmalig vorbereiten
+  items.forEach(function (el) {
+    var parts = [
+      el.querySelector('.blog-item-title') ? el.querySelector('.blog-item-title').textContent : '',
+      el.querySelector('.blog-item-teaser') ? el.querySelector('.blog-item-teaser').textContent : '',
+      el.getAttribute('data-tags') || ''
+    ];
+    el._haystack = normalise(parts.join(' '));
+  });
+
+  function normalise(s) {
+    s = s.toLowerCase();
+    // Umlaute mitdenken: "datenschutzbehorde" soll "behörde" finden und umgekehrt
+    s = s.replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss');
+    return s;
+  }
+
+  function apply() {
+    var q = normalise(input.value.trim());
+    var terms = q.split(/\s+/).filter(Boolean);
+    var shown = 0;
+
+    items.forEach(function (el) {
+      var hit = terms.every(function (t) { return el._haystack.indexOf(t) !== -1; });
+      el.hidden = !hit;
+      if (hit) shown++;
+    });
+
+    if (clearBtn) clearBtn.hidden = terms.length === 0;
+    if (emptyEl) emptyEl.hidden = shown !== 0;
+    if (countEl) {
+      countEl.textContent = terms.length === 0
+        ? (total === 1 ? '1 Beitrag' : total + ' Beiträge')
+        : shown + ' von ' + total + (total === 1 ? ' Beitrag' : ' Beiträgen');
+    }
+  }
+
+  function reset() {
+    input.value = '';
+    apply();
+    input.focus();
+  }
+
+  input.addEventListener('input', apply);
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') reset();
+  });
+  if (clearBtn) clearBtn.addEventListener('click', reset);
+  if (resetBtn) resetBtn.addEventListener('click', reset);
+
+  apply();
+})();

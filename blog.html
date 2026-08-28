@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Impressum — smartwandler.de</title>
+<title>Blog | smartwandler.de</title>
 <link rel="stylesheet" href="styles.css">
+<link rel="canonical" href="https://www.smartwandler.de/blog">
 <!--
   Matomo & Meta Pixel werden ausschließlich nach Cookie-Consent
   durch script.js geladen (siehe loadMatomo / loadFacebookPixel).
@@ -28,42 +29,63 @@
       <span></span><span></span><span></span>
     </button>
     <div class="nav-links">
-      <a href="index.html#ueber-uns" style="font-size:15px;color:var(--ink-soft);text-decoration:none">Über uns</a>
-      <a href="/blog" style="font-size:15px;color:var(--ink-soft);text-decoration:none">Blog</a>
+      <a href="index.html#leistungen" style="font-size:15px;color:var(--ink-soft);text-decoration:none">Leistungen</a>
+      <a href="index.html#demo" style="font-size:15px;color:var(--ink-soft);text-decoration:none">Demo</a>
+      <a href="/blog" style="font-size:15px;color:var(--ink);font-weight:500;text-decoration:none">Blog</a>
       <a href="index.html#faq" style="font-size:15px;color:var(--ink-soft);text-decoration:none">FAQ</a>
-      <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer"><button class="nav-cta">Kostenloses Erstgespräch</button></a>
+      <a href="https://cal.meetergo.com/philipp-anders/30-min-meeting" target="_blank" rel="noopener noreferrer" class="js-open-meetergo"><button class="nav-cta">Kostenloses Erstgespräch</button></a>
     </div>
   </nav>
 
   <!-- ══════════════════════════════════════
-       LEGAL CONTENT
+       BLOG-ÜBERSICHT
   ══════════════════════════════════════ -->
-  <section class="legal">
-    <a href="index.html" style="text-decoration:none;display:inline-block;margin-bottom:32px"><button class="tab-btn" style="margin-top:0">← Zurück zur Startseite</button></a>
-    <h1>Impressum</h1>
-    <br>
-    <p>Dipl.-Ing. (FH) Philipp Anders<br />
-    IT Consulting<br />
-    Wilischstr. 8<br />
-    01279 Dresden</p>
-    <br>
-    <h2>Kontakt</h2>
-    <p>Telefon: +4915221078262<br />
-    E-Mail: philipp.anders@decentnodes.de</p>
+  <section id="blog">
+    <div class="section-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Blog</span>
+    </div>
+    <h1 class="section-h2">Gedanken zu lokaler KI<br>und Automatisierung</h1>
+    <p style="font-size:17px;color:var(--ink-soft);margin-top:12px;max-width:640px">Was uns in Projekten begegnet, wo wir anderer Meinung sind als der Markt, und woran wir unsere Empfehlungen festmachen. Keine Produktankündigungen.</p>
 
-    <br>
-    <h2>Umsatzsteuer-ID</h2>
-    <p>Umsatzsteuer-Identifikationsnummer gem&auml;&szlig; &sect; 27 a Umsatzsteuergesetz:<br />
-    DE336423844</p>
+    <div class="blog-search">
+      <label for="blog-q" class="blog-search-label">Beiträge durchsuchen</label>
+      <div class="blog-search-field">
+        <svg class="blog-search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <circle cx="7" cy="7" r="4.75" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <input type="search" id="blog-q" class="blog-search-input" placeholder="z. B. Datenschutz, lokale KI, Cloud" autocomplete="off">
+        <button type="button" class="blog-search-clear" id="blog-clear" aria-label="Suche zurücksetzen" hidden>&times;</button>
+      </div>
+      <p class="blog-search-count" id="blog-count" role="status" aria-live="polite"></p>
+    </div>
 
-    <br>
-    <h2>Verbraucher&shy;streit&shy;beilegung/Universal&shy;schlichtungs&shy;stelle</h2>
-    <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+    <div class="blog-list" id="blog-list">
 
-    <br>
-    <p>Quelle: <a href="https://www.e-recht24.de">eRecht24</a></p>
+      <article class="blog-item" data-tags="lokale ki datenschutz dsgvo datensouveränität cloud us-anbieter drittland schrems auftragsverarbeitung on-premise">
+        <a class="blog-item-link" href="/blog/lokale-ki">
+          <div class="blog-item-meta">
+            <time datetime="2026-08-28">28. August 2026</time>
+            <span class="blog-dot" aria-hidden="true">·</span>
+            <span>7 Minuten</span>
+            <span class="blog-dot" aria-hidden="true">·</span>
+            <span class="blog-tag">Standpunkt</span>
+          </div>
+          <h2 class="blog-item-title">Ihre Daten gehören ins Haus. Auch dann, wenn KI im Spiel ist.</h2>
+          <p class="blog-item-teaser">Wer heute KI im Büro nutzt, schickt in aller Regel Unternehmensdaten an einen US-Anbieter. Warum wir das für ein Risiko halten, dessen Rechnung noch nicht gestellt wurde, warum die Rechtsgrundlage dafür wackeliger ist als viele denken, und warum lokale Modelle inzwischen eine ernsthafte Alternative sind.</p>
+          <span class="blog-item-more">Beitrag lesen <span aria-hidden="true">→</span></span>
+        </a>
+      </article>
+
+    </div>
+
+    <p class="blog-empty" id="blog-empty" hidden>Kein Beitrag passt zu dieser Suche. <button type="button" class="blog-reset" id="blog-reset">Suche zurücksetzen</button></p>
+
+    <div class="blog-note">
+      <p style="font-size:15px;color:var(--ink-soft);line-height:1.6">Der Blog ist neu, es kommt also noch etwas dazu. Wenn Sie ein Thema interessiert, zu dem hier nichts steht: <a href="mailto:info@smartwandler.de" style="color:var(--ink-mid)">schreiben Sie uns</a>, wir schreiben lieber über echte Fragen als über gedachte.</p>
+    </div>
   </section>
-
   <!-- ══════════════════════════════════════
        FOOTER
   ══════════════════════════════════════ -->

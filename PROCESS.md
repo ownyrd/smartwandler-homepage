@@ -20,6 +20,7 @@ sich genauso verhält wie der Live-Server:
 
 * `/maschinenbau` → liefert `maschinenbau.html` aus, URL bleibt sauber
 * `/maschinenbau.html` → 301 auf `/maschinenbau`
+* `/blog` → `blog.html`, `/blog/lokale-ki` → `blog-lokale-ki.html`
 * `/lokale-ki`, `/meeting-transkription`, `/voicemail` → 301 auf `/` (Seiten eingestellt)
 
 Wenn eine neue Landingpage mit sauberer URL dazukommt, muss sie an **zwei** Stellen

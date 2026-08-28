@@ -28,10 +28,16 @@ from pathlib import Path
 
 # Saubere URL -> tatsächliche Datei (Spiegel von .htaccess, Abschnitt "Clean URLs")
 CLEAN_URLS = {
+    "/blog": "/blog.html",
+    "/blog/lokale-ki": "/blog-lokale-ki.html",
     "/ingenieurbueros": "/ingenieurbueros.html",
     "/maschinenbau": "/maschinenbau.html",
     "/wissen-geht-in-rente": "/wissen-geht-in-rente.html",
 }
+
+# Umkehrung: Datei -> saubere URL. Nicht aus dem Dateinamen ableitbar, weil
+# /blog/lokale-ki auf blog-lokale-ki.html zeigt.
+FILE_TO_CLEAN = {v: k for k, v in CLEAN_URLS.items()}
 
 # Eingestellte Landingpages -> 301 auf die Startseite (Spiegel von .htaccess)
 GONE = ("/lokale-ki", "/meeting-transkription", "/voicemail")
@@ -90,8 +96,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return self._redirect("/")
 
         # .html-Variante einer sauberen URL: 301 auf die saubere Form
-        if path in {v for v in CLEAN_URLS.values()}:
-            return self._redirect(path[: -len(".html")])
+        if path in FILE_TO_CLEAN:
+            return self._redirect(FILE_TO_CLEAN[path])
 
         # Saubere URL: intern die .html-Datei ausliefern, URL bleibt unverändert
         if path in CLEAN_URLS:
