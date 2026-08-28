@@ -133,11 +133,19 @@
         <div class="bcard-eyebrow">Realität 01 · Falscher Planstand</div>
         <p style="font-size:17px;font-weight:500;color:var(--ink);margin-bottom:8px">Geplant nach einem Stand, der so nicht mehr gilt</p>
         <p style="font-size:15px;color:var(--ink-soft);line-height:1.5">Der Plan im Ordner ist der aktuelle, das stimmt. Nur ist die Festlegung aus der Besprechung nie eingearbeitet worden. Wer das nicht weiß, plant sie weg, und der Widerspruch fällt erst auf der Baustelle auf.</p>
-        <div class="bcard-illus" style="height:100px;border-radius:var(--r-md);overflow:hidden">
-          <picture>
-            <source srcset="images/manuelle-prozesse.webp" type="image/webp">
-            <img src="images/manuelle-prozesse.png" alt="Illustration: Unterlagen ohne Zugriff" width="1400" height="196" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
-          </picture>
+        <div class="bcard-illus planstand-illus" role="img" aria-label="Der Plan trägt Index D vom März 2024 und wurde als Grundlage verwendet. Die Festlegung aus dem Besprechungsprotokoll vom November 2023 ist in diesem Index nicht eingearbeitet.">
+          <div class="ps-row">
+            <span class="ps-kind">Plan</span>
+            <span class="ps-name">Grundriss OG 2 · Index D</span>
+            <span class="ps-date">03/2024</span>
+            <span class="ps-flag ps-flag-used">danach geplant</span>
+          </div>
+          <div class="ps-row ps-row-missed">
+            <span class="ps-kind">Protokoll</span>
+            <span class="ps-name">Baubesprechung · TOP 4</span>
+            <span class="ps-date">11/2023</span>
+            <span class="ps-flag ps-flag-missed">nicht eingearbeitet</span>
+          </div>
         </div>
       </div>
 
@@ -223,7 +231,7 @@
     <p style="font-size:17px;color:var(--ink-soft);margin-top:12px;max-width:680px">Die Aufzeichnung zeigt den Fall eines Anlagenbauers, weil sich der Ablauf daran am klarsten sehen lässt: Der Nutzer wählt das Projekt, beschreibt sein Problem in einem Satz und bekommt eine Antwort mit Datum und Quelle. Bei Ihnen heißen die Unterlagen Pläne, Protokolle und Prüfberichte statt Serviceberichte. Das System dahinter ist dasselbe, und alles läuft auf Hardware im eigenen Haus.</p>
 
     <div style="position:relative;width:100%;max-width:1080px;aspect-ratio:16/9;margin:32px auto 0;background:var(--ink);border-radius:var(--r-lg,16px);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.18)">
-      <video controls preload="metadata" poster="video/maschinenbau-demo-poster.jpg" playsinline style="position:absolute;inset:0;width:100%;height:100%;display:block">
+      <video controls preload="none" poster="video/maschinenbau-demo-poster.jpg" playsinline style="position:absolute;inset:0;width:100%;height:100%;display:block">
         <source src="video/maschinenbau-demo-720p.mp4" type="video/mp4">
         Ihr Browser unterstützt das Video-Format nicht.
       </video>
@@ -371,15 +379,15 @@
           <source srcset="images/logo-small.webp" type="image/webp">
           <img src="images/logo-small.png" alt="smartwandler Logo" class="footer-logo-mark" width="200" height="200" loading="lazy">
         </picture>
-        <p style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:4px">Beratung &amp; Umsetzung für Büros mit vielen Dokumenten</p>
-        <p style="font-size:15px;color:rgba(255,255,255,0.55);line-height:1.6">Neutral. Vertraulich. Ohne Bindung.</p>
+        <p style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:4px">Digitalisierung &amp; Automatisierung</p>
+        <p style="font-size:15px;color:rgba(255,255,255,0.55);line-height:1.6">Lokal. Sicher. Maßgeschneidert.</p>
         <p style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:20px;letter-spacing:0.05em">smartwandler · ein Projekt von decentnodes.de</p>
       </div>
       <div>
         <p style="font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px">Leistungen</p>
         <a href="index.html#leistungen" data-tab-link="beratung" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Beratung &amp; Analyse</a>
         <a href="index.html#leistungen" data-tab-link="workflows" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Workflow-Automatisierung</a>
-        <a href="lokale-ki.html" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Lokale KI-Anwendungen</a>
+        <a href="index.html#leistungen" data-tab-link="ki" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Lokale KI-Anwendungen</a>
         <a href="index.html#leistungen" data-tab-link="webtools" style="display:block;font-size:15px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:12px">Individuelle Web-Tools</a>
       </div>
       <div>

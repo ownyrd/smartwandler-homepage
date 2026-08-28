@@ -402,6 +402,68 @@ section.dark {
   overflow: hidden;
   margin-top: 20px;
 }
+/* Planstand-Konflikt (Bento Realität 01) */
+.planstand-illus,
+.wissen-illus {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ps-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--r-sm);
+  background: #fff;
+  border: 1px solid var(--line-soft);
+  font-size: 12px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  overflow: hidden;
+}
+.ps-row-missed {
+  background: var(--gold-bg);
+  border-color: rgba(200,169,106,0.45);
+  border-left: 3px solid var(--gold);
+}
+.ps-kind {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  flex-shrink: 0;
+  min-width: 62px;
+}
+.ps-name {
+  color: var(--ink);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ps-date {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-faint);
+  flex-shrink: 0;
+}
+.ps-flag {
+  flex-shrink: 0;
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 100px;
+}
+.ps-flag-used { background: var(--paper-3); color: var(--ink-soft); }
+.ps-flag-missed { background: var(--gold); color: #fff; }
+
+@media (max-width: 640px) {
+  .ps-row { flex-wrap: wrap; white-space: normal; gap: 6px 8px; }
+  .ps-date { margin-left: 0; }
+}
+
 .b-a { grid-column: span 7; }
 .b-b { grid-column: span 5; }
 .b-c { grid-column: span 4; }
@@ -557,6 +619,58 @@ section.dark {
   text-transform: uppercase;
   color: rgba(255,255,255,0.6);
   margin-bottom: 12px;
+}
+
+/* Vorgeschalteter Hinweis über den Leistungs-Tabs */
+.lead-in {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  max-width: 780px;
+  margin-top: 28px;
+  padding: 18px 22px;
+  background: var(--paper-3);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+}
+.lead-in-badge {
+  flex: none;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding-top: 3px;
+}
+.lead-in-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.lead-in-text strong { color: var(--ink); font-weight: 600; }
+@media (max-width: 640px) {
+  .lead-in { flex-direction: column; gap: 8px; padding: 16px 18px; }
+  .lead-in-badge { padding-top: 0; }
+}
+
+/* helle Variante der Prozess-Schritte (auf Papier statt in .dark) */
+.process-steps--light {
+  background: var(--line);
+  border-color: var(--line);
+}
+.process-steps--light .process-step {
+  background: #fff;
+  border-right-color: var(--line);
+}
+.process-steps--light .step-num-badge {
+  background: var(--paper-3);
+  border-color: var(--line);
+  color: var(--ink);
+}
+.process-steps--light .step-label-dark { color: var(--ink-faint); }
+.process-steps--light .step-connector {
+  background: #fff;
+  border-color: var(--line);
+  color: var(--ink-faint);
 }
 
 /* dark section headings */

@@ -10,20 +10,21 @@ RewriteRule ^(.*)$ https://www.smartwandler.de/$1 [R=301,L]
 RewriteCond %{THE_REQUEST} \s/+ingenieurbueros\.html[\s?] [NC]
 RewriteRule ^ /ingenieurbueros [R=301,L]
 
-RewriteCond %{THE_REQUEST} \s/+lokale-ki\.html[\s?] [NC]
-RewriteRule ^ /lokale-ki [R=301,L]
-
-RewriteCond %{THE_REQUEST} \s/+meeting-transkription\.html[\s?] [NC]
-RewriteRule ^ /meeting-transkription [R=301,L]
-
-RewriteCond %{THE_REQUEST} \s/+voicemail\.html[\s?] [NC]
-RewriteRule ^ /voicemail [R=301,L]
+RewriteCond %{THE_REQUEST} \s/+wissen-geht-in-rente\.html[\s?] [NC]
+RewriteRule ^ /wissen-geht-in-rente [R=301,L]
 
 # 2) Intern /<slug> → /<slug>.html ausliefern (URL bleibt sauber)
 RewriteRule ^ingenieurbueros/?$ ingenieurbueros.html [L]
-RewriteRule ^lokale-ki/?$ lokale-ki.html [L]
-RewriteRule ^meeting-transkription/?$ meeting-transkription.html [L]
-RewriteRule ^voicemail/?$ voicemail.html [L]
+RewriteRule ^wissen-geht-in-rente/?$ wissen-geht-in-rente.html [L]
+
+# ─────────────────────────────────────────
+# Eingestellte Landingpages → Startseite (301)
+# Seiten entfernt; Slugs bleiben als Redirect bestehen, damit alte
+# Links, Anzeigen und Suchergebnisse nicht ins Leere laufen.
+# ─────────────────────────────────────────
+RewriteRule ^lokale-ki(\.html)?/?$ / [R=301,L]
+RewriteRule ^meeting-transkription(\.html)?/?$ / [R=301,L]
+RewriteRule ^voicemail(\.html)?/?$ / [R=301,L]
 
 # ─────────────────────────────────────────
 # MIME-Types (sicherstellen, dass WebP/WOFF2 korrekt ausgeliefert werden)
